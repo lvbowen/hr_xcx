@@ -1,12 +1,48 @@
 {
   "pages":[
+    "pages/home/home",
+    "pages/position/list",
+    "pages/mine/mine",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
+    "backgroundColor":"#f1f5f8",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "微招聘",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#5AA2E7",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "公司",
+        "iconPath": "images/icon-company-team.png",
+        "selectedIconPath": "images/icon-company-team.png"
+      },
+      {
+        "pagePath": "pages/position/list",
+        "text": "在招职位",
+        "iconPath": "images/icon-company-team.png",
+        "selectedIconPath": "images/icon-company-team.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/icon-company-team.png",
+        "selectedIconPath": "images/icon-company-team.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
   }
 }

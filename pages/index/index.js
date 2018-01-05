@@ -1,4 +1,6 @@
-//index.js
+
+const network = require("../../utils/network.js")
+
 //获取应用实例
 const app = getApp()
 
@@ -16,6 +18,8 @@ Page({
     })
   },
   onLoad: function () {
+    console.log(app.globalData.userInfo)
+    // this.testHttp()
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -50,5 +54,16 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  testHttp:function(){
+    
+     network.post('/api.do',{
+       method: "miniRecruit/getWzpIndexInfo",
+       param: JSON.stringify({ "companyId": "169359", "type": 2 }),
+       sign: "",
+     },function(res){
+       console.log(res)
+     })
+    
   }
 })

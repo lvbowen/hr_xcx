@@ -1,3 +1,8 @@
+const config = require("../config.js")
+
+/**
+ * 格式化标准时间
+ */
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -14,6 +19,22 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+/**
+ * 消息提示框toast
+ */
+const toast = title => {
+  wx.showToast({
+    title: title,
+    image:"",
+    duration:1500
+  });
+}
+
+/**
+ * 
+ */
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  toast:toast,
 }

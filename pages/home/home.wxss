@@ -1,0 +1,63 @@
+
+ .company-wrap{
+  display: flex;
+  flex-direction: column;
+} 
+.banner-image{
+  height: 200rpx;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.logo-slogan-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom:50rpx;
+  background-color: #fff;
+  position: relative;
+}
+.logo-slogan-wrap .logo{
+   position: absolute;
+   top:-93rpx;
+   width:186rpx;
+   height:186rpx; 
+   border-radius: 50%;
+   overflow: hidden;
+   background-size:100%;
+   background-repeat: no-repeat;
+   box-shadow: 0 10rpx 10rpx #ccc;
+   margin-bottom:20rpx;
+}
+.logo-slogan-wrap .title{
+  height:60rpx; 
+  font-size:43rpx;
+  color:rgba(66,80,98,1);
+  line-height:60rpx;
+}
+.logo-slogan-wrap .slogan{
+  width:630rpx;
+  margin-bottom:25rpx;
+  margin-top:15rpx;
+  font-size:26rpx;
+  color:rgba(153,153,153,1);
+  line-height:37rpx;
+}
+.logo-slogan-wrap .attention{
+  width:270rpx;
+  height:70rpx; 
+  line-height: 70rpx;
+  font-size:32rpx;
+  color: #fff;
+  background:rgba(90,162,231,1);
+  border-radius: 35rpx ; 
+}
+.weui-panel__hd{
+  display: flex;
+  align-items: center;
+}
+.weui-panel__hd .img{
+  width:34rpx;
+  height:34rpx;
+}
+
