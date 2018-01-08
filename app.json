@@ -1,6 +1,8 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/home/team/team",
+    "pages/home/map/map",
     "pages/position/list",
     "pages/mine/mine",
     "pages/index/index",

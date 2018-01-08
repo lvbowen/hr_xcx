@@ -1,8 +1,12 @@
+@import "/template/footer/footer.wxss";
 
- .company-wrap{
+.company-wrap{
   display: flex;
   flex-direction: column;
 } 
+.section{
+  margin-top:24rpx;
+}
 .banner-image{
   height: 200rpx;
   background-size: cover;
@@ -20,10 +24,12 @@
 .logo-slogan-wrap .logo{
    position: absolute;
    top:-93rpx;
+   left:282rpx;
    width:186rpx;
    height:186rpx; 
    border-radius: 50%;
    overflow: hidden;
+   background-color: #fff;
    background-size:100%;
    background-repeat: no-repeat;
    box-shadow: 0 10rpx 10rpx #ccc;
@@ -34,6 +40,7 @@
   font-size:43rpx;
   color:rgba(66,80,98,1);
   line-height:60rpx;
+  margin-top:113rpx;
 }
 .logo-slogan-wrap .slogan{
   width:630rpx;
@@ -59,5 +66,90 @@
 .weui-panel__hd .img{
   width:34rpx;
   height:34rpx;
+  margin-right:10rpx;
 }
-
+.info-wrap .weui-media-box{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.info-wrap .name{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width:100%;
+  word-break: break-all;
+}
+.info-wrap .name .text{
+  width:80%;
+  font-size: 34rpx;
+  line-height: 34rpx;
+}
+.info-wrap .name .icon{
+  width:42rpx;
+  height: 44rpx;
+  margin-right:22rpx;
+}
+.info-wrap .short-name{
+  line-height: 36rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+.info-wrap .address,.info-wrap .tel{
+  width:80%;
+  line-height: 36rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+.info-wrap .address .fa,.info-wrap .tel .fa{
+    margin-right:20rpx;
+}
+.develop-wrap .weui-media-box_appmsg{  
+  align-items: flex-start; 
+}
+.develop-wrap .weui-media-box__hd{
+  width:248rpx;
+  height: 165rpx;
+  margin-right:20rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+.develop-wrap .weui-media-box__desc{
+  -webkit-line-clamp:3;
+}
+.office-wrap .weui-media-box:before,.team-wrap .weui-media-box:before{
+  border-top:none;
+}
+.team-wrap .weui-panel__hd{
+   justify-content: space-between;
+}
+.team-wrap .weui-panel__hd .left,.team-wrap .weui-panel__hd .right{
+  display: flex;
+  align-items: center;
+}
+.swiper{
+  position: relative;
+  height: 418rpx;
+}
+.swiper .slide-image{
+  width:690rpx;
+  height: 360rpx;
+}
+.swiper .desc{
+  line-height: 38rpx;
+  font-size:26rpx;
+  color:#999;
+}
+.swiper .wx-swiper-dots{
+  position: absolute;
+  top:320rpx;
+  left:50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.swiper .wx-swiper-dot{
+  background: rgba(255,255,255,0.3);
+}
+.swiper .wx-swiper-dot-active{
+  background: #fff;
+}

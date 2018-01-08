@@ -1,6 +1,8 @@
 
 const network = require("../../utils/network.js")
 const app = getApp() 
+const companyId = app.globalData.companyId
+const paramObj = { companyId: companyId, type: 2 }
 
 Page({
 
@@ -8,14 +10,25 @@ Page({
    * 页面的初始数据
    */
   data: {
+    memorabilia:null,
     website: null,
+    workEnvironment:null,
+    workTeam:null,
+    allCompanies:[],
+    headCompany:null,
+    branchCompanies:[],
+    indicatorDots: true,
+    autoplay: true,
+    interval: 3000,
+    duration: 1000
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      this.getCompanyDetail()
+      this.getCompanyDetail();
+      this.getCompanyInfo();
   },
 
   /**
@@ -36,26 +49,69 @@ Page({
    */
   getCompanyDetail:function(){
     let _this = this
-    network.get("/weixin/getCompanyWebDetail.do", {
-      companyId: app.globalData.companyId,
-      code:''
+    network.post("/api.do", {
+      method:"companyWeb/getCompanyDetail",
+      param: JSON.stringify(paramObj)
     },function(res){
-      console.log(res)
-      if (res.codeUrl === ""){
+      if (res.code == "0"){
           _this.setData({
-            website: res.CompanyWebsite
-
+            memorabilia: res.data.CompanyMemorabilia,
+            website: res.data.CompanyWebsite,
+            workEnvironment: res.data.WorkEnvironment,
+            workTeam: res.data.WorkTeam
+            
           })
-          console.log(_this.data.website)
-          console.log('website')
       }else{
-        console.log(`codeUrl:${res.codeUrl}`)
+        console.log(`companyWeb/getCompanyDetail:${res.message}`)
       }
     })
   },
+  /**
+   * 获取总公司信息
+   */
+  getCompanyInfo:function(){
+    let _this = this;
+    network.post("/api.do", {
+      method: "user/getCompanyInfo",
+      param: JSON.stringify(paramObj)
+    }, function (res) {
+      if (res.code == "0") {
+        _this.getBranchCompanyInfo()
+        _this.data.allCompanies.push(res.data)
+        _this.setData({
+          headCompany:res.data
+        })
+      } else {
+        console.log(`user/getCompanyInfo:${res.message}`)
+      }
+    })
+  },
+  /**
+   * 获取分公司列表
+   */
+  getBranchCompanyInfo:function(){
+    let _this = this;
+    network.post("/api.do", {
+      method: "user/getBranchCompanyInfo",
+      param: JSON.stringify(paramObj)
+    }, function (res) {
+      if (res.code == "0" && res.data) {
+        let arr = _this.data.allCompanies.concat(res.data)
+        _this.setData({
+          allCompanies: arr,
+          branchCompanies:res.data
+        })
+      } else {
+        console.log(`user/getBranchCompanyInfo:${res.message}`) 
+      }
+    })
+  },  
+  /**
+   * 跳转
+   */
   navigatorTo:function(){
      wx.navigateTo({
-       url: '../index/index',
+       url: `./team/team?companyId=${companyId}`,
      })
   },
 

@@ -1,65 +1,89 @@
+<import src="/template/footer/footer.wxml" />
 
 <view class="company-wrap">  
   <!-- 顶部banner图  -->
-  <view class="banner-image" style="background-image: url('http://oyeq6oxdm.bkt.clouddn.com/Upload1512048750275.jpeg')">
-    
-  </view>
-  
+  <view class="banner-image" style="background-image: url('{{website.weBannerUrl}}');"></view>
   <!-- logo、slogan、关注等  -->
   <view class="logo-slogan-wrap">
-      <view class="logo" style="background-image: url('http://oyeq6oxdm.bkt.clouddn.com/Upload1512048756150.jpg')"></view>
+      <view class="logo" style="background-image: url('{{website.logoUrl}}');"></view>
        <view class="title">{{website.name}}</view>
       <view class="slogan">{{website.slogan}}</view>
       <view class="attention">关注</view>
   </view>
    <!-- 公司信息  -->
-  <view class="info-wrap">
+  <view class="info-wrap section" wx:if="{{allCompanies && allCompanies.length > 0}}">
         <view class="weui-panel weui-panel_access">
-        <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-info.png"></image>图文组合列表</view>
-        <view class="weui-panel__bd"></view>
+        <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-info.png"></image>公司信息</view>
+        <view class="weui-panel__bd">
+          <block wx:for="{{allCompanies}}" wx:key="index">
+          <navigator class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"  url="./map/map?companyId={{item.companyId ? item.companyId : item.id}}">
+            <view class="name">
+              <text class="text">{{item.companyName}}</text>
+              <image class="icon" src="../../images/icon-map.png"></image>
+            </view>
+            <view class="short-name" wx:if="{{item.companyShortName}}">({{item.companyShortName}})</view>
+            <view class="address ell"><text class="fa fa-map-marker"></text>{{item.address}}</view>
+            <view class="tel"><text class="fa fa-phone"></text>{{item.phone}}</view>
+          </navigator>
+          </block>
+        </view>
       </view>      
   </view>
    <!-- 发展进程  -->
-  <view class="develop-wrap">
+  <view class="develop-wrap section" wx:if="{{memorabilia && memorabilia.length > 0}}">
        <view class="weui-panel weui-panel_access">
-        <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-develop.png" />图文组合列表</view>      
+        <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-develop.png" />发展进程</view>      
         <view class="weui-panel__bd">
-            <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+            <view class="weui-media-box weui-media-box_appmsg" wx:for="{{memorabilia}}" wx:key="id" data-id="{{item.id}}">
                 <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                      <image class="weui-media-box__thumb" src="http://oyeq6oxdm.bkt.clouddn.com/Upload1512048756150.jpg" />  
+                      <image class="weui-media-box__thumb" src="{{item.imageUrl}}" />  
                 </view>
                 <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                    <view class="weui-media-box__title">标题一</view>
-                    <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
+                    <view class="weui-media-box__title ell title">{{item.date}}</view>
+                    <view class="weui-media-box__desc font-gray-26">{{item.description}}</view>
                 </view>
-            </navigator>
-            <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                      <image class="weui-media-box__thumb" src="http://oyeq6oxdm.bkt.clouddn.com/Upload1512048756150.jpg" />  
-                </view>
-                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                    <view class="weui-media-box__title">标题二</view>
-                    <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
-                </view>
-            </navigator>
+            </view>
         </view>
       </view> 
   </view>
    <!-- 办公环境  -->
-  <view class="office-wrap">
+  <view class="office-wrap section" wx:if="{{workEnvironment && workEnvironment.length > 0}}">
      <view class="weui-panel weui-panel_access">
           <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-office.png" />办公环境</view> 
-          <view class="weui-panel__bd">1234</view>  
+          <view class="weui-panel__bd weui-media-box">
+            <swiper class="swiper" indicator-dots="{{indicatorDots}}"
+              autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+              <block wx:for="{{workEnvironment}}" wx:key="id">
+                <swiper-item>
+                  <image src="{{item.imageUrl}}" class="slide-image" />
+                  <view class="desc">{{item.description}}</view>    
+                </swiper-item>
+              </block>
+            </swiper>
+          </view>  
       </view>
   </view>       
    <!-- 我们的团队  -->
-  <view class="team-wrap">
+  <view class="team-wrap section" wx:if="{{workTeam && workTeam.length > 0}}">
      <view class="weui-panel weui-panel_access">
-         <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-team.png" />我们的团队</view> 
-          <view class="weui-panel__bd"></view> 
+         <view class="weui-panel__hd">
+           <view class="left"><image class="img" src="../../images/icon-company-team.png" />我们的团队</view>
+           <view class="right" catchtap='navigatorTo'>查看更多信息<icon class="arrow-right"></icon></view>   
+          </view> 
+          <view class="weui-panel__bd weui-media-box">
+            <swiper class="swiper" indicator-dots="{{indicatorDots}}"
+              autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+              <block wx:for="{{workTeam}}"  wx:key="id">
+                <swiper-item>
+                  <image src="{{item.imageUrl}}" class="slide-image" />
+                  <view class="desc">{{item.description}}</view>
+                </swiper-item>
+              </block>
+            </swiper>
+          </view> 
       </view>
   </view>
-  <!--  -->
-    
+  <!-- 页脚 -->
+  <template is="footer" />
 </view>
 

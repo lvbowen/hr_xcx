@@ -4,6 +4,9 @@ let util = require("./util.js")
 let network = {
   //post请求
   post:(url,params,success,fail) => {
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: `${config.host}${url}`,
       method: "POST",
@@ -13,9 +16,9 @@ let network = {
       },
       data: params,
       success:res => {
+        wx.hideLoading()
         if(success){
           success(res.data)
-          util.toast("服务器开小差了！")
         }
       },
       fail:() => {
@@ -29,6 +32,9 @@ let network = {
   },
   //get请求
   get: (url, params, success, fail) => {
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: `${config.host}${url}`,
       method: "GET",
@@ -38,6 +44,7 @@ let network = {
       },
       data: params,
       success: res => {
+        wx.hideLoading()
         if (success) {
           success(res.data)
         }

@@ -1,0 +1,30 @@
+@import "/template/footer/footer.wxss";
+
+.team-box{
+  margin-bottom:24rpx;
+}
+.weui-panel__hd{
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-size:34rpx;
+}
+.weui-panel__hd .img{
+  width:34rpx;
+  height: 34rpx;
+  margin-right:10rpx;
+}
+.team-intro .img-box{
+  width:690rpx;
+  height:360rpx;
+  margin-bottom: 30rpx;
+}
+.team-intro .img-box .img {
+  width:100%;
+  height:100%;
+}
+.team-intro .desc{
+  font-size:28rpx;
+  line-height: 1.5;
+  color: #353535;
+}

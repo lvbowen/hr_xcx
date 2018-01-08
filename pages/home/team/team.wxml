@@ -1,0 +1,38 @@
+<import src="/template/footer/footer.wxml" />
+
+<view class="teams-wrap">
+    <view class="team-list" wx:for="{{teams}}" wx:key="index">
+      <view class="team-box">
+        <view class="weui-panel weui-panel_access team-intro">
+            <view class="weui-panel__hd"><image class="img" src="../../../images/icon-company-team.png" />{{item.name}}</view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="img-box">
+                       <image class="img" src="{{item.imageUrl}}" />
+                    </view>
+                    <view class="desc">{{item.description}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-panel weui-panel_access team-member">
+            <view class="weui-panel__hd"><image class="img" src="../../../images/icon-team.png" />团队成员</view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_appmsg" wx:for="{{item.memberList}}" wx:key="id" wx:for-item="subItem">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{subItem.photoUrl}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">
+                          <text class="name">{{subItem.name}}</text>
+                          <text class="position-name">{{subItem.positionName}}</text>
+                        </view>
+                        <view class="weui-media-box__desc">{{subItem.description}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+      </view>
+    </view>
+    <!-- 页脚 -->
+    <template is="footer" />
+</view>
