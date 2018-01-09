@@ -77,6 +77,7 @@ Page({
     }, function (res) {
       if (res.code == "0") {
         _this.getBranchCompanyInfo()
+        res.data.companyId = res.data.id
         _this.data.allCompanies.push(res.data)
         _this.setData({
           headCompany:res.data
@@ -109,10 +110,24 @@ Page({
   /**
    * 跳转
    */
-  navigatorTo:function(){
-     wx.navigateTo({
-       url: `./team/team?companyId=${companyId}`,
-     })
+  navigatorTo:function(e){
+    let type = e.currentTarget.dataset.type;
+    switch(type){
+      case "1":
+        let index = e.currentTarget.dataset.index;
+        let company = this.data.allCompanies[index];
+        wx.navigateTo({
+          url: `./map/map?companyName=${company.companyName}&region=${company.region}&address=${company.address}&phone=${company.phone}&longitude=${company.longitude}&latitude=${company.latitude}`,
+        })
+        break;
+      case "2":
+        wx.navigateTo({
+          url: `./team/team?companyId=${companyId}`,
+        })
+        break;
+      default:
+        break;
+    }
   },
 
   /**

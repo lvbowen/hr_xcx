@@ -1,2 +1,21 @@
-<!--pages/position/list.wxml-->
-<text>pages/position/list.wxml</text>
+
+ <scroll-view class="scroll-wrap" scroll-y  bindscrolltolower="lower">
+     <view class="banner" style="background-image: url('/images/footer-logo.png');"></view>
+     <view class="position-list-wrap">
+        <view class="position" wx:for="{{positionList}}" wx:key="index">
+          <view class="position-title">
+            <text class="emergency">急招</text>
+            <text class="title">{{item.positionName}}</text>
+          </view>
+          <view class="position-tags">
+            <text class="tag">{{item.workCity}}</text>
+            <text class="tag">{{item.positionType == 1 ? '全职' : item.positionType == 2 ? '兼职' : '实习'}}</text>
+            <text class="tag">{{item.positionSalaryLowest}}k-{{item.positionSalaryHighest}}k</text>
+          </view>
+          <view class="time-number">
+            <view class="time">发布时间 :{{item.createTime}}</view>
+            <view class="number">浏览次数 :{{item.views}}</view>
+          </view>
+        </view>
+     </view>
+  </scroll-view>

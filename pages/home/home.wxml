@@ -16,15 +16,15 @@
         <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-info.png"></image>公司信息</view>
         <view class="weui-panel__bd">
           <block wx:for="{{allCompanies}}" wx:key="index">
-          <navigator class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"  url="./map/map?companyId={{item.companyId ? item.companyId : item.id}}">
+          <view class="weui-media-box weui-media-box_appmsg" data-index="{{index}}" data-type="1" catchtap='navigatorTo'>
             <view class="name">
               <text class="text">{{item.companyName}}</text>
-              <image class="icon" src="../../images/icon-map.png"></image>
+              <image class="icon" src="../../images/icon-map.png"></image>  
             </view>
             <view class="short-name" wx:if="{{item.companyShortName}}">({{item.companyShortName}})</view>
-            <view class="address ell"><text class="fa fa-map-marker"></text>{{item.address}}</view>
+            <view class="address ell"><text class="fa fa-map-marker"></text>{{item.region}}{{item.address}}</view>
             <view class="tel"><text class="fa fa-phone"></text>{{item.phone}}</view>
-          </navigator>
+          </view>
           </block>
         </view>
       </view>      
@@ -56,7 +56,7 @@
               <block wx:for="{{workEnvironment}}" wx:key="id">
                 <swiper-item>
                   <image src="{{item.imageUrl}}" class="slide-image" />
-                  <view class="desc">{{item.description}}</view>    
+                  <view class="desc ell">{{item.description}}</view>    
                 </swiper-item>
               </block>
             </swiper>
@@ -68,7 +68,7 @@
      <view class="weui-panel weui-panel_access">
          <view class="weui-panel__hd">
            <view class="left"><image class="img" src="../../images/icon-company-team.png" />我们的团队</view>
-           <view class="right" catchtap='navigatorTo'>查看更多信息<icon class="arrow-right"></icon></view>   
+           <view class="right" catchtap='navigatorTo' data-type="2">查看更多信息<icon class="arrow-right"></icon></view>   
           </view> 
           <view class="weui-panel__bd weui-media-box">
             <swiper class="swiper" indicator-dots="{{indicatorDots}}"
@@ -76,7 +76,7 @@
               <block wx:for="{{workTeam}}"  wx:key="id">
                 <swiper-item>
                   <image src="{{item.imageUrl}}" class="slide-image" />
-                  <view class="desc">{{item.description}}</view>
+                  <view class="desc ell">{{item.description}}</view>
                 </swiper-item>
               </block>
             </swiper>

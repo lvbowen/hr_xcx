@@ -35,7 +35,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    companyId: "34530",   //正式：61(爱聚) 34530，测试：169359
+    companyId: "169359",   //正式：61(爱聚) 34530，测试：169359
     pageSize: "6"
   }
 })

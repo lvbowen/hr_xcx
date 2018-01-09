@@ -5,21 +5,47 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    companyInfo:null,
+    markers: [{
+      iconPath: "/images/icon-marker.png",
+      id: 0,
+      latitude: 30.293568,
+      longitude: 120.06678,
+      width: 30,
+      height: 30,
+      callout:{
+        content:"",
+        color:"#000",
+        fontSize:13,
+        borderRadius:5,
+        bgColor:"#ffffff",
+        padding:8,
+        display: 'ALWAYS'
+      },
+    }],
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let marker = this.data.markers[0]
+    marker.latitude = options.latitude
+    marker.longitude = options.longitude  
+    marker.callout.content = `${options.companyName}\n${options.region}${options.address}`
+    console.log(this.data.markers)
+    let _this = this;
+    this.setData({
+      companyInfo:options,
+      markers: _this.data.markers
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
   },
 
   /**
@@ -28,14 +54,16 @@ Page({
   onShow: function () {
   
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  regionchange(e) {
+    // console.log(e.type)
   },
-
+  markertap(e) {
+    // console.log(e.markerId)
+  },
+  controltap(e) {
+    // console.log(e.controlId)
+  },
+ 
   /**
    * 生命周期函数--监听页面卸载
    */
