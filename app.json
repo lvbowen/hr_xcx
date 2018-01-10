@@ -1,6 +1,8 @@
 {
   "pages":[
+    "pages/position/detail/detail",
     "pages/position/list",
+    
     "pages/home/home",
     "pages/home/map/map",
     

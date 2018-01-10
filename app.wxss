@@ -1,6 +1,8 @@
 
 @import "style/weui.wxss";
 @import "style/font-awesome.wxss";
+@import "wxParse/wxParse.wxss";
+
 
 /* .container {
   height: 100%;
@@ -24,13 +26,19 @@ page{
 .font-gray-24{
   font-size: 24rpx;
   line-height: 1.5;
-  color: #999;
+  color: #999999;
   word-break: break-all;
 }
 .font-gray-26{
   font-size: 26rpx;
   line-height: 1.5;
-  color: #999;
+  color: #999999;
+  word-break: break-all;
+}
+.font-34{
+  font-size: 34rpx;
+  line-height: 48rpx;
+  color: #222222;
   word-break: break-all;
 }
 .arrow-right{

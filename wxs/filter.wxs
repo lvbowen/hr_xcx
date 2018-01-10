@@ -1,0 +1,18 @@
+/**
+ * 全局filter函数集合
+ */
+
+/**
+ * 切割字符串
+ */
+function splitString(str){ 
+  if (str && typeof str == "string") {
+    return str.split(",")[1]
+  } else {
+    return str;
+  }
+}
+
+module.exports = {
+  splitString: splitString
+}

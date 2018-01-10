@@ -10,6 +10,8 @@ Page({
    */
   data: {
       positionList:[],
+      inputShowed: false,
+      inputVal: ""
   },
 
   /**
@@ -17,6 +19,7 @@ Page({
    */
   onLoad: function (options) {
     this.getPositionList()
+    console.log(companyId)
   },
 
   /**
@@ -41,7 +44,6 @@ Page({
       method: "companyWeb/getWeWebsitePositionByCategoryId",
       param: JSON.stringify(paramObj)
     }, function (res) {
-      console.log(res)
       if (res.code == "0" && res.data) {
         _this.setData({
           positionList:res.data
@@ -50,7 +52,46 @@ Page({
         console.log(`companyWeb/getWeWebsitePositionByCategoryId:${res.message}`)
       }
     })
-  },  
+  },
+  /**
+   * 加载更多
+   */  
+  loadMore:function(){
+
+  },
+  /**
+   * 跳转
+   */
+  navigatorTo: function (e) {
+    let dataset = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `./detail/detail?companyId=${companyId}&positionId=${dataset.positionid}`,
+    })
+    
+  },
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+  },
+  inputTyping: function (e) {
+    console.log(e.detail.value)
+    this.setData({
+      inputVal: e.detail.value
+    });
+  },
+ 
 
   /**
    * 生命周期函数--监听页面隐藏

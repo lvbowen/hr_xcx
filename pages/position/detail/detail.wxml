@@ -1,0 +1,50 @@
+<import src="/template/footer/footer.wxml" />
+<import src="/template/position/position.wxml" />
+<import src="/wxParse/wxParse.wxml"/>
+
+
+<view class="position-detail">
+  <view class="current-position">
+     <template is="positionItem" data="{{...positionInfo}}" /> 
+  </view>
+  <!-- 公司信息  -->
+    <view class="company-info weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="{{companyInfo.companyHeadImg}}" />
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">{{companyInfo.name}}</view>
+            <view class="weui-media-box__desc">{{companyInfo.companyValues}}</view>
+             <view class="weui-media-box__desc">{{companyInfo.address}} | {{companyInfo.domain}} | {{peopleNum[companyInfo.status - 1].label}} | {{finance[companyInfo.dimensions - 1].label}}</view>
+
+        </view>
+    </view>
+  <!-- 职位描述  -->
+  <view class="position-desc weui-panel weui-panel_access">
+    <view class="weui-panel__hd"><image class="img" src="../../../images/icon-company-info.png"></image>职位描述</view>
+    <view class="weui-panel__bd">
+      <!-- <view class="content">{{positionInfo.positionDesc}}</view> -->
+      <view class="content"><template is="wxParse" data="{{wxParseData:article.nodes}}"/></view>
+    </view>
+  </view>
+   <!-- 职位福利  -->
+  <view class="position-welfare weui-panel weui-panel_access" wx:if="{{positionInfo.positionTagList && positionInfo.positionTagList.length > 0 }}">
+    <view class="weui-panel__hd"><image class="img" src="../../../images/icon-company-info.png"></image>职位福利</view>
+    <view class="weui-panel__bd">
+      <view class="tag-list">
+        <view class="tag" wx:for="{{positionInfo.positionTagList}}" wx:key="index">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+   <!-- 相关职位推荐  -->
+   <view class="position-recommend weui-panel weui-panel_access" wx:if="{{positionInfo.similarPositions && positionInfo.similarPositions.length > 0 }}">
+    <view class="weui-panel__hd"><image class="img" src="../../../images/icon-company-info.png"></image>相关职位推荐</view>
+    <view class="weui-panel__bd">
+       <view class="relative-position" wx:for="{{positionInfo.similarPositions}}" wx:key="index" data-positionId="{{item.id}}" catchtap='linkTo'>
+          <template is="positionItem" data="{{...item}}" />
+        </view>
+    </view>
+  </view> 
+  <!-- 页脚  -->
+  <template is="footer" />
+</view>
