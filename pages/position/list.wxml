@@ -11,7 +11,7 @@
         <view class="weui-search-bar__form">
             <view class="weui-search-bar__box">
                 <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                <input type="text" class="weui-search-bar__input" placeholder="搜索" confirm-type="search" value="{{inputVal}}" focus="{{inputShowed}}"  bindconfirm="goSearch"/>
                 <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                     <icon type="clear" size="14"></icon>
                 </view>
@@ -24,11 +24,18 @@
         <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
      </view>
      <!-- 职位列表  -->
-     <view class="position-list-wrap">
+     <view class="position-list-wrap" wx:if="{{positionList && positionList.length > 0}}">
         <view class="position" wx:for="{{positionList}}" wx:key="index" data-positionId="{{item.id}}" catchtap='navigatorTo'>
           <template is="positionItem" data="{{...item}}" />
         </view>
      </view>
+     <!-- 空职位占位图  -->
+     <view class="no-position" wx:else>
+         <view class="placeholder">
+              <image src="../../images/no-result.png"></image>
+              <text>暂无在招职位</text>
+         </view> 
+     </view>
      <!-- 页脚  -->
-     <template is="footer" />
+     <template is="footer" wx:if="{{positionList && positionList.length > 0}}" />
   </scroll-view>

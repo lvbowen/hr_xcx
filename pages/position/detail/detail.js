@@ -15,6 +15,7 @@ Page({
     positionDesc:'',
     companyInfo:null,
     shareInfo:null,
+    shareMaskHidden:true,
     peopleNum: [{
       value: 1,
       label: '0-50'
@@ -59,10 +60,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    this.setData({
-      options:{companyId:"169359",positionId:"4"}
-    })
+    if (options.positionId){
+      this.setData({
+        options: options
+      })
+    }else{
+      this.setData({
+        options: { companyId: "169359", positionId: "4" }
+      })
+    }
+   
     this.getPositionInfo();
     this.getWzpIndexInfo();
     this.getShareTitleInfo();
@@ -137,6 +144,36 @@ Page({
     })
   },
   /**
+   * 跳转
+   */
+  linkTo: function (e) {
+    let dataset = e.currentTarget.dataset;
+    switch(dataset.type){
+      //重定向到职位详情页
+      case "1":
+        wx.redirectTo({
+          url: `./detail?companyId=${companyId}&positionId=${dataset.positionid}`,
+        })
+        break;
+      //跳转到创建微简历页
+      case "2":
+        wx.navigateTo({
+          url: `./addResume/addResume?companyId=${companyId}`,
+        })
+        break;
+      default:
+        break;
+    }
+  },
+  /**
+   * 显示隐藏
+   */
+  toggleShareMask:function(){
+    this.setData({
+      shareMaskHidden: !this.data.shareMaskHidden
+    })
+  },
+  /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
@@ -167,16 +204,19 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    
+  onShareAppMessage: function (result) {
+    let _this = this;
     return {
-      title: '自定义转发标题',
-      path: '/page/user?id=123',
+      title: _this.data.shareInfo.title,
+      path: `/pages/position/detail/detail?companyId=${companyId}&positionId=${_this.data.options.positionId}`,
+      imageUrl: _this.data.shareInfo.imgUrl,
       success: function (res) {
         // 转发成功
+        // console.log(res)
       },
       fail: function (res) {
         // 转发失败
+        
       }
     }
   }

@@ -21,15 +21,14 @@
     </view>
   <!-- 职位描述  -->
   <view class="position-desc weui-panel weui-panel_access">
-    <view class="weui-panel__hd"><image class="img" src="../../../images/icon-company-info.png"></image>职位描述</view>
+    <view class="weui-panel__hd"><image class="img" src="../../../images/describe.png"></image>职位描述</view>
     <view class="weui-panel__bd">
-      <!-- <view class="content">{{positionInfo.positionDesc}}</view> -->
       <view class="content"><template is="wxParse" data="{{wxParseData:article.nodes}}"/></view>
     </view>
   </view>
    <!-- 职位福利  -->
   <view class="position-welfare weui-panel weui-panel_access" wx:if="{{positionInfo.positionTagList && positionInfo.positionTagList.length > 0 }}">
-    <view class="weui-panel__hd"><image class="img" src="../../../images/icon-company-info.png"></image>职位福利</view>
+    <view class="weui-panel__hd"><image class="img" src="../../../images/welfare.png"></image>职位福利</view>
     <view class="weui-panel__bd">
       <view class="tag-list">
         <view class="tag" wx:for="{{positionInfo.positionTagList}}" wx:key="index">{{item.name}}</view>
@@ -38,13 +37,29 @@
   </view>
    <!-- 相关职位推荐  -->
    <view class="position-recommend weui-panel weui-panel_access" wx:if="{{positionInfo.similarPositions && positionInfo.similarPositions.length > 0 }}">
-    <view class="weui-panel__hd"><image class="img" src="../../../images/icon-company-info.png"></image>相关职位推荐</view>
+    <view class="weui-panel__hd"><image class="img" src="../../../images/recommend.png"></image>相关职位推荐</view>
     <view class="weui-panel__bd">
-       <view class="relative-position" wx:for="{{positionInfo.similarPositions}}" wx:key="index" data-positionId="{{item.id}}" catchtap='linkTo'>
+       <view class="relative-position" wx:for="{{positionInfo.similarPositions}}" wx:key="index" data-positionId="{{item.id}}" data-type="1" catchtap='linkTo'>
           <template is="positionItem" data="{{...item}}" />
         </view>
     </view>
   </view> 
   <!-- 页脚  -->
   <template is="footer" />
+  <!-- 固定按钮 -->
+  <view class="fixed-btns">
+    <view class="share-btn btn-box" catchtap='toggleShareMask'>
+        <image class="icon" src="../../../images/share.png"></image>
+        <button class="btn" open-type="share">我要分享</button>     
+       <!--  <text class="word">我要分享</text> -->
+    </view> 
+    <view class="deliver-btn btn-box" data-type="2" catchtap='linkTo'>
+        <image class="icon" src="../../../images/deliver.png"></image>
+        <text class="word">我要投递</text>
+    </view> 
+  </view>
+  <!-- 分享的遮罩层 -->
+  <!-- <view class="share-mask" hidden="{{shareMaskHidden}}" catchtap='toggleShareMask'>
+      <view class="share-tip"></view>
+  </view> -->
 </view>

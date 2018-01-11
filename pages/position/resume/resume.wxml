@@ -1,0 +1,25 @@
+<view class="resume-type">
+<!-- 创建个人简历  -->
+  <view class="resume-create">
+    <view class="title"></view>
+    <view class="create-types">
+      <view class="type">
+        <image src=""></image>
+        <text class=""></text>
+      </view>
+    </view>
+  </view>
+  <!-- 快速导入简历  -->
+  <view class="resume-import">
+    <view class="title"></view>
+    <view class="import">
+      <view class="type">
+        <view class="left">
+          <image class=""></image>
+          <text>qiancheng</text>
+        </view>
+        <view class="right">导入</view>
+      </view>
+    </view>
+  </view>
+</view>

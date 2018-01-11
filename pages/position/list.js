@@ -69,30 +69,47 @@ Page({
     })
     
   },
+  //显示输入框
   showInput: function () {
     this.setData({
       inputShowed: true
     });
   },
+  //隐藏输入框
   hideInput: function () {
     this.setData({
       inputVal: "",
       inputShowed: false
     });
   },
+  //清楚输入框内容
   clearInput: function () {
     this.setData({
       inputVal: ""
     });
   },
-  inputTyping: function (e) {
-    console.log(e.detail.value)
-    this.setData({
-      inputVal: e.detail.value
-    });
+  /**
+   * 搜索职位
+   */
+  goSearch:function(e){
+    let value = e.detail.value.trim();
+    let _this = this;
+    let param = Object.assign({}, paramObj, { keyword:value})
+    network.post("/api.do", {
+      method: "companyWeb/searchWeWebsitePositionByKeyword",
+      param: JSON.stringify(param)
+    }, function (res) {
+      if (res.code == "0" && res.data) {
+        _this.setData({
+          positionList: res.data,
+          inputShowed: false,
+          inputVal: "",
+        })
+      } else {
+        console.log(`companyWeb/searchWeWebsitePositionByKeyword:${res.message}`)
+      }
+    })
   },
- 
-
   /**
    * 生命周期函数--监听页面隐藏
    */
