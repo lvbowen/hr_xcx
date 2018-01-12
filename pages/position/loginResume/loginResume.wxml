@@ -1,0 +1,79 @@
+<import src="/template/toast/toast.wxml" />
+
+<view class="logo-wrap">
+  <view class="logo">
+    <image class="img" src="../../../images/jobs_icon.png" wx:if="{{options.type == 1}}"></image>
+    <image class="img" src="../../../images/zhilian_icon.png" wx:elif="{{options.type == 2}}"></image>
+    <image class="img" src="../../../images/lagou_icon.png" wx:else></image>
+  </view>
+</view>
+<form class="form" bindsubmit="formSubmit">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+           <view class="weui-cell__hd">
+              <view class="weui-label">账号</view>
+          </view> 
+          <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="请输入账号" name="account" value="{{inputAccount}}" data-type="1" data-event="input" bindinput="operateInput" />
+          </view>
+          <view class="weui-icon-clear" wx:if="{{inputAccount.length > 0}}" data-type="1" data-event="clear" bindtap="operateInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+              <view class="weui-label">密码</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="请输入密码" name="pwd" password="true" value="{{inputPass}}" data-type="2" data-event="input" bindinput="operateInput" />
+          </view>
+          <view class="weui-icon-clear" wx:if="{{inputPass.length > 0}}" data-type="2" data-event="clear" bindtap="operateInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+      </view>
+       <view class="zhilian-input weui-cell weui-cell_input" wx:if="{{options.type == 2}}">
+          <view class="weui-cell__hd">
+              <view class="weui-label">邮箱</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="请输入邮箱" name="email" value="{{inputEmail}}" data-type="3" data-event="input" bindinput="operateInput" />
+          </view>
+          <view class="weui-icon-clear" wx:if="{{inputEmail.length > 0}}" data-type="3" data-event="clear" bindtap="operateInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+          <view class="weui-cell__ft" hidden="{{legalEmail}}">
+            <icon type="warn" size="23" color="#E64340"></icon>
+          </view>
+      </view>
+       <view class="zhilian-input weui-cell weui-cell_input" wx:if="{{options.type == 2}}">
+          <view class="weui-cell__hd">
+              <view class="weui-label">手机号</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="请输入手机号" name="phone" type="number" maxlength="11" value="{{inputTel}}" data-type="4" data-event="input" bindinput="operateInput" />
+          </view>
+          <view class="weui-icon-clear" wx:if="{{inputTel.length > 0}}" data-type="4" data-event="clear" bindtap="operateInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+          <view class="weui-cell__ft" hidden="{{legalPhone}}">
+            <icon type="warn" size="23" color="#E64340"></icon>
+          </view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button class="btn-submit" formType="submit">确认登录并投递</button>
+    </view>
+</form>
+<view class="tip-list">
+  <view class="tip">
+    <image src="../../../images/success.png" />您的账号和密码不会被保存
+  </view>
+  <view class="tip">
+    <image src="../../../images/success.png" />您的简历将仅用于应聘
+  </view>
+  <view class="tip">
+    <image src="../../../images/success.png" />我们会对您的简历保密
+  </view>
+</view>
+
+<template is="defineToast" data="{{...deToast}}"/>

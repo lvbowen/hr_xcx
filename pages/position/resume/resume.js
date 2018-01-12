@@ -5,14 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    options:null,
+    platforms:[
+      { "type": 1, "platformName": "前程无忧（51job）", "logoUrl":"../../../images/resum_1.png"},
+      { "type": 2, "platformName": "智联招聘", "logoUrl": "../../../images/resum_2.png" },
+      { "type": 6, "platformName": "拉勾网", "logoUrl": "../../../images/resum_4.png" },
+    ],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    console.log(options)
+
+    this.setData({
+      options:options
+    })
   },
 
   /**
@@ -28,7 +37,30 @@ Page({
   onShow: function () {
   
   },
-
+  /**
+   * 跳转
+   */
+  navigatorTo: function (e) {
+    let dataset = e.currentTarget.dataset;
+    let options = this.data.options;
+    let queryStr = `companyId=${options.companyId}&positionId=${options.positionId}&fansId=${options.fansId}&shareFansId=${options.shareFansId}&recomType=${options.recomType}`
+    switch (dataset.pagetype) {
+      //go 创建微简历
+      case "1":
+        wx.navigateTo({
+          url: `../addResume/addResume?${queryStr}`,
+        })
+        break;
+      //跳转到第三方招聘平台登录
+      case "2":
+        wx.navigateTo({
+          url: `../loginResume/loginResume?${queryStr}&type=${dataset.type}`,
+        })
+        break;
+      default:
+        break;
+    }
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

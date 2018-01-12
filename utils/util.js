@@ -31,10 +31,21 @@ const toast = title => {
 }
 
 /**
- * 
+ * 显示自定义消息提示框toast
  */
+const toggleToast = (that, content) => {
+  that.setData({
+    deToast: { isShow: true, content: content }
+  })
+  setTimeout(function () {
+    that.setData({
+      deToast: { isShow: false, content: '' }
+    })
+  }, 2000)
+}
 
 module.exports = {
   formatTime: formatTime,
   toast:toast,
+  toggleToast: toggleToast,
 }

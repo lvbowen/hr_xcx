@@ -1,0 +1,53 @@
+.logo-wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 270rpx;
+}
+.logo-wrap .logo{
+  width:140rpx;
+  height:140rpx;
+}
+.logo-wrap .logo .img{
+  width:100%;
+  height:100%;
+}
+.form .btn-area{
+  margin-top:60rpx;
+}
+.form .btn-area .btn-submit{
+  width:690rpx;
+  height: 94rpx;
+  border:none;
+  border-radius: 8rpx;
+  background:#5AA2E7;
+  color: #fff;
+  font-size:36rpx;
+}
+.tip-list{
+  position:absolute;
+  bottom:20rpx;
+  left:50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.tip-list .tip{
+  display: flex;
+  align-items: center;
+  height: 42rpx;
+  font-size:26rpx;
+  color: #999;
+}
+.tip-list .tip image{
+  width:28rpx;
+  height:28rpx;
+  margin-right:20rpx;
+}
+.weui-icon-clear{
+  top:50%;
+  transform: translateY(-50%);
+  z-index:999;
+}
+.zhilian-input .weui-icon-clear{
+  right:40px;
+}

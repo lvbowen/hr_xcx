@@ -1,23 +1,23 @@
 <view class="resume-type">
 <!-- 创建个人简历  -->
   <view class="resume-create">
-    <view class="title"></view>
+    <view class="title">创建个人简历</view>
     <view class="create-types">
-      <view class="type">
-        <image src=""></image>
-        <text class=""></text>
+      <view class="type" data-pagetype="1" catchtap='navigatorTo'>
+        <image class="icon" src="../../../images/resum_3.png"></image>
+        <text class="word">一分钟创建微简历</text>
       </view>
     </view>
   </view>
   <!-- 快速导入简历  -->
   <view class="resume-import">
-    <view class="title"></view>
-    <view class="import">
-      <view class="type">
+    <view class="title">快速导入简历</view>
+    <view class="platform-list">
+      <view class="platform" wx:for="{{platforms}}" wx:key="index" data-type="{{item.type}}" data-pagetype="2" catchtap='navigatorTo'>
         <view class="left">
-          <image class=""></image>
-          <text>qiancheng</text>
-        </view>
+          <image class="logo" src="{{item.logoUrl}}"></image>
+          <text class="word">{{item.platformName}}</text>
+        </view>  
         <view class="right">导入</view>
       </view>
     </view>

@@ -148,6 +148,7 @@ Page({
    */
   linkTo: function (e) {
     let dataset = e.currentTarget.dataset;
+    let _data = this.data;
     switch(dataset.type){
       //重定向到职位详情页
       case "1":
@@ -155,10 +156,10 @@ Page({
           url: `./detail?companyId=${companyId}&positionId=${dataset.positionid}`,
         })
         break;
-      //跳转到创建微简历页
+      //跳转到投递简历页
       case "2":
         wx.navigateTo({
-          url: `./addResume/addResume?companyId=${companyId}`,
+          url: `../resume/resume?companyId=${companyId}&positionId=${_data.options.positionId}&fansId=${_data.fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
         })
         break;
       default:
