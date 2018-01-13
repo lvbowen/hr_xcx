@@ -1,17 +1,18 @@
 {
   "pages":[
+     "pages/position/detail/detail",
     "pages/position/resume/resume",
     "pages/position/loginResume/loginResume",
     "pages/position/list",
-    "pages/position/detail/detail",
     
+    "pages/home/home",
     
     
     
     "pages/position/deliveryResult/deliveryResult",
     "pages/position/addResume/addResume",
     "pages/position/preview/preview",
-    "pages/home/home",
+    
     "pages/home/map/map", 
     
     "pages/home/team/team",

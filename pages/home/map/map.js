@@ -31,10 +31,9 @@ Page({
    */
   onLoad: function (options) {
     let marker = this.data.markers[0]
-    marker.latitude = options.latitude
-    marker.longitude = options.longitude  
+    marker.latitude = parseFloat(options.latitude)
+    marker.longitude = parseFloat(options.longitude)  
     marker.callout.content = `${options.companyName}\n${options.region}${options.address}`
-    console.log(this.data.markers)
     let _this = this;
     this.setData({
       companyInfo:options,

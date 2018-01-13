@@ -2,6 +2,8 @@ const config = require("../config.js")
 
 /**
  * 格式化标准时间
+ * @param {Number} date - 时间戳
+ * return {String} eg : 2018/01/02 12:12:12
  */
 const formatTime = date => {
   const year = date.getFullYear()
@@ -32,6 +34,8 @@ const toast = title => {
 
 /**
  * 显示自定义消息提示框toast
+ * @param {Object} that - 调用该方法时所在页面的page实例对象，如this
+ * @param {String} content - 消息内容
  */
 const toggleToast = (that, content) => {
   that.setData({
@@ -44,8 +48,38 @@ const toggleToast = (that, content) => {
   }, 2000)
 }
 
+/**
+ * 格式化日期
+ * @param {Number} date - 时间戳
+ * @param {String} type - 格式化类型，如month、time
+ */
+const formatDate = (date,type) => {
+  if (date == "" || date == null) {
+    return;
+  } else {
+    var d = new Date(date);
+    var newdate = "";
+    if (type == "month") {
+      newdate = d.getFullYear() + "-" + (d.getMonth() > 8 ? d.getMonth() + 1 : "0" + (d.getMonth() + 1));
+    } else if (type == "time") {
+      newdate = d.getFullYear() + '-'
+        + (d.getMonth() > 8 ? d.getMonth() + 1 : "0" + (d.getMonth() + 1)) + '-'
+        + (d.getDate() > 9 ? d.getDate() : "0" + (d.getDate()))
+        + " " + (d.getHours() > 9 ? d.getHours() : "0" + d.getHours()) + ":"
+        + (d.getMinutes() > 9 ? d.getMinutes() : "0" + d.getMinutes()) + ":"
+        + (d.getSeconds() > 9 ? d.getMinutes() : "0" + d.getMinutes());
+    } else {
+      newdate = d.getFullYear() + '-'
+        + (d.getMonth() > 8 ? d.getMonth() + 1 : "0" + (d.getMonth() + 1)) + '-'
+        + (d.getDate() > 9 ? d.getDate() : "0" + (d.getDate()));
+    }
+    return newdate
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
   toast:toast,
   toggleToast: toggleToast,
+  formatDate:formatDate,
 }

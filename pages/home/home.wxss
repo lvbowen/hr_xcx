@@ -20,6 +20,7 @@
   padding-bottom:50rpx;
   background-color: #fff;
   position: relative;
+  overflow: visible;
 }
 .logo-slogan-wrap .logo{
    position: absolute;
@@ -126,6 +127,7 @@
 .team-wrap .weui-panel__hd .left,.team-wrap .weui-panel__hd .right{
   display: flex;
   align-items: center;
+  overflow: visible;
 }
 .swiper{
   position: relative;

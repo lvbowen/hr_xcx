@@ -19,9 +19,14 @@ Page({
     //邮箱
     inputEmail:'', 
     //手机号
-    inputTel:'',      
+    inputTel:'',   
+    //验证码
+    vcode:"",   
     legalEmail:true,
     legalPhone:true,
+    platformResume:null,
+    showCodeMask:false,
+    codeImgSrc:'',
   },
 
   /**
@@ -111,7 +116,7 @@ Page({
     let platformType = this.data.options.type;
     console.log(platformType)
     for(let key in data){
-      if(!data[key].trim()){
+      if (!data[key].trim()){
         switch(key){
           case "account":
             utils.toggleToast(this,"账号不能为空")
@@ -121,7 +126,7 @@ Page({
             return false;
           case "email":
             if (platformType == "2"){
-              utils.toggleToast(this, "邮箱不能为空")
+               utils.toggleToast(this, "邮箱不能为空")  
               return false;
             }
             break;
@@ -134,7 +139,15 @@ Page({
           default:
             break;
         }
-      }
+      }else{
+        if (this.data.legalEmail === false){
+          utils.toggleToast(this, "邮箱格式不对")
+          return false;
+        } else if (this.data.legalPhone === false) {
+          utils.toggleToast(this, "手机号格式不对")
+          return false;
+        }
+      } 
     }
     return true;
   },
@@ -144,8 +157,157 @@ Page({
   formSubmit: function (e) {
     let data = e.detail.value
     if (this.checkForm(data)){
-        console.log("输入框都有值")
+      this.climbeResume()
     }
+  },
+  /**
+  *  授权登录同步平台简历
+  */
+  climbeResume: function (eventType) {
+    let _this = this;
+    let _data = _this.data;
+    if (eventType != -1) {
+      this.setData({
+        vcode:''
+      })
+    }
+    let param = {
+      fId: '-1',
+      type: _data.options.type,
+      account: _data.inputAccount,
+      pwd: _data.inputPass,
+      vcode: _data.vcode,
+      businessId: '14',
+      companyId: companyId, //_data.options.companyId
+      phone: _data.inputTel,
+      email: _data.inputEmail
+    }
+    console.log('1接口',param)
+    network.post("/account/climbingResume.do", {
+      param: JSON.stringify(param)
+    }, function (res) {
+      if (res.code == "0") {
+        _this.climbeResumeSuccess(res.data)
+        _this.setData({
+          platformResume: res.data
+        })
+      } else {
+        _this.climbeResumeError(res)
+        console.log(`/account/climbingResume.do:${res.message}`)
+      }
+    })
+  },
+  /**
+   * 同步简历之后的成功回调
+   */
+  climbeResumeSuccess:function(data){
+    let educationHistoryList = data.EducationHistory;
+    let workHistoryList = data.WorkHistory;
+    educationHistoryList.forEach(function (item) {
+      item.startDateStr = utils.formatDate(item.startDate, 'month');
+      if (!item.isReading) {
+        item.endDateStr = utils.formatDate(item.startDate, 'month');
+        item.isReading = 0;
+      } else {
+        item.endDate = "";
+        item.isReading = 1;
+      }
+    });
+    workHistoryList.forEach(function (item) {
+      item.startDateStr = utils.formatDate(item.startDate, 'month');
+      if (!item.isWorking) {
+        item.endDateStr = utils.formatDate(item.startDate, 'month');
+        item.isWorking = 0;
+      } else {
+        item.endDate = "";
+        item.isWorking = 1;
+      }
+    });
+    let birthday = "";
+    if (data.InterviewerInfo.birthday) {
+      birthday = utils.formatDate(data.InterviewerInfo.birthday);
+    }
+    let options = this.data.options;
+    //提交应聘申请的参数
+    let subParam ={
+      shareFansId: options.shareFansId,
+      fansId: options.fansId,
+      recomType: options.recomType,
+      interviewResumeInfo: {
+        positionId: options.positionId,
+        resumeId: '',
+        attachmentIds: '',
+        name: data.InterviewerInfo.name,
+        phone: data.InterviewerInfo.phone,
+        sex: data.InterviewerInfo.sex,
+        birthday: birthday,
+        email: data.InterviewerInfo.email,
+        educationHistoryList: educationHistoryList,
+        workHistoryList: workHistoryList,
+        resumeFrom: parseInt(options.type),
+        resumeUrl: data.InterviewerInfo.resumeUrl
+      },      
+    }
+    this.submitInterivewApplicationNew(subParam)
+  },
+  /**
+   * 同步简历之后的失败回调
+   */
+  climbeResumeError: function(res){
+    if (res.code == 1) {
+      //密码错误
+      utils.toggleToast(this,"账号密码错误")
+    } else if (res.code == 2 || res.code == 4) {
+      //需要验证码
+      this.setData({
+        showCodeMask:true,
+        codeImgSrc:res.data
+      })
+    } else if (res.code == 3) {      
+      //弹提示
+      utils.toggleToast(this, res.message)
+    }
+  },
+  /**
+   * 提交应聘申请
+   */
+  submitInterivewApplicationNew: function (subParam){
+    console.log('2接口', subParam)
+    network.post("/api.do", {
+      method:"recruitPosition/submitInterivewApplicationNew",
+      param: JSON.stringify(subParam)
+    }, function (res) {
+      if (res.code == "0") {
+       if(res.data == 1){
+         wx.navigateTo({
+           url: `../deliveryResult/deliveryResult?type=1`,
+         })
+       }else{
+         wx.navigateTo({
+           url: `../deliveryResult/deliveryResult?type=2`,
+         })
+       }
+      } else {
+        console.log(`recruitPosition/submitInterivewApplicationNew.do:${res.message}`)
+      }
+    })
+  },
+  /**
+   * 存储验证码输入框的值
+   */
+  inputVcode:function(e){
+    this.setData({
+      vcode: e.detail.value
+    })
+  },
+  /**
+   * 确认验证码
+   */
+  confirmCode: function () {
+    this.setData({
+      showCodeMask: false
+    })
+    this.climbeResume("-1")
   },
   /**
    * 生命周期函数--监听页面隐藏
