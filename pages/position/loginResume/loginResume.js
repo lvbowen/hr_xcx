@@ -81,9 +81,16 @@ Page({
     } else if (e.currentTarget.dataset.event === "clear") {
       this.setData({
         [key]: "",
-        legalEmail:true,
-        legalPhone:true,
       });
+      if (key == "inputEmail"){
+        this.setData({
+          legalEmail: true,
+        });
+      } else if (key == "inputTel") {
+        this.setData({
+          legalPhone: true,
+        });
+      }
     }
     console.log(this.data)
   },

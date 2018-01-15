@@ -1,18 +1,26 @@
-// pages/position/deliveryResult/deliveryResult.js
+const network = require("../../../utils/network.js")
+const utils = require("../../../utils/util.js")
+const app = getApp()
+const companyId = app.globalData.companyId
+const paramObj = { companyId: companyId, type: 2 }
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    resultType:1,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      resultType:options.type
+    })
   },
 
   /**
@@ -35,7 +43,14 @@ Page({
   onHide: function () {
   
   },
-
+  /**
+   * 返回首页
+   */
+  reuturnResume:function(){
+    wx.reLaunch({
+      url: '/pages/home/home',
+    })
+  },
   /**
    * 生命周期函数--监听页面卸载
    */

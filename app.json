@@ -1,16 +1,19 @@
 {
   "pages":[
-     "pages/position/detail/detail",
+   
+    "pages/position/addResume/addResume",
     "pages/position/resume/resume",
+     "pages/position/detail/detail",
+    
     "pages/position/loginResume/loginResume",
     "pages/position/list",
-    
     "pages/home/home",
     
     
     
+    
     "pages/position/deliveryResult/deliveryResult",
-    "pages/position/addResume/addResume",
+    
     "pages/position/preview/preview",
     
     "pages/home/map/map", 

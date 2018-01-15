@@ -1,2 +1,18 @@
-<!--pages/position/deliveryResult/deliveryResult.wxml-->
-<text>pages/position/deliveryResult/deliveryResult.wxml</text>
+<view class="delivery-result">
+  <view class="result-wrap result-one" wx:if="{{resultType == 1}}">
+    <icon type="success" size="100" class="icon"/>
+    <view class="result-state">投递成功</view>
+    <view class="result-tip font-gray-26">感谢您的申请，我们将尽快给您回复</view>
+  </view>
+  <view class="result-wrap result-two" wx:elif="{{resultType == 2}}">
+    <icon type="success" size="100" class="icon" />
+    <view class="result-state">投递成功</view>
+    <view class="result-tip font-gray-26">该候选人在系统中已存在相同的申请，本次投递无效</view>
+  </view>
+  <view class="result-wrap result-three" wx:elif="{{resultType == 3}}">
+    <icon type="warn" size="100" class="icon" />
+    <view class="result-state">投递失败</view>
+    <view class="result-tip font-gray-26">请先完善您的简历信息再提交哦</view>
+  </view>
+  <button class="return-btn" type="primary"  bindtap="reuturnResume">返回首页</button>
+</view>
