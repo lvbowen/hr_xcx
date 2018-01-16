@@ -21,14 +21,13 @@
               <view class="weui-label">生日</view>
           </view> 
           <view class="weui-cell__bd">
-           <picker class="weui-btn" mode="date" value="{{birthday}}" start="1950-01-01" end="2018-01-15" bindchange="bindBirthdayChange">
-                <view class="birthday">
-                  <text class="placeholder" wx:if="{{birthday == '请选择出生年月'}}">{{birthday}}</text>
-                  <text class="date" wx:else>{{birthday}}</text>
+           <picker class="weui-btn" mode="date" value="{{interviewResumeInfo.birthday}}" start="1950-01-01" end="2018-12-31" bindchange="bindBirthdayChange">
+                <view class="birthday picker-inner">
+                  <text class="placeholder" wx:if="{{interviewResumeInfo.birthday == '请选择出生年月'}}">{{interviewResumeInfo.birthday}}</text>
+                  <text class="date" wx:else>{{interviewResumeInfo.birthday}}</text>
                   <text class="arrow-right"></text>
                 </view>
-            </picker>
-             
+            </picker>            
           </view>
       </view>
        <view class="weui-cell weui-cell_input sex-input">
@@ -37,9 +36,9 @@
           </view> 
           <view class="weui-cell__bd">
               <picker  value="{{sexIndex}}" range="{{sexArr}}" range-key="name" bindchange="bindSexChange">
-                  <view class="sex">
-                    <text class="placeholder" wx:if="{{sex == '请选择性别'}}">{{sex}}</text>
-                    <text class="sex-val" wx:else>{{sex}}</text>
+                  <view class="sex picker-inner">
+                    <text class="placeholder" wx:if="{{interviewResumeInfo.sex == '请选择性别'}}">{{interviewResumeInfo.sex}}</text>
+                    <text class="sex-val" wx:else>{{sexArr[sexIndex].name}}</text>
                     <text class="arrow-right"></text>
                   </view> 
               </picker>
@@ -74,7 +73,7 @@
           </view>
       </view>
     </view>
-    <button class="base-btn" type="primary" data-headtype="2" bindtap="changeHeadType">
+    <button class="base-btn" type="primary" data-headtype="2" bindtap="saveBaseInfo">
        <text class="top">下一步</text>
        <text class="bottom">(填写教育经历）</text>
     </button>
@@ -82,98 +81,224 @@
     <!-- 教育经历 -->
   <view class="education-history" wx:elif="{{headType == '2'}}">
     <view class="form-title">教育经历</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-           <view class="weui-cell__hd">
-              <view class="weui-label">目前在读</view>
-          </view> 
-          <view class="weui-cell__bd" catchtap=''>
-              <label class="weui-cell weui-check__label">
-                    <checkbox class="weui-check" value="{{isReading}}" checked="{{isReading}}"/>
+    <view class="add-education-wrap" hidden='{{!addEducation}}'>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">目前在读</view>
+            </view> 
+            <view class="weui-cell__bd" catchtap='toggleReading'>
+                <label class="weui-cell weui-check__label">
+                      <checkbox class="weui-check" value="{{isReading}}" checked="{{isReading}}"/>
 
-                    <view class="weui-cell__hd weui-check__hd_in-checkbox">
-                        <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{isReading == 0}}"></icon>
-                        <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{isReading == 1}}"></icon>
-                    </view>
-                    <view class="weui-cell__bd">是</view>
-                </label>
-          </view>
-      </view>
-       <view class="weui-cell weui-cell_input start-date-input">
-           <view class="weui-cell__hd">
-              <view class="weui-label">开始时间</view>
-          </view> 
-          <view class="weui-cell__bd">
-           <picker class="weui-btn" mode="date" fields="month" value="{{eduStartDateStr}}" start="1950-01-01" end="2018-01-15" bindchange="bindEduStartDateChange">
-                <view class="start-date">
-                  <text class="placeholder" wx:if="{{eduStartDateStr == '请选择开始时间'}}">{{eduStartDateStr}}</text>
-                  <text class="date" wx:else>{{eduStartDateStr}}</text>
-                  <text class="arrow-right"></text>
-                </view>
-            </picker>            
-          </view>
-      </view>
-       <view class="weui-cell weui-cell_input end-date-input">
-           <view class="weui-cell__hd">
-              <view class="weui-label">结束时间</view>
-          </view> 
-          <view class="weui-cell__bd">
-           <picker class="weui-btn" mode="date" fields="month" value="{{eduEndDateStr}}" start="1950-01-01" end="2018-01-15" bindchange="bindEduEndDateChange">
-                <view class="end-date">
-                  <text class="placeholder" wx:if="{{eduEndDateStr == '请选择结束时间'}}">{{eduEndDateStr}}</text>
-                  <text class="date" wx:else>{{eduEndDateStr}}</text>
-                  <text class="arrow-right"></text>
-                </view>
-            </picker>     
-          </view>
-      </view>
-      <view class="weui-cell weui-cell_input graduate-school-input">
-          <view class="weui-cell__hd">
-              <view class="weui-label">毕业学校</view>
-          </view> 
-          <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入毕业学校" name="graduateSchool" value="{{graduateSchool}}" data-type="1" data-event="input" bindinput="operateInput" />
-          </view>
-          <view class="weui-icon-clear" wx:if="{{graduateSchool.length > 0}}" data-type="1" data-event="clear" bindtap="operateInput">
-            <icon type="clear" size="14"></icon>
-          </view>
-      </view>
-       <view class="weui-cell weui-cell_input profess-input">
-           <view class="weui-cell__hd">
-              <view class="weui-label">学历</view>
-          </view> 
-          <view class="weui-cell__bd">
-              <picker  value="{{professIndex}}" range="{{professional}}" range-key="name" bindchange="bindProfessChange">
-                  <view class="profess">
-                    <text class="placeholder" wx:if="{{educationLev == '请选择学历'}}">{{educationLev}}</text>
-                    <text class="profess-val" wx:else>{{educationLev}}</text>
+                      <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                          <icon class="weui-icon-checkbox_circle" type="circle" size="20" wx:if="{{isReading == 0}}"></icon>
+                          <icon class="weui-icon-checkbox_success" type="success" size="20" wx:if="{{isReading == 1}}"></icon>
+                      </view>
+                      <view class="weui-cell__bd">是</view>
+                  </label>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input start-date-input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">开始时间</view>
+            </view> 
+            <view class="weui-cell__bd">
+            <picker class="weui-btn" mode="date" fields="month" value="{{eduStartDateStr}}" start="1970-01-01" end="2020-12-31" data-formtype="edu" bindchange="bindStartDateChange">
+                  <view class="start-date picker-inner">
+                    <text class="placeholder" wx:if="{{eduStartDateStr == '请选择开始时间'}}">{{eduStartDateStr}}</text>
+                    <text class="date" wx:else>{{eduStartDateStr}}</text>
                     <text class="arrow-right"></text>
-                  </view> 
-              </picker>
-          </view>
+                  </view>
+              </picker>            
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input end-date-input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">结束时间</view>
+            </view> 
+            <view class="weui-cell__bd">
+            <picker class="weui-btn" mode="date" fields="month" value="{{eduEndDateStr}}" start="1970-01-01" end="2020-12-31" disabled="{{isReading}}" data-formtype="edu" bindchange="bindEndDateChange">
+                  <view class="end-date picker-inner">
+                    <text class="placeholder" wx:if="{{eduEndDateStr == '请选择结束时间'}}">{{eduEndDateStr}}</text>
+                    <text class="date" wx:else>{{eduEndDateStr}}</text>
+                    <text class="arrow-right"></text>
+                  </view>
+              </picker>     
+            </view>
+        </view>
       </view>
-       <view class="weui-cell weui-cell_input major-input">
-          <view class="weui-cell__hd">
-              <view class="weui-label">专业</view>
-          </view> 
-          <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入专业" name="major" value="{{major}}" data-type="1" data-event="input" bindinput="operateInput" />
-          </view>
-          <view class="weui-icon-clear" wx:if="{{major.length > 0}}" data-type="1" data-event="clear" bindtap="operateInput">
-            <icon type="clear" size="14"></icon>
-          </view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input graduate-school-input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">毕业学校</view>
+            </view> 
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入毕业学校" name="graduateSchool" value="{{graduateSchool}}" data-type="4" data-event="input" bindinput="operateInput" />
+            </view>
+            <view class="weui-icon-clear" wx:if="{{graduateSchool.length > 0}}" data-type="4" data-event="clear" bindtap="operateInput">
+              <icon type="clear" size="14"></icon>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input profess-input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">学历</view>
+            </view> 
+            <view class="weui-cell__bd">
+                <picker  value="{{professIndex}}" range="{{professional}}" range-key="name" bindchange="bindProfessChange">
+                    <view class="profess picker-inner">
+                      <text class="placeholder" wx:if="{{educationLev == '请选择学历'}}">{{educationLev}}</text>
+                      <text class="profess-val" wx:else>{{professional[professIndex].name}}</text>
+                      <text class="arrow-right"></text>
+                    </view> 
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input major-input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">专业</view>
+            </view> 
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入专业" name="major" value="{{major}}" data-type="5" data-event="input" bindinput="operateInput" />
+            </view>
+            <view class="weui-icon-clear" wx:if="{{major.length > 0}}" data-type="5" data-event="clear" bindtap="operateInput">
+              <icon type="clear" size="14"></icon>
+            </view>
+        </view>
       </view>
+      <button class="save-btn" type="primary"  bindtap="addEducationSave">
+        保存
+      </button>
+    </view>
+    <view class="history-list-wrap" hidden='{{addEducation}}'>
+       <view class="history-list">
+         <view class="history-item" wx:for="{{interviewResumeInfo.educationHistoryList}}" wx:key="index">
+          <view class="date">{{item.startDateStr}} 至 {{item.endDateStr}}</view>
+          <view class="name">{{item.graduateSchool}}  {{professional[item.educationLev-1].name}}</view>
+          <view class="other">{{item.major}}</view>
+          <view class="fa fa-trash-o" data-index="{{index}}" data-formtype="edu" catchtap='delhistory'></view>
+         </view>
+       </view>
+       <view class="add-box" data-formtype="edu" catchtap='addHistory'>
+         <image class="img" src="../../../images/add.png"></image>
+         <text class="text">新增一条教育经历</text>
+       </view>
+       <view class="btn-area">
+          <button class="pre-btn" type="default" data-formtype="edu" catchtap='goLastStep'>上一步</button>
+          <button class="next-btn" type="default" data-formtype="edu" catchtap='goNextStep'>
+            <text class="top">下一步</text>
+            <text class="bottom">(填写工作经历）</text>
+          </button>
+       </view>
     </view>
   </view> 
     <!-- 工作经历 -->
-   <view class="work-history" wx:elif="{{headType == '3'}}">
+  <view class="work-history" wx:elif="{{headType == '3'}}">
     <view class="form-title">工作经历</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-          
+    <view class="add-work-wrap" hidden='{{!addExperience}}'>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">目前在职</view>
+            </view> 
+            <view class="weui-cell__bd" catchtap='toggleWorking'>
+                <label class="weui-cell weui-check__label">
+                      <checkbox class="weui-check" value="{{isWorking}}" checked="{{isWorking}}"/>
+                      <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                          <icon class="weui-icon-checkbox_circle" type="circle" size="20" wx:if="{{isWorking == 0}}"></icon>
+                          <icon class="weui-icon-checkbox_success" type="success" size="20" wx:if="{{isWorking == 1}}"></icon>
+                      </view>
+                      <view class="weui-cell__bd">是</view>
+                  </label>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input start-date-input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">开始时间</view>
+            </view> 
+            <view class="weui-cell__bd">
+            <picker class="weui-btn" mode="date" fields="month" value="{{workStartDateStr}}" start="1970-01-01" end="2020-12-31" data-formtype="work" bindchange="bindStartDateChange">
+                  <view class="start-date picker-inner">
+                    <text class="placeholder" wx:if="{{workStartDateStr == '请选择开始时间'}}">{{workStartDateStr}}</text>
+                    <text class="date" wx:else>{{workStartDateStr}}</text>
+                    <text class="arrow-right"></text>
+                  </view>
+              </picker>            
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input end-date-input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">结束时间</view>
+            </view> 
+            <view class="weui-cell__bd">
+            <picker class="weui-btn" mode="date" fields="month" value="{{workEndDateStr}}" start="1970-01-01" end="2020-12-31" disabled="{{isWorking}}" data-formtype="work" bindchange="bindEndDateChange">
+                  <view class="end-date picker-inner">
+                    <text class="placeholder" wx:if="{{workEndDateStr == '请选择结束时间'}}">{{workEndDateStr}}</text>
+                    <text class="date" wx:else>{{workEndDateStr}}</text>
+                    <text class="arrow-right"></text>
+                  </view>
+              </picker>     
+            </view>
+        </view>
       </view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input work-company-input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">公司名称</view>
+            </view> 
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入公司名称" name="workCompany" value="{{workCompany}}" data-type="6" data-event="input" bindinput="operateInput" />
+            </view>
+            <view class="weui-icon-clear" wx:if="{{workCompany.length > 0}}" data-type="6" data-event="clear" bindtap="operateInput">
+              <icon type="clear" size="14"></icon>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input position-input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">职位</view>
+            </view> 
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入职位名称" name="position" value="{{position}}" data-type="7" data-event="input" bindinput="operateInput" />
+            </view>
+            <view class="weui-icon-clear" wx:if="{{position.length > 0}}" data-type="7" data-event="clear" bindtap="operateInput">
+              <icon type="clear" size="14"></icon>
+            </view>
+        </view>
+      </view>
+      <button class="save-btn" type="primary"  bindtap="addExperienceSave">
+        保存
+      </button>
+    </view>
+     <view class="history-list-wrap" hidden='{{addExperience}}'>
+       <view class="history-list">
+         <view class="history-item" wx:for="{{interviewResumeInfo.workHistoryList}}" wx:key="index">
+          <view class="date">{{item.startDateStr}} 至 {{item.endDateStr}}</view>
+          <view class="name">{{item.workCompany}}</view>
+          <view class="other">{{item.position}}</view>
+          <view class="fa fa-trash-o" data-index="{{index}}" data-formtype="work" catchtap='delhistory'></view>
+         </view>
+       </view>
+       <view class="add-box" data-formtype="work" catchtap='addHistory'>
+         <image class="img" src="../../../images/add.png"></image>
+         <text class="text">新增一条工作经历</text>
+       </view>
+       <view class="btn-area">
+          <button class="pre-btn" type="default" data-formtype="work" catchtap='goLastStep'>上一步</button>
+          <button class="next-btn" type="default" data-formtype="work" catchtap='goNextStep'>下一步</button>
+       </view>
     </view>
   </view>  
+   <!-- 简历完成  -->
+   <view class="resume-finish" wx:elif="{{headType == '4'}}">
+    <view class="result-wrap">
+      <icon type="success" size="100" color='#5AA2E7' class="icon" />
+      <view class="result-state">简历完成</view>
+    </view>
+    <button class="blue-btn btn" type="primary"  bindtap="goDelivery">立即投递</button>
+    <!-- <button class="gray-btn btn" type="primary"  >预览简历</button> -->
+    <button class="gray-btn btn" type="primary"  bindtap="goModify">返回修改</button>
+   </view>  <!-- 简历完成 end -->
+
 </view>
 
 <!-- 自定义toast  -->

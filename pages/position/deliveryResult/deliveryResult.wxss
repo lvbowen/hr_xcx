@@ -23,20 +23,11 @@ page{
   margin-bottom:68rpx;
 }
 .return-btn{
-  /* width:690rpx; */
+  width:690rpx; 
   height:88rpx;
   font-size:36rpx;
   background-color:#5AA2E7!important;
 }
 .result-wrap.result-two .result-tip{
   color:#F96868;
-}
-.result-wrap{
-  
-}
-.result-wrap{
-  
-}
-.result-wrap{
-  
 }

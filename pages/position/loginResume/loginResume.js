@@ -280,6 +280,7 @@ Page({
    */
   submitInterivewApplicationNew: function (subParam){
     console.log('2接口', subParam)
+    let _this = this;
     network.post("/api.do", {
       method:"recruitPosition/submitInterivewApplicationNew",
       param: JSON.stringify(subParam)
@@ -295,7 +296,8 @@ Page({
          })
        }
       } else {
-        console.log(`recruitPosition/submitInterivewApplicationNew.do:${res.message}`)
+        utils.toggleToast(_this, res.message)
+        // console.log(`recruitPosition/submitInterivewApplicationNew.do:${res.message}`)
       }
     })
   },

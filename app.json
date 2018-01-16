@@ -1,13 +1,14 @@
 {
   "pages":[
-   
+    "pages/home/home",
+    "pages/position/list",
     "pages/position/addResume/addResume",
     "pages/position/resume/resume",
      "pages/position/detail/detail",
     
     "pages/position/loginResume/loginResume",
-    "pages/position/list",
-    "pages/home/home",
+    
+    
     
     
     
@@ -47,12 +48,6 @@
       {
         "pagePath": "pages/position/list",
         "text": "在招职位",
-        "iconPath": "images/icon-company-team.png",
-        "selectedIconPath": "images/icon-company-team.png"
-      },
-      {
-        "pagePath": "pages/mine/mine",
-        "text": "我的",
         "iconPath": "images/icon-company-team.png",
         "selectedIconPath": "images/icon-company-team.png"
       }

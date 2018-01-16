@@ -1,11 +1,11 @@
 <view class="delivery-result">
   <view class="result-wrap result-one" wx:if="{{resultType == 1}}">
-    <icon type="success" size="100" class="icon"/>
+    <icon type="success" size="100" color='#5AA2E7' class="icon"/>
     <view class="result-state">投递成功</view>
     <view class="result-tip font-gray-26">感谢您的申请，我们将尽快给您回复</view>
   </view>
   <view class="result-wrap result-two" wx:elif="{{resultType == 2}}">
-    <icon type="success" size="100" class="icon" />
+    <icon type="success" size="100" color='#5AA2E7' class="icon" />
     <view class="result-state">投递成功</view>
     <view class="result-tip font-gray-26">该候选人在系统中已存在相同的申请，本次投递无效</view>
   </view>

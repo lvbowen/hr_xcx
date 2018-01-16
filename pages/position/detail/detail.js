@@ -60,6 +60,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('detail', options)
     if (options.positionId){
       this.setData({
         options: options
@@ -95,7 +96,7 @@ Page({
     let _this = this;
     network.post("/api.do", {
       method: "promotionPage/positionInfo",
-      param: JSON.stringify({id:_this.data.options.positionId})
+      param: JSON.stringify({ id: _this.data.options.positionId, companyId: companyId, fansId:''})
     }, function (res) {
       if (res.code == "0" && res.data) {
         _this.setData({
