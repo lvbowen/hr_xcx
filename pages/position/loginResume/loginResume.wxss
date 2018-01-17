@@ -25,11 +25,10 @@
   font-size:36rpx;
 }
 .tip-list{
-  position:absolute;
+  position:fixed; 
   bottom:20rpx;
-  left:50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+  left:184rpx;
+  z-index: 2;
 }
 .tip-list .tip{
   display: flex;

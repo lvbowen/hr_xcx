@@ -4,7 +4,7 @@
   <view class="logo">
     <image class="img" src="../../../images/jobs_icon.png" wx:if="{{options.type == 1}}"></image>
     <image class="img" src="../../../images/zhilian_icon.png" wx:elif="{{options.type == 2}}"></image>
-    <image class="img" src="../../../images/lagou_icon.png" wx:else></image>
+    <image class="img" src="../../../images/lagou_icon.png" wx:elif="{{options.type == 6}}"></image>
   </view>
 </view>
 <form class="form" bindsubmit="formSubmit">

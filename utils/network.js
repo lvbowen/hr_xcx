@@ -21,7 +21,8 @@ let network = {
           success(res.data)
         }
       },
-      fail:() => {
+      fail:(error) => {
+        console.log(error)
         if(fail){
           fail()
         }else{

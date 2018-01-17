@@ -14,7 +14,7 @@ page{
 }
 .result-wrap .result-state{
   font-size:40rpx;
-  height: 40rpx;
+  /* height: 40rpx; */
   line-height: 40rpx;
   margin-bottom: 45rpx;
 }
@@ -25,6 +25,7 @@ page{
 .return-btn{
   width:690rpx; 
   height:88rpx;
+  line-height: 88rpx;
   font-size:36rpx;
   background-color:#5AA2E7!important;
 }

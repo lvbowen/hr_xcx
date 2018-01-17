@@ -24,6 +24,7 @@
 }
 .position-welfare .tag-list{
   display: flex;
+  flex-wrap: wrap;
   padding:30rpx;
 }
 .position-welfare .tag-list .tag{
@@ -33,6 +34,7 @@
   border-radius:8rpx;
   background-color:#5AA2E7;
   margin-right:10rpx;
+  margin-bottom: 10rpx;
   font-size:26rpx;
   color: #ffffff;
 }
