@@ -77,14 +77,9 @@
   font-size:28rpx;
 }
 
-/* 教育经历  */
+/* 教育、工作经历  */
 .education-history .weui-cells,.work-history .weui-cells{
   margin-bottom:30rpx;
-}
-
-/* 工作经历  */
-.work-history{
-
 }
 
 /* 经历列表 */

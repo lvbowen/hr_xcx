@@ -1,2 +1,52 @@
-<!--pages/mine/mine.wxml-->
-<button >按钮</button>
+<view class="mine-wrap">
+<!-- 头部区域 -->
+  <view class="head-area">
+    <view class="avator-box">
+      <image class="avator-img" src="../../images/mine.png"></image>
+       <text class="name">吕博文</text>
+    </view>
+    <view class="authen-box">
+      <view class="authen-btn">我要认证</view>
+    </view>
+  </view>
+  <!-- 垂直栏目  -->
+  <view class="content-area">
+     <view class="weui-panel">
+        <view class="weui-panel__bd">
+            <view class="weui-media-box weui-media-box_small-appmsg">
+                <view class="weui-cells weui-cells_in-small-appmsg">
+                    <navigator url="./editPreview/editPreview" class="weui-cell weui-cell_access">
+                        <view class="weui-cell__hd"><image src="../../images/Group1.png" /></view>
+                        <view class="weui-cell__bd weui-cell_primary">
+                            <view>个人档案</view>
+                        </view>
+                        <view class="arrow-right"></view>
+                    </navigator>
+                    <navigator url="" class="weui-cell weui-cell_access">
+                        <view class="weui-cell__hd"><image src="../../images/Group2.png"  /></view>
+                        <view class="weui-cell__bd weui-cell_primary">
+                            <view>求职记录</view>
+                        </view>
+                        <view class="arrow-right"></view>
+                    </navigator>
+                     <navigator url="./editPreview/editPreview" class="weui-cell weui-cell_access">
+                        <view class="weui-cell__hd"><image src="../../images/Group3.png" /></view>
+                        <view class="weui-cell__bd weui-cell_primary">
+                            <view>收藏职位</view>
+                        </view>
+                        <view class="arrow-right"></view>
+                    </navigator>
+                     <navigator url="./editPreview/editPreview" class="weui-cell weui-cell_access">
+                        <view class="weui-cell__hd"><image src="../../images/Group4.png" /></view>
+                        <view class="weui-cell__bd weui-cell_primary">
+                            <view>我的推荐</view>
+                        </view>
+                        <view class="arrow-right"></view>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+      </view>
+  </view>
+
+</view>

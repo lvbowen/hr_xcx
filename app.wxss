@@ -41,6 +41,24 @@ page{
   color: #222222;
   word-break: break-all;
 }
+.font-36{
+  font-size: 36rpx;
+  line-height: 50rpx;
+  color: #000000;
+  word-break: break-all;
+}
+.btn-w690{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:690rpx;
+  height: 88rpx;
+  line-height: 1; 
+  background-color: #5AA2E7!important;
+  font-size: 36rpx;
+}
+/* 右箭头 */
 .arrow-right{
   display: inline-block;
   height: 6px;
@@ -51,4 +69,27 @@ page{
   -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
   transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
   margin-left:10rpx;
+}
+/* css 十字形  */
+.icon-cross{
+  position:relative;
+  width:36rpx;
+  height: 36rpx;
+  overflow: hidden;
+}
+.icon-cross::before{
+  content: ""; 
+  position: absolute;
+  top:15rpx;
+  width:100%;
+  height: 6rpx;
+  background-color: #5AA2E7;
+}
+.icon-cross::after{
+  content: "";
+  position: absolute;
+  left:15rpx;
+  width:6rpx;
+  height: 100%;
+  background-color: #5AA2E7;
 }

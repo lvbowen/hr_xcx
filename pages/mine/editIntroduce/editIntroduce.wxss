@@ -1,0 +1,8 @@
+.form-title{
+  font-size:26rpx;
+  color: #999;
+  padding:36rpx 0 24rpx 30rpx;
+}
+.save-btn{
+  margin-top:60rpx;
+}

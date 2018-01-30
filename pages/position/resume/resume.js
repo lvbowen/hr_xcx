@@ -57,6 +57,12 @@ Page({
           url: `../loginResume/loginResume?${queryStr}&type=${dataset.type}`,
         })
         break;
+      //跳转到个人档案（预览编辑）
+      case "3":
+        wx.navigateTo({
+          url: `../editPreview/editPreview?${queryStr}`,
+        })
+        break;
       default:
         break;
     }

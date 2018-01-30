@@ -1,5 +1,5 @@
-const network = require("../../utils/network.js")
-const utils = require("../../utils/util.js")
+const network = require("../../../utils/network.js")
+const utils = require("../../../utils/util.js")
 const app = getApp()
 const companyId = app.globalData.companyId
 const paramObj = { companyId: companyId, type: 2 }
@@ -17,7 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getWeixinPersonalInfo()
+    this.getAllResume()
   },
 
   /**
@@ -33,14 +33,14 @@ Page({
   onShow: function () {
   
   },
-  getWeixinPersonalInfo:function(){
+  getAllResume: function () {
     let _this = this;
     let param = {
-      fansId: '85',
+      fansId: 115,
       companyId:companyId
     }
     network.post("/api.do", {
-      method: "wexinPersonalInfo/getWeixinPersonalInfo",
+      method: "resume/getAllResume",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {

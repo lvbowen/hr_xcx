@@ -7,6 +7,10 @@
         <image class="icon" src="../../../images/resum_3.png"></image>
         <text class="word">一分钟创建微简历</text>
       </view>
+      <view class="type" data-pagetype="3" catchtap='navigatorTo'>
+        <image class="icon" src="../../../images/resum_3.png"></image>
+        <text class="word">个人档案</text>
+      </view>
     </view>
   </view>
   <!-- 快速导入简历  -->

@@ -1,9 +1,26 @@
 {
   "pages":[
+    "pages/mine/editIntroduce/editIntroduce",
+    "pages/mine/editBaseInfo/editBaseInfo",
+      "pages/mine/editPreview/editPreview",
+    "pages/mine/mine",
+    "pages/position/resume/resume",
+   
+     
+    
+     "pages/mine/editWork/editWork",
+     "pages/mine/editEducation/editEducation",
+   "pages/mine/editLanguage/editLanguage",
+     "pages/mine/editSkill/editSkill",
+     "pages/mine/editCertificate/editCertificate",
+     "pages/mine/editAwards/editAwards",
+     "pages/mine/editAspiration/editAspiration",
+     "pages/mine/editLink/editLink",
+     "pages/mine/editProject/editProject",
     "pages/home/home",
     "pages/position/list",
     "pages/position/addResume/addResume",
-    "pages/position/resume/resume",
+    
      "pages/position/detail/detail",
     
     "pages/position/loginResume/loginResume",
@@ -17,7 +34,7 @@
     "pages/home/team/team",
     
     
-    "pages/mine/mine",
+    
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -37,14 +54,20 @@
       {
         "pagePath": "pages/home/home",
         "text": "公司",
-        "iconPath": "images/icon-company-team.png",
-        "selectedIconPath": "images/icon-company-team.png"
+        "iconPath": "images/company.png",
+        "selectedIconPath": "images/selected_company.png"
       },
       {
         "pagePath": "pages/position/list",
         "text": "在招职位",
-        "iconPath": "images/icon-company-team.png",
-        "selectedIconPath": "images/icon-company-team.png"
+        "iconPath": "images/position.png",
+        "selectedIconPath": "images/selected_position.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/selected_mine.png"
       }
     ]
   },

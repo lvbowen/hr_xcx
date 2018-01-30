@@ -1,1 +1,54 @@
-/* pages/mine/mine.wxss */
+.head-area{
+  height: 406rpx;
+  background-color: #fff;
+  margin-bottom:30rpx;
+}
+.head-area .avator-box{
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+.head-area .avator-box .avator-img{
+  width:164rpx;
+  height: 164rpx;
+  border-radius: 50%;
+  margin-bottom: 22rpx;
+}
+.head-area .avator-box .name{
+  font-size:36rpx;
+   
+}
+.head-area .authen-box .authen-btn{
+  width:270rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  margin:0 auto;
+  border-radius: 35rpx;
+  background-color:#5AA2E7;
+  font-size:32rpx;
+  color: #fff;
+}
+.weui-cell{
+  align-items: center;
+}
+.weui-cell__hd{
+  width:58rpx;
+  height:58rpx;
+  margin-right: 20rpx;
+}
+.weui-cell__hd image{
+  width:100%;
+  height:100%;
+}
+.head-area{
+  
+}
+.head-area{
+  
+}
+.head-area{
+  
+}

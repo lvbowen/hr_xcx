@@ -1,5 +1,5 @@
-const network = require("../../utils/network.js")
-const utils = require("../../utils/util.js")
+const network = require("../../../utils/network.js")
+const utils = require("../../../utils/util.js")
 const app = getApp()
 const companyId = app.globalData.companyId
 const paramObj = { companyId: companyId, type: 2 }
@@ -10,14 +10,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    introContent:'',
+    wordNumber:0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getWeixinPersonalInfo()
+  
   },
 
   /**
@@ -33,22 +34,20 @@ Page({
   onShow: function () {
   
   },
-  getWeixinPersonalInfo:function(){
-    let _this = this;
-    let param = {
-      fansId: '85',
-      companyId:companyId
-    }
-    network.post("/api.do", {
-      method: "wexinPersonalInfo/getWeixinPersonalInfo",
-      param: JSON.stringify(param)
-    }, function (res) {
-      if (res.code == "0") {
-        console.log(res)
-      } else {
-        utils.toggleToast(_this, res.message)
-      }
+  /**
+   * 文本域input事件
+   */
+  operateTextarea: function (e) {
+    this.setData({
+      introContent: e.detail.value,
+      wordNumber: e.detail.value.length
     })
+  },
+  /**
+   * 完成保存
+   */
+  save: function () {
+   console.log(this.data.introContent)
   },
   /**
    * 生命周期函数--监听页面隐藏
