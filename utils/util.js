@@ -46,6 +46,7 @@ const toggleToast = (that, content) => {
       deToast: { isShow: false, content: '' }
     })
   }, 2000)
+  return false;
 }
 
 /**

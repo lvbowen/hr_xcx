@@ -1,2 +1,11 @@
-<!--pages/mine/editAspiration/editAspiration.wxml-->
-<text>pages/mine/editAspiration/editAspiration.wxml</text>
+<import src="/template/toast/toast.wxml" />
+
+<view class="aspiration">
+    <view class="form-title">告诉我们你更想成为的那个</view>
+    <view class="weui-cells weui-cells_after-title">
+    
+    </view>
+</view>
+
+<!-- 自定义toast  -->
+<template is="defineToast" data="{{...deToast}}" />

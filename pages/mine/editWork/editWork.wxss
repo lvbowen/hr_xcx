@@ -1,1 +1,8 @@
-/* pages/mine/editWork/editWork.wxss */
+@import '/style/editResume.wxss';
+
+.weui-cells_after-title{
+  margin-bottom: 24rpx;
+}
+.department-input .weui-label::before,.ongoing .weui-label::before{
+  display: none;
+}

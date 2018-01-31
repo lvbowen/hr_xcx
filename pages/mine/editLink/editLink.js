@@ -1,4 +1,9 @@
-// pages/mine/editLink/editLink.js
+const network = require("../../../utils/network.js")
+const utils = require("../../../utils/util.js")
+const app = getApp()
+const companyId = app.globalData.companyId
+const paramObj = { companyId: companyId, type: 2 }
+
 Page({
 
   /**

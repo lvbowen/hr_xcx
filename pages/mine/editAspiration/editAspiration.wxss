@@ -1,1 +1,1 @@
-/* pages/mine/editAspiration/editAspiration.wxss */
+@import '/style/editResume.wxss';

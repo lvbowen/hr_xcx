@@ -1,22 +1,27 @@
 {
   "pages":[
-    "pages/mine/editIntroduce/editIntroduce",
+     "pages/mine/editAwards/editAwards",
+    "pages/mine/editLanguage/editLanguage",
+    "pages/mine/editProject/editProject",
+    "pages/mine/editEducation/editEducation",
+    "pages/mine/editWork/editWork",
+    
     "pages/mine/editBaseInfo/editBaseInfo",
-      "pages/mine/editPreview/editPreview",
+    
     "pages/mine/mine",
     "pages/position/resume/resume",
-   
+    "pages/mine/editIntroduce/editIntroduce",
+     
+    "pages/mine/editPreview/editPreview",
      
     
-     "pages/mine/editWork/editWork",
-     "pages/mine/editEducation/editEducation",
-   "pages/mine/editLanguage/editLanguage",
+  
      "pages/mine/editSkill/editSkill",
      "pages/mine/editCertificate/editCertificate",
-     "pages/mine/editAwards/editAwards",
+     
      "pages/mine/editAspiration/editAspiration",
      "pages/mine/editLink/editLink",
-     "pages/mine/editProject/editProject",
+     
     "pages/home/home",
     "pages/position/list",
     "pages/position/addResume/addResume",
