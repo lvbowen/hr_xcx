@@ -2,42 +2,67 @@
 
 <view class="aspiration">
     <view class="form-title">告诉我们你更想成为的那个</view>
-    <!-- <view class="weui-cells weui-cells_after-title">
-         <view class="weui-cell weui-cell_input name-input">
+     <view class="weui-cells weui-cells_after-title">
+         <view class="weui-cell weui-cell_input expect-position-input">
            <view class="weui-cell__hd">
-              <view class="weui-label">姓名</view>
+              <view class="weui-label">期望职能</view>
           </view> 
           <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入完整姓名" name="name" value="{{interviewResumeInfo.name}}" data-type="1" data-event="input" bindinput="operateInput" />
+              <input class="weui-input" placeholder="请填写期望职能" value="{{model.expectPosition}}" data-event="input" bindinput="operateInput" />
           </view>
-          <view class="weui-icon-clear" wx:if="{{interviewResumeInfo.name.length > 0}}" data-type="1" data-event="clear" bindtap="operateInput">
+          <view class="weui-icon-clear" wx:if="{{model.expectPosition.length > 0}}"  data-event="clear" bindtap="operateInput">
             <icon type="clear" size="14"></icon>
           </view>
       </view>
-       <view class="weui-cell weui-cell_input sex-input">
+       <view class="weui-cell weui-cell_input work-type-input">
            <view class="weui-cell__hd">
-              <view class="weui-label">性别</view>
+              <view class="weui-label">工作类型</view>
           </view> 
           <view class="weui-cell__bd">
-              <picker  value="{{sexIndex}}" range="{{sexArr}}" range-key="name" bindchange="bindSexChange">
+              <picker  value="{{workTypeIndex}}" range="{{workTypes}}" range-key="name" bindchange="bindWorkTypeChange">
                   <view class="sex picker-inner">
-                    <text class="placeholder" wx:if="{{interviewResumeInfo.sex == '请选择性别'}}">{{interviewResumeInfo.sex}}</text>
-                    <text class="sex-val" wx:else>{{sexArr[sexIndex].name}}</text>
+                    <text class="sex-val">{{workTypes[workTypeIndex].name}}</text>
                     <text class="arrow-right"></text>
                   </view> 
               </picker>
           </view>
       </view>
-    </view> -->
+      <view class="weui-cell weui-cell_input expect-place-input">
+           <view class="weui-cell__hd">
+              <view class="weui-label">期望城市</view>
+          </view> 
+          <view class="weui-cell__bd">
+              <picker mode="region"  bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+                <view class="picker-inner">
+                   <text class="placeholder" wx:if="{{model.expectPlace == '请选择期望城市'}}">{{model.expectPlace}}</text> 
+                    <text class="place" wx:else>{{region[0]}}  {{region[1]}}  {{region[2]}}</text>   
+                  <text class="arrow-right"></text>
+                </view>
+              </picker>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_input salary-input">
+          <view class="weui-cell__hd">
+              <view class="weui-label">期望月薪</view>
+          </view> 
+          <view class="weui-cell__bd">
+               <picker mode="multiSelector"  range="{{salaryRange}}"  bindchange="bindSalaryChange" bindcolumnchange="columnchange">
+                  <view class="sex picker-inner">
+                    <text class="placeholder" wx:if="{{model.minSalary == ''}}">请选择期望月薪范围</text>
+                    <text class="sex-val" wx:else>{{model.minSalary}}k - {{model.maxSalary}}k</text>
+                    <text class="arrow-right"></text>
+                  </view> 
+              </picker> 
+          </view>
+      </view>
+    </view> 
+    <!-- 其他  -->
+      <button class="save-btn btn-w690" type="primary"  bindtap="save">完成</button>
+      <button class="del-btn btn-w690" type="primary"  bindtap="del">清空数据</button> 
+      <view class="cue">注意：删除的按钮在有数据的时候存在</view> 
+
 </view>
-<view class="section">
-  <view class="section__title">省市区选择器</view>
-  <picker mode="region"  bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
-    <view class="picker">
-      当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
-    </view>
-  </picker>
-</view>
+
 
 <!-- 自定义toast  -->
 <template is="defineToast" data="{{...deToast}}" />

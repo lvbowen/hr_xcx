@@ -1,6 +1,5 @@
 {
   "pages":[
-    "pages/home/home",
     "pages/mine/editAspiration/editAspiration",
     "pages/mine/editLink/editLink",
       "pages/mine/editCertificate/editCertificate",
@@ -19,11 +18,12 @@
      
     "pages/mine/editPreview/editPreview",
     
-     
-    
     
      
     
+    
+     
+    "pages/home/home",
     "pages/position/list",
     "pages/position/addResume/addResume",
     

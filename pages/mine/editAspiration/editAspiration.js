@@ -11,7 +11,23 @@ Page({
    */
   data: {
     fansId:'',
-    region: ['广东省', '广州市', '海珠区'],
+    region: ['浙江省', '杭州市','西湖区'],    //设置初始化地址
+    workTypes:[
+      {name:'全职',value:1},
+      { name: '兼职', value: 2 },
+      { name: '实习', value: 3 },
+    ],
+    workTypeIndex:0,
+    // salary:'请选择期望月薪范围',
+    salaryRange: [[1, 2, 3], [2, 3,4,5]],
+    // salaryIndex:[],
+    model: {
+      maxSalary: '',
+      expectPosition: '',
+      workType: '',
+      minSalary: '',
+      expectPlace: '请选择期望城市'
+    }
 
   },
 
@@ -19,7 +35,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+     
   },
 
   /**
@@ -36,13 +52,40 @@ Page({
   
   },
   /**
+   *  选择工作类型
+   */
+  bindWorkTypeChange: function (e) {
+    this.setData({
+      workTypeIndex: e.detail.value
+    })
+  },
+  /**
+   * 选择地址
+   */
+  bindRegionChange:function(e){    
+    this.setData({
+      region: e.detail.value,
+      ['model.expectPlace']: e.detail.value.join(" ")
+    })
+    console.log(this.data.region,this.data.model)
+  },
+  /**
    * 
    */
-  bindRegionChange:function(e){
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+  bindSalaryChange:function(e){
+    let selectedVal = e.detail.value    //返回数组
+    let salaryRange = this.data.salaryRange
     this.setData({
-      region: e.detail.value
+      ['model.minSalary']: salaryRange[0][selectedVal[0]],
+      ['model.maxSalary']: salaryRange[1][selectedVal[1]],
     })
+    console.log(this.data.model)
+  },
+  /**
+   * 
+   */
+  columnchange:function(e){
+
   },
   /**
    * 生命周期函数--监听页面隐藏
