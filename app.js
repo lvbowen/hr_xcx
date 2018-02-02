@@ -1,15 +1,47 @@
-//app.js
+const config = require('./config.js')
+
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
+    let _this = this
     // 登录
     wx.login({
-      success: res => {
+      success: response => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (response.code){
+          wx.getUserInfo({
+            withCredentials: true,
+            success: function (res) {
+              wx.request({             
+                url: config.host + '/account/smallRoutineLogin.do',
+                method:"POST",
+                header: {
+                  "lversion": `${config.lversion}`,
+                  "content-type": "application/x-www-form-urlencoded"
+                },
+                data: {
+                  appid:config.appId,
+                  secret: config.appSecret,
+                  code: response.code,
+                  userInfo: JSON.stringify(res.userInfo),
+                },
+                success: function (res) {
+                  let _data = res.data
+                  if (_data.code == "0") {
+                    _this.globalData.userInfo = _data.data
+                    wx.setStorageSync('userInfo', _data.data)
+                  }
+                }
+              })
+            },
+            fail: function () {
+              wx.showModal({
+                title: "温馨提示",
+                content: '您已经拒绝微信授权，请删除小程序重新进入授权。',
+                showCancel: false
+              })
+            }
+          })
+        }
       }
     })
     // 获取用户信息

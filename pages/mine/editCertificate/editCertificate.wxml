@@ -1,2 +1,14 @@
-<!--pages/mine/editCertificate/editCertificate.wxml-->
-<text>pages/mine/editCertificate/editCertificate.wxml</text>
+<import src="/template/defineModal/defineModal.wxml" />
+
+<view class="edit-skill">
+    <view class="form-title">印证汗水与付出</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell skill-box">
+        <view class="skill" wx:for="{{qualifications}}" wx:key="{{index}}">{{item.qualificationName}} <icon class="icon" type="clear" size="15" data-index="{{index}}" catchtap="delSkill" /></view>
+        <view class="btn-add" catchtap="showModal">+ 添加</view>
+      </view>
+    </view>
+    <button class="save-btn btn-w690" type="primary"  bindtap="save">完成</button>
+</view>
+
+<template is="defineModal" data="{{...modal}}" />

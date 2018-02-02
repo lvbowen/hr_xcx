@@ -10,14 +10,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    modal: { showModal: false, modalTitle: '技能名称', inputVal:''},
+    // inputVal:'',
+    skills: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+     console.log('userinfo',app.globalData.userInfo)
   },
 
   /**
@@ -33,7 +35,70 @@ Page({
   onShow: function () {
   
   },
+  /**
+   * 显示modal
+   */
+  showModal:function(){
+    this.setData({
+      ['modal.showModal']:true
+    })
+  },
+  /**
+   * 弹出框蒙层截断touchmove事件
+   */
+  preventTouchMove: function () {
 
+  },
+  /**
+   * 获取输入框的值
+   */
+  inputChange:function(e){
+     this.setData({
+       ['modal.inputVal']:e.detail.value.trim()
+     })
+    
+  },
+  /**
+   * 对话框取消按钮点击事件
+   */
+  onCancel: function () {
+    this.setData({
+      ['modal.showModal']: false,
+      ['modal.inputVal']:''
+    })
+  },
+  /**
+   * 对话框确认按钮点击事件
+   */
+  onConfirm: function () {
+    let _data = this.data
+    if(_data.modal.inputVal){
+      _data.skills.push({"languageSkill":_data.modal.inputVal})
+      this.setData({
+        skills:_data.skills
+      })
+    }
+    this.setData({
+      ['modal.showModal']: false,
+      ['modal.inputVal']: ''
+    })
+  },
+  /**
+   * 删除某个技能
+   */
+  delSkill: function (e) {
+    let index = e.currentTarget.dataset.index
+    this.data.skills.splice(index,1)
+    this.setData({
+      skills:this.data.skills
+    })
+  },
+  /**
+   * 完成保存
+   */
+  save: function () {
+    console.log(this.data.skills)
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

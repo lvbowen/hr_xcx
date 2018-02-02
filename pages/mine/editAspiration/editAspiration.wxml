@@ -2,9 +2,41 @@
 
 <view class="aspiration">
     <view class="form-title">告诉我们你更想成为的那个</view>
-    <view class="weui-cells weui-cells_after-title">
-    
+    <!-- <view class="weui-cells weui-cells_after-title">
+         <view class="weui-cell weui-cell_input name-input">
+           <view class="weui-cell__hd">
+              <view class="weui-label">姓名</view>
+          </view> 
+          <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="请输入完整姓名" name="name" value="{{interviewResumeInfo.name}}" data-type="1" data-event="input" bindinput="operateInput" />
+          </view>
+          <view class="weui-icon-clear" wx:if="{{interviewResumeInfo.name.length > 0}}" data-type="1" data-event="clear" bindtap="operateInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+      </view>
+       <view class="weui-cell weui-cell_input sex-input">
+           <view class="weui-cell__hd">
+              <view class="weui-label">性别</view>
+          </view> 
+          <view class="weui-cell__bd">
+              <picker  value="{{sexIndex}}" range="{{sexArr}}" range-key="name" bindchange="bindSexChange">
+                  <view class="sex picker-inner">
+                    <text class="placeholder" wx:if="{{interviewResumeInfo.sex == '请选择性别'}}">{{interviewResumeInfo.sex}}</text>
+                    <text class="sex-val" wx:else>{{sexArr[sexIndex].name}}</text>
+                    <text class="arrow-right"></text>
+                  </view> 
+              </picker>
+          </view>
+      </view>
+    </view> -->
+</view>
+<view class="section">
+  <view class="section__title">省市区选择器</view>
+  <picker mode="region"  bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+    <view class="picker">
+      当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
     </view>
+  </picker>
 </view>
 
 <!-- 自定义toast  -->

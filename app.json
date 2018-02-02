@@ -1,5 +1,10 @@
 {
   "pages":[
+    "pages/home/home",
+    "pages/mine/editAspiration/editAspiration",
+    "pages/mine/editLink/editLink",
+      "pages/mine/editCertificate/editCertificate",
+    "pages/mine/editSkill/editSkill",
      "pages/mine/editAwards/editAwards",
     "pages/mine/editLanguage/editLanguage",
     "pages/mine/editProject/editProject",
@@ -13,16 +18,12 @@
     "pages/mine/editIntroduce/editIntroduce",
      
     "pages/mine/editPreview/editPreview",
+    
      
     
-  
-     "pages/mine/editSkill/editSkill",
-     "pages/mine/editCertificate/editCertificate",
+    
      
-     "pages/mine/editAspiration/editAspiration",
-     "pages/mine/editLink/editLink",
-     
-    "pages/home/home",
+    
     "pages/position/list",
     "pages/position/addResume/addResume",
     

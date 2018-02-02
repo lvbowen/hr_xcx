@@ -1,4 +1,3 @@
-/**index.wxss**/
 
 .show-btn {
 
@@ -50,7 +49,7 @@
 
   margin: -180rpx 105rpx;
 
-  border-radius: 36rpx;
+  border-radius: 12rpx;
 
 }
 
@@ -144,7 +143,7 @@ input-holder {
 
   width: 50%;
 
-  color: #ec5300;
+  color: #1AAD19;
 
   text-align: center;
 
