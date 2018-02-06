@@ -1,5 +1,11 @@
 {
   "pages":[
+    "pages/home/home",
+    "pages/position/resume/resume",
+    "pages/mine/editPreview/editPreview",
+    
+    "pages/position/addResume/addResume",
+  "pages/position/detail/detail",
     "pages/mine/editAspiration/editAspiration",
     "pages/mine/editLink/editLink",
       "pages/mine/editCertificate/editCertificate",
@@ -13,22 +19,11 @@
     "pages/mine/editBaseInfo/editBaseInfo",
     
     "pages/mine/mine",
-    "pages/position/resume/resume",
+    
     "pages/mine/editIntroduce/editIntroduce",
      
-    "pages/mine/editPreview/editPreview",
     
-    
-     
-    
-    
-     
-    "pages/home/home",
     "pages/position/list",
-    "pages/position/addResume/addResume",
-    
-     "pages/position/detail/detail",
-    
     "pages/position/loginResume/loginResume",
     
     "pages/position/deliveryResult/deliveryResult",
@@ -41,8 +36,8 @@
     
     
     
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/index/index"
+ 
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -68,12 +63,6 @@
         "text": "在招职位",
         "iconPath": "images/position.png",
         "selectedIconPath": "images/selected_position.png"
-      },
-      {
-        "pagePath": "pages/mine/mine",
-        "text": "我的",
-        "iconPath": "images/mine.png",
-        "selectedIconPath": "images/selected_mine.png"
       }
     ]
   },

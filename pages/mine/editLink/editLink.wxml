@@ -23,6 +23,6 @@
     </view>
      <!-- 其他  -->
       <button class="save-btn btn-w690" type="primary"  bindtap="save">完成</button>
-      <button class="del-btn btn-w690" type="primary"  bindtap="del">清空数据</button> 
-      <view class="cue">注意：删除的按钮在有数据的时候存在</view> 
+      <!-- <button class="del-btn btn-w690" type="primary"  bindtap="del">清空数据</button> 
+      <view class="cue">注意：删除的按钮在有数据的时候存在</view>  -->
 </view>

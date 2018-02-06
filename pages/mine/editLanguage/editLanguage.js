@@ -11,20 +11,25 @@ Page({
    */
   data: {
     fansId:'',
+    // langLevels: ['初级(入门)', '中级(日常会话)', '中高级(商务会话)','高级(无障碍商务沟通)'],
+    
     langLevels:[
       { name:"初级(入门)",value:1},
       { name: "中级(日常会话)", value: 2 },
       { name: "中高级(商务会话)", value: 3 },
       { name: "高级(无障碍商务沟通)", value: 4 },
     ],
-    model: [],   //levelIndex: 数组langLevels的索引值
+    model: [],   //languageSkill:技能; levelIndex: 数组langLevels的索引值
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+     this.setData({
+       fansId:options.fansId
+     })
+     this.getResumeInfoByRoute();
   },
 
   /**
@@ -39,6 +44,36 @@ Page({
    */
   onShow: function () {
   
+  },
+  /**
+  * 获取信息
+  */
+  getResumeInfoByRoute: function () {
+    let _this = this;
+    let param = {
+      fansId: _this.data.fansId,
+      route: 'language',
+    }
+    network.post("/api.do", {
+      method: "resume/getResumeInfoByRoute",
+      param: JSON.stringify(param)
+    }, function (res) {
+      if (res.code == "0") {
+         let _model = [];
+         res.data.model.forEach((item,index) => {
+           _this.data.langLevels.forEach((subitem, subindex) => {
+             if (subitem.name == item.languageLevel){
+               _model.push({ "languageSkill": item.languageSkill, "levelIndex": subindex})
+             }
+           })   
+         })
+        _this.setData({
+          model:_model
+        })
+      } else {
+        utils.toggleToast(_this, res.message)
+      }
+    })
   },
   /**
    * 显隐关闭icon和清空输入框内容
@@ -60,7 +95,6 @@ Page({
       default:
         break;
     }
-    console.log(this.data.model)
   },
   /**
   * 选择熟练程度
@@ -71,7 +105,6 @@ Page({
     this.setData({
       ['model[' + index + '].levelIndex']: levelIndex
     })
-    console.log(this.data.model)
   },
   /**
    * 删除某一项
@@ -82,7 +115,6 @@ Page({
     this.setData({
       model:this.data.model
     })
-    console.log(this.data.model)
   },
   /**
    * 新增一项
@@ -96,7 +128,6 @@ Page({
     this.setData({
       model: model
     })
-    console.log(this.data.model)
   },
   /**
    * 完成保存
@@ -111,15 +142,28 @@ Page({
         return
       }else{
         model.push({ languageSkill: item.languageSkill, languageLevel: _this.data.langLevels[item.levelIndex].name})
+        
       }
     })
     if(isLegal){
-      //network request
-
-
-      console.log('请求参数model', model)
+      let param = {
+        fansId: _this.data.fansId,
+        route: 'language',
+        model: model
+      }
+      network.post("/api.do", {
+        method: "resume/updateResumeInfo",
+        param: JSON.stringify(param)
+      }, function (res) {
+        if (res.code == "0") {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          utils.toggleToast(_this, res.message)
+        }
+      })
     }
-   
   },
   /**
    * 生命周期函数--监听页面隐藏

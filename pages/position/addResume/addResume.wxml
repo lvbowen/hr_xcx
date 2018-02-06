@@ -295,7 +295,7 @@
       <view class="result-state">简历完成</view>
     </view>
     <button class="blue-btn btn" type="primary"  bindtap="goDelivery">立即投递</button>
-    <!-- <button class="gray-btn btn" type="primary"  >预览简历</button> -->
+     <button class="gray-btn btn" type="primary" bindtap="goPreview" >预览简历</button> 
     <button class="gray-btn btn" type="primary"  bindtap="goModify">返回修改</button>
    </view>  <!-- 简历完成 end -->
 

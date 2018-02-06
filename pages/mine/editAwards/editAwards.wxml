@@ -8,9 +8,9 @@
             <view class="weui-label">获得奖项</view>
         </view> 
         <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请填写奖项名称" name="languageSkill" value="{{item.languageSkill}}" data-index="{{index}}" data-event="input" bindinput="operateInput" />
+            <input class="weui-input" placeholder="请填写奖项名称"  value="{{item.qualificationName}}" data-index="{{index}}" data-event="input" bindinput="operateInput" />
         </view>
-        <view class="weui-icon-clear" wx:if="{{item.languageSkill.length > 0}}" data-index="{{index}}" data-event="clear" bindtap="operateInput">
+        <view class="weui-icon-clear" wx:if="{{item.qualificationName.length > 0}}" data-index="{{index}}" data-event="clear" bindtap="operateInput">
           <icon type="clear" size="14"></icon>
         </view>
       </view>
@@ -19,9 +19,9 @@
               <view class="weui-label">获得时间</view>
           </view> 
           <view class="weui-cell__bd">
-              <picker class="weui-btn" mode="date"  value="{{item.qualificationDateStr}}" start="1970-01-01" end="2018-12-31" data-index="{{index}}" bindchange="bindDateChange">
+              <picker class="weui-btn" mode="date" fields="month"  value="{{item.qualificationDateStr}}" start="1970-01-01" end="2018-12-31" data-index="{{index}}" bindchange="bindDateChange">
                   <view class="start-date picker-inner">
-                    <text class="placeholder" wx:if="{{item.qualificationDateStr == '请选择获奖时间'}}">{{item.qualificationDateStr}}</text>
+                    <text class="placeholder" wx:if="{{!item.qualificationDateStr}}">请选择获奖时间</text>
                     <text class="date" wx:else>{{item.qualificationDateStr}}</text>
                     <text class="arrow-right"></text>
                   </view>

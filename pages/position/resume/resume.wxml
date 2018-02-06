@@ -1,15 +1,19 @@
 <view class="resume-type">
 <!-- 创建个人简历  -->
   <view class="resume-create">
-    <view class="title">创建个人简历</view>
+    <view class="title">{{step == '3'? '个人档案' : '创建个人简历'}}</view>
     <view class="create-types">
-      <view class="type" data-pagetype="1" catchtap='navigatorTo'>
+      <view class="type" data-pagetype="1" catchtap='navigatorTo' wx:if="{{step != '3'}}">
         <image class="icon" src="../../../images/resum_3.png"></image>
         <text class="word">一分钟创建微简历</text>
       </view>
-      <view class="type" data-pagetype="3" catchtap='navigatorTo'>
+      <view class="type" data-pagetype="3" catchtap='navigatorTo' wx:else>
         <image class="icon" src="../../../images/resum_3.png"></image>
         <text class="word">个人档案</text>
+      </view>
+       <view class="type code"  catchtap='scanCode'>
+        <image class="icon" src="../../../images/resum_5.png"></image>
+        <view class="word"><text class="title">PC扫码填简历</text><text class="url">resume.aijuhr.com</text></view>
       </view>
     </view>
   </view>

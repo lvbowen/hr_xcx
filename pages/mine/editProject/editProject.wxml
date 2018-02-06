@@ -10,9 +10,9 @@
                 <view class="weui-label">项目名称</view>
             </view> 
             <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="你参加了什么项目？" name="workCompany" value="{{workCompany}}" data-type="6" data-event="input" bindinput="operateInput" />
+                <input class="weui-input" placeholder="你参加了什么项目？"  value="{{projectName}}" data-type="1" data-event="input" bindinput="operateInput" />
             </view>
-            <view class="weui-icon-clear" wx:if="{{workCompany.length > 0}}" data-type="6" data-event="clear" bindtap="operateInput">
+            <view class="weui-icon-clear" wx:if="{{projectName.length > 0}}" data-type="1" data-event="clear" bindtap="operateInput">
               <icon type="clear" size="14"></icon>
             </view>
         </view>
@@ -21,9 +21,9 @@
                 <view class="weui-label">所属企业</view>
             </view> 
             <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="项目是属于什么企业？" name="position" value="{{position}}" data-type="7" data-event="input" bindinput="operateInput" />
+                <input class="weui-input" placeholder="项目是属于什么企业？"  value="{{company}}" data-type="2" data-event="input" bindinput="operateInput" />
             </view>
-            <view class="weui-icon-clear" wx:if="{{position.length > 0}}" data-type="7" data-event="clear" bindtap="operateInput">
+            <view class="weui-icon-clear" wx:if="{{company.length > 0}}" data-type="2" data-event="clear" bindtap="operateInput">
               <icon type="clear" size="14"></icon>
             </view>
         </view>
@@ -35,10 +35,10 @@
                 <view class="weui-label">开始时间</view>
             </view> 
             <view class="weui-cell__bd">
-            <picker class="weui-btn" mode="date" fields="month" value="{{workStartDateStr}}" start="1970-01-01" end="2020-12-31" data-formtype="work" bindchange="bindStartDateChange">
+            <picker class="weui-btn" mode="date" fields="month" value="{{startDateStr}}" start="1970-01-01" end="2020-12-31"  bindchange="bindStartDateChange">
                   <view class="start-date picker-inner">
-                    <text class="placeholder" wx:if="{{workStartDateStr == '请选择开始时间'}}">{{workStartDateStr}}</text>
-                    <text class="date" wx:else>{{workStartDateStr}}</text>
+                    <text class="placeholder" wx:if="{{!startDateStr}}">请选择开始时间</text>
+                    <text class="date" wx:else>{{startDateStr}}</text>
                     <text class="arrow-right"></text>
                   </view>
               </picker>            
@@ -49,10 +49,10 @@
                 <view class="weui-label">结束时间</view>
             </view> 
             <view class="weui-cell__bd">
-              <picker class="weui-btn" mode="date" fields="month" value="{{workEndDateStr}}" start="1970-01-01" end="2020-12-31" disabled="{{isWorking}}" data-formtype="work" bindchange="bindEndDateChange">
+              <picker class="weui-btn" mode="date" fields="month" value="{{endDateStr}}" start="1970-01-01" end="2020-12-31" disabled="{{untilNow}}"  bindchange="bindEndDateChange">
                   <view class="end-date picker-inner">
-                    <text class="placeholder" wx:if="{{workEndDateStr == '请选择结束时间'}}">{{workEndDateStr}}</text>
-                    <text class="date" wx:else>{{workEndDateStr}}</text>
+                    <text class="placeholder" wx:if="{{!endDateStr}}">请选择结束时间</text>
+                    <text class="date" wx:else>{{endDateStr == "今" ? "至今" : endDateStr}}</text>
                     <text class="arrow-right"></text>
                   </view>
               </picker>     
@@ -64,10 +64,10 @@
             </view> 
             <view class="weui-cell__bd" catchtap='toggleWorking'>
                 <label class="weui-cell weui-check__label">
-                      <checkbox class="weui-check" value="{{isWorking}}" checked="{{isWorking}}"/>
+                      <checkbox class="weui-check" value="{{untilNow}}" checked="{{untilNow}}"/>
                       <view class="weui-cell__hd weui-check__hd_in-checkbox">
-                          <icon class="weui-icon-checkbox_circle" type="circle" size="20" wx:if="{{isWorking == 0}}"></icon>
-                          <icon class="weui-icon-checkbox_success" type="success" size="20" wx:if="{{isWorking == 1}}"></icon>
+                          <icon class="weui-icon-checkbox_circle" type="circle" size="20" wx:if="{{untilNow == 0}}"></icon>
+                          <icon class="weui-icon-checkbox_success" type="success" size="20" wx:if="{{untilNow == 1}}"></icon>
                       </view>
                       <view class="weui-cell__bd">是</view>
                   </label>
@@ -78,15 +78,14 @@
       <view class="weui-cells weui-cells_after-title textarea-weui-cells">
         <view class="weui-cell">
           <view class="weui-cell__bd">
-              <textarea class="weui-textarea" placeholder="项目描述" maxlength="1000" value="{{descript}}" style="height: 3.3em" bindinput="operateTextarea" />
+              <textarea class="weui-textarea" placeholder="项目描述" maxlength="1000" value="{{projectDescription}}" style="height: 3.3em" bindinput="operateTextarea" />
               <view class="weui-textarea-counter">{{wordNumber}}/1000</view>
           </view>
         </view>
       </view>
       <!-- 其他  -->
       <button class="save-btn btn-w690" type="primary"  bindtap="save">完成</button>
-      <button class="del-btn btn-w690" type="primary"  bindtap="delete">删除该条工作经历</button> 
-      <view class="cue">注意：删除的按钮在有数据的时候存在</view> 
+      <button class="del-btn btn-w690" type="primary"  bindtap="del" wx:if="{{id != 0}}">删除该条工作经历</button> 
     </view>
 </view>
 

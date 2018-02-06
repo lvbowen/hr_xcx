@@ -1,4 +1,10 @@
-// pages/position/resume/resume.js
+
+const network = require("../../../utils/network.js")
+const utils = require("../../../utils/util.js")
+const app = getApp()
+const companyId = app.globalData.companyId
+const paramObj = { companyId: companyId, type: 2 }
+
 Page({
 
   /**
@@ -6,6 +12,8 @@ Page({
    */
   data: {
     options:null,
+    fansId:'',
+    step:"1",
     platforms:[
       { "type": 1, "platformName": "前程无忧（51job）", "logoUrl":"../../../images/resum_1.png"},
       { "type": 2, "platformName": "智联招聘", "logoUrl": "../../../images/resum_2.png" },
@@ -20,8 +28,10 @@ Page({
     console.log('resume', options)
 
     this.setData({
+      fansId: getApp().globalData.fansId,
       options:options
     })
+    this.getSimpleResume()
   },
 
   /**
@@ -36,6 +46,28 @@ Page({
    */
   onShow: function () {
   
+  },
+  /**
+   *  获取一分钟微简历,看完成了几步
+   */
+  getSimpleResume: function () {
+    let self = this;
+    let param = {
+      fansId: this.data.fansId,
+      companyId: companyId
+    }
+    network.post("/api.do", {
+      method: "resume/getSimpleResume",
+      param: JSON.stringify(param)
+    }, function (res) {
+      if (res.code == "0") {
+        if (res.data.step) {
+            self.setData({
+              step: res.data.step  
+            })
+        }
+      }
+    })
   },
   /**
    * 跳转
@@ -60,12 +92,24 @@ Page({
       //跳转到个人档案（预览编辑）
       case "3":
         wx.navigateTo({
-          url: `../editPreview/editPreview?${queryStr}`,
+          url: `../../mine/editPreview/editPreview?${queryStr}&activityId=${options.activityId}`,
         })
         break;
       default:
         break;
     }
+  },
+  /**
+   * 扫码
+   */
+  scanCode:function(e){
+    // 只允许从相机扫码
+    wx.scanCode({
+      onlyFromCamera: true,
+      success: (res) => {
+        console.log(res)
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏

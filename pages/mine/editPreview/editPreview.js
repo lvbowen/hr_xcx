@@ -10,14 +10,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    fansId:121,
+    options:null,
+    basic: null,
+    jobpref: null,
+    link: null,
+    myEvaluation: null,
+    certList: [],
+    educationHistoryList:[],
+    languageList: [],
+    prizeList: [],
+    projectList: [],
+    skillList: [],
+    workHistoryList:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getAllResume()
+    console.log(options)
+    this.setData({
+      options:options
+    })
+    
   },
 
   /**
@@ -31,20 +47,109 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getAllResume()
+    
   },
+  /**
+   * 获取个人档案
+   */
   getAllResume: function () {
     let _this = this;
     let param = {
-      fansId: 115,
-      companyId:companyId
+      fansId: 121,    //假数据
     }
     network.post("/api.do", {
       method: "resume/getAllResume",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
-        console.log(res)
+         _this.setData({
+           basic:res.data.basic,
+           jobpref: res.data.jobpref,
+           link: res.data.link,
+           myEvaluation: res.data.myEvaluation,
+           certList: res.data.certList,
+           educationHistoryList: res.data.educationHistoryList,
+           languageList: res.data.languageList,
+           prizeList: res.data.prizeList,
+           projectList: res.data.projectList,
+           skillList: res.data.skillList,
+           workHistoryList: res.data.workHistoryList,
+         })
+      } else {
+        utils.toggleToast(_this, res.message)
+      }
+    })
+  }, 
+  /**
+   * 跳转到工作经历编辑页
+   */
+  workHistory: function (e) {
+    let itemId = e.currentTarget.dataset.itemid;
+    wx.navigateTo({
+      url: `../editWork/editWork?itemId=${itemId}&fansId=${this.data.fansId}`,
+    })
+  },
+  /**
+   * 跳转到教育经历编辑页
+   */
+  editEducation: function (e) {
+    let itemId = e.currentTarget.dataset.itemid;
+    wx.navigateTo({
+      url: `../editEducation/editEducation?itemId=${itemId}&fansId=${this.data.fansId}`,
+    })
+  },
+  /**
+   * 跳转到项目经历编辑页
+   */
+  editProject: function (e) {
+    let itemId = e.currentTarget.dataset.itemid;
+    wx.navigateTo({
+      url: `../editProject/editProject?itemId=${itemId}&fansId=${this.data.fansId}`,
+    })
+  },
+  /**
+   * 跳转到语言等编辑页面
+   */
+  goEdit: function (e) {
+    let page = e.currentTarget.dataset.page
+    wx.navigateTo({
+      url: `../${page}/${page}?fansId=${this.data.fansId}`,
+    })
+  },
+  /**
+  * 立即投递
+  */
+  goDelivery: function (e) {
+    let _this = this, _data = this.data;
+    let param = {
+      interviewResumeInfo: {
+        positionId:  '4',
+        basic: _data.basic,
+        jobpref: _data.jobpref,
+        link: _data.link,
+        myEvaluation: _data.myEvaluation,
+        certList: _data.certList,
+        educationHistoryList: _data.educationHistoryList,
+        languageList: _data.languageList,
+        prizeList: _data.prizeList,
+        projectList: _data.projectList,
+        skillList: _data.skillList,
+        workHistoryList: _data.workHistoryList,
+      },
+      fansId: _data.fansId,
+      shareFansId: _data.options.shareFansId,
+      recomType: _data.options.recomType,
+      activityId: _data.options.activityId
+    }
+    network.post("/api.do", {
+      method: "recruitPosition/submitApplicationRecord",
+      param: JSON.stringify(param)
+    }, function (res) {
+      if (res.code == "0") {
+        wx.navigateTo({
+          url: `../../position/deliveryResult/deliveryResult?type=${res.data}`,
+        })
       } else {
         utils.toggleToast(_this, res.message)
       }

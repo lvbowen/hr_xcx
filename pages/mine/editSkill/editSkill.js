@@ -11,7 +11,6 @@ Page({
    */
   data: {
     modal: { showModal: false, modalTitle: '技能名称', inputVal:''},
-    // inputVal:'',
     skills: [],
   },
 
@@ -19,7 +18,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     console.log('userinfo',app.globalData.userInfo)
+    this.setData({
+      fansId: options.fansId,
+    })
+    this.getResumeInfoByRoute()
   },
 
   /**
@@ -34,6 +36,28 @@ Page({
    */
   onShow: function () {
   
+  },
+  /**
+   * 获取信息
+   */
+  getResumeInfoByRoute: function () {
+    let _this = this;
+    let param = {
+      fansId: _this.data.fansId,
+      route: 'skill',
+    }
+    network.post("/api.do", {
+      method: "resume/getResumeInfoByRoute",
+      param: JSON.stringify(param)
+    }, function (res) {
+      if (res.code == "0") {
+        _this.setData({
+          skills: res.data.model
+        })
+      } else {
+        utils.toggleToast(_this, res.message)
+      }
+    })
   },
   /**
    * 显示modal
@@ -97,7 +121,24 @@ Page({
    * 完成保存
    */
   save: function () {
-    console.log(this.data.skills)
+    let _this = this
+    let param = {
+      fansId: _this.data.fansId,
+      route: 'skill',
+      model: _this.data.skills
+    }
+    network.post("/api.do", {
+      method: "resume/updateResumeInfo",
+      param: JSON.stringify(param)
+    }, function (res) {
+      if (res.code == "0") {
+        wx.navigateBack({
+          delta: 1
+        })
+      } else {
+        utils.toggleToast(_this, res.message)
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏

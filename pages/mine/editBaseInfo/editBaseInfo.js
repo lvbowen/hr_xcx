@@ -22,14 +22,11 @@ Page({
     legalPhone: true,
     //基本信息
     interviewResumeInfo: {
-      // positionId: "4",
-      // resumeId: null, //简历文件id
-      // attachmentIds: null,  //附件ids
       name: '',
       phone: '',
       email: '',
-      sex: '请选择性别',
-      birthday: '请选择出生年月',
+      sex: 0,
+      birthday: '',
       motto:'',
     },
   },
@@ -41,6 +38,7 @@ Page({
       this.setData({
         options:options
       })
+      this.getAllResume()
   },
 
   /**
@@ -56,6 +54,28 @@ Page({
   onShow: function () {
   
   },
+  /**
+  * 获取个人档案
+  */
+  getAllResume: function () {
+    let _this = this;
+    let param = {
+      fansId: 121,    //假数据
+    }
+    network.post("/api.do", {
+      method: "resume/getAllResume",
+      param: JSON.stringify(param)
+    }, function (res) {
+      if (res.code == "0") {
+        let basic = res.data.basic
+        _this.setData({
+          interviewResumeInfo: res.data.basic,
+        })
+      } else {
+        utils.toggleToast(_this, res.message)
+      }
+    })
+  }, 
   /**
   * 设置(存储)输入框值
   */
@@ -157,7 +177,6 @@ Page({
       sexIndex: e.detail.value,
       ['interviewResumeInfo.sex']: this.data.sexArr[e.detail.value].value
     })
-    console.log("sexsex:", this.data.interviewResumeInfo)
   },
   /**
    * 检查基本信息合法性
@@ -196,7 +215,25 @@ Page({
    * 完成保存
    */
   save:function(){
+    let _this = this;
     if (this.checkBaseForm()) {
+      let param = {
+        fansId: 121,    //假数据
+        route: 'basic',
+        model: _this.data.interviewResumeInfo
+      }
+      network.post("/api.do", {
+        method: "resume/updateResumeInfo",
+        param: JSON.stringify(param)
+      }, function (res) {
+        if (res.code == "0") {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          utils.toggleToast(_this, res.message)
+        }
+      })
       console.log(this.data.interviewResumeInfo)
     }
   },

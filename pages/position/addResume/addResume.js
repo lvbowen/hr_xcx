@@ -13,8 +13,6 @@ Page({
     options:null,
     headType:'1',
     fansId:'',
-    // birthday:'请选择出生年月',
-    // sex:"请选择性别",
     sexArr: [
       { name: '男', value: 1 },
       { name: '女', value: 2 }
@@ -64,12 +62,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var options = { positionId:2 }    //假数据
     console.log('addResume',options)
-
+    
     this.setData({
       options: options,
+      fansId: getApp().globalData.fansId,
       ['interviewResumeInfo.positionId']:options.positionId
     })
+    this.getSimpleResume()
   },
 
   /**
@@ -84,6 +85,84 @@ Page({
    */
   onShow: function () {
   
+  },
+  /**
+   *  获取一分钟微简历
+   */
+  getSimpleResume:function(){
+    let self = this;
+    let param = {
+      fansId: this.data.fansId,
+      companyId:companyId
+    }
+    network.post("/api.do", {
+      method: "resume/getSimpleResume",
+      param: JSON.stringify(param)
+    }, function (res) {
+      if (res.code == "0") {
+        if(res.data.step == 1 || res.data.step == 2){
+          wx.showModal({
+            title: '微简历',
+            content: '您上次没有成功保存,需要导入上次的的数据吗?',
+            showCancel:true,
+            confirmText:"确定导入",
+            success: function (response) {
+              if (response.confirm){
+                if (res.data.educationHistoryList && res.data.educationHistoryList.length > 0){
+                  self.data.addEducation = false
+                }else{
+                  self.data.addEducation = true
+                }
+                if (res.data.workHistoryList && res.data.workHistoryList.length > 0) {
+                  self.data.addExperience = false
+                } else {
+                  self.data.addExperience = true
+                }
+                self.setData({
+                  headType: res.data.step || '1',
+                  addEducation: self.data.addEducation,
+                  addExperience: self.data.addExperience,
+                  ['interviewResumeInfo.name']: res.data.name,
+                  ['interviewResumeInfo.phone']: res.data.phone,
+                  ['interviewResumeInfo.email']: res.data.email,
+                  ['interviewResumeInfo.sex']: res.data.sex,
+                  ['interviewResumeInfo.birthday']: res.data.birthday,
+                  ['interviewResumeInfo.educationHistoryList']: res.data.educationHistoryList ? res.data.educationHistoryList : [],
+                  ['interviewResumeInfo.workHistoryList']: res.data.workHistoryList ? res.data.workHistoryList : [],
+                })
+              } else if (response.cancel){
+                 self.setData({
+                   addEducation:true,
+                   addExperience:true,
+                   ['interviewResumeInfo.name']:'',
+                   ['interviewResumeInfo.phone']: '',
+                   ['interviewResumeInfo.email']: '',
+                   ['interviewResumeInfo.sex']: '请选择性别',
+                   ['interviewResumeInfo.birthday']: '请选择出生年月',
+                   ['interviewResumeInfo.educationHistoryList']: [],
+                   ['interviewResumeInfo.workHistoryList']: [],
+                 })
+              }
+            }
+          })
+        }else if(res.data.step == 3){     //step == 3的话，其实就走个人档案编辑流程了（后续可以删掉）
+          self.setData({
+            headType: res.data.step,
+            addEducation: false,
+            addExperience: false,
+            ['interviewResumeInfo.name']: res.data.name,
+            ['interviewResumeInfo.phone']: res.data.phone,
+            ['interviewResumeInfo.email']: res.data.email,
+            ['interviewResumeInfo.sex']: res.data.sex,
+            ['interviewResumeInfo.birthday']: res.data.birthday,
+            ['interviewResumeInfo.educationHistoryList']: res.data.educationHistoryList ? res.data.educationHistoryList : [],
+            ['interviewResumeInfo.workHistoryList']: res.data.workHistoryList ? res.data.workHistoryList : [],
+          })          
+        }     
+      } else {
+        utils.toggleToast(_this, res.message)
+      }
+    })
   },
   /**
   * 设置(存储)输入框值
@@ -141,8 +220,6 @@ Page({
         });
       }
     }
-    // console.log(this.data.interviewResumeInfo)
-    // console.log(this.data.graduateSchool)
   },
   /**
    * 显隐关闭icon和清空输入框内容
@@ -189,7 +266,6 @@ Page({
   bindSexChange:function(e){
     this.setData({
       sexIndex: e.detail.value,
-      // sex: this.data.sexArr[e.detail.value].name,
       ['interviewResumeInfo.sex']: this.data.sexArr[e.detail.value].value
     })
     console.log("sexsex:", this.data.interviewResumeInfo)
@@ -365,9 +441,6 @@ Page({
   saveBaseInfo:function(){
     if (this.checkBaseForm()){
       this.updateSimpleResume("1")
-      this.setData({
-        headType:"2"
-      })
     }
   },
   /**
@@ -426,7 +499,9 @@ Page({
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
-         console.log(res)
+          _this.setData({
+            headType: ++_this.data.headType
+          })
       } else {
         utils.toggleToast(_this, res.message)
       }
@@ -514,15 +589,9 @@ Page({
     switch (dataset.formtype) {
       case "edu":
         this.updateSimpleResume("2")
-        this.setData({
-          headType: "3"
-        })
         break;
       case "work":
         this.updateSimpleResume("3")
-        this.setData({
-          headType: "4"
-        })
         break;
       default:
         break;
@@ -534,22 +603,32 @@ Page({
   goDelivery: function (e) {
     let _this = this;
     let param = {
+      interviewResumeInfo: this.data.interviewResumeInfo,
       fansId: this.data.fansId,
       shareFansId: this.data.options.shareFansId,
       recomType: this.data.options.recomType,
-      interviewResumeInfo: this.data.interviewResumeInfo
+      activityId: this.data.options.activityId
     }
     network.post("/api.do", {
-      method: "recruitPosition/submitInterivewApplicationNew",
+      method: "recruitPosition/submitApplicationRecord",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
         wx.navigateTo({
-          url: `../deliveryResult/deliveryResult?type=1`,
+          url: `../deliveryResult/deliveryResult?type=${res.data}`,
         })
       } else {
         utils.toggleToast(_this, res.message)
       }
+    })
+  },
+  /**
+   * 跳转至预览编辑页面
+   */
+  goPreview:function(){
+    let options = this.data.options;
+    wx.navigateTo({
+      url: `../../mine/editPreview/editPreview?companyId=${options.companyId}&positionId=${options.positionId}&fansId=${options.fansId}&shareFansId=${options.shareFansId}&recomType=${options.recomType}&activityId=${options.activityId}`,
     })
   },
   /**

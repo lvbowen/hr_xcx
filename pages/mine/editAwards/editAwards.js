@@ -18,7 +18,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      fansId: options.fansId
+    })
+    this.getResumeInfoByRoute();
   },
 
   /**
@@ -33,6 +36,29 @@ Page({
    */
   onShow: function () {
 
+  },
+  /**
+  * 获取信息
+  */
+  getResumeInfoByRoute: function () {
+    let _this = this;
+    let param = {
+      fansId: _this.data.fansId,
+      route: 'prize',
+      id: _this.data.id
+    }
+    network.post("/api.do", {
+      method: "resume/getResumeInfoByRoute",
+      param: JSON.stringify(param)
+    }, function (res) {
+      if (res.code == "0") {
+        _this.setData({
+          model:res.data.model
+        })
+      } else {
+        utils.toggleToast(_this, res.message)
+      }
+    })
   },
   /**
    * 显隐关闭icon和清空输入框内容
@@ -84,7 +110,7 @@ Page({
     let model = this.data.model
     model.push({
       qualificationName: '',
-      qualificationDateStr: "请选择获奖时间"
+      qualificationDateStr: ""
     })
     this.setData({
       model: model
@@ -107,7 +133,23 @@ Page({
       }
     })
     if (isLegal) {
-      //network request
+      let param = {
+        fansId: _this.data.fansId,
+        route: 'prize',
+        model: model
+      }
+      network.post("/api.do", {
+        method: "resume/updateResumeInfo",
+        param: JSON.stringify(param)
+      }, function (res) {
+        if (res.code == "0") {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          utils.toggleToast(_this, res.message)
+        }
+      })
 
 
       console.log('请求参数model', model)

@@ -10,9 +10,9 @@
                 <view class="weui-label">公司名称</view>
             </view> 
             <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入公司名称" name="workCompany" value="{{workCompany}}" data-type="6" data-event="input" bindinput="operateInput" />
+                <input class="weui-input" placeholder="请输入公司名称" name="workCompany" value="{{workCompany}}" data-type="1" data-event="input" bindinput="operateInput" />
             </view>
-            <view class="weui-icon-clear" wx:if="{{workCompany.length > 0}}" data-type="6" data-event="clear" bindtap="operateInput">
+            <view class="weui-icon-clear" wx:if="{{workCompany.length > 0}}" data-type="1" data-event="clear" bindtap="operateInput">
               <icon type="clear" size="14"></icon>
             </view>
         </view>
@@ -21,9 +21,9 @@
                 <view class="weui-label">职位名称</view>
             </view> 
             <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入职位名称" name="position" value="{{position}}" data-type="7" data-event="input" bindinput="operateInput" />
+                <input class="weui-input" placeholder="请输入职位名称" name="position" value="{{position}}" data-type="2" data-event="input" bindinput="operateInput" />
             </view>
-            <view class="weui-icon-clear" wx:if="{{position.length > 0}}" data-type="7" data-event="clear" bindtap="operateInput">
+            <view class="weui-icon-clear" wx:if="{{position.length > 0}}" data-type="2" data-event="clear" bindtap="operateInput">
               <icon type="clear" size="14"></icon>
             </view>
         </view>
@@ -32,9 +32,9 @@
                 <view class="weui-label">部门名称</view>
             </view> 
             <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入部门名称" name="position" value="{{workDepartment}}" data-type="7" data-event="input" bindinput="operateInput" />
+                <input class="weui-input" placeholder="请输入部门名称" name="position" value="{{workDepartment}}" data-type="3" data-event="input" bindinput="operateInput" />
             </view>
-            <view class="weui-icon-clear" wx:if="{{workDepartment.length > 0}}" data-type="7" data-event="clear" bindtap="operateInput">
+            <view class="weui-icon-clear" wx:if="{{workDepartment.length > 0}}" data-type="3" data-event="clear" bindtap="operateInput">
               <icon type="clear" size="14"></icon>
             </view>
         </view>
@@ -46,9 +46,9 @@
                 <view class="weui-label">开始时间</view>
             </view> 
             <view class="weui-cell__bd">
-             <picker class="weui-btn" mode="date" fields="month" value="{{workStartDateStr}}" start="1970-01-01" end="2020-12-31" data-formtype="work" bindchange="bindStartDateChange">
+             <picker class="weui-btn" mode="date" fields="month" value="{{workStartDateStr}}" start="1970-01-01" end="2020-12-31"  bindchange="bindStartDateChange">
                   <view class="start-date picker-inner">
-                    <text class="placeholder" wx:if="{{workStartDateStr == '请选择开始时间'}}">{{workStartDateStr}}</text>
+                    <text class="placeholder" wx:if="{{!workStartDateStr}}">请选择开始时间</text>
                     <text class="date" wx:else>{{workStartDateStr}}</text>
                     <text class="arrow-right"></text>
                   </view>
@@ -60,10 +60,10 @@
                 <view class="weui-label">结束时间</view>
             </view> 
             <view class="weui-cell__bd">
-              <picker class="weui-btn" mode="date" fields="month" value="{{workEndDateStr}}" start="1970-01-01" end="2020-12-31" disabled="{{isWorking}}" data-formtype="work" bindchange="bindEndDateChange">
+              <picker class="weui-btn" mode="date" fields="month" value="{{workEndDateStr}}" start="1970-01-01" end="2020-12-31" disabled="{{isWorking}}"  bindchange="bindEndDateChange">
                   <view class="end-date picker-inner">
-                    <text class="placeholder" wx:if="{{workEndDateStr == '请选择结束时间'}}">{{workEndDateStr}}</text>
-                    <text class="date" wx:else>{{workEndDateStr}}</text>
+                    <text class="placeholder" wx:if="{{!workEndDateStr}}">请选择结束时间</text>
+                    <text class="date" wx:else>{{workEndDateStr == "今" ? "至今" : workEndDateStr}}</text>
                     <text class="arrow-right"></text>
                   </view>
               </picker>     
@@ -96,8 +96,8 @@
       </view>
       <!-- 其他  -->
       <button class="save-btn btn-w690" type="primary"  bindtap="save">完成</button>
-      <button class="del-btn btn-w690" type="primary"  bindtap="delete">删除该条工作经历</button> 
-      <view class="cue">注意：删除的按钮在有数据的时候存在</view> 
+      <button class="del-btn btn-w690" type="primary"  bindtap="del" wx:if="{{id != 0}}">删除该条工作经历</button> 
+      <!-- <view class="cue">注意：删除的按钮在有数据的时候存在</view>  -->
     </view>
 </view>
 

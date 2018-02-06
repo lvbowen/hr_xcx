@@ -21,7 +21,7 @@
           <view class="weui-cell__bd">
            <picker class="weui-btn" mode="date" value="{{interviewResumeInfo.birthday}}" start="1950-01-01" end="2018-12-31" bindchange="bindBirthdayChange">
                 <view class="birthday picker-inner">
-                  <text class="placeholder" wx:if="{{interviewResumeInfo.birthday == '请选择出生年月'}}">{{interviewResumeInfo.birthday}}</text>
+                  <text class="placeholder" wx:if="{{!interviewResumeInfo.birthday}}">请选择出生年月</text>
                   <text class="date" wx:else>{{interviewResumeInfo.birthday}}</text>
                   <text class="arrow-right"></text>
                 </view>
@@ -35,8 +35,8 @@
           <view class="weui-cell__bd">
               <picker  value="{{sexIndex}}" range="{{sexArr}}" range-key="name" bindchange="bindSexChange">
                   <view class="sex picker-inner">
-                    <text class="placeholder" wx:if="{{interviewResumeInfo.sex == '请选择性别'}}">{{interviewResumeInfo.sex}}</text>
-                    <text class="sex-val" wx:else>{{sexArr[sexIndex].name}}</text>
+                    <text class="placeholder" wx:if="{{interviewResumeInfo.sex != 1 && interviewResumeInfo.sex != 2}}">请选择性别</text>
+                    <text class="sex-val" wx:else>{{sexArr[interviewResumeInfo.sex - 1].name}}</text>
                     <text class="arrow-right"></text>
                   </view> 
               </picker>

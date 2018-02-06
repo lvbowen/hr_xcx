@@ -1,1 +1,5 @@
 @import '/style/editResume.wxss';
+
+.weui-label::before{
+  display: none;
+}

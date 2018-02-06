@@ -297,7 +297,6 @@ Page({
        }
       } else {
         utils.toggleToast(_this, res.message)
-        // console.log(`recruitPosition/submitInterivewApplicationNew.do:${res.message}`)
       }
     })
   },

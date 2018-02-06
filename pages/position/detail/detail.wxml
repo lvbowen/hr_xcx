@@ -8,7 +8,7 @@
      <template is="positionItem" data="{{...positionInfo}}" /> 
   </view>
   <!-- 公司信息  -->
-    <view class="company-info weui-media-box weui-media-box_appmsg">
+    <view class="company-info weui-media-box weui-media-box_appmsg" data-type='3' catchtap='linkTo'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <image class="weui-media-box__thumb" src="{{companyInfo.companyHeadImg}}" />
         </view>

@@ -80,7 +80,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+     
   },
 
   /**
@@ -157,10 +157,16 @@ Page({
           url: `./detail?companyId=${companyId}&positionId=${dataset.positionid}`,
         })
         break;
-      //跳转到投递简历页
+      //跳转到创建简历方式页
       case "2":
         wx.navigateTo({
           url: `../resume/resume?companyId=${companyId}&positionId=${_data.options.positionId}&fansId=${_data.fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
+        })
+        break;
+      //回到首页
+      case "3":
+        wx.reLaunch({
+          url: `../../home/home`,
         })
         break;
       default:

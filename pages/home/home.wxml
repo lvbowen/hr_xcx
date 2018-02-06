@@ -8,7 +8,7 @@
       <view class="logo" style="background-image: url('{{website.logoUrl}}');"></view>
        <view class="title">{{website.name}}</view>
       <view class="slogan">{{website.slogan}}</view>
-      <view class="attention">关注</view>
+      <!-- <view class="attention">关注</view> -->
   </view>
    <!-- 公司信息  -->
   <view class="info-wrap section" wx:if="{{allCompanies && allCompanies.length > 0}}">
