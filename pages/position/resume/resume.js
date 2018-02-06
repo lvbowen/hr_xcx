@@ -12,7 +12,7 @@ Page({
    */
   data: {
     options:null,
-    fansId:'',
+    // fansId:'',
     step:"1",
     platforms:[
       { "type": 1, "platformName": "前程无忧（51job）", "logoUrl":"../../../images/resum_1.png"},
@@ -28,7 +28,6 @@ Page({
     console.log('resume', options)
 
     this.setData({
-      fansId: getApp().globalData.fansId,
       options:options
     })
     this.getSimpleResume()
@@ -53,8 +52,8 @@ Page({
   getSimpleResume: function () {
     let self = this;
     let param = {
-      fansId: this.data.fansId,
-      companyId: companyId
+      fansId: this.data.options.fansId,
+      companyId: this.data.options.companyId
     }
     network.post("/api.do", {
       method: "resume/getSimpleResume",

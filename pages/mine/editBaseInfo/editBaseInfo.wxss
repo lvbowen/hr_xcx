@@ -1,4 +1,5 @@
 @import '/style/editResume.wxss';
+@import '/template/toast/toast.wxss';
 
 .email-input .weui-icon-clear,.phone-input .weui-icon-clear{
   right:40px;

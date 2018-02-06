@@ -1,4 +1,4 @@
-
+@import '/template/toast/toast.wxss';
 .weui-icon-clear{
   right:20rpx;
   top:50%;

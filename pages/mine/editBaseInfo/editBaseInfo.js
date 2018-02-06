@@ -60,7 +60,7 @@ Page({
   getAllResume: function () {
     let _this = this;
     let param = {
-      fansId: 121,    //假数据
+      fansId: _this.data.options.fansId,  
     }
     network.post("/api.do", {
       method: "resume/getAllResume",
@@ -70,6 +70,7 @@ Page({
         let basic = res.data.basic
         _this.setData({
           interviewResumeInfo: res.data.basic,
+          wordNumber: res.data.basic.motto ? res.data.basic.motto.length : 0
         })
       } else {
         utils.toggleToast(_this, res.message)
@@ -218,7 +219,7 @@ Page({
     let _this = this;
     if (this.checkBaseForm()) {
       let param = {
-        fansId: 121,    //假数据
+        fansId: _this.data.options.fansId,    
         route: 'basic',
         model: _this.data.interviewResumeInfo
       }

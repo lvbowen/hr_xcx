@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    fansId:'',
     modal: { showModal: false, modalTitle: '技能名称', inputVal:''},
     skills: [],
   },

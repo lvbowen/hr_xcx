@@ -1,9 +1,10 @@
 {
   "pages":[
+   
     "pages/home/home",
     "pages/position/resume/resume",
     "pages/mine/editPreview/editPreview",
-    
+    "pages/position/loginResume/loginResume",
     "pages/position/addResume/addResume",
   "pages/position/detail/detail",
     "pages/mine/editAspiration/editAspiration",
@@ -24,7 +25,7 @@
      
     
     "pages/position/list",
-    "pages/position/loginResume/loginResume",
+    
     
     "pages/position/deliveryResult/deliveryResult",
     

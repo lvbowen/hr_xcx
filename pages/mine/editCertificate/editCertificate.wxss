@@ -1,4 +1,5 @@
 @import '/template/defineModal/defineModal.wxss';
+@import '/template/toast/toast.wxss';
 
 .skill-box{
   display: flex;

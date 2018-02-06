@@ -10,9 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fansId:'',
-    // langLevels: ['初级(入门)', '中级(日常会话)', '中高级(商务会话)','高级(无障碍商务沟通)'],
-    
+    fansId:'',    
     langLevels:[
       { name:"初级(入门)",value:1},
       { name: "中级(日常会话)", value: 2 },

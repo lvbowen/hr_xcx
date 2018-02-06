@@ -1,4 +1,5 @@
 @import '/style/editResume.wxss';
+@import '/template/toast/toast.wxss';
 
 .weui-cells_after-title{
   margin-bottom: 24rpx;

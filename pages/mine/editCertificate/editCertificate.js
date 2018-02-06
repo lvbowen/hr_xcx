@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    fansId:'',
     modal: { showModal: false, modalTitle: '证书名称', inputVal: '' },
     qualifications: [],
   },

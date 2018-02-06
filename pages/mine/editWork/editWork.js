@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fansId:121,
+    fansId:'',
     id:0,
     wordNumber:0,
     isWorking: 0,

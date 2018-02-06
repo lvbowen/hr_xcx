@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fansId:121,
+    // fansId:121,
     options:null,
     basic: null,
     jobpref: null,
@@ -29,7 +29,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    console.log('editPreview',options)
     this.setData({
       options:options
     })
@@ -56,7 +56,7 @@ Page({
   getAllResume: function () {
     let _this = this;
     let param = {
-      fansId: 121,    //假数据
+      fansId: this.data.options.fansId, 
     }
     network.post("/api.do", {
       method: "resume/getAllResume",
@@ -87,7 +87,7 @@ Page({
   workHistory: function (e) {
     let itemId = e.currentTarget.dataset.itemid;
     wx.navigateTo({
-      url: `../editWork/editWork?itemId=${itemId}&fansId=${this.data.fansId}`,
+      url: `../editWork/editWork?itemId=${itemId}&fansId=${this.data.options.fansId}`,
     })
   },
   /**
@@ -96,7 +96,7 @@ Page({
   editEducation: function (e) {
     let itemId = e.currentTarget.dataset.itemid;
     wx.navigateTo({
-      url: `../editEducation/editEducation?itemId=${itemId}&fansId=${this.data.fansId}`,
+      url: `../editEducation/editEducation?itemId=${itemId}&fansId=${this.data.options.fansId}`,
     })
   },
   /**
@@ -105,7 +105,7 @@ Page({
   editProject: function (e) {
     let itemId = e.currentTarget.dataset.itemid;
     wx.navigateTo({
-      url: `../editProject/editProject?itemId=${itemId}&fansId=${this.data.fansId}`,
+      url: `../editProject/editProject?itemId=${itemId}&fansId=${this.data.options.fansId}`,
     })
   },
   /**
@@ -114,7 +114,7 @@ Page({
   goEdit: function (e) {
     let page = e.currentTarget.dataset.page
     wx.navigateTo({
-      url: `../${page}/${page}?fansId=${this.data.fansId}`,
+      url: `../${page}/${page}?fansId=${this.data.options.fansId}`,
     })
   },
   /**
@@ -124,7 +124,7 @@ Page({
     let _this = this, _data = this.data;
     let param = {
       interviewResumeInfo: {
-        positionId:  '4',
+        positionId:  _data.options.positionId,
         basic: _data.basic,
         jobpref: _data.jobpref,
         link: _data.link,
@@ -137,7 +137,7 @@ Page({
         skillList: _data.skillList,
         workHistoryList: _data.workHistoryList,
       },
-      fansId: _data.fansId,
+      fansId: _data.options.fansId,
       shareFansId: _data.options.shareFansId,
       recomType: _data.options.recomType,
       activityId: _data.options.activityId

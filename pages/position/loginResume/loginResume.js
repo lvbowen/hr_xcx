@@ -185,7 +185,7 @@ Page({
       pwd: _data.inputPass,
       vcode: _data.vcode,
       businessId: '14',
-      companyId: companyId, //_data.options.companyId
+      companyId: _data.options.companyId, //
       phone: _data.inputTel,
       email: _data.inputEmail
     }

@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    fansId:'',
     introContent:'',
     wordNumber:0,
   },
@@ -18,6 +19,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      fansId:options.fansId
+    })
     this.getAllResume()
   },
 
@@ -40,7 +44,7 @@ Page({
   getAllResume: function () {
     let _this = this;
     let param = {
-      fansId: 121,    //假数据
+      fansId: _this.data.fansId,   
     }
     network.post("/api.do", {
       method: "resume/getAllResume",
@@ -49,6 +53,7 @@ Page({
       if (res.code == "0") {
         _this.setData({
           introContent: res.data.myEvaluation.myEvaluation,
+          wordNumber: res.data.myEvaluation.myEvaluation ? res.data.myEvaluation.myEvaluation.length : 0
         })
       } else {
         utils.toggleToast(_this, res.message)
@@ -70,7 +75,7 @@ Page({
   save: function () {
     let _this = this;
     let param = {
-      fansId: 121,    //假数据
+      fansId: _this.data.fansId,    
       route: 'description',
       model: { 'myEvaluation': _this.data.introContent }
     }

@@ -24,7 +24,7 @@ Page({
     addExperience:true,
     //基本信息
     interviewResumeInfo: {
-      positionId: "4",
+      positionId: "",
       resumeId: null, //简历文件id
       attachmentIds: null,  //附件ids
       name: '',
@@ -62,12 +62,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var options = { positionId:2 }    //假数据
     console.log('addResume',options)
     
     this.setData({
       options: options,
-      fansId: getApp().globalData.fansId,
+      fansId: options.fansId,
       ['interviewResumeInfo.positionId']:options.positionId
     })
     this.getSimpleResume()
@@ -93,7 +92,7 @@ Page({
     let self = this;
     let param = {
       fansId: this.data.fansId,
-      companyId:companyId
+      companyId:this.data.options.companyId
     }
     network.post("/api.do", {
       method: "resume/getSimpleResume",

@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    fansId:'',
     options:null,
     positionInfo:null,
     positionDesc:'',
@@ -60,17 +61,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('detail', options)
-    if (options.positionId){
-      this.setData({
-        options: options
-      })
-    }else{
-      this.setData({
-        options: { companyId: "169359", positionId: "4" }
-      })
-    }
-   
+    console.log('detail',options)
+    this.setData({
+      options: options,
+      fansId: getApp().globalData.fansId,
+    })
+    console.log('fansId', getApp().globalData.fansId)
+
     this.getPositionInfo();
     this.getWzpIndexInfo();
     this.getShareTitleInfo();
@@ -133,7 +130,7 @@ Page({
     let _this = this;
     network.post("/api.do", {
       method: "positionRecommend/getShareTitleInfo",
-      param: JSON.stringify({ reqType: 2, companyId: companyId, positionId: _this.data.options.positionId})
+      param: JSON.stringify({ reqType: 2, companyId: _this.data.options.companyId, positionId: _this.data.options.positionId})
     }, function (res) {
       if (res.code == "0" && res.data) {
         _this.setData({
@@ -154,13 +151,13 @@ Page({
       //重定向到职位详情页
       case "1":
         wx.redirectTo({
-          url: `./detail?companyId=${companyId}&positionId=${dataset.positionid}`,
+          url: `./detail?companyId=${_data.options.companyId}&positionId=${dataset.positionid}`,
         })
         break;
       //跳转到创建简历方式页
       case "2":
         wx.navigateTo({
-          url: `../resume/resume?companyId=${companyId}&positionId=${_data.options.positionId}&fansId=${_data.fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
+          url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${_data.fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
         })
         break;
       //回到首页
