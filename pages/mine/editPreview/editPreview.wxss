@@ -184,6 +184,7 @@
 .skills .list,.certificate .list{
   display: flex;
   flex-wrap:wrap; 
+  padding-top:20rpx;
 }
 .skills .list .item,.certificate .list .item{ 
   height: 45rpx;

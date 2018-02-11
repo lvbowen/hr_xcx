@@ -1,7 +1,7 @@
 let config = {
   host:"https://aijuhr.com/hrm",
-  appId:"wx910dfda74307078f",  
-  appSecret:'2a8bc2846374050623d5d0731b82ba39',
+  appId:"wx59ac83234ec651e4",  
+  appSecret:'5e73f0ddb0ce25cdd743a2be892b77d7',
   lversion:"1.0.0",
 }
 

@@ -59,7 +59,7 @@ Page({
       fansId: this.data.options.fansId, 
     }
     network.post("/api.do", {
-      method: "resume/getAllResume",
+      method: "spResume/getAllResume",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
@@ -143,7 +143,7 @@ Page({
       activityId: _data.options.activityId
     }
     network.post("/api.do", {
-      method: "recruitPosition/submitApplicationRecord",
+      method: "recruitPosition/spSubmitApplicationRecord",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {

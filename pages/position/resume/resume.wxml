@@ -11,9 +11,9 @@
         <image class="icon" src="../../../images/resum_3.png"></image>
         <text class="word">个人档案</text>
       </view>
-       <view class="type code"  catchtap='scanCode'>
+       <view class="type code"  catchtap='scanCode' style="display:none;">
         <image class="icon" src="../../../images/resum_5.png"></image>
-        <view class="word"><text class="title">PC扫码填简历</text><text class="url">resume.aijuhr.com</text></view>
+        <view class="word"><text class="title">PC扫码填简历</text><text class="url">请登录 resume.aijuhr.com</text></view>
       </view>
     </view>
   </view>

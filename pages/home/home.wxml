@@ -13,7 +13,7 @@
    <!-- 公司信息  -->
   <view class="info-wrap section" wx:if="{{allCompanies && allCompanies.length > 0}}">
         <view class="weui-panel weui-panel_access">
-        <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-info.png"></image>公司信息</view>
+        <view class="weui-panel__hd"><image class="img" src="../../images/company03.png"></image>公司信息</view>
         <view class="weui-panel__bd">
           <block wx:for="{{allCompanies}}" wx:key="index">
           <view class="weui-media-box weui-media-box_appmsg" data-index="{{index}}" data-type="1" catchtap='navigatorTo'>
@@ -67,8 +67,8 @@
   <view class="team-wrap section" wx:if="{{workTeam && workTeam.length > 0}}">
      <view class="weui-panel weui-panel_access">
          <view class="weui-panel__hd">
-           <view class="left"><image class="img" src="../../images/icon-company-team.png" />我们的团队</view>
-           <view class="right" catchtap='navigatorTo' data-type="2">查看更多信息<icon class="arrow-right"></icon></view>   
+           <view class="left"><image class="img" style="width:38rpx;" src="../../images/icon-company-team.png" />我们的团队</view>
+           <view class="right" catchtap='navigatorTo' data-type="2" style="color:#888888;font-size:28rpx;">查看更多信息<icon class="arrow-right"></icon></view>   
           </view> 
           <view class="weui-panel__bd weui-media-box">
             <swiper class="swiper" indicator-dots="{{indicatorDots}}"

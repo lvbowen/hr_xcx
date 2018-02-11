@@ -13,8 +13,8 @@
   font-size:34rpx;
 }
 .weui-panel__hd .img{
-  width:34rpx;
-  height: 34rpx;
+  width:36rpx;
+  height: 36rpx;
   margin-right:10rpx;
 }
 .team-intro .img-box{
@@ -62,4 +62,5 @@
   line-height: 1.5;
   overflow: hidden;
   -webkit-line-clamp:99999;
+  color: #353535;
 }

@@ -95,7 +95,7 @@ Page({
       companyId:this.data.options.companyId
     }
     network.post("/api.do", {
-      method: "resume/getSimpleResume",
+      method: "spResume/getSimpleResume",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
@@ -494,7 +494,7 @@ Page({
       simpleResumeInfo: this.data.interviewResumeInfo
     }
     network.post("/api.do", {
-      method: "resume/updateSimpleResume",
+      method: "spResume/updateSimpleResume",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
@@ -609,7 +609,7 @@ Page({
       activityId: this.data.options.activityId
     }
     network.post("/api.do", {
-      method: "recruitPosition/submitApplicationRecord",
+      method: "recruitPosition/spSubmitApplicationRecord",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {

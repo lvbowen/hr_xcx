@@ -10,16 +10,15 @@ page{
   align-items: center;
 }
 .result-wrap .icon{
-  margin-bottom:58rpx;
+  margin-bottom:50rpx;
 }
 .result-wrap .result-state{
   font-size:40rpx;
-  /* height: 40rpx; */
-  line-height: 40rpx;
+  /* line-height: 40rpx; */
   margin-bottom: 45rpx;
 }
 .result-wrap .result-tip{
-  text-align: center;
+  text-align: center; 
   margin-bottom:68rpx;
 }
 .return-btn{

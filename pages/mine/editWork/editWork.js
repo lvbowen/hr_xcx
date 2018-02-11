@@ -60,7 +60,7 @@ Page({
       id: _this.data.id
     }
     network.post("/api.do", {
-      method: "resume/getResumeInfoByRoute",
+      method: "spResume/getResumeInfoByRoute",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
@@ -188,7 +188,7 @@ Page({
         }
       }
       network.post("/api.do", {
-        method: "resume/updateResumeInfo",
+        method: "spResume/updateResumeInfo",
         param: JSON.stringify(param)
       }, function (res) {
         if (res.code == "0") {
@@ -212,7 +212,7 @@ Page({
       id: _this.data.id
     }
     network.post("/api.do", {
-      method: "resume/delExperienceById",
+      method: "spResume/delExperienceById",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {

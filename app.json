@@ -1,12 +1,12 @@
 {
   "pages":[
-   
     "pages/home/home",
+    "pages/position/list",
     "pages/position/resume/resume",
     "pages/mine/editPreview/editPreview",
     "pages/position/loginResume/loginResume",
-    "pages/position/addResume/addResume",
-  "pages/position/detail/detail",
+    
+    "pages/position/detail/detail",
     "pages/mine/editAspiration/editAspiration",
     "pages/mine/editLink/editLink",
       "pages/mine/editCertificate/editCertificate",
@@ -18,24 +18,19 @@
     "pages/mine/editWork/editWork",
     
     "pages/mine/editBaseInfo/editBaseInfo",
-    
+    "pages/position/addResume/addResume",
     "pages/mine/mine",
     
     "pages/mine/editIntroduce/editIntroduce",
-     
-    
-    "pages/position/list",
-    
     
     "pages/position/deliveryResult/deliveryResult",
+    
     
     "pages/position/preview/preview",
     
     "pages/home/map/map", 
     
-    "pages/home/team/team",
-    
-    
+    "pages/home/team/team",   
     
     "pages/index/index"
  
@@ -43,7 +38,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "backgroundColor":"#f1f5f8",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "微招聘",
     "navigationBarTextStyle":"black"
   },
@@ -56,14 +51,14 @@
       {
         "pagePath": "pages/home/home",
         "text": "公司",
-        "iconPath": "images/company.png",
-        "selectedIconPath": "images/selected_company.png"
+        "iconPath": "images/company05.png",
+        "selectedIconPath": "images/selected_company02.png"
       },
       {
         "pagePath": "pages/position/list",
         "text": "在招职位",
-        "iconPath": "images/position.png",
-        "selectedIconPath": "images/selected_position.png"
+        "iconPath": "images/position02.png",
+        "selectedIconPath": "images/selected_position02.png"
       }
     ]
   },

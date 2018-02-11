@@ -21,14 +21,14 @@
     </view>
   <!-- 职位描述  -->
   <view class="position-desc weui-panel weui-panel_access">
-    <view class="weui-panel__hd"><image class="img" src="../../../images/describe.png"></image>职位描述</view>
+    <view class="weui-panel__hd" style="color:#333;font-size:30rpx;"><image class="img" src="../../../images/describe.png"></image>职位描述</view>
     <view class="weui-panel__bd">
       <view class="content"><template is="wxParse" data="{{wxParseData:article.nodes}}"/></view>
     </view>
   </view>
    <!-- 职位福利  -->
   <view class="position-welfare weui-panel weui-panel_access" wx:if="{{positionInfo.positionTagList && positionInfo.positionTagList.length > 0 }}">
-    <view class="weui-panel__hd"><image class="img" src="../../../images/welfare.png"></image>职位福利</view>
+    <view class="weui-panel__hd" style="color:#333;font-size:30rpx;"><image class="img" src="../../../images/welfare.png"></image>职位福利</view>
     <view class="weui-panel__bd">
       <view class="tag-list">
         <view class="tag" wx:for="{{positionInfo.positionTagList}}" wx:key="index">{{item.name}}</view>
@@ -37,7 +37,7 @@
   </view>
    <!-- 相关职位推荐  -->
    <view class="position-recommend weui-panel weui-panel_access" wx:if="{{positionInfo.similarPositions && positionInfo.similarPositions.length > 0 }}">
-    <view class="weui-panel__hd"><image class="img" src="../../../images/recommend.png"></image>相关职位推荐</view>
+    <view class="weui-panel__hd" style="color:#333;font-size:30rpx;"><image class="img" src="../../../images/recommend.png"></image>相关职位推荐</view>
     <view class="weui-panel__bd">
        <view class="relative-position" wx:for="{{positionInfo.similarPositions}}" wx:key="index" data-positionId="{{item.id}}" data-type="1" catchtap='linkTo'>
           <template is="positionItem" data="{{...item}}" />

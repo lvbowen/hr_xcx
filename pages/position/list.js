@@ -1,7 +1,7 @@
 const network = require("../../utils/network.js")
 const app = getApp()
-const companyId = app.globalData.companyId
-const paramObj = { companyId: companyId, type: 2 }
+let companyId = ''
+let paramObj = null
 
 Page({
 
@@ -18,6 +18,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    companyId = getApp().globalData.companyId
+    paramObj = { companyId: companyId, type: 2 }
     this.getPositionList()
     console.log(companyId)
   },

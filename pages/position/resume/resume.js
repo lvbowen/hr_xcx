@@ -56,7 +56,7 @@ Page({
       companyId: this.data.options.companyId
     }
     network.post("/api.do", {
-      method: "resume/getSimpleResume",
+      method: "spResume/getSimpleResume",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {

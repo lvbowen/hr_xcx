@@ -64,7 +64,7 @@ Page({
       route: 'jobpref',
     }
     network.post("/api.do", {
-      method: "resume/getResumeInfoByRoute",
+      method: "spResume/getResumeInfoByRoute",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
@@ -192,7 +192,7 @@ Page({
       model: _this.data.model
     }
     network.post("/api.do", {
-      method: "resume/updateResumeInfo",
+      method: "spResume/updateResumeInfo",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {

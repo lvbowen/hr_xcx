@@ -3,23 +3,71 @@ const config = require('./config.js')
 App({
   onLaunch: function () {
     let _this = this
+    console.log(wx.getExtConfigSync())
+    _this.globalData.companyId = wx.getExtConfigSync().companyId
+
+    // if (wx.getExtConfig) {
+    //   wx.getExtConfig({
+    //     success: function (res) {
+    //       _this.globalData.companyId = res.extConfig.companyId
+    //       console.log('extConfig',res.extConfig)
+    //     }
+    //   })
+    // }
+    this.login()
+    // let _this = this
+    // wx.request({
+    //   url: config.host + '/account/smallProgramOpenid.do',
+    //   method: "POST",
+    //   header: {
+    //     "lversion": `${config.lversion}`,
+    //     "content-type": "application/x-www-form-urlencoded"
+    //   },
+    //   data: {},
+    //   success: function (res) {
+    //     console.log(res)
+    //     if(res.data.code == 0){
+    //       setTimeout(() => {
+    //         // _this.login()
+    //         wx.request({
+    //           url: res.data.data,
+    //           method: "GET",
+    //           header: {
+    //             "lversion": `${config.lversion}`,
+    //             "content-type": "application/json"
+    //           },
+    //           data: {},
+    //           success: function (res) {
+    //                 console.log(res) 
+    //           }
+    //         }
+    //       )
+    //       },1000)
+    //     }
+    //   }
+    // })
+    
+  },
+  login:function(){
     // 登录
+    var _this = this;
+    console.log("登录登录")
     wx.login({
       success: response => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if (response.code){
+        if (response.code) {
           wx.getUserInfo({
             withCredentials: true,
             success: function (res) {
-              wx.request({             
-                url: config.host + '/account/smallRoutineLogin.do',
-                method:"POST",
+              wx.request({
+                url: config.host + '/account/smallProgramLogin.do',
+                method: "POST",
                 header: {
                   "lversion": `${config.lversion}`,
                   "content-type": "application/x-www-form-urlencoded"
                 },
                 data: {
-                  appid:config.appId,
+                  appid: config.appId,
                   secret: config.appSecret,
                   code: response.code,
                   userInfo: JSON.stringify(res.userInfo),
@@ -46,31 +94,11 @@ App({
         }
       }
     })
-    // 获取用户信息
-    // wx.getSetting({
-    //   success: res => {
-    //     if (res.authSetting['scope.userInfo']) {
-    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-    //       wx.getUserInfo({
-    //         success: res => {
-    //           // 可以将 res 发送给后台解码出 unionId
-    //           this.globalData.userInfo = res.userInfo
-
-    //           // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //           // 所以此处加入 callback 以防止这种情况
-    //           if (this.userInfoReadyCallback) {
-    //             this.userInfoReadyCallback(res)
-    //           }
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
   },
   globalData: {
     userInfo: null,
     fansId:'',
-    companyId: "169359",   //正式：61(爱聚) 34530，测试：169359
+    companyId: "",   //正式：61(爱聚) 34530，测试：169359 
     pageSize: "6"
   }
 })
