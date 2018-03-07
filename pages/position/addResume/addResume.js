@@ -33,7 +33,8 @@ Page({
       sex: '请选择性别',
       birthday: '请选择出生年月',
       educationHistoryList: [],
-      workHistoryList: []
+      workHistoryList: [],
+      resumeFrom: '18'
     },
     //教育经历
     professional: [
@@ -669,7 +670,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
   
-  }
+  // }
 })

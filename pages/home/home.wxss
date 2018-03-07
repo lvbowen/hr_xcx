@@ -16,7 +16,7 @@
   margin-top:24rpx;
 }
 .banner-image{
-  height: 200rpx;
+  height: 360rpx;
   background-size: cover;
   background-repeat: no-repeat;
 }

@@ -1,11 +1,12 @@
 {
   "pages":[
+    
     "pages/home/home",
     "pages/position/list",
     "pages/position/resume/resume",
     "pages/mine/editPreview/editPreview",
     "pages/position/loginResume/loginResume",
-    
+    "pages/position/addResume/addResume",
     "pages/position/detail/detail",
     "pages/mine/editAspiration/editAspiration",
     "pages/mine/editLink/editLink",
@@ -18,7 +19,7 @@
     "pages/mine/editWork/editWork",
     
     "pages/mine/editBaseInfo/editBaseInfo",
-    "pages/position/addResume/addResume",
+    
     "pages/mine/mine",
     
     "pages/mine/editIntroduce/editIntroduce",

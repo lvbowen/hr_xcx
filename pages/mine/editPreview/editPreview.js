@@ -136,6 +136,7 @@ Page({
         projectList: _data.projectList,
         skillList: _data.skillList,
         workHistoryList: _data.workHistoryList,
+        resumeFrom:'18'
       },
       fansId: _data.options.fansId,
       shareFansId: _data.options.shareFansId,
@@ -186,7 +187,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
   
-  }
+  // }
 })

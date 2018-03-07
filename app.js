@@ -3,59 +3,22 @@ const config = require('./config.js')
 App({
   onLaunch: function () {
     let _this = this
+
     console.log(wx.getExtConfigSync())
     _this.globalData.companyId = wx.getExtConfigSync().companyId
-
-    // if (wx.getExtConfig) {
-    //   wx.getExtConfig({
-    //     success: function (res) {
-    //       _this.globalData.companyId = res.extConfig.companyId
-    //       console.log('extConfig',res.extConfig)
-    //     }
-    //   })
-    // }
-    this.login()
-    // let _this = this
-    // wx.request({
-    //   url: config.host + '/account/smallProgramOpenid.do',
-    //   method: "POST",
-    //   header: {
-    //     "lversion": `${config.lversion}`,
-    //     "content-type": "application/x-www-form-urlencoded"
-    //   },
-    //   data: {},
-    //   success: function (res) {
-    //     console.log(res)
-    //     if(res.data.code == 0){
-    //       setTimeout(() => {
-    //         // _this.login()
-    //         wx.request({
-    //           url: res.data.data,
-    //           method: "GET",
-    //           header: {
-    //             "lversion": `${config.lversion}`,
-    //             "content-type": "application/json"
-    //           },
-    //           data: {},
-    //           success: function (res) {
-    //                 console.log(res) 
-    //           }
-    //         }
-    //       )
-    //       },1000)
-    //     }
-    //   }
-    // })
+    _this.globalData.appId = wx.getExtConfigSync().appId
+    _this.globalData.componentAppid = wx.getExtConfigSync().componentAppid
+    _this.login()
     
   },
   login:function(){
     // 登录
     var _this = this;
-    console.log("登录登录")
     wx.login({
       success: response => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (response.code) {
+          console.log(response.code)
           wx.getUserInfo({
             withCredentials: true,
             success: function (res) {
@@ -67,8 +30,7 @@ App({
                   "content-type": "application/x-www-form-urlencoded"
                 },
                 data: {
-                  appid: config.appId,
-                  secret: config.appSecret,
+                  appid: _this.globalData.appId,
                   code: response.code,
                   userInfo: JSON.stringify(res.userInfo),
                 },
@@ -96,6 +58,8 @@ App({
     })
   },
   globalData: {
+    appId:'',       //授权用户的小程序appid
+    componentAppid:'',    //第三方平台的appid
     userInfo: null,
     fansId:'',
     companyId: "",   //正式：61(爱聚) 34530，测试：169359 

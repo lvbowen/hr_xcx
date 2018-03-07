@@ -215,7 +215,7 @@ Page({
     return {
       title: _this.data.shareInfo.title,
       path: `/pages/position/detail/detail?companyId=${companyId}&positionId=${_this.data.options.positionId}`,
-      imageUrl: _this.data.shareInfo.imgUrl,
+      // imageUrl: _this.data.shareInfo.imgUrl,   //使用截图好看些
       success: function (res) {
         // 转发成功
         // console.log(res)

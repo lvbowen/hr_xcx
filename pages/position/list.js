@@ -144,6 +144,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '职位列表',
+      path: `/pages/position/list`,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+
+      }
+    }
   }
 })

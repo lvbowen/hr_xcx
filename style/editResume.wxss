@@ -44,6 +44,7 @@
 .del-btn{
   margin-top:30rpx;
   background-color: #D64949!important;
+  margin-bottom:60rpx;
 }
 .cue{
   font-size:22rpx;

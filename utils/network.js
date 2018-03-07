@@ -1,5 +1,6 @@
 let config = require("../config.js")
 let util = require("./util.js")
+let md5 = require("../md5.min.js")
 
 let network = {
   //post请求
@@ -7,6 +8,9 @@ let network = {
     wx.showLoading({
       title: '加载中',
     })
+    if(url.indexOf('api.do') > -1){
+      params.sign = md5('method' + params.method + "param" + params.param + "ecbao")
+    }
     wx.request({
       url: `${config.host}${url}`,
       method: "POST",
@@ -36,6 +40,9 @@ let network = {
     wx.showLoading({
       title: '加载中',
     })
+    if (url.indexOf('api.do') > -1) {
+      params.sign = md5('method' + params.method + "param" + params.param + "ecbao")
+    }
     wx.request({
       url: `${config.host}${url}`,
       method: "GET",

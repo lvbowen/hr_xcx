@@ -15,7 +15,7 @@
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">{{companyInfo.name}}</view>
             <view class="weui-media-box__desc">{{companyInfo.companyValues}}</view>
-             <view class="weui-media-box__desc">{{companyInfo.address}} | {{companyInfo.domain}} | {{peopleNum[companyInfo.status - 1].label}} | {{finance[companyInfo.dimensions - 1].label}}</view>
+             <view class="weui-media-box__desc">{{companyInfo.address}} | {{companyInfo.domain}} | {{finance[companyInfo.status - 1].label}} | {{peopleNum[companyInfo.dimensions - 1].label}}</view>
 
         </view>
     </view>

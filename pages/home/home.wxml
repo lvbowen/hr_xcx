@@ -74,7 +74,7 @@
             <swiper class="swiper" indicator-dots="{{indicatorDots}}"
               autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
               <block wx:for="{{workTeam}}"  wx:key="id">
-                <swiper-item>
+                <swiper-item catchtap='navigatorTo' data-type="2">
                   <image src="{{item.imageUrl}}" class="slide-image" />
                   <view class="desc ell">{{item.description}}</view>
                 </swiper-item>
