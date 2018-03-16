@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/home/home",
     "pages/position/list",
     "pages/mine/mine",
     "pages/mine/jobRecord/jobRecord",
@@ -8,11 +9,11 @@
     
     
     
-    "pages/mine/authentication/authentication",
+    "pages/mine/authentication/authentication", 
     "pages/mine/authenResult/authenResult",
     
 
-    "pages/home/home",
+   
     
     "pages/position/resume/resume",
     "pages/mine/editPreview/editPreview",

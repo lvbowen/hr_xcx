@@ -79,6 +79,30 @@
   height:34rpx;
   margin-right:10rpx;
 }
+.intro-wrap .weui-panel__bd{
+   padding:30rpx;
+}
+.intro-wrap .intro-content-box{
+    height: 250rpx;
+    
+    overflow: hidden;
+}
+.intro-wrap .intro-content-box .intro-content{
+    font-size: 28rpx;
+    line-height: 1.5;
+    color: #666;
+}
+.intro-wrap {
+
+}
+.intro-wrap .arrow-box{
+  display: flex;
+  justify-content: center;
+}
+.intro-wrap .retate-bottom{
+  -webkit-transform:rotate(0,-90deg),scale(1.2);
+  transform:rotate(0,-90deg),scale(1.2);
+}
 .info-wrap .weui-media-box{
   display: flex;
   flex-direction: column;
