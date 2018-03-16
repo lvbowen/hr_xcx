@@ -31,8 +31,7 @@ Page({
     paramObj = { companyId: companyId, type: 2,}
     this.getCompanyDetail();
     this.getCompanyInfo();
-    this.getShareInfo()
-      
+    this.getShareInfo()    
   },
 
   /**

@@ -1,8 +1,19 @@
 {
   "pages":[
-    
-    "pages/home/home",
     "pages/position/list",
+    "pages/mine/mine",
+    "pages/mine/jobRecord/jobRecord",
+    "pages/mine/jobCollection/jobCollection",
+    "pages/mine/jobRecommend/jobRecommend",
+    
+    
+    
+    "pages/mine/authentication/authentication",
+    "pages/mine/authenResult/authenResult",
+    
+
+    "pages/home/home",
+    
     "pages/position/resume/resume",
     "pages/mine/editPreview/editPreview",
     "pages/position/loginResume/loginResume",
@@ -20,7 +31,7 @@
     
     "pages/mine/editBaseInfo/editBaseInfo",
     
-    "pages/mine/mine",
+    
     
     "pages/mine/editIntroduce/editIntroduce",
     

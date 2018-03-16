@@ -1,5 +1,7 @@
 const network = require("../../../utils/network.js")
-const WxParse = require('../../../wxParse/wxParse.js');
+const WxParse = require('../../../wxParse/wxParse.js')
+let commonApi = require("../../../utils/commonApi.js")
+let utils = require("../../../utils/util.js")
 const app = getApp()
 let companyId = ''
 let paramObj = null
@@ -12,11 +14,13 @@ Page({
   data: {
     fansId:'',
     options:null,
+    phoneNumber:'',
     positionInfo:null,
     positionDesc:'',
     companyInfo:null,
     shareInfo:null,
     shareMaskHidden:true,
+    hasPhoneAuthen:false,
     peopleNum: [{
       value: 1,
       label: '0-50'
@@ -61,13 +65,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    companyId = getApp().globalData.companyId
+    let globalData = getApp().globalData
+    companyId = globalData.companyId
     paramObj = { companyId: companyId, type: 2 }
+
     this.setData({
       options: options,
-      fansId: getApp().globalData.fansId,
+      fansId: globalData.fansId,
+      phoneNumber: globalData.phoneNumber
     })
-    console.log('fansId', getApp().globalData.fansId)
+    if (!this.data.phoneNumber) {
+      utils.wxLogin()
+    }
 
     this.getPositionInfo();
     this.getWzpIndexInfo();
@@ -178,6 +187,28 @@ Page({
     this.setData({
       shareMaskHidden: !this.data.shareMaskHidden
     })
+  },
+  /**
+   * 手机号授权
+   */
+  getPhoneNumber:function(res){
+    let _this = this
+    commonApi.getSpFansPhone(res,function(){
+      _this.setData({
+        phoneNumber: getApp().globalData.phoneNumber
+      })
+     
+      _this.openSharePanel()
+    },function(){
+      _this.openSharePanel()
+    })
+  },
+  /**
+   *显示分享面板
+   */
+  openSharePanel:function(){
+      //显示分享面板
+      
   },
   /**
    * 生命周期函数--监听页面隐藏

@@ -21,7 +21,6 @@ Page({
     companyId = getApp().globalData.companyId
     paramObj = { companyId: companyId, type: 2 }
     this.getPositionList()
-    console.log(companyId)
   },
 
   /**

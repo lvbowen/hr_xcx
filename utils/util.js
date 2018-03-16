@@ -1,3 +1,5 @@
+/** 全局工具方法（函数） **/
+
 const config = require("../config.js")
 
 /**
@@ -78,9 +80,27 @@ const formatDate = (date,type) => {
   }
 }
 
+/**
+ * 登录更新code
+ */
+const wxLogin = () => {
+  wx.login({
+    success: function (res) {
+      if (res.code) {
+        getApp().globalData.code = res.code
+      } else {
+        console.log('登录失败！' + res.errMsg)
+      }
+    }
+  });
+}
+
+
+
 module.exports = {
   formatTime: formatTime,
   toast:toast,
   toggleToast: toggleToast,
   formatDate:formatDate,
+  wxLogin: wxLogin,
 }

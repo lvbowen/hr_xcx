@@ -1,0 +1,60 @@
+<import src="/template/toast/toast.wxml" />
+
+<view class="authen-wrap">
+  <view class="page__bd" style="height: 100%;">
+      <view class="weui-tab">
+          <view class="authen-navbar">
+              <view class="authen-navbar__item {{activeIndex == 1 ? 'authen-bar__item_on' : ''}}" data-tabindex="1" catchtap='switchTab'>我是员工</view>
+              <view  class="authen-navbar__item {{activeIndex == 2 ? 'authen-bar__item_on' : ''}}"><button class="btn-phone" open-type='{{phoneNumber?"":"getPhoneNumber"}}' bindgetphonenumber="getPhoneNumber" data-tabindex="2" catchtap='switchTab'>我不是员工（求职者）</button></view>
+          </view>
+          <view class="authen-tab__panel" hidden='{{activeIndex != 1}}'>
+            <view class="panel-box" wx:if="{{isEmployeeCertification == 0}}">
+              <view class="weui-cells weui-cells_after-title">
+                <view class='tips'>
+                  <image class="img" src="../../../images/icon-tip.png"></image>
+                  <text class="text">员工认证后即可以以公司推荐人身份分享职位给好友， 获得相应奖励！</text>
+                </view>
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">企业邮箱</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" placeholder="输入企业邮箱(绑定后不可修改）" value="{{email}}" data-prop="email" bindinput="operateInput" />
+                    </view>
+                     <view class="weui-icon-clear" wx:if="{{email.length > 0}}" data-prop="email" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                     </view>
+                </view>
+                 <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">姓名</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" placeholder="输入姓名" value="{{name}}" data-prop="name"  bindinput="operateInput" />
+                    </view>
+                    <view class="weui-icon-clear" wx:if="{{name.length > 0}}" data-prop="name" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                     </view>
+                </view>
+                
+              </view>
+              <button class="save-btn btn-w690" type="primary" disabled='{{!email || !name}}' bindtap="verification">身份验证</button>
+            </view>
+            <view class="authen-sucess" wx:else>
+                <image class="img" src="../../../images/noResutl_icon.png"></image>
+                <text class="text">您已验证成功</text>
+            </view>
+          </view>
+          <view class="authen-tab__panel" hidden='{{activeIndex != 2}}'>
+              <view class="panel-box" wx:if="{{isNotEmployeeCertification == 0 || !phoneNumber}}"></view>
+              <view class="authen-sucess" wx:else>
+                <image class="img" src="../../../images/noResutl_icon.png"></image>
+                <text class="text">您已验证成功</text>
+              </view>
+          </view>
+      </view>
+  </view>
+
+</view>
+<!-- 自定义toast  -->
+<template is="defineToast" data="{{...deToast}}" />
