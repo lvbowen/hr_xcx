@@ -1,0 +1,35 @@
+.share_icon{
+  position: fixed;
+  right: 36rpx;
+  bottom: 300rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+.share_icon image{
+  width: 100%;
+  height: 100%;
+}
+.choose_con{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+.choose_con button{
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+.choose_con_btn{
+  position: absolute;
+  width:100%;
+  bottom: 0;
+}
+.firstCanvas{
+  position: absolute;
+  top: 0;
+  left: -1000%;    
+}  

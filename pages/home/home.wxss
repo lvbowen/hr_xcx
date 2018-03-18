@@ -1,4 +1,5 @@
 @import "/template/footer/footer.wxss";
+@import "/template/share/share.wxss";
 
 .weui-panel::before{
   display: none;
