@@ -11,25 +11,47 @@
       <!-- <view class="attention">关注</view> -->
   </view>
    <!-- 公司介绍  -->
-  <view class="intro-wrap section">
+  <view class="intro-wrap section" wx:if="{{website.companyIntroduction}}">
       <view class="weui-panel weui-panel_access">
           <view class="weui-panel__hd"><image class="img" src="../../images/icon-company.png"></image>公司介绍</view>
           <view class="weui-panel__bd">
-              <view class="intro-content-box">
-                <view class="intro-content">大公司的分公司的风格阿迪发生的阿三的gas大法师的发生地发生的阿斯蒂芬阿斯蒂芬大公司的分公司的风格阿迪发生的阿三的gas大法师的发生地发生的阿斯蒂芬阿斯蒂芬大公司的分公司的风格阿迪发生的阿三的gas大法师的发生地发生的阿斯蒂芬阿斯蒂芬123123三的gas大法师的发生地发生的阿斯蒂芬阿斯蒂芬1231236789</view>
+              <view class="intro-content-box" id="introContentBox" style="max-height:{{height}}px;">
+                <view class="intro-content" id="introContent">{{website.companyIntroduction}}</view>
               </view>
-              <view class="arrow-box">
-                <view class="arrow-right retate-bottom"></view>
+              <view class="arrow-box" data-direction="down" catchtap='toggleContent'  wx:if="{{showChevronDown && showChevron}}">
+                 <view class="fa fa-chevron-down" ></view> 
+              </view>
+              <view class="arrow-box" data-direction="up" catchtap='toggleContent'  wx:elif="{{showChevron}}">
+                 <view class="fa fa-chevron-up"></view>
               </view>
           </view>
       </view>      
   </view>
     <!-- 产品介绍  -->
-  <view class="product-wrap section">
+  <view class="product-wrap section" wx:if="{{website.productIntroductionList && website.productIntroductionList.length > 0}}">
       <view class="weui-panel weui-panel_access">
           <view class="weui-panel__hd"><image class="img" src="../../images/icon-product.png"></image>产品介绍</view>
-          <view class="weui-panel__bd">
-              
+          <view class="weui-panel__bd weui-media-box">
+              <view class="product-list1" wx:if="{{website.productIntroductionList && website.productIntroductionList.length == 1}}">
+                <swiper class="swiper">
+                    <swiper-item catchtap='navigatorTo' data-type="3" data-productId="1111">
+                      <image src="{{website.productIntroductionList[0].productImageUrl}}" class="slide-image" />
+                      <view class="desc ell">{{website.productIntroductionList[0].productName}}</view>
+                    </swiper-item>
+                </swiper>
+              </view>
+              <scroll-view class="scroll-view" scroll-x="true" wx:else> 
+                <view class="product-list2" style="width:{{productListWidth}}rpx;">
+                    <block wx:for="{{website.productIntroductionList}}" wx:key="index">
+                      <view class="product-item" catchtap='navigatorTo' data-type="3" data-productId="222">
+                        <view class="image-box">
+                          <image src="{{item.productImageUrl}}" class="img" />
+                        </view>
+                        <view class="product-name ell">{{item.productName}}</view>
+                      </view>
+                    </block>
+                  </view>
+                </scroll-view> 
           </view>
       </view>      
   </view>

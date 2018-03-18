@@ -1,19 +1,15 @@
 {
   "pages":[
+    "pages/home/productDetail/productDetail",
     "pages/home/home",
     "pages/position/list",
     "pages/mine/mine",
     "pages/mine/jobRecord/jobRecord",
     "pages/mine/jobCollection/jobCollection",
-    "pages/mine/jobRecommend/jobRecommend",
-    
-    
+    "pages/mine/jobRecommend/jobRecommend", 
     
     "pages/mine/authentication/authentication", 
     "pages/mine/authenResult/authenResult",
-    
-
-   
     
     "pages/position/resume/resume",
     "pages/mine/editPreview/editPreview",
@@ -24,6 +20,8 @@
     "pages/mine/editLink/editLink",
       "pages/mine/editCertificate/editCertificate",
     "pages/mine/editSkill/editSkill",
+
+    
      "pages/mine/editAwards/editAwards",
     "pages/mine/editLanguage/editLanguage",
     "pages/mine/editProject/editProject",

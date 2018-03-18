@@ -95,6 +95,24 @@ const wxLogin = () => {
   });
 }
 
+/**
+ * 获取某节点的信息
+ * @param {String} id - 节点的选择器，最好为id比较好
+ * @param {Function} callback - 异步回调函数
+ */
+const getWxmlInfo = (id,callback) => {
+  //创建节点选择器
+  let query = wx.createSelectorQuery();
+  //选择id
+  query.select(id).boundingClientRect()
+  query.exec(function (res) {
+    //res就是 标签元素的信息 的数组,回调函数是异步的
+    if(callback){
+      callback(res)
+    }   
+  })
+}
+
 
 
 module.exports = {
@@ -103,4 +121,5 @@ module.exports = {
   toggleToast: toggleToast,
   formatDate:formatDate,
   wxLogin: wxLogin,
+  getWxmlInfo: getWxmlInfo
 }

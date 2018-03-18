@@ -1,0 +1,23 @@
+<view class="product-detail">
+    <scroll-view class="scroll-view" scroll-x="true"> 
+      <view class="tab-list" style="width:{{tabListWidth}}rpx;">
+        <view class="tab-item">微招聘</view>
+        <view class="tab-item">爱聚微招聘</view>
+        <view class="tab-item">爱聚微招聘</view>
+        <view class="tab-item">爱聚微招聘</view>
+        <view class="tab-item">爱聚微招聘</view>
+        <view class="tab-item">爱聚微招聘</view>
+        <view class="sign"></view>
+      </view>
+    </scroll-view> 
+    <view class="product-detail-box">
+      <view class="pro-image">
+        <image class="img" src="http://oyeq6oxdm.bkt.clouddn.com/Upload1512048777770.png"></image>
+      </view>
+      <view class="pro-desc">
+        <view class="pro-desc_title">产品描述</view>
+        <view class="pro-desc_content">1、负责内容管理、营销管理平台的规划、设计，围绕业务目标定义核心需求，推动产品需求落地； 2、理解和挖掘内容服务的结构化信息处理需求，对分类体系和标签体系进行规划和设计；</view>
+      </view>
+    </view> 
+
+</view>

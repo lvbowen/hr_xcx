@@ -1,5 +1,6 @@
 
 const network = require("../../utils/network.js")
+const utils = require("../../utils/util.js")
 const app = getApp() 
 let companyId = ''
 let paramObj = null
@@ -20,7 +21,12 @@ Page({
     indicatorDots: true,
     autoplay: true,
     interval: 3000,
-    duration: 1000
+    duration: 1000,
+    height:125,
+    showChevron: false,   //是否显示箭头
+    showChevronDown:true,   //是否显示下箭头
+    productListWidth:0,
+    
   },
 
   /**
@@ -55,18 +61,44 @@ Page({
     network.post("/api.do", {
       method:"companyWeb/getCompanyDetail",
       param: JSON.stringify(paramObj),
-
-
       
     },function(res){
       if (res.code == "0"){
+        res.data.CompanyWebsite.companyIntroduction='邪恶啊三防机卡死机的卡夫卡老师的看法阿加莎的咖啡机阿克苏降低了开发'
+        res.data.CompanyWebsite.productIntroductionList=[
+          {
+            productName:'电商宝',
+            productImageUrl:'http://oyeq6oxdm.bkt.clouddn.com/Upload1512048777770.png',
+
+          },
+          {
+            productName: '电商宝22',
+            productImageUrl: 'http://oyeq6oxdm.bkt.clouddn.com/Upload1512048777770.png',
+
+          },
+          {
+            productName: '电商宝333',
+            productImageUrl: 'http://oyeq6oxdm.bkt.clouddn.com/Upload1512048777770.png',
+
+          },
+        ]
+
           _this.setData({
             memorabilia: res.data.CompanyMemorabilia,
             website: res.data.CompanyWebsite,
             workEnvironment: res.data.WorkEnvironment,
-            workTeam: res.data.WorkTeam
-            
+            workTeam: res.data.WorkTeam,
+            productListWidth: 279 * res.data.CompanyWebsite.productIntroductionList.length - 35
           })
+          utils.getWxmlInfo("#introContent",function(res){
+            //公司介绍内容高度超过125px，才显示箭头
+            let height = res[0].height
+            if (height >= 125) {
+              _this.setData({
+                showChevron: true
+              })
+            }
+          })  
       }else{
         console.log(`companyWeb/getCompanyDetail:${res.message}`)
       }
@@ -153,11 +185,37 @@ Page({
           url: `./team/team?companyId=${companyId}`,
         })
         break;
+      case "3":
+        wx.navigateTo({
+          url: `./productDetail/productDetail?productId=123`,
+        })
+        break;
       default:
         break;
     }
   },
-
+  /**
+   *展开和收起公司介绍区域
+   */
+  toggleContent:function(e){
+    var _this = this;
+    var direction = e.currentTarget.dataset.direction
+    if(direction == "down"){
+      utils.getWxmlInfo("#introContent", function (res) {
+        _this.setData({
+          height: res[0].height
+        })
+      })
+    }else{
+      _this.setData({
+        height: 125
+      })
+    }
+    _this.setData({
+      showChevronDown: !_this.data.showChevronDown
+    })
+    
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
