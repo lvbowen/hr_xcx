@@ -1,5 +1,6 @@
 @import "/template/footer/footer.wxss";
 @import "/template/position/position.wxss";
+@import "/template/share/share.wxss";
 
 .position-detail{
   padding-bottom:94rpx;

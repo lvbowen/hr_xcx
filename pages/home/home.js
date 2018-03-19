@@ -26,7 +26,14 @@ Page({
     showChevron: false,   //是否显示箭头
     showChevronDown:true,   //是否显示下箭头
     productListWidth:0,
-    
+    array: ['美国', '中国', '巴西', '日本'],
+    index:0,
+    showShare:false,
+    poster:{
+      shTitle:'gs/电子商务/天使轮/0-50人',
+      shqrcode:'http://121.199.182.2/hrm/upload/spqrcode201803161521179349660.jpg',
+      spName:'爱聚招聘'
+    }
   },
 
   /**
@@ -37,7 +44,8 @@ Page({
     paramObj = { companyId: companyId, type: 2,}
     this.getCompanyDetail();
     this.getCompanyInfo();
-    this.getShareInfo()    
+    this.getShareInfo();
+    this.getPosterInfo()
   },
 
   /**
@@ -68,9 +76,13 @@ Page({
             memorabilia: res.data.CompanyMemorabilia,
             website: res.data.CompanyWebsite,
             workEnvironment: res.data.WorkEnvironment,
-            workTeam: res.data.WorkTeam,
-            productListWidth: 279 * res.data.CompanyWebsite.productIntroductionList.length - 35
+            workTeam: res.data.WorkTeam,         
           })
+          if (res.data.CompanyWebsite && res.data.CompanyWebsite.productIntroductionList){
+              _this.setData({
+                productListWidth: 279 * res.data.CompanyWebsite.productIntroductionList.length - 35
+              })
+          }
           if (res.data.CompanyWebsite && res.data.CompanyWebsite.companyIntroduction){
             utils.getWxmlInfo("#introContent", function (res) {
               //公司介绍内容高度超过125px，才显示箭头
@@ -147,6 +159,88 @@ Page({
        
       } else {
         console.log(`positionRecommend/getShareTitleInfo:${res.message}`)
+      }
+    })
+  },
+  /*
+  获取生成海报里的内容
+  */
+  getPosterInfo: function () {
+    let _this = this;
+    network.post("/api.do", {
+      method: "positionRecommend/getSpSharePoster",
+      param: JSON.stringify({ shareType: 1, companyId: companyId })
+    }, function (res) {
+      if (res.code == "0" && res.data) {
+        _this.setData({
+          poster:res.data
+        })
+        _this.getCanvas();
+      } else {
+        console.log(`positionRecommend/getSpSharePoster:${res.message}`)
+      }
+    })
+  },
+  /*
+  
+  */
+  openChange:function(res){
+    this.setData({
+      showShare:true
+    })
+  },
+  showShareFalse:function(res){
+    this.setData({
+      showShare:false
+    })
+  },
+  createPoster:function(res){
+    wx.canvasToTempFilePath({
+      canvasId: 'firstCanvas',
+      fileType: 'jpg',
+      quality: '1',
+      success: function (res) {
+        console.log(res.tempFilePath)
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(res2) {
+            console.log(res2);
+          },
+          fail(res2) {
+            console.log(res2);
+          }
+        })
+      }
+    })
+  },
+  getCanvas:function(res){
+    var _this=this;
+    var context = wx.createCanvasContext('firstCanvas');
+    console.log(context)
+    wx.downloadFile({
+      url: _this.data.poster.shqrcode,
+      success: function (res2) {
+        console.log(res2.tempFilePath);
+        context.drawImage(res2.tempFilePath, 210, 235, 328, 328);
+        wx.downloadFile({
+          url: 'https://aijuhr.com/images/xcx/company_share.png',
+          success: function (res) {
+            context.drawImage(res.tempFilePath, 0, 0, 750, 1334);
+            context.setFontSize(48);
+            context.setFillStyle("#ffffff");
+            context.setTextAlign('center')
+            context.fillText(_this.data.poster.spName,375,104);
+            context.setFontSize(28);
+            context.setFillStyle("#ffffff");
+            context.setTextAlign('center')
+            context.fillText(_this.data.poster.shTitle, 375, 144);
+            context.setFontSize(36);
+            context.setFillStyle("#333333");
+            context.setTextAlign('center')
+            context.fillText('正在用爱聚招人', 375, 640);
+            context.draw(true)
+          }
+        })
       }
     })
   },

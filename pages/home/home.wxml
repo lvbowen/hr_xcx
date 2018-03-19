@@ -1,4 +1,5 @@
 <import src="/template/footer/footer.wxml" />
+<import src="/template/share/share.wxml" />
 
 <view class="company-wrap">  
   <!-- 顶部banner图  -->
@@ -112,23 +113,31 @@
    <!-- 公司信息  -->
   <view class="info-wrap section" wx:if="{{allCompanies && allCompanies.length > 0}}">
         <view class="weui-panel weui-panel_access">
-        <view class="weui-panel__hd"><image class="img" src="../../images/icon-address.png"></image>公司信息</view>
-        <view class="weui-panel__bd">
-          <block wx:for="{{allCompanies}}" wx:key="index">
-          <view class="weui-media-box weui-media-box_appmsg" data-index="{{index}}" data-type="1" catchtap='navigatorTo'>
-            <view class="name">
-              <text class="text">{{item.companyName}}</text>
-              <image class="icon" src="../../images/icon-map.png"></image>  
+          <view class="weui-panel__hd"><image class="img" src="../../images/icon-address.png"></image>公司信息</view>
+          <view class="weui-panel__bd">
+            <block wx:for="{{allCompanies}}" wx:key="index">
+            <view class="weui-media-box weui-media-box_appmsg" data-index="{{index}}" data-type="1" catchtap='navigatorTo'>
+              <view class="name">
+                <text class="text">{{item.companyName}}</text>
+                <image class="icon" src="../../images/icon-map.png"></image>  
+              </view>
+              <view class="short-name" wx:if="{{item.companyShortName}}">({{item.companyShortName}})</view>
+              <view class="address ell"><text class="fa fa-map-marker"></text>{{item.region || ''}}{{item.address}}</view>
+              <view class="tel"><text class="fa fa-phone"></text>{{item.phone}}</view>
             </view>
-            <view class="short-name" wx:if="{{item.companyShortName}}">({{item.companyShortName}})</view>
-            <view class="address ell"><text class="fa fa-map-marker"></text>{{item.region || ''}}{{item.address}}</view>
-            <view class="tel"><text class="fa fa-phone"></text>{{item.phone}}</view>
+            </block>
           </view>
-          </block>
-        </view>
-      </view>      
+      </view>  
+  </view>    
+  <!-- 分享 -->
+  <view class='choose_con' wx:if="{{showShare}}" bindtap="showShareFalse">
+    <view class='choose_con_btn'>
+      <button class='share_poster' bindtap="createPoster">生成分享图到朋友圈找人</button>
+      <button class='share_pople' open-type="share">转发给好友或群友</button>
+    </view>
   </view>
   <!-- 页脚 -->
   <template is="footer" />
+  <template is="sharePoster" data="{{type:1}}" />
 </view>
 

@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -21,6 +21,7 @@
 			"list": []
 		},
 		"game": {
+			"current": -1,
 			"list": []
 		},
 		"miniprogram": {
@@ -28,17 +29,10 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "扫描二维码",
-					"pathName": "pages/home/productDetail/productDetail",
+					"name": "收藏职位",
+					"pathName": "pages/mine/collect/collect",
 					"query": "",
-					"scene": "1011"
-				},
-				{
-					"id": -1,
-					"name": "手机相册选取二维码",
-					"pathName": "pages/home/productDetail/productDetail",
-					"query": "",
-					"scene": "1013"
+					"scene": "1001"
 				}
 			]
 		}

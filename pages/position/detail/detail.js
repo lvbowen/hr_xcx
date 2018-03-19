@@ -58,6 +58,13 @@ Page({
       value: 7,
       label: '未融资'
     }],
+    showShare: false,
+    poster: {
+      shTitle: 'gs/电子商务/天使轮/0-50人',
+      shqrcode: 'http://121.199.182.2/hrm/upload/spqrcode201803161521179349660.jpg',
+      spName: '爱聚招聘',
+      posiDetail: {},
+    },
   },
 
   /**
@@ -67,7 +74,16 @@ Page({
     let globalData = getApp().globalData
     companyId = globalData.companyId
     paramObj = { companyId: companyId, type: 2 }
-
+    // companyId = getApp().globalData.companyId
+    if(options.scene){
+      var scene = decodeURIComponent(options.scene)
+      var arr1=scene.split("&");
+      var obj={};
+      arr1.forEach(function(item){
+        obj[item.split('=')[0]]=item.split('=')[1]
+      })
+      options.positionId=obj.positionId;
+    }
     this.setData({
       options: options,
       phoneNumber: globalData.phoneNumber
@@ -75,10 +91,10 @@ Page({
     if (!this.data.phoneNumber) {
       utils.wxLogin()
     }
-
     this.getPositionInfo();
     this.getWzpIndexInfo();
     this.getShareTitleInfo();
+    this.getPosterInfo();
   },
 
   /**
@@ -187,6 +203,99 @@ Page({
       shareMaskHidden: !this.data.shareMaskHidden
     })
   },
+  /*
+  获取生成海报里的内容
+  */
+  getPosterInfo: function () {
+    let _this = this;
+    network.post("/api.do", {
+      method: "positionRecommend/getSpSharePoster",
+      param: JSON.stringify({ shareType: 3, companyId: companyId, positionId: _this.data.options.positionId })
+    }, function (res) {
+      if (res.code == "0" && res.data) {
+        _this.setData({
+          poster: res.data
+        })
+        _this.getCanvas();
+      } else {
+        console.log(`positionRecommend/getSpSharePoster:${res.message}`)
+      }
+    })
+  },
+  /*
+    点击显示生成海报选择
+  */
+  openChange: function (res) {
+    this.setData({
+      showShare: true
+    })
+  },
+  showShareFalse: function (res) {
+    this.setData({
+      showShare: false
+    })
+  },
+  createPoster: function (res) {
+    wx.canvasToTempFilePath({
+      canvasId: 'thirdCanvas',
+      fileType: 'jpg',
+      quality: '1',
+      success: function (res) {
+        console.log(res.tempFilePath)
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(res2) {
+            console.log(res2);
+          },
+          fail(res2) {
+            console.log(res2);
+          }
+        })
+      }
+    })
+  },
+  /**
+   * 画canvas
+   */
+  getCanvas: function (res) {
+    var _this = this;
+    var context = wx.createCanvasContext('thirdCanvas');
+    wx.downloadFile({
+      url: _this.data.poster.shqrcode,
+      success: function (res2) {
+        context.drawImage(res2.tempFilePath, 210, 235, 328, 328);
+        context.draw()
+        wx.downloadFile({
+          url: 'https://aijuhr.com/images/xcx/plist_share.png',
+          success: function (res) {
+            context.drawImage(res.tempFilePath, 0, 0, 750, 1334);
+            context.setFontSize(48);
+            context.setFillStyle("#ffffff");
+            context.setTextAlign('center')
+            context.fillText(_this.data.poster.spName, 375, 104);
+            context.setFontSize(36);
+            context.setFillStyle("#ffffff");
+            context.setTextAlign('center')
+            context.fillText(_this.data.poster.shTitle, 375, 164);
+            console.log(_this.data.poster);
+            context.setFillStyle("#333333");
+            context.setFontSize(36);
+            context.setTextAlign('left')
+            context.fillText(_this.data.poster.posiDetail.posiName, 48,640);
+            context.setFillStyle("#46BE8A");
+            context.setFontSize(36);
+            context.setTextAlign('right')
+            context.fillText(_this.data.poster.posiDetail.salary, 700,644);
+            context.setFillStyle("#B1B1B1");
+            context.setFontSize(28);
+            context.setTextAlign('left')
+            context.fillText(_this.data.poster.posiDetail.workCity + ' | ' + _this.data.poster.posiDetail.workYear + ' | ' + _this.data.poster.posiDetail.xueli + ' | ' + _this.data.poster.posiDetail.workType, 48, 698);
+            context.draw(true)
+          }
+        })
+      }
+    })
+  },
   /**
    * 手机号授权
    */
@@ -200,7 +309,7 @@ Page({
       })
       console.log('btntype', _this.data.btnType)
       if(_this.data.btnType == "share"){
-        _this.openSharePanel()
+        _this.openChange()
       }else{
         wx.navigateTo({
           url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
@@ -210,7 +319,7 @@ Page({
     },function(){
       //分享不强制要求手机号授权
       if (_this.data.btnType == "share") {
-        _this.openSharePanel()
+        _this.openChange()
       } 
     })
   },
@@ -222,13 +331,6 @@ Page({
     this.setData({
       btnType: btnType
     })
-  },
-  /**
-   *显示分享面板
-   */
-  openSharePanel:function(){
-      //显示分享面板
-      
   },
   /**
    * 生命周期函数--监听页面隐藏

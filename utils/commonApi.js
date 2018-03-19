@@ -29,7 +29,7 @@ export function getSpFansPhone(e,success,cancel) {
         wx.showToast({
           title: '授权成功',
           icon: 'success',
-          duration: 2000,
+          duration: 1500,
           success:function(){
             if (success) {
                success()

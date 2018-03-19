@@ -1,6 +1,8 @@
 <import src="/template/footer/footer.wxml" />
 <import src="/template/position/position.wxml" />
+<import src="/template/share/share.wxml" />
 <import src="/wxParse/wxParse.wxml"/>
+
 
 
 <view class="position-detail">
@@ -51,7 +53,7 @@
     <view class="share-btn btn-box">
         <image class="icon" src="../../../images/share.png"></image>
         <!-- <button class="btn" catchtap='openSharePanel' wx:if="{{phoneNumber}}">我要分享</button>   -->
-        <button class="btn" open-type="share" wx:if="{{phoneNumber}}">我要分享</button>  
+        <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">我要分享</button>  
         <button class="btn" open-type="getPhoneNumber" data-btntype="share" catchtap='clickPhoneNumer'  bindgetphonenumber="getPhoneNumber" wx:else>我要分享</button>  
     </view> 
     <view class="deliver-btn btn-box">
@@ -64,4 +66,13 @@
   <!-- <view class="share-mask" hidden="{{shareMaskHidden}}" catchtap='toggleShareMask'>
       <view class="share-tip"></view>
   </view> -->
+  <!-- 分享按钮 -->
+  <template is="sharePoster" data="{{type:3}}" />
+  <!-- 分享海报 -->
+  <view class='choose_con' wx:if="{{showShare}}" bindtap="showShareFalse">
+    <view class='choose_con_btn'>
+      <button class='share_poster' bindtap="createPoster">生成分享图到朋友圈找人</button>
+      <button class='share_pople' open-type="share">转发给好友或群友</button>
+    </view>
+  </view>
 </view>

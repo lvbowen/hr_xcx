@@ -1,0 +1,28 @@
+<!--pages/mine/collect/collect.wxml-->
+<view class='collect'>
+  <image src='/images/company03.png'></image>
+  <text class=''>杭州爱聚科技有限公司</text>
+</view>
+<view class='position'>
+  <view class="position-title">
+    <image class="img" src="/images/urgent2.png" wx:if="{{isUrgent == 1}}"></image>
+    <text class="title font-34">{{positionName}}</text>
+    <image src='/images/personal_stars.png' class='personal_stars'></image>
+    <!-- <image src='/images/personal_stars2.png' class='personal_stars'></image> -->
+  </view>
+  <view class="position-tags">
+    <text class="tag">{{workCitySpilt ? workCitySpilt : filters.splitString(workCity)}}</text> 
+    <text class="tag">{{positionType == 1 ? '全职' : positionType == 2 ? '兼职' : '实习'}}</text>
+    <text class="tag">{{positionSalaryLowest}}k-{{positionSalaryHighest}}k</text>
+  </view>
+  <view class="time-number">
+    <view class="time font-gray-26">发布时间 : {{createTime}} </view>
+    <view class="number font-gray-26">浏览次数 :{{views}}人</view>
+  </view>
+</view>
+
+<view class='more_position'>
+  <view class='position_btn'>
+    <button>查看更多职位</button>
+  </view>
+</view>

@@ -44,14 +44,14 @@
                         </view>
                         <view class="arrow-right"></view>
                     </navigator>
-                     <navigator url="./jobCollection/jobCollection" class="weui-cell weui-cell_access">
+                     <navigator url="./collect/collect" class="weui-cell weui-cell_access">
                         <view class="weui-cell__hd"><image src="../../images/Group3.png" /></view>
                         <view class="weui-cell__bd weui-cell_primary">
                             <view>收藏职位</view>
                         </view>
                         <view class="arrow-right"></view>
                     </navigator>
-                     <navigator url="./jobRecommend/jobRecommend" class="weui-cell weui-cell_access">
+                     <navigator url="./collect/collect" class="weui-cell weui-cell_access">
                         <view class="weui-cell__hd"><image src="../../images/Group4.png" /></view>
                         <view class="weui-cell__bd weui-cell_primary">
                             <view>我的推荐</view>
