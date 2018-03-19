@@ -51,7 +51,7 @@
   <view class="fixed-btns">
     <view class="share-btn btn-box" catchtap='toggleShareMask'>
         <image class="icon" src="../../../images/share.png"></image>
-        <button class="btn" open-type="share">我要分享</button>     
+        <button class="btn" bindtap="openChange">我要分享</button>     
        <!--  <text class="word">我要分享</text> -->
     </view> 
     <view class="deliver-btn btn-box" data-type="2" catchtap='linkTo'>

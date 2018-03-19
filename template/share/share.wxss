@@ -31,5 +31,5 @@
 .firstCanvas{
   position: absolute;
   top: 0;
-  left: -1000%;    
+  left: -1000%;   
 }  

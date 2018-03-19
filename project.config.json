@@ -26,7 +26,15 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "收藏职位",
+					"pathName": "pages/mine/collect/collect",
+					"query": "",
+					"scene": "1001"
+				}
+			]
 		}
 	}
 }

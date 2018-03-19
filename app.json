@@ -24,7 +24,7 @@
     "pages/home/map/map",
     "pages/home/team/team",
     "pages/index/index",
-    "pages/mine/share/share"
+    "pages/mine/collect/collect"
   ],
   "window": {
     "backgroundTextStyle": "light",

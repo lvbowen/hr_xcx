@@ -1,5 +1,0 @@
-<!--pages/mine/share/share.wxml-->
-<!-- <text>pages/mine/share/share.wxml</text> -->
-<!-- <image src='http://121.199.182.2/hrm/images/xcx/company_share.png'></image> -->
-<canvas style="width: 375px; height: 700px;" canvas-id="context" class='firstCanvas'></canvas>
-<button bindtap='clickShare'>导出图片</button>
