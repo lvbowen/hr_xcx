@@ -64,25 +64,6 @@ Page({
       
     },function(res){
       if (res.code == "0"){
-        res.data.CompanyWebsite.companyIntroduction='邪恶啊三防机卡死机的卡夫卡老师的看法阿加莎的咖啡机阿克苏降低了开发'
-        res.data.CompanyWebsite.productIntroductionList=[
-          {
-            productName:'电商宝',
-            productImageUrl:'http://oyeq6oxdm.bkt.clouddn.com/Upload1512048777770.png',
-
-          },
-          {
-            productName: '电商宝22',
-            productImageUrl: 'http://oyeq6oxdm.bkt.clouddn.com/Upload1512048777770.png',
-
-          },
-          {
-            productName: '电商宝333',
-            productImageUrl: 'http://oyeq6oxdm.bkt.clouddn.com/Upload1512048777770.png',
-
-          },
-        ]
-
           _this.setData({
             memorabilia: res.data.CompanyMemorabilia,
             website: res.data.CompanyWebsite,
@@ -90,15 +71,17 @@ Page({
             workTeam: res.data.WorkTeam,
             productListWidth: 279 * res.data.CompanyWebsite.productIntroductionList.length - 35
           })
-          utils.getWxmlInfo("#introContent",function(res){
-            //公司介绍内容高度超过125px，才显示箭头
-            let height = res[0].height
-            if (height >= 125) {
-              _this.setData({
-                showChevron: true
-              })
-            }
-          })  
+          if (res.data.CompanyWebsite && res.data.CompanyWebsite.companyIntroduction){
+            utils.getWxmlInfo("#introContent", function (res) {
+              //公司介绍内容高度超过125px，才显示箭头
+              let height = res[0].height
+              if (height >= 125) {
+                _this.setData({
+                  showChevron: true
+                })
+              }
+            })  
+           }    
       }else{
         console.log(`companyWeb/getCompanyDetail:${res.message}`)
       }
@@ -172,6 +155,8 @@ Page({
    */
   navigatorTo:function(e){
     let type = e.currentTarget.dataset.type;
+    let proIndex = e.currentTarget.dataset.proindex;
+    console.log(e.currentTarget.dataset)
     switch(type){
       case "1":
         let index = e.currentTarget.dataset.index;
@@ -187,7 +172,7 @@ Page({
         break;
       case "3":
         wx.navigateTo({
-          url: `./productDetail/productDetail?productId=123`,
+          url: `./productDetail/productDetail?proIndex=${proIndex}`,
         })
         break;
       default:

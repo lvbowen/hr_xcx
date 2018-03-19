@@ -24,18 +24,18 @@ export function getSpFansPhone(e,success,cancel) {
       // console.log('getSpFansPhone', res)
       if (res.code == 0 && res.data.phone) {
         globalData.phoneNumber = res.data.phone
+        globalData.fansId = res.data.id
         console.log('你的手机号是：' + res.data.phone)
-        if(success){
-          success()
-        }
-        try {
-          wx.setStorageSync('decryptData', res.data)
-          
-          console.log(wx.getStorageSync('decryptData'))
-          
-        } catch (e) {
-          console.log(e.message)
-        }
+        wx.showToast({
+          title: '授权成功',
+          icon: 'success',
+          duration: 2000,
+          success:function(){
+            if (success) {
+               success()
+            }
+          },
+        })
       }
     })
   }else{

@@ -30,7 +30,7 @@
         <view class="weui-panel__bd">
             <view class="weui-media-box weui-media-box_small-appmsg">
                 <view class="weui-cells weui-cells_in-small-appmsg">
-                    <navigator url="./editPreview/editPreview" class="weui-cell weui-cell_access">
+                    <navigator url="./editPreview/editPreview?pageType=mine" class="weui-cell weui-cell_access">
                         <view class="weui-cell__hd"><image src="../../images/Group1.png" /></view>
                         <view class="weui-cell__bd weui-cell_primary">
                             <view>个人档案</view>

@@ -12,7 +12,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fansId:'',
     options:null,
     phoneNumber:'',
     positionInfo:null,
@@ -20,7 +19,7 @@ Page({
     companyInfo:null,
     shareInfo:null,
     shareMaskHidden:true,
-    hasPhoneAuthen:false,
+    btnType:'',     //存储获取手机号的按钮是分享还是投递
     peopleNum: [{
       value: 1,
       label: '0-50'
@@ -71,7 +70,6 @@ Page({
 
     this.setData({
       options: options,
-      fansId: globalData.fansId,
       phoneNumber: globalData.phoneNumber
     })
     if (!this.data.phoneNumber) {
@@ -157,6 +155,7 @@ Page({
   linkTo: function (e) {
     let dataset = e.currentTarget.dataset;
     let _data = this.data;
+    let fansId = getApp().globalData.fansId
     switch(dataset.type){
       //重定向到职位详情页
       case "1":
@@ -167,7 +166,7 @@ Page({
       //跳转到创建简历方式页
       case "2":
         wx.navigateTo({
-          url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${_data.fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
+          url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
         })
         break;
       //回到首页
@@ -193,14 +192,35 @@ Page({
    */
   getPhoneNumber:function(res){
     let _this = this
+    let _data = _this.data
+    let fansId = getApp().globalData.fansId
     commonApi.getSpFansPhone(res,function(){
       _this.setData({
         phoneNumber: getApp().globalData.phoneNumber
       })
-     
-      _this.openSharePanel()
+      console.log('btntype', _this.data.btnType)
+      if(_this.data.btnType == "share"){
+        _this.openSharePanel()
+      }else{
+        wx.navigateTo({
+          url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
+        })
+      }
+      
     },function(){
-      _this.openSharePanel()
+      //分享不强制要求手机号授权
+      if (_this.data.btnType == "share") {
+        _this.openSharePanel()
+      } 
+    })
+  },
+  /**
+   * 点击获取手机号按钮（分享和投递）
+   */
+  clickPhoneNumer:function(e){
+    let btnType = e.currentTarget.dataset.btntype
+    this.setData({
+      btnType: btnType
     })
   },
   /**

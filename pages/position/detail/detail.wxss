@@ -84,7 +84,7 @@
    width:34rpx;
    height: 40rpx; 
 }
-.fixed-btns .share-btn .btn{
+.fixed-btns .share-btn .btn,.fixed-btns .deliver-btn .btn{
    display: inline;
    padding:0;
    margin: 0;
@@ -93,14 +93,14 @@
    border:none;
    font-size:34rpx;
 }
-.fixed-btns .share-btn .btn:after{
+.fixed-btns .share-btn .btn:after,.fixed-btns .deliver-btn .btn::after{
   border:none;  
 }
 .fixed-btns .deliver-btn .icon{
    width:40rpx;
    height: 35rpx; 
 }
-.fixed-btns .deliver-btn{
+.fixed-btns .deliver-btn,.fixed-btns .deliver-btn .btn{
   background:#F2A654;
 }
 .share-mask{

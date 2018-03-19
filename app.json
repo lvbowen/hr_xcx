@@ -1,9 +1,15 @@
 {
   "pages":[
-    "pages/home/productDetail/productDetail",
     "pages/home/home",
     "pages/position/list",
+    "pages/position/detail/detail",
+    
     "pages/mine/mine",
+    
+    "pages/home/productDetail/productDetail",
+   
+    
+   
     "pages/mine/jobRecord/jobRecord",
     "pages/mine/jobCollection/jobCollection",
     "pages/mine/jobRecommend/jobRecommend", 
@@ -15,7 +21,7 @@
     "pages/mine/editPreview/editPreview",
     "pages/position/loginResume/loginResume",
     "pages/position/addResume/addResume",
-    "pages/position/detail/detail",
+    
     "pages/mine/editAspiration/editAspiration",
     "pages/mine/editLink/editLink",
       "pages/mine/editCertificate/editCertificate",

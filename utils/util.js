@@ -105,14 +105,35 @@ const getWxmlInfo = (id,callback) => {
   let query = wx.createSelectorQuery();
   //选择id
   query.select(id).boundingClientRect()
-  query.exec(function (res) {
-    //res就是 标签元素的信息 的数组,回调函数是异步的
-    if(callback){
-      callback(res)
-    }   
-  })
+  setTimeout(()=>{
+    query.exec(function (res) {   
+      //res就是 标签元素的信息 的数组,回调函数是异步的(模拟器中有时拿不到res,故加个延迟)
+      if (callback) {
+        callback(res)
+      }
+    })
+  },100)
 }
 
+/**
+ * 获取节点的信息
+ * @param {String} selector - 节点的选择器
+ * @param {Function} callback - 异步回调函数
+ */
+const getWxmlInfoAll = (selector, callback) => {
+  //创建节点选择器
+  let query = wx.createSelectorQuery();
+  //选择id
+  query.selectAll(selector).boundingClientRect()
+  setTimeout(() => {
+    query.exec(function (res) {
+      //res就是 标签元素的信息 的数组,回调函数是异步的
+      if (callback) {
+        callback(res)
+      }
+    })
+  }, 100)
+}
 
 
 module.exports = {
@@ -121,5 +142,6 @@ module.exports = {
   toggleToast: toggleToast,
   formatDate:formatDate,
   wxLogin: wxLogin,
-  getWxmlInfo: getWxmlInfo
+  getWxmlInfo: getWxmlInfo,
+  getWxmlInfoAll: getWxmlInfoAll
 }

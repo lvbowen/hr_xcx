@@ -10,7 +10,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // fansId:121,
     options:null,
     basic: null,
     jobpref: null,

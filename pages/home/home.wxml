@@ -34,7 +34,7 @@
           <view class="weui-panel__bd weui-media-box">
               <view class="product-list1" wx:if="{{website.productIntroductionList && website.productIntroductionList.length == 1}}">
                 <swiper class="swiper">
-                    <swiper-item catchtap='navigatorTo' data-type="3" data-productId="1111">
+                    <swiper-item catchtap='navigatorTo' data-type="3" data-proindex="0">
                       <image src="{{website.productIntroductionList[0].productImageUrl}}" class="slide-image" />
                       <view class="desc ell">{{website.productIntroductionList[0].productName}}</view>
                     </swiper-item>
@@ -43,7 +43,7 @@
               <scroll-view class="scroll-view" scroll-x="true" wx:else> 
                 <view class="product-list2" style="width:{{productListWidth}}rpx;">
                     <block wx:for="{{website.productIntroductionList}}" wx:key="index">
-                      <view class="product-item" catchtap='navigatorTo' data-type="3" data-productId="222">
+                      <view class="product-item" catchtap='navigatorTo' data-type="3" data-proindex="{{index}}">
                         <view class="image-box">
                           <image src="{{item.productImageUrl}}" class="img" />
                         </view>
@@ -121,7 +121,7 @@
               <image class="icon" src="../../images/icon-map.png"></image>  
             </view>
             <view class="short-name" wx:if="{{item.companyShortName}}">({{item.companyShortName}})</view>
-            <view class="address ell"><text class="fa fa-map-marker"></text>{{item.region}}{{item.address}}</view>
+            <view class="address ell"><text class="fa fa-map-marker"></text>{{item.region || ''}}{{item.address}}</view>
             <view class="tel"><text class="fa fa-phone"></text>{{item.phone}}</view>
           </view>
           </block>

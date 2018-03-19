@@ -52,11 +52,12 @@
         <image class="icon" src="../../../images/share.png"></image>
         <!-- <button class="btn" catchtap='openSharePanel' wx:if="{{phoneNumber}}">我要分享</button>   -->
         <button class="btn" open-type="share" wx:if="{{phoneNumber}}">我要分享</button>  
-        <button class="btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else>我要分享</button>  
+        <button class="btn" open-type="getPhoneNumber" data-btntype="share" catchtap='clickPhoneNumer'  bindgetphonenumber="getPhoneNumber" wx:else>我要分享</button>  
     </view> 
-    <view class="deliver-btn btn-box" data-type="2" catchtap='linkTo'>
+    <view class="deliver-btn btn-box">
         <image class="icon" src="../../../images/deliver.png"></image>
-        <text class="word">我要投递</text>
+        <text class="word" wx:if="{{phoneNumber}}"  data-type="2" catchtap='linkTo'>我要投递</text>
+        <button class="btn" open-type="getPhoneNumber" data-btntype="deliver" catchtap='clickPhoneNumer' bindgetphonenumber="getPhoneNumber" wx:else>我要投递</button>  
     </view> 
   </view>
   <!-- 分享的遮罩层 -->

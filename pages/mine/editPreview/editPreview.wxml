@@ -213,5 +213,5 @@
   <!-- 页脚 -->
    <template is="footer" /> 
    <!--  -->
-    <view class="delivery-btn" catchtap="goDelivery" >立即投递</view> 
+    <view class="delivery-btn" wx:if="{{options.pageType != 'mine'}}" catchtap="goDelivery" >立即投递</view> 
 </view>
