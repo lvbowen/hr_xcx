@@ -32,15 +32,26 @@ export function getSpFansPhone(e,success,cancel) {
           duration: 1500,
           success:function(){
             if (success) {
-               success()
+              setTimeout(() => {
+                success()
+              }, 1500)
             }
           },
         })
       }
     })
   }else{
-    if(cancel){
-      cancel()
-    }
+    wx.showToast({
+      title: '您取消了授权',
+      icon: 'none',
+      duration: 1500,
+      success: function () {
+        if (cancel) {
+          setTimeout(()=>{
+            cancel()
+          },1500)
+        }
+      },
+    })
   }
 }

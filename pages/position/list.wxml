@@ -37,14 +37,16 @@
               <text>暂无在招职位</text>
          </view> 
      </view>
-     <!-- 分享海报 -->
-     <view class='choose_con' wx:if="{{showShare}}" bindtap="showShareFalse">
-        <view class='choose_con_btn'>
-          <button class='share_poster' bindtap="createPoster">生成分享图到朋友圈找人</button>
-          <button class='share_pople' open-type="share">转发给好友或群友</button>
-        </view>
-      </view>
+    
      <!-- 页脚  -->
      <template is="footer" wx:if="{{positionList && positionList.length > 0}}" />
-     <template is="sharePoster" data="{{type:2}}"/>
+     
   </scroll-view>
+<!-- 分享海报 -->
+  <template is="sharePoster" data="{{type:2}}"/>
+  <view class='choose_con' wx:if="{{showShare}}" bindtap="showShareFalse">
+    <view class='choose_con_btn'>
+      <button class='share_poster' bindtap="createPoster">生成分享图到朋友圈找人</button>
+      <button class='share_pople' open-type="share">转发给好友或群友</button>
+    </view>
+  </view>

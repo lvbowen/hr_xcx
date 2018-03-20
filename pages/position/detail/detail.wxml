@@ -52,7 +52,6 @@
   <view class="fixed-btns">
     <view class="share-btn btn-box">
         <image class="icon" src="../../../images/share.png"></image>
-        <!-- <button class="btn" catchtap='openSharePanel' wx:if="{{phoneNumber}}">我要分享</button>   -->
         <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">我要分享</button>  
         <button class="btn" open-type="getPhoneNumber" data-btntype="share" catchtap='clickPhoneNumer'  bindgetphonenumber="getPhoneNumber" wx:else>我要分享</button>  
     </view> 

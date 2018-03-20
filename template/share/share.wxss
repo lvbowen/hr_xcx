@@ -1,9 +1,12 @@
 .share_icon{
   position: fixed;
+  z-index: 1;
   right: 36rpx;
   bottom: 300rpx;
   width: 80rpx;
   height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .share_icon image{
   width: 100%;

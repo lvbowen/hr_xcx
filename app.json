@@ -64,12 +64,6 @@
         "text": "在招职位",
         "iconPath": "images/position02.png",
         "selectedIconPath": "images/selected_position02.png"
-      },
-      {
-        "pagePath": "pages/mine/mine",
-        "text": "个人中心",
-        "iconPath": "images/mine.png",
-        "selectedIconPath": "images/selected_mine.png"
       }
     ]
   },
