@@ -212,6 +212,7 @@ Page({
       method: "positionRecommend/getSpSharePoster",
       param: JSON.stringify({ shareType: 3, companyId: companyId, positionId: _this.data.options.positionId })
     }, function (res) {
+      
       if (res.code == "0" && res.data) {
         _this.setData({
           poster: res.data
