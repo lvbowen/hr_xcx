@@ -63,7 +63,7 @@ Page({
             "positionApplyId": 245,
             "positionName": "wdwdcwqd",
             "interviewerInfoId": 689,
-            "currentStatus": "简历提交成功",
+            "currentStatus": "已淘汰",
             "createTime": 1515414409000,
             "companyName": "小小科技",
             "updateTime": 1515414408000,
