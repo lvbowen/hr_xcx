@@ -29,8 +29,15 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "收藏职位",
-					"pathName": "pages/mine/collect/collect",
+					"name": "个人中心",
+					"pathName": "pages/mine/mine",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "职位lsit",
+					"pathName": "pages/position/list",
 					"query": "",
 					"scene": "1001"
 				}
