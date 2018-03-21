@@ -34,9 +34,10 @@ Page({
     let _this = this;
     network.post("/weixin/getDeliverHistory.do", {
         companyId:getApp().globalData.companyId,
-        fansId: getApp().globalData.fansId
+        // fansId: getApp().globalData.fansId
+        fansId:145
     }, function (res) {
-      if (res.code == "0" && res.data) {
+      if (res.code == "0") {
         //mock data
         res.data = [
           {
@@ -80,6 +81,36 @@ Page({
             "interviewerName": "测试qqqq"
           },
           {
+            "positionApplyId": 243,
+            "positionName": "java",
+            "interviewerInfoId": 687,
+            "currentStatus": "简历提交成功",
+            "createTime": 1515413381000,
+            "companyName": "小小科技",
+            "updateTime": 1515413380000,
+            "interviewerName": "测试qqqq"
+          },
+           {
+            "positionApplyId": 243,
+            "positionName": "java",
+            "interviewerInfoId": 687,
+            "currentStatus": "简历提交成功",
+            "createTime": 1515413381000,
+            "companyName": "小小科技",
+            "updateTime": 1515413380000,
+            "interviewerName": "测试qqqq"
+          },
+           {
+             "positionApplyId": 243,
+             "positionName": "java",
+             "interviewerInfoId": 687,
+             "currentStatus": "简历提交成功",
+             "createTime": 1515413381000,
+             "companyName": "小小科技",
+             "updateTime": 1515413380000,
+             "interviewerName": "测试qqqq"
+           },
+          {
             "positionApplyId": 242,
             "positionName": "c++",
             "interviewerInfoId": 686,
@@ -89,13 +120,19 @@ Page({
             "updateTime": 1515413008000,
             "interviewerName": "景麒"
           }
-        ],
+        ]
         _this.setData({
           recordList: res.data
         })
       } else {
         console.log(`weixin/getDeliverHistory:${res.message}`)
       }
+    })
+  },
+  linkTo:function(e){
+    let query = JSON.parse(e.currentTarget.dataset.query)
+    wx.navigateTo({
+      url: `../jobRecordDetail/jobRecordDetail?positionApplyId=${query.positionApplyId}&interviewerInfoId=${query.interviewerInfoId}`,
     })
   },
   /**

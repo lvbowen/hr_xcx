@@ -1,0 +1,16 @@
+@import "/template/jobRecord/jobRecord.wxss";
+
+.weui-panel__hd{
+  display: flex;
+  align-items: center;
+  font-size:34rpx;
+  color: #000;
+}
+.weui-panel__hd .img{
+  width:34rpx;
+  height:34rpx;
+  margin-right:10rpx;
+}
+.weui-panel__bd{
+   padding:30rpx;
+}

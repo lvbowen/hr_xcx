@@ -1,17 +1,19 @@
 {
   "pages":[
+    
+    "pages/mine/jobRecord/jobRecord",
     "pages/mine/mine",
     "pages/home/home",
     "pages/position/list",
     "pages/position/detail/detail",
-    
+    "pages/mine/jobRecordDetail/jobRecordDetail",
     
     
     "pages/home/productDetail/productDetail",
    
     
    
-    "pages/mine/jobRecord/jobRecord",
+    
     "pages/mine/jobCollection/jobCollection",
     "pages/mine/jobRecommend/jobRecommend", 
     
