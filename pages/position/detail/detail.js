@@ -62,6 +62,7 @@ Page({
       spName: '爱聚招聘',
       posiDetail: {},
     },
+    checkPosition:false,
   },
 
   /**
@@ -89,6 +90,7 @@ Page({
     this.getWzpIndexInfo();
     this.getShareTitleInfo();
     this.getPosterInfo();
+    this.checkCollection();
   },
 
   /**
@@ -158,6 +160,42 @@ Page({
         console.log(`positionRecommend/getShareTitleInfo:${res.message}`)
       }
     })
+  },
+  //获取当前职位收藏状态
+  checkCollection:function(){
+    let _this=this;
+    let method ="/smallProgramAudit/checkCollection.do",
+        param={
+          spFansId: getApp().globalData.fansId,
+          companyId: _this.data.options.companyId,
+          positionId: _this.data.options.positionId
+        },
+        successd=function(res){
+          _this.setData({
+            checkPosition:res.code=='2001'
+          })
+          console.log(_this.data.checkPosition)
+        };
+    network.post(method,param,successd);
+  },
+  //收藏职位或者取消收藏职位
+  collectPosition:function(){
+    let _this=this;
+    let method;
+    if (_this.data.checkPosition){
+      method ="/smallProgramAudit/cancleCollectPosition.do";
+    }else{
+      method = "/smallProgramAudit/collectPosition.do";
+    }
+    let param={
+          spFansId: getApp().globalData.fansId,
+          companyId: _this.data.options.companyId,
+          positionId: _this.data.options.positionId
+        },
+        successd=function(res){
+          _this.checkCollection();
+        };
+    network.post(method,param,successd);
   },
   /**
    * 跳转
@@ -229,6 +267,7 @@ Page({
     })
   },
   createPoster: function (res) {
+    var _this=this;
     wx.canvasToTempFilePath({
       canvasId: 'thirdCanvas',
       fileType: 'jpg',
@@ -238,10 +277,28 @@ Page({
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success(res2) {
-            console.log(res2);
+            wx.showToast({
+              title: '保存成功!',
+              icon: 'success',
+              duration: 2000
+            })
           },
           fail(res2) {
-            console.log(res2);
+            wx.showModal({
+              title: '警告',
+              content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
+              success:function(res2){
+                if(res2.confirm){
+                  wx.openSetting({
+                    success:function(res3){
+                      if (res3.authSetting['scope.writePhotosAlbum']){
+                        _this.createPoster();
+                      }
+                    }
+                  })
+                }
+              }
+            })
           }
         })
       }

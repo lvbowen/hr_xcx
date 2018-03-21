@@ -22,6 +22,19 @@
   border-radius: 0;
   border: none;
   box-shadow: none;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+}
+.choose_con button::after{
+  border: none;
+}
+.choose_con button.share_pople{
+  border-bottom: 1rpx solid #e5e5e5;
+}
+.choose_con button.share_poster{
+  height: 112rpx;
+  border-bottom: 12rpx solid #E3E3E9;
 }
 .choose_con_btn{
   position: absolute;

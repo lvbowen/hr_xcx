@@ -1,28 +1,34 @@
 <!--pages/mine/collect/collect.wxml-->
-<view class='collect'>
-  <image src='/images/company03.png'></image>
-  <text class=''>杭州爱聚科技有限公司</text>
-</view>
-<view class='position'>
-  <view class="position-title">
-    <image class="img" src="/images/urgent2.png" wx:if="{{isUrgent == 1}}"></image>
-    <text class="title font-34">{{positionName}}</text>
-    <image src='/images/personal_stars.png' class='personal_stars'></image>
-    <!-- <image src='/images/personal_stars2.png' class='personal_stars'></image> -->
+<wxs module="filters" src="../../../wxs/filter.wxs" />
+
+<view wx:for="{{collection}}">
+  <view class='collect'>
+    <image src='/images/company03.png'></image>
+    <text class=''>{{item.companyName}}</text>
   </view>
-  <view class="position-tags">
-    <text class="tag">{{workCitySpilt ? workCitySpilt : filters.splitString(workCity)}}</text> 
-    <text class="tag">{{positionType == 1 ? '全职' : positionType == 2 ? '兼职' : '实习'}}</text>
-    <text class="tag">{{positionSalaryLowest}}k-{{positionSalaryHighest}}k</text>
-  </view>
-  <view class="time-number">
-    <view class="time font-gray-26">发布时间 : {{createTime}} </view>
-    <view class="number font-gray-26">浏览次数 :{{views}}人</view>
+  <view class='position' wx:for="{{item.positionList}}" wx:for-index="index2" wx:for-item="item2">
+    <view class="position-title">
+      <image class="img" src="/images/urgent2.png" wx:if="{{item2.isUrgent == 1}}"></image>
+      <text class="title font-34">{{item2.positionName}}</text>
+      <image src='/images/personal_stars.png' class='personal_stars' catchtap="cancelCollect"></image>
+      <!-- <image src='/images/personal_stars2.png' class='personal_stars'></image> -->
+    </view>
+    <view class="position-tags">
+      <text class="tag">{{item2.workCitySpilt ? item2.workCitySpilt : filters.splitString(item2.workCity)}}</text> 
+      <text class="tag">{{item2.positionType == 1 ? '全职' : item2.positionType == 2 ? '兼职' : '实习'}}</text>
+      <text class="tag">{{item2.positionSalaryLowest}}k-{{item2.positionSalaryHighest}}k</text>
+    </view>
+    <view class="time-number">
+      <view class="time font-gray-26">发布时间 : {{filters.formatDate(item2.createTime)}} </view>
+      <view class="number font-gray-26">浏览次数 :{{item2.views}}人</view>
+    </view>
   </view>
 </view>
 
 <view class='more_position'>
   <view class='position_btn'>
-    <button>查看更多职位</button>
+    <navigator url='../../position/list' open-type="switchTab">
+      <button>查看更多职位</button>
+    </navigator>
   </view>
 </view>

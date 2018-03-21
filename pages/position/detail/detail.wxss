@@ -94,6 +94,16 @@
    border:none;
    font-size:34rpx;
 }
+.collect-btn{
+  background-color: #ffffff;
+}
+.collect-btn .icon{
+  width: 34rpx;
+  height: 40rpx;
+}
+.collect-btn .word{
+  color: #5AA2E7;
+}
 .fixed-btns .share-btn .btn:after{
   border:none;  
 }

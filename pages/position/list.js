@@ -161,10 +161,28 @@ Page({
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success(res2) {
-            console.log(res2);
+            wx.showToast({
+              title: '保存成功!',
+              icon: 'success',
+              duration: 2000
+            })
           },
           fail(res2) {
-            console.log(res2);
+            wx.showModal({
+              title: '警告',
+              content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
+              success: function (res2) {
+                if (res2.confirm) {
+                  wx.openSetting({
+                    success: function (res3) {
+                      if (res3.authSetting['scope.writePhotosAlbum']) {
+                        _this.createPoster();
+                      }
+                    }
+                  })
+                }
+              }
+            })
           }
         })
       }
