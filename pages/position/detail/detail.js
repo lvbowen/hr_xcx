@@ -83,7 +83,7 @@ Page({
       arr1.forEach(function(item){
         obj[item.split('=')[0]]=item.split('=')[1]
       })
-      options.positionId=obj.positionId;
+      options.positionId=obj.pId;
     }
     this.setData({
       options: options,
