@@ -112,7 +112,7 @@ const getWxmlInfo = (id,callback) => {
         callback(res)
       }
     })
-  },100)
+  },1000)
 }
 
 /**
@@ -132,7 +132,7 @@ const getWxmlInfoAll = (selector, callback) => {
         callback(res)
       }
     })
-  }, 100)
+  }, 1000)
 }
 
 

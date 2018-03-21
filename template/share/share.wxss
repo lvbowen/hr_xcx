@@ -2,7 +2,7 @@
   position: fixed;
   z-index: 1;
   right: 36rpx;
-  bottom: 300rpx;
+  bottom: 200rpx;
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
@@ -25,6 +25,7 @@
   border-radius: 0;
   border: none;
   box-shadow: none;
+  background: #ffffff;
   height: 100rpx;
   line-height: 100rpx;
   font-size: 32rpx;

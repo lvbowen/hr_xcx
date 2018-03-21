@@ -1,7 +1,7 @@
 <import src="/template/footer/footer.wxml" />
 <import src="/template/position/position.wxml" />
-<import src="/template/share/share.wxml" />
 <import src="/wxParse/wxParse.wxml"/>
+<import src="/template/share/share.wxml" />
 
 
 
