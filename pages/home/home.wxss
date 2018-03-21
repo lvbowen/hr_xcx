@@ -7,8 +7,6 @@
 .weui-panel::after{
   display: none;
 }
-
-
 .company-wrap{
   display: flex;  
   flex-direction: column;

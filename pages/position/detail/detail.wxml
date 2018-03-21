@@ -1,6 +1,5 @@
 <import src="/template/footer/footer.wxml" />
 <import src="/template/position/position.wxml" />
-<import src="/template/share/share.wxml" />
 <import src="/wxParse/wxParse.wxml"/>
 
 
@@ -65,13 +64,4 @@
   <!-- <view class="share-mask" hidden="{{shareMaskHidden}}" catchtap='toggleShareMask'>
       <view class="share-tip"></view>
   </view> -->
-  <!-- 分享按钮 -->
-  <template is="sharePoster" data="{{type:3}}" />
-  <!-- 分享海报 -->
-  <view class='choose_con' wx:if="{{showShare}}" bindtap="showShareFalse">
-    <view class='choose_con_btn'>
-      <button class='share_poster' bindtap="createPoster">生成分享图到朋友圈找人</button>
-      <button class='share_pople' open-type="share">转发给好友或群友</button>
-    </view>
-  </view>
 </view>

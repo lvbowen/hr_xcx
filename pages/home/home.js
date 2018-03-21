@@ -23,6 +23,7 @@ Page({
     interval: 3000,
     duration: 1000,
     height:125,
+    height2:0,
     showChevron: false,   //是否显示箭头
     showChevronDown:true,   //是否显示下箭头
     productListWidth:0,
@@ -86,12 +87,15 @@ Page({
           if (res.data.CompanyWebsite && res.data.CompanyWebsite.companyIntroduction){
             utils.getWxmlInfo("#introContent", function (res) {
               //公司介绍内容高度超过125px，才显示箭头
+              
               let height = res[0].height
               if (height >= 125) {
                 _this.setData({
-                  showChevron: true
+                  showChevron: true,
+                  height2:height
                 })
               }
+              console.log('showChevron',_this.data.showChevron)
             })  
            }    
       }else{
@@ -280,11 +284,14 @@ Page({
     var _this = this;
     var direction = e.currentTarget.dataset.direction
     if(direction == "down"){
-      utils.getWxmlInfo("#introContent", function (res) {
-        _this.setData({
-          height: res[0].height
+      _this.setData({
+          height: _this.data.height2
         })
-      })
+      // utils.getWxmlInfo("#introContent", function (res) {
+      //   _this.setData({
+      //     height: res[0].height
+      //   })
+      // })
     }else{
       _this.setData({
         height: 125
