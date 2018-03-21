@@ -1,9 +1,9 @@
 {
   "pages":[
-    
+    "pages/home/home",
     "pages/mine/jobRecord/jobRecord",
     "pages/mine/mine",
-    "pages/home/home",
+    
     "pages/position/list",
     "pages/position/detail/detail",
     "pages/mine/jobRecordDetail/jobRecordDetail",

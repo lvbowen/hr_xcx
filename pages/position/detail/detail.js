@@ -13,7 +13,7 @@ Page({
    */
   data: {
     options:null,
-    phoneNumber:'',
+    phoneNumber:'18888888888',
     positionInfo:null,
     positionDesc:'',
     companyInfo:null,
