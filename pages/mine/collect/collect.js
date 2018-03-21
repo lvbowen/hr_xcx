@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    collection:{}
+    collection:{},
+    companyId: getApp().globalData.companyId
   },
 
   /**
@@ -80,7 +81,7 @@ Page({
     network.post(method,params,successd);
   },
   //取消收藏
-  cancelCollect:function(id){
+  cancelCollect:function(e){
     var _this=this;
     wx.showModal({
       title: '警告',
@@ -90,9 +91,16 @@ Page({
           var method ="/smallProgramAudit/cancleCollectPosition.do",
               param={
                 spFansId: getApp().globalData.fansId,
-                companyId: _this.data.options.companyId,
-                positionId: id
-              }
+                companyId: _this.data.companyId,
+                positionId: e.target.dataset.id
+              },
+              successd=function(res2){
+                wx.showToast({
+                  title: '取消收藏成功',
+                })
+                _this.getMyPositionCollection();
+              };
+          network.post(method, param, successd);
         }
       }
     })
