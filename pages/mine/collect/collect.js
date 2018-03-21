@@ -1,3 +1,6 @@
+const network = require("../../../utils/network.js");
+const app = getApp()
+console.log(app)
 // pages/mine/share/share.js
 Page({
 
@@ -5,14 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    collection:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getMyPositionCollection();
   },
 
   /**
@@ -63,5 +66,26 @@ Page({
   onShareAppMessage: function () {
   
   },
+  //获取收藏职位列表
+  getMyPositionCollection:function(){
+    var _this=this;
+    console.log(getApp().globalData.fansId);
+    var method ="/smallProgramAudit/getMyPositionCollection.do",
+        params={spFansId:getApp().globalData.fansId},
+        successd=function(res){
+          _this.setData({
+            collection:res.data
+          })
+        };
+    network.post(method,params,successd);
+  },
+  //取消收藏
+  cancelCollect:function(){
+    wx.openSetting({
+      success:function(res){
+        console.log(res);
+      }
+    })
+  }
   
 })

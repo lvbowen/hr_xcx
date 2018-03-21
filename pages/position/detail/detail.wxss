@@ -1,5 +1,6 @@
 @import "/template/footer/footer.wxss";
 @import "/template/position/position.wxss";
+@import "/template/share/share.wxss";
 
 .position-detail{
   padding-bottom:94rpx;
@@ -94,7 +95,17 @@
    font-size:34rpx;
 }
 .fixed-btns .share-btn .btn:after,.fixed-btns .deliver-btn .btn::after{
-  border:none;  
+    border:none;  
+}
+.collect-btn{
+  background-color: #ffffff;
+}
+.collect-btn .icon{
+  width: 34rpx;
+  height: 40rpx;
+}
+.collect-btn .word{
+  color: #5AA2E7;
 }
 .fixed-btns .deliver-btn .icon{
    width:40rpx;

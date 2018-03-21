@@ -132,7 +132,7 @@ const getWxmlInfoAll = (selector, callback) => {
         callback(res)
       }
     })
-  }, 500)
+  }, 1000)
 }
 
 

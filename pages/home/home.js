@@ -79,25 +79,24 @@ Page({
             workEnvironment: res.data.WorkEnvironment,
             workTeam: res.data.WorkTeam,         
           })
+          if (res.data.CompanyWebsite && res.data.CompanyWebsite.companyIntroduction) {
+            utils.getWxmlInfo("#introContent", function (res) {
+              //公司介绍内容高度超过125px，才显示箭头
+              let height = res[0].height
+              if (height >= 125) {
+                _this.setData({
+                  showChevron: true,
+                  height2: height
+                })
+              }
+            })
+          }   
           if (res.data.CompanyWebsite && res.data.CompanyWebsite.productIntroductionList){
               _this.setData({
                 productListWidth: 279 * res.data.CompanyWebsite.productIntroductionList.length - 35
               })
           }
-          if (res.data.CompanyWebsite && res.data.CompanyWebsite.companyIntroduction){
-            utils.getWxmlInfo("#introContent", function (res) {
-              //公司介绍内容高度超过125px，才显示箭头
-              
-              let height = res[0].height
-              if (height >= 125) {
-                _this.setData({
-                  showChevron: true,
-                  height2:height
-                })
-              }
-              console.log('showChevron',_this.data.showChevron)
-            })  
-           }    
+           
       }else{
         console.log(`companyWeb/getCompanyDetail:${res.message}`)
       }
@@ -208,10 +207,28 @@ Page({
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success(res2) {
-            console.log(res2);
+            wx.showToast({
+              title: '保存成功!',
+              icon: 'success',
+              duration: 2000
+            })
           },
           fail(res2) {
-            console.log(res2);
+            wx.showModal({
+              title: '警告',
+              content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
+              success: function (res2) {
+                if (res2.confirm) {
+                  wx.openSetting({
+                    success: function (res3) {
+                      if (res3.authSetting['scope.writePhotosAlbum']) {
+                        _this.createPoster();
+                      }
+                    }
+                  })
+                }
+              }
+            })
           }
         })
       }
