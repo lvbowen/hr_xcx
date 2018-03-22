@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/position/list",
     "pages/home/home",
     "pages/mine/mine",
     "pages/mine/jobRecord/jobRecord",
@@ -8,7 +9,7 @@
     
    
     
-    "pages/position/list",
+    
     "pages/position/detail/detail",
     
     

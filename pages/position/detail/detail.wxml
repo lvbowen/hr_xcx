@@ -50,6 +50,11 @@
   <template is="footer" />
   <!-- 固定按钮 -->
   <view class="fixed-btns">
+    <view class="chat-btn">
+      <!-- <contact-button class="btn"  session-from="weapp">HR直聊1</contact-button> -->
+
+       <button class="btn" open-type='contact' session-from="weapp">HR直聊2</button> 
+    </view>
     <view class="share-btn btn-box">
         <image class="icon" src="../../../images/share.png"></image>
         <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">我要分享</button>  
@@ -61,10 +66,6 @@
         <button class="btn" open-type="getPhoneNumber" data-btntype="deliver" catchtap='clickPhoneNumer' bindgetphonenumber="getPhoneNumber" wx:else>我要投递</button>  
     </view> 
   </view>
-  <!-- 分享的遮罩层 -->
-  <!-- <view class="share-mask" hidden="{{shareMaskHidden}}" catchtap='toggleShareMask'>
-      <view class="share-tip"></view>
-  </view> -->
   <!-- 分享按钮 -->
   <template is="sharePoster" data="{{type:3}}" />
   <!-- 分享海报 -->
@@ -75,3 +76,4 @@
     </view>
   </view>
 </view>
+ <button class="btn" open-type='contact' session-from="weapp">HR直聊2</button> 
