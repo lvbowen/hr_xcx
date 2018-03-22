@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    collection:{}
+    collection:{},
+    companyId: getApp().globalData.companyId
   },
 
   /**
@@ -80,10 +81,27 @@ Page({
     network.post(method,params,successd);
   },
   //取消收藏
-  cancelCollect:function(){
-    wx.openSetting({
-      success:function(res){
-        console.log(res);
+  cancelCollect:function(e){
+    var _this=this;
+    wx.showModal({
+      title: '警告',
+      content: '确定取消收藏此职位?',
+      success:(res)=>{
+        if(res.confirm){
+          var method ="/smallProgramAudit/cancleCollectPosition.do",
+              param={
+                spFansId: getApp().globalData.fansId,
+                companyId: _this.data.companyId,
+                positionId: e.target.dataset.id
+              },
+              successd=function(res2){
+                wx.showToast({
+                  title: '取消收藏成功',
+                })
+                _this.getMyPositionCollection();
+              };
+          network.post(method, param, successd);
+        }
       }
     })
   }

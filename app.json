@@ -38,7 +38,8 @@
     "pages/home/map/map",
     "pages/home/team/team",
     "pages/index/index",
-    "pages/mine/collect/collect"
+    "pages/mine/collect/collect",
+    "pages/mine/recommend/recommend"
   ],
   "window": {
     "backgroundTextStyle": "light",

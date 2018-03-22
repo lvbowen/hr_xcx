@@ -1,0 +1,5 @@
+<!--pages/mine/recommend/recommend.wxml-->
+<view class='recommend_none'>
+  <image src='https://aijuhr.com/images/xcx/none.png'></image>
+  <view>我的推荐暂没有数据</view>
+</view>
