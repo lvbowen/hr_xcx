@@ -1,0 +1,30 @@
+.authen-result{
+  height: 100%;
+
+}
+.email-notice{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.email-notice .img{
+  width:200rpx;
+  height: 200rpx;
+  margin-top:60rpx;
+  margin-bottom: 60rpx;
+}
+.email-notice .text{
+  width:80%;
+  text-align: center;
+  font-size: 32rpx;
+  margin-bottom:40rpx;
+
+}
+.btn-area .weui-btn{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  margin:40rpx auto 0rpx auto;
+  width:690rpx;
+  height: 88rpx;
+}

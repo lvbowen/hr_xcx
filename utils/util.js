@@ -1,3 +1,5 @@
+/** 全局工具方法（函数） **/
+
 const config = require("../config.js")
 
 /**
@@ -78,9 +80,68 @@ const formatDate = (date,type) => {
   }
 }
 
+/**
+ * 登录更新code
+ */
+const wxLogin = () => {
+  wx.login({
+    success: function (res) {
+      if (res.code) {
+        getApp().globalData.code = res.code
+      } else {
+        console.log('登录失败！' + res.errMsg)
+      }
+    }
+  });
+}
+
+/**
+ * 获取某节点的信息
+ * @param {String} id - 节点的选择器，最好为id比较好
+ * @param {Function} callback - 异步回调函数
+ */
+const getWxmlInfo = (id,callback) => {
+  //创建节点选择器
+  let query = wx.createSelectorQuery();
+  //选择id
+  query.select(id).boundingClientRect()
+  setTimeout(()=>{
+    query.exec(function (res) {   
+      //res就是 标签元素的信息 的数组,回调函数是异步的(模拟器中有时拿不到res,故加个延迟)
+      if (callback) {
+        callback(res)
+      }
+    })
+  },1000)
+}
+
+/**
+ * 获取节点的信息
+ * @param {String} selector - 节点的选择器
+ * @param {Function} callback - 异步回调函数
+ */
+const getWxmlInfoAll = (selector, callback) => {
+  //创建节点选择器
+  let query = wx.createSelectorQuery();
+  //选择id
+  query.selectAll(selector).boundingClientRect()
+  setTimeout(() => {
+    query.exec(function (res) {
+      //res就是 标签元素的信息 的数组,回调函数是异步的
+      if (callback) {
+        callback(res)
+      }
+    })
+  }, 1000)
+}
+
+
 module.exports = {
   formatTime: formatTime,
   toast:toast,
   toggleToast: toggleToast,
   formatDate:formatDate,
+  wxLogin: wxLogin,
+  getWxmlInfo: getWxmlInfo,
+  getWxmlInfoAll: getWxmlInfoAll
 }

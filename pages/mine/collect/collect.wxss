@@ -1,0 +1,50 @@
+/* pages/mine/share/share.wxss */
+@import "/template/position/position.wxss";
+.collect{
+  color: #5aa2e7;
+  height: 100rpx;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #ffffff;
+  margin-top: 32rpx;
+}
+.collect image{
+  width: 34rpx;
+  height: 34rpx;
+  margin-left: 31rpx;
+  line-height: 100rpx;
+}
+.collect text{
+  font-size: 34rpx;
+  margin-left: 15rpx;
+  line-height: 100rpx;
+}
+.position{
+  padding: 30rpx;
+  background-color: #ffffff;
+  margin-bottom: 24rpx;
+}
+.personal_stars{
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.position-title{
+  position: relative;
+}
+.more_position{
+  position: fixed;
+  bottom: 20rpx;
+  left: 0;
+  width: 100%;
+}
+.position_btn{
+  padding:0 40rpx;
+}
+.position_btn button{
+  background-color: #5aa2e7;
+  color: #fff;
+}

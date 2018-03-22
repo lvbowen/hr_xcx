@@ -1,0 +1,71 @@
+@import '/template/toast/toast.wxss';
+
+.authen-wrap{
+  height: 100%;
+}
+.authen-navbar{
+  display: flex;
+  margin-bottom: 30rpx;
+}
+.authen-navbar__item{
+  flex:1;
+  line-height: 98rpx;
+  text-align: center;
+  font-size: 30rpx;
+  background: #ebebf1;
+}
+.authen-bar__item_on {
+  background: #fff;
+}
+.authen-bar__item_on button.btn-phone{
+  background: #fff;
+}
+button.btn-phone{
+   border-radius: 0;
+   font-size:28rpx;
+   line-height: 98rpx;
+   background-color: #ebebf1;
+}
+button.btn-phone::after,button.btn-phone::before{
+  display: none;
+}
+.weui-cells_after-title::after,.weui-cells_after-title::before{
+  border:none;
+}
+.weui-icon-clear{
+  right:24rpx;
+  top:50%;
+  transform: translateY(-50%);
+  z-index:999;
+}
+.tips{
+  display: flex;
+  color:#fda94f ;
+  padding:20rpx 60rpx;
+}
+.tips .img{
+  width:20px;
+  height: 15px;
+  margin-right:14rpx;
+}
+.tips .text{
+  font-size:28rpx;
+}
+.save-btn{
+  margin-top: 60rpx;
+}
+.authen-sucess{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.authen-sucess .img{
+  width:234rpx;
+  height: 300rpx;
+  margin-top:120rpx;
+  margin-bottom: 88rpx;
+}
+.authen-sucess .text{
+  color: #B2B2B2;
+  font-size: 28rpx;
+}

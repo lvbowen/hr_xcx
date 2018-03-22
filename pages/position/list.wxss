@@ -1,6 +1,10 @@
 @import "/template/footer/footer.wxss";
 @import "/template/position/position.wxss";
+@import "/template/share/share.wxss";
 
+.scroll-wrap{
+  height: 100%;
+}
 .banner{
   width:750rpx;
   height:390rpx;

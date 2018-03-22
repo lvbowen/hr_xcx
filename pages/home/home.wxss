@@ -1,4 +1,5 @@
 @import "/template/footer/footer.wxss";
+@import "/template/share/share.wxss";
 
 .weui-panel::before{
   display: none;
@@ -6,8 +7,6 @@
 .weui-panel::after{
   display: none;
 }
-
-
 .company-wrap{
   display: flex;  
   flex-direction: column;
@@ -79,6 +78,31 @@
   height:34rpx;
   margin-right:10rpx;
 }
+.intro-wrap .weui-panel__bd{
+   padding:30rpx;
+}
+.intro-wrap .intro-content-box{    
+    overflow: hidden;
+    -webkit-transition: max-height 0.3s;
+    transition: max-height 0.3s;
+}
+.intro-wrap .intro-content-box .intro-content{
+    text-indent: 2em;
+    font-size: 28rpx;
+    line-height: 1.5;
+    color: #666;
+}
+.intro-wrap .arrow-box{
+  display: flex;
+  justify-content: center;
+  padding-top:12rpx;
+  padding-bottom:12rpx;
+  margin-top:18rpx;
+}
+.intro-wrap .arrow-box .fa{
+  color: #D8D8D8;
+  font-size:32rpx;
+}
 .info-wrap .weui-media-box{
   display: flex;
   flex-direction: column;
@@ -118,6 +142,39 @@
 .info-wrap .address .fa,.info-wrap .tel .fa{
     margin-right:20rpx;
 }
+.product-wrap .product-list2{
+  display: flex;
+  padding:15rpx;
+}
+.product-wrap .product-item{
+  width:244rpx;
+  /* height: 256rpx; */
+  margin-right:35rpx;
+  box-shadow: 0 2rpx 15rpx 0rpx #DDE3EB;
+  background-color: #fff;
+  border-radius: 8rpx;
+}
+.product-wrap .product-item:last-child{
+  margin-right: 0;
+}
+.product-wrap .product-item .image-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:244rpx;
+  height: 162rpx;  
+}
+.product-wrap .product-item .image-box .img{
+  width:204rpx;
+  height: 122rpx;
+}
+.product-wrap .product-item .product-name{
+  line-height: 94rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-top:1rpx solid #e5e5e5; 
+}
+
 .develop-wrap .weui-media-box_appmsg{  
   align-items: flex-start; 
 }
@@ -131,7 +188,7 @@
 .develop-wrap .weui-media-box__desc{
   -webkit-line-clamp:3;
 }
-.office-wrap .weui-media-box:before,.team-wrap .weui-media-box:before{
+.product-wrap .weui-media-box:before,.office-wrap .weui-media-box:before,.team-wrap .weui-media-box:before{
   border-top:none;
 }
 .team-wrap .weui-panel__hd{

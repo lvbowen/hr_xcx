@@ -1,4 +1,5 @@
 <import src="/template/footer/footer.wxml" />
+<import src="/template/share/share.wxml" />
 
 <view class="company-wrap">  
   <!-- 顶部banner图  -->
@@ -10,23 +11,49 @@
       <view class="slogan">{{website.slogan}}</view>
       <!-- <view class="attention">关注</view> -->
   </view>
-   <!-- 公司信息  -->
-  <view class="info-wrap section" wx:if="{{allCompanies && allCompanies.length > 0}}">
-        <view class="weui-panel weui-panel_access">
-        <view class="weui-panel__hd"><image class="img" src="../../images/company03.png"></image>公司信息</view>
-        <view class="weui-panel__bd">
-          <block wx:for="{{allCompanies}}" wx:key="index">
-          <view class="weui-media-box weui-media-box_appmsg" data-index="{{index}}" data-type="1" catchtap='navigatorTo'>
-            <view class="name">
-              <text class="text">{{item.companyName}}</text>
-              <image class="icon" src="../../images/icon-map.png"></image>  
-            </view>
-            <view class="short-name" wx:if="{{item.companyShortName}}">({{item.companyShortName}})</view>
-            <view class="address ell"><text class="fa fa-map-marker"></text>{{item.region}}{{item.address}}</view>
-            <view class="tel"><text class="fa fa-phone"></text>{{item.phone}}</view>
+   <!-- 公司介绍  -->
+  <view class="intro-wrap section" wx:if="{{website.companyIntroduction}}">
+      <view class="weui-panel weui-panel_access">
+          <view class="weui-panel__hd"><image class="img" src="../../images/icon-company.png"></image>公司介绍</view>
+          <view class="weui-panel__bd">
+              <view class="intro-content-box" id="introContentBox" style="max-height:{{height}}px;">
+                <view class="intro-content" id="introContent">{{website.companyIntroduction}}</view>
+              </view>
+              <view class="arrow-box" data-direction="down" catchtap='toggleContent'  wx:if="{{showChevronDown && showChevron}}">
+                 <view class="fa fa-chevron-down" ></view> 
+              </view>
+              <view class="arrow-box" data-direction="up" catchtap='toggleContent'  wx:elif="{{showChevron}}">
+                 <view class="fa fa-chevron-up"></view>
+              </view>
           </view>
-          </block>
-        </view>
+      </view>      
+  </view>
+    <!-- 产品介绍  -->
+  <view class="product-wrap section" wx:if="{{website.productIntroductionList && website.productIntroductionList.length > 0}}">
+      <view class="weui-panel weui-panel_access">
+          <view class="weui-panel__hd"><image class="img" src="../../images/icon-product.png"></image>产品介绍</view>
+          <view class="weui-panel__bd weui-media-box">
+              <view class="product-list1" wx:if="{{website.productIntroductionList && website.productIntroductionList.length == 1}}">
+                <swiper class="swiper">
+                    <swiper-item catchtap='navigatorTo' data-type="3" data-proindex="0">
+                      <image src="{{website.productIntroductionList[0].productImageUrl}}" class="slide-image" />
+                      <view class="desc ell">{{website.productIntroductionList[0].productName}}</view>
+                    </swiper-item>
+                </swiper>
+              </view>
+              <scroll-view class="scroll-view" scroll-x="true" wx:else> 
+                <view class="product-list2" style="width:{{productListWidth}}rpx;">
+                    <block wx:for="{{website.productIntroductionList}}" wx:key="index">
+                      <view class="product-item" catchtap='navigatorTo' data-type="3" data-proindex="{{index}}">
+                        <view class="image-box">
+                          <image src="{{item.productImageUrl}}" class="img" />
+                        </view>
+                        <view class="product-name ell">{{item.productName}}</view>
+                      </view>
+                    </block>
+                  </view>
+                </scroll-view> 
+          </view>
       </view>      
   </view>
    <!-- 发展进程  -->
@@ -49,7 +76,7 @@
    <!-- 办公环境  -->
   <view class="office-wrap section" wx:if="{{workEnvironment && workEnvironment.length > 0}}">
      <view class="weui-panel weui-panel_access">
-          <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-office.png" />办公环境</view> 
+          <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-office2.png" />办公环境</view> 
           <view class="weui-panel__bd weui-media-box">
             <swiper class="swiper" indicator-dots="{{indicatorDots}}"
               autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
@@ -67,7 +94,7 @@
   <view class="team-wrap section" wx:if="{{workTeam && workTeam.length > 0}}">
      <view class="weui-panel weui-panel_access">
          <view class="weui-panel__hd">
-           <view class="left"><image class="img" style="width:38rpx;" src="../../images/icon-company-team.png" />我们的团队</view>
+           <view class="left"><image class="img" src="../../images/icon-company-team2.png" />我们的团队</view>
            <view class="right" catchtap='navigatorTo' data-type="2" style="color:#888888;font-size:28rpx;">查看更多信息<icon class="arrow-right"></icon></view>   
           </view> 
           <view class="weui-panel__bd weui-media-box">
@@ -83,7 +110,35 @@
           </view> 
       </view>
   </view>
+   <!-- 公司信息  -->
+  <view class="info-wrap section" wx:if="{{allCompanies && allCompanies.length > 0}}">
+        <view class="weui-panel weui-panel_access">
+          <view class="weui-panel__hd"><image class="img" src="../../images/icon-address.png"></image>公司信息</view>
+          <view class="weui-panel__bd">
+            <block wx:for="{{allCompanies}}" wx:key="index">
+            <view class="weui-media-box weui-media-box_appmsg" data-index="{{index}}" data-type="1" catchtap='navigatorTo'>
+              <view class="name">
+                <text class="text">{{item.companyName}}</text>
+                <image class="icon" src="../../images/icon-map.png"></image>  
+              </view>
+              <view class="short-name" wx:if="{{item.companyShortName}}">({{item.companyShortName}})</view>
+              <view class="address ell"><text class="fa fa-map-marker"></text>{{item.region || ''}}{{item.address}}</view>
+              <view class="tel"><text class="fa fa-phone"></text>{{item.phone}}</view>
+            </view>
+            </block>
+          </view>
+      </view>  
+  </view>    
+  <!-- 分享 -->
+  <view class='choose_con' wx:if="{{showShare}}" bindtap="showShareFalse">
+    <view class='choose_con_btn'>
+      <button class='share_pople' open-type="share">发送给朋友</button>
+      <button class='share_poster' bindtap="createPoster">生成卡片保存分享</button>
+      <button class='share_cancel'>取消</button>
+    </view>
+  </view>
   <!-- 页脚 -->
   <template is="footer" />
+  <template is="sharePoster" data="{{type:1}}" />
 </view>
 

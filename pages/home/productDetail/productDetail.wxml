@@ -1,0 +1,20 @@
+<view class="product-detail">
+    <view class="tabs-wrap">
+      <scroll-view class="scroll-view" scroll-x="true"> 
+        <view class="tab-list" style="width:{{tabListWidth}}px;">
+           <view class="tab-item" wx:for="{{productList}}" wx:key="index" catchtap='switchTab' data-proindex="{{index}}">{{item.productName}}</view> 
+          <view class="sign" style="left:{{signLeft}}px;"></view>
+        </view>
+      </scroll-view> 
+    </view>
+    <view class="product-detail-box">
+      <view class="pro-image">
+        <image class="img" src="{{productList[proIndex].productImageUrl}}"></image>
+      </view>
+      <view class="pro-desc">
+        <view class="pro-desc_title">产品描述</view>
+        <view class="pro-desc_content">{{productList[proIndex].productDescription}}</view>
+      </view>
+    </view> 
+
+</view>

@@ -1,6 +1,8 @@
 <import src="/template/footer/footer.wxml" />
 <import src="/template/position/position.wxml" />
 <import src="/wxParse/wxParse.wxml"/>
+<import src="/template/share/share.wxml" />
+
 
 
 <view class="position-detail">
@@ -48,18 +50,35 @@
   <template is="footer" />
   <!-- 固定按钮 -->
   <view class="fixed-btns">
-    <view class="share-btn btn-box" catchtap='toggleShareMask'>
+    
+    <!-- <view class="collect-btn btn-box" catchtap='collectPosition'>
+        <image class="icon" src="../../../images/personal_stars.png" wx:if="{{checkPosition}}"></image>
+        <image class="icon" src="../../../images/personal_stars2.png" wx:else></image>
+         <text class="word">收藏</text> 
+    </view> -->
+    <view class="share-btn btn-box">
         <image class="icon" src="../../../images/share.png"></image>
-        <button class="btn" open-type="share">我要分享</button>     
-       <!--  <text class="word">我要分享</text> -->
+        <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">我要分享</button>  
+        <button class="btn" open-type="getPhoneNumber" data-btntype="share" catchtap='clickPhoneNumer'  bindgetphonenumber="getPhoneNumber" wx:else>我要分享</button>  
     </view> 
-    <view class="deliver-btn btn-box" data-type="2" catchtap='linkTo'>
+    <view class="deliver-btn btn-box">
         <image class="icon" src="../../../images/deliver.png"></image>
-        <text class="word">我要投递</text>
+        <text class="word" wx:if="{{phoneNumber}}"  data-type="2" catchtap='linkTo'>我要投递</text>
+        <button class="btn" open-type="getPhoneNumber" data-btntype="deliver" catchtap='clickPhoneNumer' bindgetphonenumber="getPhoneNumber" wx:else>我要投递</button>  
     </view> 
   </view>
   <!-- 分享的遮罩层 -->
   <!-- <view class="share-mask" hidden="{{shareMaskHidden}}" catchtap='toggleShareMask'>
       <view class="share-tip"></view>
   </view> -->
+  <!-- 分享按钮 -->
+  <template is="sharePoster" data="{{type:3}}" />
+  <!-- 分享海报 -->
+  <view class='choose_con' wx:if="{{showShare}}" bindtap="showShareFalse">
+    <view class='choose_con_btn'>
+      <button class='share_pople' open-type="share">发送给朋友</button>
+      <button class='share_poster' bindtap="createPoster">生成卡片保存分享</button>
+      <button class='share_cancel'>取消</button>
+    </view>
+  </view>
 </view>

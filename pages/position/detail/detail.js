@@ -1,5 +1,7 @@
 const network = require("../../../utils/network.js")
-const WxParse = require('../../../wxParse/wxParse.js');
+const WxParse = require('../../../wxParse/wxParse.js')
+let commonApi = require("../../../utils/commonApi.js")
+let utils = require("../../../utils/util.js")
 const app = getApp()
 let companyId = ''
 let paramObj = null
@@ -10,13 +12,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fansId:'',
     options:null,
+    phoneNumber:'',
     positionInfo:null,
     positionDesc:'',
     companyInfo:null,
     shareInfo:null,
     shareMaskHidden:true,
+    btnType:'',     //存储获取手机号的按钮是分享还是投递
     peopleNum: [{
       value: 1,
       label: '0-50'
@@ -55,23 +58,45 @@ Page({
       value: 7,
       label: '未融资'
     }],
+    showShare: false,
+    poster: {
+      shTitle: 'gs/电子商务/天使轮/0-50人',
+      shqrcode: 'http://121.199.182.2/hrm/upload/spqrcode201803161521179349660.jpg',
+      spName: '爱聚招聘',
+      posiDetail: {},
+    },
+    checkPosition:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    companyId = getApp().globalData.companyId
+    let globalData = getApp().globalData
+    companyId = globalData.companyId
     paramObj = { companyId: companyId, type: 2 }
+    // companyId = getApp().globalData.companyId
+    if(options.scene){
+      var scene = decodeURIComponent(options.scene)
+      var arr1=scene.split("&");
+      var obj={};
+      arr1.forEach(function(item){
+        obj[item.split('=')[0]]=item.split('=')[1]
+      })
+      options.positionId=obj.pId;
+    }
     this.setData({
       options: options,
-      fansId: getApp().globalData.fansId,
+      phoneNumber: globalData.phoneNumber
     })
-    console.log('fansId', getApp().globalData.fansId)
-
+    if (!this.data.phoneNumber) {
+      utils.wxLogin()
+    }
     this.getPositionInfo();
     this.getWzpIndexInfo();
     this.getShareTitleInfo();
+    this.getPosterInfo();
+    this.checkCollection();
   },
 
   /**
@@ -142,12 +167,49 @@ Page({
       }
     })
   },
+  //获取当前职位收藏状态
+  checkCollection:function(){
+    let _this=this;
+    let method ="/smallProgramAudit/checkCollection.do",
+        param={
+          spFansId: getApp().globalData.fansId,
+          companyId: _this.data.options.companyId,
+          positionId: _this.data.options.positionId
+        },
+        successd=function(res){
+          _this.setData({
+            checkPosition:res.code=='2001'
+          })
+          console.log(_this.data.checkPosition)
+        };
+    network.post(method,param,successd);
+  },
+  //收藏职位或者取消收藏职位
+  collectPosition:function(){
+    let _this=this;
+    let method;
+    if (_this.data.checkPosition){
+      method ="/smallProgramAudit/cancleCollectPosition.do";
+    }else{
+      method = "/smallProgramAudit/collectPosition.do";
+    }
+    let param={
+          spFansId: getApp().globalData.fansId,
+          companyId: _this.data.options.companyId,
+          positionId: _this.data.options.positionId
+        },
+        successd=function(res){
+          _this.checkCollection();
+        };
+    network.post(method,param,successd);
+  },
   /**
    * 跳转
    */
   linkTo: function (e) {
     let dataset = e.currentTarget.dataset;
     let _data = this.data;
+    let fansId = getApp().globalData.fansId
     switch(dataset.type){
       //重定向到职位详情页
       case "1":
@@ -158,7 +220,7 @@ Page({
       //跳转到创建简历方式页
       case "2":
         wx.navigateTo({
-          url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${_data.fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
+          url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
         })
         break;
       //回到首页
@@ -177,6 +239,155 @@ Page({
   toggleShareMask:function(){
     this.setData({
       shareMaskHidden: !this.data.shareMaskHidden
+    })
+  },
+  /*
+  获取生成海报里的内容
+  */
+  getPosterInfo: function () {
+    let _this = this;
+    network.post("/api.do", {
+      method: "positionRecommend/getSpSharePoster",
+      param: JSON.stringify({ shareType: 3, companyId: companyId, positionId: _this.data.options.positionId })
+    }, function (res) {
+      
+      if (res.code == "0" && res.data) {
+        _this.setData({
+          poster: res.data
+        })
+        _this.getCanvas();
+      } else {
+        console.log(`positionRecommend/getSpSharePoster:${res.message}`)
+      }
+    })
+  },
+  /*
+    点击显示生成海报选择
+  */
+  openChange: function (res) {
+    this.setData({
+      showShare: true
+    })
+  },
+  showShareFalse: function (res) {
+    this.setData({
+      showShare: false
+    })
+  },
+  createPoster: function (res) {
+    var _this=this;
+    wx.canvasToTempFilePath({
+      canvasId: 'thirdCanvas',
+      fileType: 'jpg',
+      quality: '1',
+      success: function (res) {
+        console.log(res.tempFilePath)
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(res2) {
+            wx.showToast({
+              title: '保存成功!',
+              icon: 'success',
+              duration: 2000
+            })
+          },
+          fail(res2) {
+            wx.showModal({
+              title: '警告',
+              content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
+              success:function(res2){
+                if(res2.confirm){
+                  wx.openSetting({
+                    success:function(res3){
+                      if (res3.authSetting['scope.writePhotosAlbum']){
+                        _this.createPoster();
+                      }
+                    }
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    })
+  },
+  /**
+   * 画canvas
+   */
+  getCanvas: function (res) {
+    var _this = this;
+    var context = wx.createCanvasContext('thirdCanvas');
+    wx.downloadFile({
+      url: _this.data.poster.shqrcode,
+      success: function (res2) {
+        context.drawImage(res2.tempFilePath, 210, 235, 328, 328);
+        context.draw()
+        wx.downloadFile({
+          url: 'https://aijuhr.com/images/xcx/plist_share.png',
+          success: function (res) {
+            context.drawImage(res.tempFilePath, 0, 0, 750, 1334);
+            context.setFontSize(48);
+            context.setFillStyle("#ffffff");
+            context.setTextAlign('center')
+            context.fillText(_this.data.poster.spName, 375, 104);
+            context.setFontSize(36);
+            context.setFillStyle("#ffffff");
+            context.setTextAlign('center')
+            context.fillText(_this.data.poster.shTitle, 375, 164);
+            console.log(_this.data.poster);
+            context.setFillStyle("#333333");
+            context.setFontSize(36);
+            context.setTextAlign('left')
+            context.fillText(_this.data.poster.posiDetail.posiName, 48,640);
+            context.setFillStyle("#46BE8A");
+            context.setFontSize(36);
+            context.setTextAlign('right')
+            context.fillText(_this.data.poster.posiDetail.salary, 700,644);
+            context.setFillStyle("#B1B1B1");
+            context.setFontSize(28);
+            context.setTextAlign('left')
+            context.fillText(_this.data.poster.posiDetail.workCity + ' | ' + _this.data.poster.posiDetail.workYear + ' | ' + _this.data.poster.posiDetail.xueli + ' | ' + _this.data.poster.posiDetail.workType, 48, 698);
+            context.draw(true)
+          }
+        })
+      }
+    })
+  },
+  /**
+   * 手机号授权
+   */
+  getPhoneNumber:function(res){
+    let _this = this
+    let _data = _this.data
+    let fansId = getApp().globalData.fansId
+    commonApi.getSpFansPhone(res,function(){
+      _this.setData({
+        phoneNumber: getApp().globalData.phoneNumber
+      })
+      console.log('btntype', _this.data.btnType)
+      if(_this.data.btnType == "share"){
+        _this.openChange()
+      }else{
+        wx.navigateTo({
+          url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
+        })
+      }
+      
+    },function(){
+      //分享不强制要求手机号授权
+      if (_this.data.btnType == "share") {
+        _this.openChange()
+      } 
+    })
+  },
+  /**
+   * 点击获取手机号按钮（分享和投递）
+   */
+  clickPhoneNumer:function(e){
+    let btnType = e.currentTarget.dataset.btntype
+    this.setData({
+      btnType: btnType
     })
   },
   /**

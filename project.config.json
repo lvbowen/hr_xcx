@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.7.2",
-	"appid": "wx0ef6d2b0f31b2ce7",
-	"projectname": "hr_xcx%E6%AD%A3%E5%BC%8F",
+	"appid": "wx59ac83234ec651e4",
+	"projectname": "hr_xcx%E5%85%AC%E5%8F%B8%E6%B5%8B%E8%AF%95appid",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -20,9 +20,28 @@
 			"current": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"game": {
 			"current": -1,
 			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/mine/mine",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "职位lsit",
+					"pathName": "pages/position/list",
+					"query": "",
+					"scene": "1001"
+				}
+			]
 		}
 	}
 }
