@@ -25,6 +25,11 @@
   </view>
 </view>
 
+<view class="no_collect"  wx:if="{{!(collection&&collection.length!=0)}}">
+  <image src='https://aijuhr.com/images/xcx/collect_01.png'></image>
+  <view>您还没有职位收藏，赶快去找找热门职位吧！</view>
+</view>
+
 <view class='more_position'>
   <view class='position_btn'>
     <navigator url='../../position/list' open-type="switchTab">

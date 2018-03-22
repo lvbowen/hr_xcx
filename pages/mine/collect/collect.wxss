@@ -48,3 +48,14 @@
   background-color: #5aa2e7;
   color: #fff;
 }
+.no_collect{
+  text-align: center;
+  font-size: 28rpx;
+  color: #B2B2B2;
+  padding-top: 150rpx;
+}
+.no_collect image{
+  width: 253rpx;
+  height: 274rpx;
+  margin-bottom: 40rpx;
+}
