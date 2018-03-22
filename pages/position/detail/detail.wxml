@@ -76,4 +76,3 @@
     </view>
   </view>
 </view>
- <button class="btn" open-type='contact' session-from="weapp">HR直聊2</button> 
