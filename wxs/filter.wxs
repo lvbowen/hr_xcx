@@ -1,9 +1,9 @@
-/**
- * 全局filter函数集合
- */
+
+/*  全局filter函数集合  */
 
 /**
  * 切割字符串
+ * @param {String} str - 含逗号字符串
  */
 function splitString(str){ 
   if (str && typeof str == "string") {
@@ -37,7 +37,56 @@ function formatDate (date, type){
   }
 }
 
+/**
+ * 时间戳转日期格式
+ * @param {number} timestamp - 时间戳
+ * return 日期 eg: 2018-01-01 12:12:12
+ */
+function timestampToDate(timestamp){
+  var date = getDate(timestamp)
+  return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+
+}
+
+/**
+ * 职位申请状态
+ * @param {number} item - 枚举值
+ * return 状态
+ */
+function applyStatus(item){
+  if (item == 0) {
+    item = '简历提交成功'
+  } else if (item == 2) {
+    item = 'HR将移入备选库'
+  } else if (item == 3) {
+    item = 'HR发送面试邀约'
+  } else if (item == 4) {
+    item = 'HR发送offer'
+  } else if (item == 5) {
+    item = 'R将移入爽约库'
+  } else if (item == 6) {
+    item = 'HR录用'
+  } else if (item == 7) {
+    item = 'HR将简历移入淘汰库'
+  } else if (item == 8) {
+    item = 'HR将移入人才储备库'
+  } else if (item == 9) {
+    item = 'HR重新发送面试邀约'
+  } else if (item == 10) {
+    item = 'HR下载简历(查看完整简历)'
+  } else if (item == 11) {
+    item = 'HR将移入新简历库'
+  } else if (item == 12) {
+    item = 'HR查看了简历'
+  } else {
+    item = 'HR确认该offer到岗'
+  }
+  return item;
+}
+
 module.exports = {
   splitString: splitString,
-  formatDate: formatDate
+  formatDate: formatDate,
+  timestampToDate: timestampToDate,
+  applyStatus:applyStatus
 }

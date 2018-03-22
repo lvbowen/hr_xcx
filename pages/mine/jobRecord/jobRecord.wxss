@@ -1,1 +1,23 @@
-/* pages/mine/jobRecord/jobRecord.wxss */
+@import "/template/jobRecord/jobRecord.wxss";
+
+.scroll-wrap{
+  padding:25rpx 0;
+
+}
+
+.no-list{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.no-list .img{
+  width:230rpx;
+  height:245rpx;
+  margin-bottom:80rpx;
+  margin-top:230rpx;
+}
+.no-list .text{
+  font-size: 28rpx;
+  color:#B2B2B2 ;
+}
