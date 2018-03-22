@@ -33,10 +33,10 @@
 .choose_con button::after{
   border: none;
 }
-.choose_con button.share_pople{
+.choose_con button.share_poster{
   border-bottom: 1rpx solid #e5e5e5;
 }
-.choose_con button.share_poster{
+.choose_con button.share_pople{
   height: 112rpx;
   border-bottom: 12rpx solid #E3E3E9;
 }
