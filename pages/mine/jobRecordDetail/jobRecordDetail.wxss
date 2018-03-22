@@ -22,19 +22,19 @@
   }
 
   .step-item {
-    width: 33%;
+    width: 226rpx;
     text-align: center;
     display: inline-block;
+    overflow: visible;
   }
 
   .active .item-tail, .item-tail {
     background: #5aa2e7 none repeat scroll 0 0;
     height: 1px;
-    position: relative;
-    top: 14px;
-    left: -55px;
-    margin: 0 10px;
-    width: 68%;
+    position: relative;  
+    top: 24rpx;
+    left: -88rpx; 
+    width: 178rpx;
   }
 
   .item-tail {

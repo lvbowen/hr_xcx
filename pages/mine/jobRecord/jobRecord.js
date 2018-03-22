@@ -33,9 +33,7 @@ Page({
   getDeliverHistory:function(){
     let _this = this;
     network.post("/smallProgramAudit/getSpDeliverHistory.do", {
-        // companyId:getApp().globalData.companyId,
-      // spFansId: getApp().globalData.fansId
-      spFansId:140
+      spFansId: getApp().globalData.fansId
     }, function (res) {
       if (res.code == "0") {
         //mock data
