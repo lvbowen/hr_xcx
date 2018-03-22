@@ -9,6 +9,7 @@ Page({
   data: {
     options:null,
     data:null,
+    stepName: ['投递成功', '面试', '入职'],
   },
 
   /**
@@ -43,25 +44,25 @@ Page({
     }, function (res) {
       if (res.code == "0") {
         //mock data
-        // res.data = {
-        //   companyName:"鹿丸Test",
-        //   currentStatus:"人才储备",
-        //   interviewerInfoId: 2802,
-        //   interviewerName:"场景h5",
-        //   positionName:"技术开发1",
-        //   resumeProgress:1,
-        //   updateTime:1520826651000,
-        //   zpRecord:[
-        //     {
-        //       operateStatus:7,
-        //       operateTime: 1520844491000
-        //     },
-        //     {
-        //       operateStatus: 0,
-        //       operateTime: 1520826652000
-        //     }
-        //   ]
-        // }
+        res.data = {
+          companyName:"鹿丸Test",
+          currentStatus:"已淘汰",
+          interviewerInfoId: 2802,
+          interviewerName:"场景h5",
+          positionName:"技术开发1",
+          resumeProgress:2,
+          updateTime:1520826651000,
+          zpRecord:[
+            {
+              operateStatus:7,
+              operateTime: 1520844491000
+            },
+            {
+              operateStatus: 0,
+              operateTime: 1520826652000
+            }
+          ]
+        }
         _this.setData({
           data: res.data
         })

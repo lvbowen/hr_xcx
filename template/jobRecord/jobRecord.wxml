@@ -1,3 +1,5 @@
+ <wxs module="filters" src="../../wxs/filter.wxs" /> 
+
 <template name="jobRecord">
     <view class="positionName">
       <text class="text font-34">{{positionName}}</text>
@@ -7,5 +9,5 @@
       <image class="company_icon" src="/images/company3.png"></image>
       <text class="company_text font-gray-26">{{companyName}}</text>
     </view>
-    <view class="applyTime font-gray-26">申请时间：{{createTime?createTime:updateTime}}</view>
+    <view class="applyTime font-gray-26">申请时间：{{createTime ? filters.timestampToDate(createTime) : filters.timestampToDate(updateTime)}}</view>
 </template>  

@@ -14,3 +14,74 @@
 .weui-panel__bd{
    padding:30rpx;
 }
+/* step wrap*/
+.stepWrap {
+    width: 100%;
+    position: relative;
+    border-bottom:1rpx solid #e5e5e5;
+  }
+
+  .step-item {
+    width: 33%;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .active .item-tail, .item-tail {
+    background: #5aa2e7 none repeat scroll 0 0;
+    height: 1px;
+    position: relative;
+    top: 14px;
+    left: -55px;
+    margin: 0 10px;
+    width: 68%;
+  }
+
+  .item-tail {
+    background: #ccc none repeat scroll 0 0;
+  }
+
+  .step-item:nth-child(1) .item-tail {
+    background: none;
+  }
+
+  .step-item-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #C9C9C9 ;
+    font-size: 30rpx;
+    color: #fff;
+    width: 48rpx;
+    height: 48rpx;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+
+  .active .step-item-icon {
+    background: #5aa2e7;
+    border: none;
+  }
+
+  .step-item-name {
+    color: #999;
+    margin: 20rpx 0;
+    font-size:32rpx;
+  }
+  .active .step-item-name{
+    color: #000000;
+  }
+  /*  */
+.record {
+    background: #fff;
+    padding: 28rpx 0;
+}
+.record .list{
+   margin-bottom: 20rpx;
+   list-style-type: none;
+   color: #999;
+   font-size: 26rpx;
+}
+.record .list .time{
+   margin-bottom: 10rpx;
+}

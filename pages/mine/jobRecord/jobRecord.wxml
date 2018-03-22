@@ -4,15 +4,6 @@
  <scroll-view class="scroll-wrap" scroll-y  wx:if="{{recordList && recordList.length>0}}">
     <view class="record-item" wx:for="{{recordList}}" wx:key="positionApplyId" data-query='{"positionApplyId":{{item.positionApplyId}},"interviewerInfoId":{{item.interviewerInfoId}}}' catchtap='linkTo'>
         <template is="jobRecord" data="{{...item}}" />
-        <!-- <view class="positionName">
-            <text class="text font-34">{{item.positionName}}</text>
-            <text class="status  {{item.currentStatus=='已淘汰'?'status_fail':''}}">{{item.currentStatus}}</text>
-          </view>
-          <view class="companyName">
-            <image class="company_icon" src="../../../images/company3.png"></image>
-            <text class="company_text font-gray-26">{{item.companyName}}</text>
-          </view>
-          <view class="applyTime font-gray-26">申请时间：{{item.createTime}}</view> -->
     </view>
  </scroll-view>
  <view class="no-list" wx:else>

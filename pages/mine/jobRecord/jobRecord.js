@@ -32,95 +32,95 @@ Page({
   },
   getDeliverHistory:function(){
     let _this = this;
-    network.post("/weixin/getDeliverHistory.do", {
-        companyId:getApp().globalData.companyId,
-        // fansId: getApp().globalData.fansId
-        fansId:145
+    network.post("/smallProgramAudit/getSpDeliverHistory.do", {
+        // companyId:getApp().globalData.companyId,
+      // spFansId: getApp().globalData.fansId
+      spFansId:140
     }, function (res) {
       if (res.code == "0") {
         //mock data
-        res.data = [
-          {
-            "positionApplyId": 247,          //职位申请id
-            "positionName": "产品经理",      //职位名称
-            "interviewerInfoId": 691,       //简历详情id
-            "currentStatus": "简历提交成功", //当前状态
-            "createTime": 1515415164000,    //申请时间
-            "companyName": "小小科技",       //公司名称
-            "updateTime": 1515415164000,
-            "interviewerName": "测试q"
-          },
-          {
-            "positionApplyId": 246,
-            "positionName": "产品经理",
-            "interviewerInfoId": 690,
-            "currentStatus": "待面试",
-            "createTime": 1515414492000,
-            "companyName": "小小科技",
-            "updateTime": 1515414491000,
-            "interviewerName": "测试qqqq"
-          },
-          {
-            "positionApplyId": 245,
-            "positionName": "wdwdcwqd",
-            "interviewerInfoId": 689,
-            "currentStatus": "已淘汰",
-            "createTime": 1515414409000,
-            "companyName": "小小科技",
-            "updateTime": 1515414408000,
-            "interviewerName": "测试qqqq"
-          },
-          {
-            "positionApplyId": 243,
-            "positionName": "java",
-            "interviewerInfoId": 687,
-            "currentStatus": "简历提交成功",
-            "createTime": 1515413381000,
-            "companyName": "小小科技",
-            "updateTime": 1515413380000,
-            "interviewerName": "测试qqqq"
-          },
-          {
-            "positionApplyId": 243,
-            "positionName": "java",
-            "interviewerInfoId": 687,
-            "currentStatus": "简历提交成功",
-            "createTime": 1515413381000,
-            "companyName": "小小科技",
-            "updateTime": 1515413380000,
-            "interviewerName": "测试qqqq"
-          },
-           {
-            "positionApplyId": 243,
-            "positionName": "java",
-            "interviewerInfoId": 687,
-            "currentStatus": "简历提交成功",
-            "createTime": 1515413381000,
-            "companyName": "小小科技",
-            "updateTime": 1515413380000,
-            "interviewerName": "测试qqqq"
-          },
-           {
-             "positionApplyId": 243,
-             "positionName": "java",
-             "interviewerInfoId": 687,
-             "currentStatus": "简历提交成功",
-             "createTime": 1515413381000,
-             "companyName": "小小科技",
-             "updateTime": 1515413380000,
-             "interviewerName": "测试qqqq"
-           },
-          {
-            "positionApplyId": 242,
-            "positionName": "c++",
-            "interviewerInfoId": 686,
-            "currentStatus": "简历提交成功",
-            "createTime": 1515413009000,
-            "companyName": "小小科技",
-            "updateTime": 1515413008000,
-            "interviewerName": "景麒"
-          }
-        ]
+        // res.data = [
+        //   {
+        //     "positionApplyId": 247,          //职位申请id
+        //     "positionName": "产品经理",      //职位名称
+        //     "interviewerInfoId": 691,       //简历详情id
+        //     "currentStatus": "简历提交成功", //当前状态
+        //     "createTime": 1515415164000,    //申请时间
+        //     "companyName": "小小科技",       //公司名称
+        //     "updateTime": 1515415164000,
+        //     "interviewerName": "测试q"
+        //   },
+        //   {
+        //     "positionApplyId": 246,
+        //     "positionName": "产品经理",
+        //     "interviewerInfoId": 690,
+        //     "currentStatus": "待面试",
+        //     "createTime": 1515414492000,
+        //     "companyName": "小小科技",
+        //     "updateTime": 1515414491000,
+        //     "interviewerName": "测试qqqq"
+        //   },
+        //   {
+        //     "positionApplyId": 245,
+        //     "positionName": "wdwdcwqd",
+        //     "interviewerInfoId": 689,
+        //     "currentStatus": "已淘汰",
+        //     "createTime": 1515414409000,
+        //     "companyName": "小小科技",
+        //     "updateTime": 1515414408000,
+        //     "interviewerName": "测试qqqq"
+        //   },
+        //   {
+        //     "positionApplyId": 243,
+        //     "positionName": "java",
+        //     "interviewerInfoId": 687,
+        //     "currentStatus": "简历提交成功",
+        //     "createTime": 1515413381000,
+        //     "companyName": "小小科技",
+        //     "updateTime": 1515413380000,
+        //     "interviewerName": "测试qqqq"
+        //   },
+        //   {
+        //     "positionApplyId": 243,
+        //     "positionName": "java",
+        //     "interviewerInfoId": 687,
+        //     "currentStatus": "简历提交成功",
+        //     "createTime": 1515413381000,
+        //     "companyName": "小小科技",
+        //     "updateTime": 1515413380000,
+        //     "interviewerName": "测试qqqq"
+        //   },
+        //    {
+        //     "positionApplyId": 243,
+        //     "positionName": "java",
+        //     "interviewerInfoId": 687,
+        //     "currentStatus": "简历提交成功",
+        //     "createTime": 1515413381000,
+        //     "companyName": "小小科技",
+        //     "updateTime": 1515413380000,
+        //     "interviewerName": "测试qqqq"
+        //   },
+        //    {
+        //      "positionApplyId": 243,
+        //      "positionName": "java",
+        //      "interviewerInfoId": 687,
+        //      "currentStatus": "简历提交成功",
+        //      "createTime": 1515413381000,
+        //      "companyName": "小小科技",
+        //      "updateTime": 1515413380000,
+        //      "interviewerName": "测试qqqq"
+        //    },
+        //   {
+        //     "positionApplyId": 242,
+        //     "positionName": "c++",
+        //     "interviewerInfoId": 686,
+        //     "currentStatus": "简历提交成功",
+        //     "createTime": 1515413009000,
+        //     "companyName": "小小科技",
+        //     "updateTime": 1515413008000,
+        //     "interviewerName": "景麒"
+        //   }
+        // ]
         _this.setData({
           recordList: res.data
         })
