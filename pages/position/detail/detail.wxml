@@ -1,7 +1,7 @@
 <import src="/template/footer/footer.wxml" />
 <import src="/template/position/position.wxml" />
-<import src="/template/share/share.wxml" />
 <import src="/wxParse/wxParse.wxml"/>
+<import src="/template/share/share.wxml" />
 
 
 
@@ -50,20 +50,33 @@
   <template is="footer" />
   <!-- 固定按钮 -->
   <view class="fixed-btns">
-    <view class="chat-btn btn-box">
+     <view class="chat-btn btn-box">
        <button class="btn" open-type='contact' session-from="weapp">
           <text class="fa fa-commenting-o"></text>
-          <text>HR直聊</text>
+          <text class="word">HR直聊</text>
        </button> 
-    </view>
+    </view>    
     
     <view class="share-btn btn-box">
-        <image class="icon" src="../../../images/share.png"></image>
-        <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">我要分享</button>  
-        <button class="btn" open-type="getPhoneNumber" data-btntype="share" catchtap='clickPhoneNumer'  bindgetphonenumber="getPhoneNumber" wx:else>我要分享</button>  
+        <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">
+          <image class="icon" src="../../../images/icon-share.png"></image>
+          <text class="word">我要分享</text>
+        </button>  
+        <button class="btn" open-type="getPhoneNumber" data-btntype="share" catchtap='clickPhoneNumer'  bindgetphonenumber="getPhoneNumber" wx:else>
+          <image class="icon" src="../../../images/icon-share.png"></image>
+          <text class="word">我要分享</text>
+        </button>  
     </view> 
-    <view class="deliver-btn btn-box">
-        <image class="icon" src="../../../images/deliver.png"></image>
+     <view class="collect-btn btn-box" catchtap='collectPosition'>
+         <view class="btn">
+            <text class="fa fa-star" wx:if="{{checkPosition}}"></text>
+             <text class="fa fa-star-o" wx:else></text> 
+            <text class="word">收藏</text>
+         </view>
+          
+    </view>  
+    <view class="deliver-btn">
+        <!-- <image class="icon" src="../../../images/deliver.png"></image> -->
         <text class="word" wx:if="{{phoneNumber}}"  data-type="2" catchtap='linkTo'>我要投递</text>
         <button class="btn" open-type="getPhoneNumber" data-btntype="deliver" catchtap='clickPhoneNumer' bindgetphonenumber="getPhoneNumber" wx:else>我要投递</button>  
     </view> 
@@ -73,8 +86,9 @@
   <!-- 分享海报 -->
   <view class='choose_con' wx:if="{{showShare}}" bindtap="showShareFalse">
     <view class='choose_con_btn'>
-      <button class='share_poster' bindtap="createPoster">生成分享图到朋友圈找人</button>
-      <button class='share_pople' open-type="share">转发给好友或群友</button>
+      <button class='share_pople' open-type="share">发送给朋友</button>
+      <button class='share_poster' bindtap="createPoster">生成卡片保存分享</button>
+      <button class='share_cancel'>取消</button>
     </view>
   </view>
 </view>

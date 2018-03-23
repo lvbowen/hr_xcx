@@ -59,48 +59,67 @@
   padding-left:30rpx;
   padding-right:30rpx;
 }
+/* 固定按钮 */
 .fixed-btns{
   display: flex;
   position: fixed;
   bottom:0;
   width:100%;
-  height: 94rpx;
+  height: 98rpx;
   color: #ffffff;
   font-size:34rpx;
 }
 .fixed-btns .btn-box{
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex:1;
   height: 100%;
-}
-.fixed-btns .btn-box .icon{
-  margin-right:14rpx;
+  background: #ffffff;
 }
 .fixed-btns .share-btn{
-  background:#5AA2E7;
+  border-left:1rpx solid #e5e5e5;
+  border-right:1rpx solid #e5e5e5;
 }
-.fixed-btns .share-btn .icon{
-   width:34rpx;
-   height: 40rpx; 
+.fixed-btns .deliver-btn{
+  flex:2;
 }
-.fixed-btns .share-btn .btn,.fixed-btns .deliver-btn .btn{
-   display: inline;
-   padding:0;
-   margin: 0;
-   color: #ffffff;
-   background-color: #5AA2E7;
-   border:none;
-   font-size:34rpx;
+.fixed-btns .btn-box .btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: #fff;
+    border: 0;
+    border-radius: 0;
+ }
+ .chat-btn .fa,.collect-btn .fa{
+    color: #666;
+    margin-bottom: 6rpx;
+    font-size: 34rpx;
+ }
+ .chat-btn .fa{
+   position: relative;
+   top:-3rpx;
+ }
+ .collect-btn .fa-star{
+   color: #5AA2E7;
+ }
+.fixed-btns .btn-box .btn .word{
+  font-size:22rpx;
+  color: #666;
+  line-height: 1;
+
 }
-.fixed-btns .share-btn .btn:after,.fixed-btns .deliver-btn .btn::after{
-  border:none;  
+.fixed-btns .share-btn image{
+  width:30rpx;
+  height:34rpx;
+  margin-bottom: 6rpx;
 }
-.fixed-btns .deliver-btn .icon{
-   width:40rpx;
-   height: 35rpx; 
-}
+.fixed-btns .chat-btn .btn:after,.fixed-btns .share-btn .btn:after,.fixed-btns .deliver-btn .btn::after{
+    border:none;  
+} 
 .fixed-btns .deliver-btn,.fixed-btns .deliver-btn .btn{
   background:#F2A654;
-}
+  height: 98rpx;
+  font-size: 36rpx;
+  color: #fff;
+} 

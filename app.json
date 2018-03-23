@@ -1,7 +1,8 @@
 {
   "pages":[
-    "pages/position/detail/detail",
     "pages/position/list",
+    "pages/position/detail/detail",
+    
     "pages/home/home",
     "pages/mine/mine",
     "pages/mine/jobRecord/jobRecord",
@@ -47,7 +48,8 @@
     "pages/home/map/map",
     "pages/home/team/team",
     "pages/index/index",
-    "pages/mine/collect/collect"
+    "pages/mine/collect/collect",
+    "pages/mine/recommend/recommend"
   ],
   "window": {
     "backgroundTextStyle": "light",

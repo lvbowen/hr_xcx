@@ -61,7 +61,7 @@ App({
     appId:'',       //授权企业的小程序appid
     code:'',        //wx.login后的code,便于后续手机号授权用
     componentAppid:'',    //第三方平台的appid,暂未用到
-    phoneNumber: '18888888888',   //授权的手机号
+    phoneNumber: '',   //授权的手机号
     userInfo: null,
     fansId:'',
     companyId: "",   //正式：61(爱聚) 34530，测试：169359 

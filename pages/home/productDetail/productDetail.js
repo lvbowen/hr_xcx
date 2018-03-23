@@ -76,6 +76,7 @@ Page({
         tabListWidth: width
       })
       _this.switchTab(proIndex)   
+      // console.log('wxmlTabItems1', _this.data.wxmlTabItems)
     })
   },
   /**
@@ -88,6 +89,7 @@ Page({
     }else{                       //点击tab切换
       proIndex = e.currentTarget.dataset.proindex
     }
+    // console.log('wxmlTabItems2', this.data.wxmlTabItems)
     let offsetLeft = this.data.wxmlTabItems[proIndex].left + (this.data.wxmlTabItems[proIndex].width - 35)/2
     this.setData({
       proIndex: proIndex,
