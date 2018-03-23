@@ -51,11 +51,11 @@
   <!-- 固定按钮 -->
   <view class="fixed-btns">
     
-    <!-- <view class="collect-btn btn-box" catchtap='collectPosition'>
+     <view class="collect-btn btn-box" catchtap='collectPosition'>
         <image class="icon" src="../../../images/personal_stars.png" wx:if="{{checkPosition}}"></image>
         <image class="icon" src="../../../images/personal_stars2.png" wx:else></image>
          <text class="word">收藏</text> 
-    </view> -->
+    </view> 
     <view class="share-btn btn-box">
         <image class="icon" src="../../../images/share.png"></image>
         <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">我要分享</button>  

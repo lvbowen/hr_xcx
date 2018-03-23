@@ -119,7 +119,7 @@ Page({
     let _this = this;
     network.post("/api.do", {
       method: "promotionPage/positionInfo",
-      param: JSON.stringify({ id: _this.data.options.positionId, companyId: companyId, fansId:''})
+      param: JSON.stringify({ id: _this.data.options.positionId, companyId: companyId, spFansId: getApp().globalData.fansId, isRoutine:'1'})
     }, function (res) {
       if (res.code == "0" && res.data) {
         _this.setData({
