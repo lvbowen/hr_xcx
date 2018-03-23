@@ -133,3 +133,29 @@
   background-size: 80% auto;
   z-index: 2;
 }
+.visits{
+  padding: 30rpx;
+  background-color: #ffffff;
+  font-size: 34rpx;
+}
+.visits_head{
+  display: flex;
+  justify-content: space-between;
+  vertical-align: bottom;
+  line-height: 50rpx;
+  margin-bottom: 40rpx;
+}
+.visits_head_right{
+  font-size: 26rpx;
+  color: #999999;
+}
+.visits_con{
+  display: flex;
+  justify-content: flex-start;
+}
+.visits_con image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 42rpx;
+}

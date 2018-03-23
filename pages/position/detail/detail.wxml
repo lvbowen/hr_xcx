@@ -20,6 +20,16 @@
 
         </view>
     </view>
+    <!-- 访问 -->
+    <!-- <view class='visits'>
+      <view class='visits_head'>
+        <text>今日访问</text>
+        <text class='visits_head_right'>历史访问访问{{positionInfo.historyVisit}}人</text>
+      </view>
+      <view class='visits_con'>
+        <image src='{{item}}' wx:for="{{positionInfo.visitationHistoryHeadImgs}}"></image>
+      </view>
+    </view> -->
   <!-- 职位描述  -->
   <view class="position-desc weui-panel weui-panel_access">
     <view class="weui-panel__hd" style="color:#333;font-size:30rpx;"><image class="img" src="../../../images/describe.png"></image>职位描述</view>
