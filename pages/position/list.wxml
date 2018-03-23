@@ -24,7 +24,6 @@
         </view> 
         <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
      </view>
-      <button class="btn" open-type='contact' session-from="weapp">HR直聊2</button> 
      <!-- 职位列表  -->
      <view class="position-list-wrap" wx:if="{{positionList && positionList.length > 0}}">
         <view class="position" wx:for="{{positionList}}" wx:key="index" data-positionId="{{item.id}}" catchtap='navigatorTo'>
