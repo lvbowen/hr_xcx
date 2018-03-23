@@ -29,6 +29,7 @@ Page({
    */
   onLoad: function (options) {
     console.log('editPreview',options)
+    options.fansId = getApp().globalData.fansId
     this.setData({
       options:options
     })
@@ -55,7 +56,7 @@ Page({
   getAllResume: function () {
     let _this = this;
     let param = {
-      fansId: this.data.options.fansId, 
+      fansId: getApp().globalData.fansId, 
     }
     network.post("/api.do", {
       method: "spResume/getAllResume",
