@@ -50,11 +50,13 @@
   <template is="footer" />
   <!-- 固定按钮 -->
   <view class="fixed-btns">
-    <view class="chat-btn">
-      <!-- <contact-button class="btn"  session-from="weapp">HR直聊1</contact-button> -->
-
-       <button class="btn" open-type='contact' session-from="weapp">HR直聊2</button> 
+    <view class="chat-btn btn-box">
+       <button class="btn" open-type='contact' session-from="weapp">
+          <text class="fa fa-commenting-o"></text>
+          <text>HR直聊</text>
+       </button> 
     </view>
+    
     <view class="share-btn btn-box">
         <image class="icon" src="../../../images/share.png"></image>
         <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">我要分享</button>  

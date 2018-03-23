@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/position/detail/detail",
     "pages/position/list",
     "pages/home/home",
     "pages/mine/mine",
@@ -10,7 +11,7 @@
    
     
     
-    "pages/position/detail/detail",
+    
     
     
     

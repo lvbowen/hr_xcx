@@ -71,6 +71,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    options.positionId = '21'  //测试数据，记得删除
     let globalData = getApp().globalData
     companyId = globalData.companyId
     paramObj = { companyId: companyId, type: 2 }
@@ -117,7 +119,7 @@ Page({
     let _this = this;
     network.post("/api.do", {
       method: "promotionPage/positionInfo",
-      param: JSON.stringify({ id: _this.data.options.positionId, companyId: companyId, fansId:''})
+      param: JSON.stringify({ id: _this.data.options.positionId, companyId: companyId, spFansId: getApp().globalData.fansId, isRoutie:'1'})
     }, function (res) {
       if (res.code == "0" && res.data) {
         _this.setData({
