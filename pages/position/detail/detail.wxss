@@ -2,6 +2,13 @@
 @import "/template/position/position.wxss";
 @import "/template/share/share.wxss";
 
+
+.weui-panel::before{
+  display: none;
+} 
+.weui-panel::after{
+  display: none;
+}
 .position-detail{
   padding-bottom:94rpx;
 }
@@ -55,6 +62,9 @@
   border-bottom:1rpx solid #e5e5e5;
   background:#ffffff;
 }
+.relative-position:last-child{
+  border-bottom: none;
+}
 .position-recommend .weui-panel__bd{
   padding-left:30rpx;
   padding-right:30rpx;
@@ -68,6 +78,7 @@
   height: 98rpx;
   color: #ffffff;
   font-size:34rpx;
+  border-top:1rpx solid #e5e5e5;
 }
 .fixed-btns .btn-box{
   flex:1;
@@ -121,6 +132,7 @@
 .fixed-btns .deliver-btn,.fixed-btns .deliver-btn .btn{
   background:#F2A654;
   height: 98rpx;
+  line-height: 98rpx;
   font-size: 36rpx;
   color: #fff;
 } 
