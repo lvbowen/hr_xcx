@@ -56,25 +56,24 @@
           <text class="word">HR直聊</text>
        </button> 
     </view>    
-    
-    <view class="share-btn btn-box">
-        <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">
-          <image class="icon" src="../../../images/icon-share.png"></image>
-          <text class="word">我要分享</text>
-        </button>  
-        <button class="btn" open-type="getPhoneNumber" data-btntype="share" catchtap='clickPhoneNumer'  bindgetphonenumber="getPhoneNumber" wx:else>
-          <image class="icon" src="../../../images/icon-share.png"></image>
-          <text class="word">我要分享</text>
-        </button>  
-    </view> 
-     <view class="collect-btn btn-box" catchtap='collectPosition'>
+    <view class="collect-btn btn-box" catchtap='collectPosition'>
          <view class="btn">
             <text class="fa fa-star" wx:if="{{checkPosition}}"></text>
              <text class="fa fa-star-o" wx:else></text> 
             <text class="word">收藏</text>
-         </view>
-          
-    </view>  
+         </view>         
+    </view> 
+    <view class="share-btn">
+        <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">
+          <!-- <image class="icon" src="../../../images/icon-share.png"></image> -->
+          <text class="word">我要推荐</text>
+        </button>  
+        <button class="btn" open-type="getPhoneNumber" data-btntype="share" catchtap='clickPhoneNumer'  bindgetphonenumber="getPhoneNumber" wx:else>
+          <!-- <image class="icon" src="../../../images/icon-share.png"></image> -->
+          <text class="word">我要推荐</text>
+        </button>  
+    </view> 
+      
     <view class="deliver-btn">
         <!-- <image class="icon" src="../../../images/deliver.png"></image> -->
         <text class="word" wx:if="{{phoneNumber}}"  data-type="2" catchtap='linkTo'>我要投递</text>

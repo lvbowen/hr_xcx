@@ -122,7 +122,7 @@
                 <image class="icon" src="../../images/icon-map.png"></image>  
               </view>
               <view class="short-name" wx:if="{{item.companyShortName}}">({{item.companyShortName}})</view>
-              <view class="address ell"><text class="fa fa-map-marker"></text>{{item.region || ''}}{{item.address}}</view>
+              <view class="address ell"><text class="fa fa-map-marker"></text>{{item.address}}</view>
               <view class="tel"><text class="fa fa-phone"></text>{{item.phone}}</view>
             </view>
             </block>
