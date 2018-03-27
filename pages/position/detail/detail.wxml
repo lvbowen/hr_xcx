@@ -65,17 +65,14 @@
     </view> 
     <view class="share-btn">
         <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">
-          <!-- <image class="icon" src="../../../images/icon-share.png"></image> -->
           <text class="word">我要推荐</text>
         </button>  
         <button class="btn" open-type="getPhoneNumber" data-btntype="share" catchtap='clickPhoneNumer'  bindgetphonenumber="getPhoneNumber" wx:else>
-          <!-- <image class="icon" src="../../../images/icon-share.png"></image> -->
           <text class="word">我要推荐</text>
         </button>  
     </view> 
       
     <view class="deliver-btn">
-        <!-- <image class="icon" src="../../../images/deliver.png"></image> -->
         <text class="word" wx:if="{{phoneNumber}}"  data-type="2" catchtap='linkTo'>我要投递</text>
         <button class="btn" open-type="getPhoneNumber" data-btntype="deliver" catchtap='clickPhoneNumer' bindgetphonenumber="getPhoneNumber" wx:else>我要投递</button>  
     </view> 
