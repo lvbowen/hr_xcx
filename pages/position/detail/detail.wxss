@@ -107,6 +107,7 @@
   font-size:22rpx;
   color: #666;
   line-height: 1;
+  white-space:nowrap;
 
 }
 .fixed-btns .share-btn image{
