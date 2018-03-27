@@ -1,20 +1,13 @@
 {
   "pages":[
+    "pages/home/home",
     "pages/position/list",
     "pages/position/detail/detail",
     
-    "pages/home/home",
+    
     "pages/mine/mine",
     "pages/mine/jobRecord/jobRecord",
     "pages/mine/jobRecordDetail/jobRecordDetail",
-    
-    
-   
-    
-    
-    
-    
-    
     
     "pages/home/productDetail/productDetail",
    
