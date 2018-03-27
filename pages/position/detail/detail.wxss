@@ -85,11 +85,10 @@
   height: 100%;
   background: #ffffff;
 }
-.fixed-btns .share-btn{
-  border-left:1rpx solid #e5e5e5;
+.fixed-btns .chat-btn{
   border-right:1rpx solid #e5e5e5;
 }
-.fixed-btns .deliver-btn{
+.fixed-btns .deliver-btn,.fixed-btns .share-btn{
   flex:2;
 }
 .fixed-btns .btn-box .btn{
@@ -129,10 +128,13 @@
 .fixed-btns .chat-btn .btn:after,.fixed-btns .share-btn .btn:after,.fixed-btns .deliver-btn .btn::after{
     border:none;  
 } 
-.fixed-btns .deliver-btn,.fixed-btns .deliver-btn .btn{
+.fixed-btns .deliver-btn,.fixed-btns .deliver-btn .btn,.fixed-btns .share-btn,.fixed-btns .share-btn .btn{
   background:#F2A654;
   height: 98rpx;
   line-height: 98rpx;
   font-size: 36rpx;
   color: #fff;
 } 
+.fixed-btns .share-btn,.fixed-btns .share-btn .btn{
+  background: #46BE8A;
+}
