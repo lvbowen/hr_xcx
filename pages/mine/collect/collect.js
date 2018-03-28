@@ -83,6 +83,7 @@ Page({
   //取消收藏
   cancelCollect:function(e){
     var _this=this;
+    console.log(e.target.dataset.id);
     wx.showModal({
       title: '警告',
       content: '确定取消收藏此职位?',
@@ -104,6 +105,16 @@ Page({
         }
       }
     })
+  },
+
+  //去职位详情
+  goDetail:function(e){
+    let item = e.currentTarget.dataset.item;
+    if (item.companyId == getApp().globalData.companyId){
+      wx.navigateTo({
+        url: `../../position/detail/detail?companyId=${item.companyId}&positionId=${item.id}`,
+      })
+    }
   }
   
 })

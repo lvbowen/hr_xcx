@@ -6,7 +6,7 @@
     <image src='/images/company03.png'></image>
     <text class=''>{{item.companyName}}</text>
   </view>
-  <view class='position' wx:for="{{item.positionList}}" wx:for-index="index2" wx:for-item="item2">
+  <view class='position' wx:for="{{item.positionList}}" wx:for-index="index2" wx:for-item="item2" catchtap="goDetail" data-item='{{item2}}'>
     <view class="position-title">
       <image class="img" src="/images/urgent2.png" wx:if="{{item2.isUrgent == 1}}"></image>
       <text class="title font-34">{{item2.positionName}}</text>
