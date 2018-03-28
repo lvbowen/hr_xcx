@@ -5,8 +5,8 @@ App({
     let _this = this
 
     console.log(wx.getExtConfigSync())
-    _this.globalData.companyId = wx.getExtConfigSync().companyId
-    _this.globalData.appId = wx.getExtConfigSync().appId
+    // _this.globalData.companyId = wx.getExtConfigSync().companyId
+    // _this.globalData.appId = wx.getExtConfigSync().appId
     _this.globalData.componentAppid = wx.getExtConfigSync().componentAppid
     _this.login()
     
@@ -62,9 +62,10 @@ App({
     code:'',        //wx.login后的code,便于后续手机号授权用
     componentAppid:'',    //第三方平台的appid,暂未用到
     phoneNumber: '',   //授权的手机号
+    // appId:'wx910dfda74307078f',       //授权用户的小程序appid    本地使用
     userInfo: null,
     fansId:'',
-    companyId: "",   //正式：61(爱聚) 34530，测试：169359 
+    companyId: "61",   //正式：61(爱聚) 34530，测试：169359 
     pageSize: "6"
   }
 })

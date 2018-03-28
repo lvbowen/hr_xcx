@@ -116,10 +116,11 @@ Page({
   * 获取职位详情
   */
   getPositionInfo: function () {
+    console.log(getApp().globalData);
     let _this = this;
     network.post("/api.do", {
       method: "promotionPage/positionInfo",
-      param: JSON.stringify({ id: _this.data.options.positionId, companyId: companyId, spFansId: getApp().globalData.fansId, isRoutie:'1'})
+      param: JSON.stringify({ id: _this.data.options.positionId, companyId: companyId, fansId: '', spFansId: getApp().globalData.fansId, isRoutine:'1'})
     }, function (res) {
       if (res.code == "0" && res.data) {
         _this.setData({
