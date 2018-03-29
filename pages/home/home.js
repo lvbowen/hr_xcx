@@ -283,6 +283,8 @@ Page({
       case "2":
         wx.navigateTo({
           url: `./team/team?companyId=${companyId}`,
+
+          
         })
         break;
       case "3":
