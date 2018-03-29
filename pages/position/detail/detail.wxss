@@ -134,6 +134,7 @@
   line-height: 98rpx;
   font-size: 36rpx;
   color: #fff;
+  text-align: center;
 } 
 .fixed-btns .share-btn,.fixed-btns .share-btn .btn{
   background: #46BE8A;

@@ -11,14 +11,13 @@
           <view class="weui-panel__hd"><image class="img" src="../../../images/personal.png"></image>职位申请状态跟踪</view>
           <view class="weui-panel__bd">
               <view class="stepWrap">
-                <view  wx:for="{{stepName}}" class="step-item {{data.resumeProgress > index?'active':''}}">
+                <view  wx:for="{{stepName}}" wx:key="index" class="step-item {{data.resumeProgress > index?'active':''}}">
                   <view class="item-tail"></view>  
                   <view class="step-item-icon">
                     <text class="fa fa-check" wx:if="{{data.resumeProgress > index}}"></text>
                     <text wx:if="{{data.resumeProgress <= index}}">{{ index + 1 }}</text>
                   </view>
                   <view class="step-item-name">{{ item }}</view>
-                  <!-- <view class="step-item-viewne"></view> -->
                 </view>
               </view>
               <view class="record">
