@@ -21,6 +21,16 @@
 
         </view>
     </view>
+    <!-- 访问 -->
+     <view class='visits'>
+      <view class='visits_head'>
+        <text>今日访问</text>
+        <text class='visits_head_right'>历史访问{{positionInfo.historyVisit}}人</text>
+      </view>
+      <view class='visits_con'>
+        <image src='{{item}}' wx:for="{{positionInfo.visitationHistoryHeadImgs}}"></image>
+      </view>
+    </view> 
   <!-- 职位描述  -->
   <view class="position-desc weui-panel weui-panel_access">
     <view class="weui-panel__hd" style="color:#333;font-size:30rpx;"><image class="img" src="../../../images/describe.png"></image>职位描述</view>
@@ -50,27 +60,33 @@
   <template is="footer" />
   <!-- 固定按钮 -->
   <view class="fixed-btns">
-    
-    <!-- <view class="collect-btn btn-box" catchtap='collectPosition'>
-        <image class="icon" src="../../../images/personal_stars.png" wx:if="{{checkPosition}}"></image>
-        <image class="icon" src="../../../images/personal_stars2.png" wx:else></image>
-         <text class="word">收藏</text> 
-    </view> -->
-    <view class="share-btn btn-box">
-        <image class="icon" src="../../../images/share.png"></image>
-        <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">我要分享</button>  
-        <button class="btn" open-type="getPhoneNumber" data-btntype="share" catchtap='clickPhoneNumer'  bindgetphonenumber="getPhoneNumber" wx:else>我要分享</button>  
+     <view class="chat-btn btn-box">
+       <button class="btn" open-type='contact' session-from="weapp">
+          <text class="fa fa-commenting-o"></text>
+          <text class="word">HR直聊</text>
+       </button> 
+    </view>    
+    <view class="collect-btn btn-box" catchtap='collectPosition'>
+         <view class="btn">
+            <text class="fa fa-star" wx:if="{{checkPosition}}"></text>
+             <text class="fa fa-star-o" wx:else></text> 
+            <text class="word">收藏</text>
+         </view>         
     </view> 
-    <view class="deliver-btn btn-box">
-        <image class="icon" src="../../../images/deliver.png"></image>
+    <view class="share-btn">
+        <button class="btn" bindtap="openChange" wx:if="{{phoneNumber}}">
+          <text class="word">我要推荐</text>
+        </button>  
+        <button class="btn" open-type="getPhoneNumber" data-btntype="share" catchtap='clickPhoneNumer'  bindgetphonenumber="getPhoneNumber" wx:else>
+          <text class="word">我要推荐</text>
+        </button>  
+    </view> 
+      
+    <view class="deliver-btn">
         <text class="word" wx:if="{{phoneNumber}}"  data-type="2" catchtap='linkTo'>我要投递</text>
         <button class="btn" open-type="getPhoneNumber" data-btntype="deliver" catchtap='clickPhoneNumer' bindgetphonenumber="getPhoneNumber" wx:else>我要投递</button>  
     </view> 
   </view>
-  <!-- 分享的遮罩层 -->
-  <!-- <view class="share-mask" hidden="{{shareMaskHidden}}" catchtap='toggleShareMask'>
-      <view class="share-tip"></view>
-  </view> -->
   <!-- 分享按钮 -->
   <template is="sharePoster" data="{{type:3}}" />
   <!-- 分享海报 -->

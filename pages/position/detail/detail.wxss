@@ -2,6 +2,13 @@
 @import "/template/position/position.wxss";
 @import "/template/share/share.wxss";
 
+
+.weui-panel::before{
+  display: none;
+} 
+.weui-panel::after{
+  display: none;
+}
 .position-detail{
   padding-bottom:94rpx;
 }
@@ -55,64 +62,82 @@
   border-bottom:1rpx solid #e5e5e5;
   background:#ffffff;
 }
+.relative-position:last-child{
+  border-bottom: none;
+}
 .position-recommend .weui-panel__bd{
   padding-left:30rpx;
   padding-right:30rpx;
 }
+/* 固定按钮 */
 .fixed-btns{
   display: flex;
   position: fixed;
   bottom:0;
   width:100%;
-  height: 94rpx;
+  height: 98rpx;
   color: #ffffff;
   font-size:34rpx;
+  border-top:1rpx solid #e5e5e5;
 }
 .fixed-btns .btn-box{
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex:1;
   height: 100%;
+  background: #ffffff;
 }
-.fixed-btns .btn-box .icon{
-  margin-right:14rpx;
+.fixed-btns .chat-btn{
+  border-right:1rpx solid #e5e5e5;
 }
-.fixed-btns .share-btn{
-  background:#5AA2E7;
+.fixed-btns .deliver-btn,.fixed-btns .share-btn{
+  flex:2;
 }
-.fixed-btns .share-btn .icon{
-   width:34rpx;
-   height: 40rpx; 
+.fixed-btns .btn-box .btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: #fff;
+    border: 0;
+    border-radius: 0;
+ }
+ .chat-btn .fa,.collect-btn .fa{
+    color: #666;
+    margin-bottom: 6rpx;
+    font-size: 34rpx;
+ }
+ .chat-btn .fa{
+   position: relative;
+   top:-3rpx;
+ }
+ .collect-btn .fa-star{
+   color: #5AA2E7;
+ }
+.fixed-btns .btn-box .btn .word{
+  font-size:22rpx;
+  color: #666;
+  line-height: 1;
+  white-space:nowrap;
+
 }
-.fixed-btns .share-btn .btn,.fixed-btns .deliver-btn .btn{
-   display: inline;
-   padding:0;
-   margin: 0;
-   color: #ffffff;
-   background-color: #5AA2E7;
-   border:none;
-   font-size:34rpx;
+.fixed-btns .share-btn image{
+  width:30rpx;
+  height:34rpx;
+  margin-bottom: 6rpx;
 }
-.fixed-btns .share-btn .btn:after,.fixed-btns .deliver-btn .btn::after{
+.fixed-btns .chat-btn .btn:after,.fixed-btns .share-btn .btn:after,.fixed-btns .deliver-btn .btn::after{
     border:none;  
-}
-.collect-btn{
-  background-color: #ffffff;
-}
-.collect-btn .icon{
-  width: 34rpx;
-  height: 40rpx;
-}
-.collect-btn .word{
-  color: #5AA2E7;
-}
-.fixed-btns .deliver-btn .icon{
-   width:40rpx;
-   height: 35rpx; 
-}
-.fixed-btns .deliver-btn,.fixed-btns .deliver-btn .btn{
+} 
+.fixed-btns .deliver-btn,.fixed-btns .deliver-btn .btn,.fixed-btns .share-btn,.fixed-btns .share-btn .btn{
   background:#F2A654;
+  height: 98rpx;
+  line-height: 98rpx;
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+} 
+.fixed-btns .share-btn,.fixed-btns .share-btn .btn{
+  background: #46BE8A;
 }
 .share-mask{
   background-color: rgba(0,0,0,.8);
@@ -132,4 +157,30 @@
   background: url("https://aijuhr.com/images/yidong/sharePng.png") no-repeat 50%;
   background-size: 80% auto;
   z-index: 2;
+}
+.visits{
+  padding: 30rpx;
+  background-color: #ffffff;
+  font-size: 34rpx;
+}
+.visits_head{
+  display: flex;
+  justify-content: space-between;
+  vertical-align: bottom;
+  line-height: 50rpx;
+  margin-bottom: 40rpx;
+}
+.visits_head_right{
+  font-size: 26rpx;
+  color: #999999;
+}
+.visits_con{
+  display: flex;
+  justify-content: flex-start;
+}
+.visits_con image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 42rpx;
 }

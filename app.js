@@ -18,7 +18,7 @@ App({
       success: response => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (response.code) {
-          _this.globalData.code = response.code
+          console.log(response.code)
           wx.getUserInfo({
             withCredentials: true,
             success: function (res) {
@@ -58,13 +58,11 @@ App({
     })
   },
   globalData: {
-    appId:'',       //授权企业的小程序appid
-    code:'',        //wx.login后的code,便于后续手机号授权用
-    componentAppid:'',    //第三方平台的appid,暂未用到
-    phoneNumber: '',   //授权的手机号
+    appId:'wx910dfda74307078f',       //授权用户的小程序appid
+    componentAppid:'',    //第三方平台的appid
     userInfo: null,
     fansId:'',
-    companyId: "",   //正式：61(爱聚) 34530，测试：169359 
+    companyId: "61",   //正式：61(爱聚) 34530，测试：169359 
     pageSize: "6"
   }
 })

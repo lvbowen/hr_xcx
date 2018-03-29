@@ -1,3 +1,12 @@
-<!--pages/mine/jobRecord/jobRecord.wxml-->
-<text>pages/mine/jobRecord/jobRecord.wxml</text>
 
+<import src="/template/jobRecord/jobRecord.wxml" />
+
+ <scroll-view class="scroll-wrap" scroll-y  wx:if="{{recordList && recordList.length>0}}">
+    <view class="record-item" wx:for="{{recordList}}" wx:key="positionApplyId" data-query='{"positionApplyId":{{item.positionApplyId}},"interviewerInfoId":{{item.interviewerInfoId}}}' catchtap='linkTo'>
+        <template is="jobRecord" data="{{...item}}" />
+    </view>
+ </scroll-view>
+ <view class="no-list" wx:else>
+      <image class="img" src="../../../images/no-result.png"></image>
+      <text class="text">暂无求职记录</text>
+ </view> 

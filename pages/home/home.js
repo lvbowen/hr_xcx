@@ -32,7 +32,7 @@ Page({
     showShare:false,
     poster:{
       shTitle:'gs/电子商务/天使轮/0-50人',
-      shqrcode:'http://121.199.182.2/hrm/upload/spqrcode201803161521179349660.jpg',
+      shqrcode:'https://aijuhr.com/upload/spqrcode201803161521179349660.jpg',
       spName:'爱聚招聘'
     }
   },
@@ -283,6 +283,8 @@ Page({
       case "2":
         wx.navigateTo({
           url: `./team/team?companyId=${companyId}`,
+
+          
         })
         break;
       case "3":

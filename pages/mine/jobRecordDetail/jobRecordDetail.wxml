@@ -1,0 +1,31 @@
+ <wxs module="filters" src="../../../wxs/filter.wxs" />  
+<import src="/template/jobRecord/jobRecord.wxml" />
+
+<view class="record-item">
+  <template is="jobRecord" data="{{...data}}" />
+</view>
+<view class="record-status-wrap">
+
+  
+  <view class="weui-panel weui-panel_access">
+          <view class="weui-panel__hd"><image class="img" src="../../../images/personal.png"></image>职位申请状态跟踪</view>
+          <view class="weui-panel__bd">
+              <view class="stepWrap">
+                <view  wx:for="{{stepName}}" wx:key="index" class="step-item {{data.resumeProgress > index?'active':''}}">
+                  <view class="item-tail"></view>  
+                  <view class="step-item-icon">
+                    <text class="fa fa-check" wx:if="{{data.resumeProgress > index}}"></text>
+                    <text wx:if="{{data.resumeProgress <= index}}">{{ index + 1 }}</text>
+                  </view>
+                  <view class="step-item-name">{{ item }}</view>
+                </view>
+              </view>
+              <view class="record">
+                  <view wx:for="{{data.zpRecord}}" wx:key="id" class="list">
+                    <view class="time">{{filters.timestampToDate(item.operateTime)}}</view>
+                    <view class="describe">{{filters.applyStatus(item.operateStatus)}}</view>
+                  </view>
+                </view>
+          </view>
+    </view>
+</view>

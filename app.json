@@ -4,13 +4,16 @@
     "pages/position/list",
     "pages/position/detail/detail",
     
+    
     "pages/mine/mine",
+    "pages/mine/jobRecord/jobRecord",
+    "pages/mine/jobRecordDetail/jobRecordDetail",
     
     "pages/home/productDetail/productDetail",
    
     
    
-    "pages/mine/jobRecord/jobRecord",
+    
     "pages/mine/jobCollection/jobCollection",
     "pages/mine/jobRecommend/jobRecommend", 
     
@@ -38,7 +41,8 @@
     "pages/home/map/map",
     "pages/home/team/team",
     "pages/index/index",
-    "pages/mine/collect/collect"
+    "pages/mine/collect/collect",
+    "pages/mine/recommend/recommend"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -64,6 +68,12 @@
         "text": "在招职位",
         "iconPath": "images/position02.png",
         "selectedIconPath": "images/selected_position02.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "个人中心",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/selected_mine.png"
       }
     ]
   },
