@@ -58,11 +58,11 @@ App({
     })
   },
   globalData: {
-    appId:'wx910dfda74307078f',       //授权用户的小程序appid
+    appId:'',       //授权用户的小程序appid
     componentAppid:'',    //第三方平台的appid
     userInfo: null,
     fansId:'',
-    companyId: "61",   //正式：61(爱聚) 34530，测试：169359 
+    companyId: "",   //正式：61(爱聚) 34530，测试：169359 
     pageSize: "6"
   }
 })

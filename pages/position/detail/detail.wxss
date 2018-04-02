@@ -184,3 +184,6 @@
   border-radius: 50%;
   margin-right: 42rpx;
 }
+.color_46BE8A{
+  color: #46BE8A;
+}
