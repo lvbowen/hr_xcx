@@ -5,9 +5,9 @@ App({
     let _this = this
 
     console.log(wx.getExtConfigSync())
-    // _this.globalData.companyId = wx.getExtConfigSync().companyId
-    // _this.globalData.appId = wx.getExtConfigSync().appId
-    // _this.globalData.componentAppid = wx.getExtConfigSync().componentAppid
+    _this.globalData.companyId = wx.getExtConfigSync().companyId
+    _this.globalData.appId = wx.getExtConfigSync().appId
+    _this.globalData.componentAppid = wx.getExtConfigSync().componentAppid
     _this.login()
     
   },
