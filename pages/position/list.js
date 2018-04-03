@@ -1,4 +1,5 @@
 const network = require("../../utils/network.js")
+const user = require("../../utils/user.js")
 const app = getApp()
 let companyId = ''
 let paramObj = null
@@ -27,6 +28,7 @@ Page({
   onLoad: function (options) {
     companyId = getApp().globalData.companyId
     paramObj = { companyId: companyId, type: 2 }
+    user.login()
     this.getPositionList();
     this.getPosterInfo();
   },

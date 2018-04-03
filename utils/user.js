@@ -1,18 +1,11 @@
-const config = require('./config.js')
 
-App({
-  onLaunch: function () {
-    let _this = this
+const config = require("../config.js")
 
-    console.log(wx.getExtConfigSync())
-    _this.globalData.companyId = wx.getExtConfigSync().companyId
-    _this.globalData.appId = wx.getExtConfigSync().appId
-    // _this.login()
-    
-  },
-  login:function(){
+let user = {
+  login: function (cb) {
     // 登录
-    var _this = this;
+    let _this = this;
+    let globalData = getApp().globalData
     wx.login({
       success: response => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -29,17 +22,20 @@ App({
                   "content-type": "application/x-www-form-urlencoded"
                 },
                 data: {
-                  appid: _this.globalData.appId,
+                  appid: globalData.appId,
                   code: response.code,
                   userInfo: JSON.stringify(res.userInfo),
                 },
                 success: function (res) {
                   let _data = res.data
                   if (_data.code == "0") {
-                    _this.globalData.userInfo = _data.data
-                    _this.globalData.fansId = _data.data.id
+                    globalData.userInfo = _data.data
+                    globalData.fansId = _data.data.id
                     wx.setStorageSync('userInfo', _data.data)
-                    console.log(_this.globalData.fansId, _this.globalData.userInfo)
+                    console.log(globalData.fansId, globalData.userInfo)
+                    if(cb){
+                      cb()
+                    }
                   }
                 }
               })
@@ -56,11 +52,6 @@ App({
       }
     })
   },
-  globalData: {
-    appId:'',       //授权用户的小程序appid
-    userInfo: null,
-    fansId:'',
-    companyId: "",   //正式：61(爱聚) 34530，测试：169359 
-    pageSize: "6"
-  }
-})
+}
+
+module.exports = user

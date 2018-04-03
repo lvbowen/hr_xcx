@@ -2,6 +2,7 @@ const network = require("../../../utils/network.js")
 const WxParse = require('../../../wxParse/wxParse.js')
 let commonApi = require("../../../utils/commonApi.js")
 let utils = require("../../../utils/util.js")
+const user = require("../../../utils/user.js")
 const app = getApp()
 let companyId = ''
 let paramObj = null
@@ -75,7 +76,6 @@ Page({
     let globalData = getApp().globalData
     companyId = globalData.companyId
     paramObj = { companyId: companyId, type: 2 }
-    // companyId = getApp().globalData.companyId
     if(options.scene){
       var scene = decodeURIComponent(options.scene)
       var arr1=scene.split("&");
@@ -92,11 +92,16 @@ Page({
     if (!this.data.phoneNumber) {
       utils.wxLogin()
     }
-    this.getPositionInfo();
+    let _this = this
+    user.login(function(){
+      _this.getPositionInfo();
+      _this.checkCollection();
+    })
+    
     this.getWzpIndexInfo();
     this.getShareTitleInfo();
     this.getPosterInfo();
-    this.checkCollection();
+   
   },
 
   /**

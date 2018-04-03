@@ -1,12 +1,14 @@
 /* pages/mine/recommend/recommend.wxss */
 .recommend_none{
-  text-align: center;
-  padding-top:150rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: #B2B2B2;
-  font-size: 28rpx;
+  font-size:28rpx;
 }
 .recommend_none image{
-  width: 472rpx;
-  height: 492rpx;
-  margin-bottom: 50rpx;
+ width:230rpx;
+  height:245rpx;
+  margin-bottom:80rpx;
+  margin-top:230rpx;
 }

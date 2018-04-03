@@ -1,11 +1,14 @@
 {
   "pages":[
+    "pages/mine/mine",
+    "pages/mine/recommendDetail/recommendDetail",
+    
     "pages/home/home",
     "pages/position/list",
     "pages/position/detail/detail",
     
+    "pages/home/power/power",
     
-    "pages/mine/mine",
     "pages/mine/jobRecord/jobRecord",
     "pages/mine/jobRecordDetail/jobRecordDetail",
     

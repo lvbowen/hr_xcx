@@ -1,21 +1,18 @@
-// pages/mine/recommend/recommend.js
-
-const network = require("../../../utils/network.js")
-
+// pages/mine/recommendDetail/recommendDetail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    recommendList:[],
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getRecommendHistory()
+  
   },
 
   /**
@@ -31,26 +28,7 @@ Page({
   onShow: function () {
   
   },
-  getRecommendHistory: function () {
-    let _this = this;
-    network.post("/smallProgramAudit/getSpMyRecommendation.do", {
-      shareFansId: getApp().globalData.fansId
-    }, function (res) {
-      if (res.code == "0") {
-        _this.setData({
-          recommendList: res.data
-        })
-      } else {
-        console.log(`smallProgramAudit/getSpMyRecommendation.do:${res.message}`)
-      }
-    })
-  },
-  linkTo: function (e) {
-    let query = JSON.parse(e.currentTarget.dataset.query)
-    wx.navigateTo({
-      url: `../recommendDetail/recommendDetail?positionApplyId=${query.positionApplyId}&interviewerInfoId=${query.interviewerInfoId}`,
-    })
-  },
+
   /**
    * 生命周期函数--监听页面隐藏
    */
