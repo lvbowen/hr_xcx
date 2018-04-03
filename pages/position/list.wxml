@@ -50,3 +50,9 @@
       <button class='share_cancel'>取消</button>
     </view>
   </view>
+  <view class='show_img' bindtap="closeShowimg" wx:if='{{showImg}}'>
+    <view class='show_img_con'>
+      <image src='{{showImgurl}}' mode="widthFix"></image>
+    </view>
+    <view bindtap="saveImg" class='show_img_btn'><image src='https://aijuhr.com/images/xcx/dowload.png'></image>保存图片</view>
+  </view>

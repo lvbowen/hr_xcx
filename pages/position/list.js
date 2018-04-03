@@ -18,7 +18,9 @@ Page({
         shqrcode: 'http://121.199.182.2/hrm/upload/spqrcode201803161521179349660.jpg',
         spName: '爱聚招聘',
         posiList:[],
-      }
+      },
+      showImg: false,
+      showImgurl: ''
   },
 
   /**
@@ -142,50 +144,67 @@ Page({
     点击显示生成海报选择
   */
   openChange: function (res) {
+    wx.hideTabBar();
     this.setData({
       showShare: true
     })
   },
   showShareFalse: function (res) {
+    wx.showTabBar();
     this.setData({
       showShare: false
     })
   },
   createPoster: function (res) {
+    var self=this;
     wx.canvasToTempFilePath({
       canvasId: 'secondCanvas',
       fileType: 'jpg',
       quality: '1',
       success: function (res) {
-        console.log(res.tempFilePath)
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-          success(res2) {
-            wx.showToast({
-              title: '保存成功!',
-              icon: 'success',
-              duration: 2000
-            })
-          },
-          fail(res2) {
-            wx.showModal({
-              title: '警告',
-              content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
-              success: function (res2) {
-                if (res2.confirm) {
-                  wx.openSetting({
-                    success: function (res3) {
-                      if (res3.authSetting['scope.writePhotosAlbum']) {
-                        _this.createPoster();
-                      }
-                    }
-                  })
+        console.log(res.tempFilePath);
+        self.setData({
+          showImgurl: res.tempFilePath,
+          showImg: true
+        })
+      }
+    })
+  },
+  // 保存图片到本地
+  saveImg(res) {
+    var _this = this;
+    wx.saveImageToPhotosAlbum({
+      filePath: _this.data.showImgurl,
+      success(res2) {
+        wx.showToast({
+          title: '保存成功!',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail(res2) {
+        wx.showModal({
+          title: '警告',
+          content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
+          success: function (res2) {
+            if (res2.confirm) {
+              wx.openSetting({
+                success: function (res3) {
+                  if (res3.authSetting['scope.writePhotosAlbum']) {
+                    _this.createPoster();
+                  }
                 }
-              }
-            })
+              })
+            }
           }
         })
       }
+    })
+  },
+  //关闭图片预览
+  closeShowimg() {
+    this.setData({
+      showImg: false
     })
   },
   /**

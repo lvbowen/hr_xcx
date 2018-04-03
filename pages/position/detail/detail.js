@@ -66,6 +66,8 @@ Page({
       posiDetail: {},
     },
     checkPosition:false,
+    showImg:false,
+    showImgurl:''
   },
 
   /**
@@ -283,34 +285,48 @@ Page({
       quality: '1',
       success: function (res) {
         console.log(res.tempFilePath)
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-          success(res2) {
-            wx.showToast({
-              title: '保存成功!',
-              icon: 'success',
-              duration: 2000
-            })
-          },
-          fail(res2) {
-            wx.showModal({
-              title: '警告',
-              content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
-              success:function(res2){
-                if(res2.confirm){
-                  wx.openSetting({
-                    success:function(res3){
-                      if (res3.authSetting['scope.writePhotosAlbum']){
-                        _this.createPoster();
-                      }
-                    }
-                  })
+        _this.setData({
+          showImg:true,
+          showImgurl: res.tempFilePath
+        })
+      }
+    })
+  },
+  // 保存图片到本地
+  saveImg(res) {
+    var _this = this;
+    wx.saveImageToPhotosAlbum({
+      filePath: _this.data.showImgurl,
+      success(res2) {
+        wx.showToast({
+          title: '保存成功!',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail(res2) {
+        wx.showModal({
+          title: '警告',
+          content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
+          success: function (res2) {
+            if (res2.confirm) {
+              wx.openSetting({
+                success: function (res3) {
+                  if (res3.authSetting['scope.writePhotosAlbum']) {
+                    _this.createPoster();
+                  }
                 }
-              }
-            })
+              })
+            }
           }
         })
       }
+    })
+  },
+  //关闭图片预览
+  closeShowimg() {
+    this.setData({
+      showImg: false
     })
   },
   /**
