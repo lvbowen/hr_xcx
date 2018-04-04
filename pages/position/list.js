@@ -144,13 +144,16 @@ Page({
     点击显示生成海报选择
   */
   openChange: function (res) {
-    wx.hideTabBar();
-    this.setData({
-      showShare: true
-    })
+    var self=this;
+    wx.hideTabBar({
+      success:function(){
+        self.setData({
+          showShare: true
+        })
+      }
+    });
   },
   showShareFalse: function (res) {
-    wx.showTabBar();
     this.setData({
       showShare: false
     })
@@ -206,6 +209,7 @@ Page({
     this.setData({
       showImg: false
     })
+    wx.showTabBar();
   },
   /**
    * 画canvas
