@@ -84,19 +84,33 @@ Page({
         obj[item.split('=')[0]]=item.split('=')[1]
       })
       options.positionId=obj.pId;
+      options.shareFansId = obj.sId
     }
+    console.log('detail_options',options)
     this.setData({
       options: options,
       phoneNumber: globalData.phoneNumber
     })
+    if (options.shareFansId){
+      globalData.shareFansId = options.shareFansId
+    }
+    
     if (!this.data.phoneNumber) {
       utils.wxLogin()
     }
     let _this = this
-    user.login(function(){
-      _this.getPositionInfo();
-      _this.checkCollection();
-    })
+    if (getApp().globalData.fansId) {
+       //已登录
+      this.getPositionInfo();
+      this.checkCollection();
+    }else{
+      //未登录
+      user.login(function () {
+        console.log('detail_globalData', getApp().globalData)
+        _this.getPositionInfo();
+        _this.checkCollection();
+      })
+    }    
     
     this.getWzpIndexInfo();
     this.getShareTitleInfo();
@@ -254,7 +268,7 @@ Page({
     let _this = this;
     network.post("/api.do", {
       method: "positionRecommend/getSpSharePoster",
-      param: JSON.stringify({ shareType: 3, companyId: companyId, positionId: _this.data.options.positionId })
+      param: JSON.stringify({ shareType: 3, companyId: companyId, positionId: _this.data.options.positionId, shareFansId: getApp().globalData.fansId })
     }, function (res) {
       
       if (res.code == "0" && res.data) {
@@ -376,7 +390,7 @@ Page({
         _this.openChange()
       }else{
         wx.navigateTo({
-          url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
+          url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${fansId}&recomType=${_data.recomType}`,
         })
       }
       
@@ -429,9 +443,10 @@ Page({
    */
   onShareAppMessage: function (result) {
     let _this = this;
+    let fansId = getApp().globalData.fansId
     return {
       title: _this.data.shareInfo.title,
-      path: `/pages/position/detail/detail?companyId=${companyId}&positionId=${_this.data.options.positionId}`,
+      path: `/pages/position/detail/detail?companyId=${companyId}&positionId=${_this.data.options.positionId}&shareFansId=${fansId}`,
       // imageUrl: _this.data.shareInfo.imgUrl,   //使用截图好看些
       success: function (res) {
         // 转发成功

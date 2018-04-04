@@ -12,3 +12,38 @@
   margin-bottom:80rpx;
   margin-top:230rpx;
 }
+.recom-list{
+  padding-top:30rpx;
+
+}
+.recom-item{
+  margin-bottom:24rpx;
+  padding:0 30rpx;
+  background:#fff;
+}
+.recom-item_hd{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:96rpx;
+  border-bottom:1rpx solid #e5e5e5;
+}
+.recom-item_bd {
+  display: flex;
+  justify-content: space-between;
+  padding:24rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+.recom-item_bd .bd-info{
+  width:600rpx;
+}
+.recom-item_bd .bd-state text{
+  color: #5AA2E7;
+}
+.recom-item_bd .arrow-right{
+  align-self: center;
+  position: relative;
+  left:-10rpx;
+}

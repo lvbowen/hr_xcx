@@ -1,9 +1,11 @@
 {
   "pages":[
+    "pages/home/home",
+    "pages/mine/recommend/recommend",
     "pages/mine/mine",
     "pages/mine/recommendDetail/recommendDetail",
     
-    "pages/home/home",
+    
     "pages/position/list",
     "pages/position/detail/detail",
     
@@ -18,7 +20,7 @@
    
     
     "pages/mine/jobCollection/jobCollection",
-    "pages/mine/jobRecommend/jobRecommend", 
+    
     
     "pages/mine/authentication/authentication", 
     "pages/mine/authenResult/authenResult",
@@ -44,8 +46,8 @@
     "pages/home/map/map",
     "pages/home/team/team",
     "pages/index/index",
-    "pages/mine/collect/collect",
-    "pages/mine/recommend/recommend"
+    "pages/mine/collect/collect"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

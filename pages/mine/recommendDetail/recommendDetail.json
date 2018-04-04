@@ -1,1 +1,7 @@
-{}
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "推荐详情",
+  "backgroundColor": "#f1f5f8",
+  "backgroundTextStyle": "light"
+}

@@ -4,9 +4,7 @@
 <view class="record-item">
   <template is="jobRecord" data="{{...data}}" />
 </view>
-<view class="record-status-wrap">
-
-  
+<view class="record-status-wrap"> 
   <view class="weui-panel weui-panel_access">
           <view class="weui-panel__hd"><image class="img" src="../../../images/personal.png"></image>职位申请状态跟踪</view>
           <view class="weui-panel__bd">

@@ -1,2 +1,37 @@
-<!--pages/mine/recommendDetail/recommendDetail.wxml-->
-<text>pages/mine/recommendDetail/recommendDetail.wxml</text>
+ <wxs module="filters" src="../../../wxs/filter.wxs" />  
+
+<view class="record-item">
+   <view class="recom-item">
+      <view class="recom-item_hd">
+        <view class="hd-left font-34">推荐人才：{{data.interviewerName}}</view>
+        <view class="hd-right font-gray-26">状态变更：{{filters.formatDate(data.updateTime,'date')}}</view>
+      </view>
+      <view class="recom-item_bd">
+        <view class="bd-position">{{data.positionName}}</view>
+        <view class="bd-company">{{data.companyName}}</view>
+      </view>
+    </view>  
+</view>
+<view class="record-status-wrap"> 
+  <view class="weui-panel weui-panel_access">
+          <view class="weui-panel__hd"><image class="img" src="../../../images/personal.png"></image>人才状态跟踪</view>
+          <view class="weui-panel__bd">
+              <view class="stepWrap">
+                <view  wx:for="{{stepName}}" wx:key="index" class="step-item {{data.resumeProgress > index?'active':''}}">
+                  <view class="item-tail"></view>  
+                  <view class="step-item-icon">
+                    <text class="fa fa-check" wx:if="{{data.resumeProgress > index}}"></text>
+                    <text wx:if="{{data.resumeProgress <= index}}">{{ index + 1 }}</text>
+                  </view>
+                  <view class="step-item-name">{{ item }}</view>
+                </view>
+              </view>
+              <view class="record">
+                  <view wx:for="{{data.zpRecord}}" wx:key="id" class="list">
+                    <view class="time">{{filters.timestampToDate(item.operateTime)}}</view>
+                    <view class="describe">{{filters.applyStatus(item.operateStatus)}}</view>
+                  </view>
+                </view>
+          </view>
+    </view>
+</view>
