@@ -139,10 +139,11 @@ Page({
         resumeFrom:'18'
       },
       fansId: _data.options.fansId,
-      shareFansId: _data.options.shareFansId,
+      shareFansId: getApp().globalData.shareFansId,
       recomType: _data.options.recomType,
       activityId: _data.options.activityId
     }
+    console.log('submit_param',param)
     network.post("/api.do", {
       method: "recruitPosition/spSubmitApplicationRecord",
       param: JSON.stringify(param)

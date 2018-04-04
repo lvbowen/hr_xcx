@@ -1,4 +1,4 @@
-// pages/mine/jobRecommend/jobRecommend.js
+// pages/home/power/power.js
 Page({
 
   /**

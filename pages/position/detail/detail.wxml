@@ -28,7 +28,7 @@
         <text class='visits_head_right'>历史访问<text class='color_46BE8A'>{{positionInfo.historyVisit}}</text>人</text>
       </view>
       <view class='visits_con'>
-        <image src='{{item}}' wx:for="{{positionInfo.visitationHistoryHeadImgs}}"></image>
+        <image src='{{item}}' wx:for="{{positionInfo.visitationHistoryHeadImgs}}" wx:key="index"></image>
       </view>
     </view> 
   <!-- 职位描述  -->
