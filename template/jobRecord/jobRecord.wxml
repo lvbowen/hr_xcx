@@ -2,7 +2,7 @@
 
 <template name="jobRecord">
     <view class="positionName">
-      <text class="text font-34">{{positionName}}</text>
+      <text class="text font-34 ell">{{positionName}}</text>
       <text class="status  {{currentStatus=='已淘汰'?'status_fail':''}}">{{currentStatus}}</text>
     </view>
     <view class="companyName">

@@ -605,7 +605,7 @@ Page({
     let param = {
       interviewResumeInfo: this.data.interviewResumeInfo,
       fansId: this.data.fansId,
-      shareFansId: this.data.options.shareFansId,
+      shareFansId: getApp().globalData.shareFansId,
       recomType: this.data.options.recomType,
       activityId: this.data.options.activityId
     }

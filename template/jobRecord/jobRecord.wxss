@@ -9,6 +9,9 @@
   justify-content: space-between;
   margin-bottom: 6rpx;
 }
+.positionName .text{
+  flex:1;
+}
 .positionName .status{
    height: 45rpx;
   line-height: 45rpx;

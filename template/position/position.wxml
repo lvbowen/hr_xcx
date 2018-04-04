@@ -3,8 +3,9 @@
 <template name="positionItem">
     
     <view class="position-title">
-      <image class="img" src="/images/urgent2.png" wx:if="{{isUrgent == 1}}"></image>
-      <text class="title font-34">{{positionName}}</text>
+      <image class="img" src="/images/urgent2.png" wx:if="{{isUrgent == 1}}"></image> 
+      <text class="detail title font-34" wx:if="{{workCitySpilt}}">{{positionName}}</text>
+      <text class="list title font-34 ell" wx:else>{{positionName}}</text>
     </view>
     <view class="position-tags">
       <text class="tag">{{workCitySpilt ? workCitySpilt : filters.splitString(workCity)}}</text> 

@@ -1,13 +1,19 @@
 .position-title{
   display: flex;
   align-items: center;
-  height: 48rpx;
+  /* height: 48rpx; */
   margin-bottom: 6rpx;
 }
 .position-title .img{
   width:56rpx;
   height: 32rpx;
   margin-right:10rpx;
+}
+.position-title .list{
+  flex:1;
+}
+.position-title .detail{
+   flex:1;
 }
 .position-tags{
   display: flex;

@@ -1,12 +1,49 @@
 /* pages/mine/recommend/recommend.wxss */
 .recommend_none{
-  text-align: center;
-  padding-top:150rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: #B2B2B2;
-  font-size: 28rpx;
+  font-size:28rpx;
 }
 .recommend_none image{
-  width: 472rpx;
-  height: 492rpx;
-  margin-bottom: 50rpx;
+ width:230rpx;
+  height:245rpx;
+  margin-bottom:80rpx;
+  margin-top:230rpx;
+}
+.recom-list{
+  padding-top:30rpx;
+
+}
+.recom-item{
+  margin-bottom:24rpx;
+  padding:0 30rpx;
+  background:#fff;
+}
+.recom-item_hd{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:96rpx;
+  border-bottom:1rpx solid #e5e5e5;
+}
+.recom-item_bd {
+  display: flex;
+  justify-content: space-between;
+  padding:24rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+.recom-item_bd .bd-info{
+  width:600rpx;
+}
+.recom-item_bd .bd-state text{
+  color: #5AA2E7;
+}
+.recom-item_bd .arrow-right{
+  align-self: center;
+  position: relative;
+  left:-10rpx;
 }

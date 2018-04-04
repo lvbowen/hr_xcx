@@ -1,4 +1,5 @@
 const network = require("../../utils/network.js")
+const user = require("../../utils/user.js")
 const app = getApp()
 let companyId = ''
 let paramObj = null
@@ -29,8 +30,30 @@ Page({
   onLoad: function (options) {
     companyId = getApp().globalData.companyId
     paramObj = { companyId: companyId, type: 2 }
+    if (options.scene) {
+      var scene = decodeURIComponent(options.scene)
+      var arr1 = scene.split("&");
+      var obj = {};
+      arr1.forEach(function (item) {
+        obj[item.split('=')[0]] = item.split('=')[1]
+      })
+      options.shareFansId = obj.sId
+    }
+    if (options.shareFansId) {
+      getApp().globalData.shareFansId = options.shareFansId
+    }
+    let _this = this
+    if (getApp().globalData.fansId){
+      //已登录
+      this.getPosterInfo();
+    }else{
+      //未登录
+      user.login(function () {
+        _this.getPosterInfo();
+      })
+    }
     this.getPositionList();
-    this.getPosterInfo();
+    
   },
 
   /**
@@ -128,7 +151,7 @@ Page({
     let _this = this;
     network.post("/api.do", {
       method: "positionRecommend/getSpSharePoster",
-      param: JSON.stringify({ shareType: 2, companyId: companyId })
+      param: JSON.stringify({ shareType: 2, companyId: companyId, shareFansId: getApp().globalData.fansId})
     }, function (res) {
       if (res.code == "0" && res.data) {
         _this.setData({
@@ -292,9 +315,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    let fansId = getApp().globalData.fansId
     return {
       title: '职位列表',
-      path: `/pages/position/list`,
+      path: `/pages/position/list?shareFansId=${fansId}`,
       success: function (res) {
         // 转发成功
       },
