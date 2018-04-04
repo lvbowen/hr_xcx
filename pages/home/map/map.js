@@ -33,7 +33,7 @@ Page({
     let marker = this.data.markers[0]
     marker.latitude = parseFloat(options.latitude)
     marker.longitude = parseFloat(options.longitude)  
-    marker.callout.content = `${options.companyName}\n${options.region}${options.address}`
+    marker.callout.content = `${options.companyName}\n${options.address}`
     let _this = this;
     this.setData({
       companyInfo:options,

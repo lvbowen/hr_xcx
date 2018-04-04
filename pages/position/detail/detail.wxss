@@ -17,6 +17,11 @@
   border-bottom:1rpx solid #e5e5e5; 
   background:#ffffff;
 }
+.current-position .position-title .img{
+   align-self:flex-start;
+   position: relative;
+   top:11rpx;
+}
 .company-info{
   margin-bottom: 24rpx;
   background: #ffffff;
