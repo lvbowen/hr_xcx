@@ -203,6 +203,7 @@ Page({
     this.setData({
       showShare:false
     })
+    wx.showTabBar();
   },
   createPoster:function(res){
     var self=this;
@@ -211,10 +212,14 @@ Page({
       fileType: 'jpg',
       quality: '1',
       success: function (res) {
-        self.setData({
-          showImgurl: res.tempFilePath,
-          showImg: true
-        })
+        wx.hideTabBar({
+          success: function () {
+            self.setData({
+              showImgurl: res.tempFilePath,
+              showImg: true
+            })
+          }
+        });
       }
     })
   },
