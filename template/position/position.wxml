@@ -10,7 +10,8 @@
     <view class="position-tags">
       <text class="tag">{{workCitySpilt ? workCitySpilt : filters.splitString(workCity)}}</text> 
       <text class="tag">{{positionType == 1 ? '全职' : positionType == 2 ? '兼职' : '实习'}}</text>
-      <text class="tag">{{positionSalaryLowest}}k-{{positionSalaryHighest}}k</text>
+      <text class="tag" wx:if="{{showSalaryType==2}}">{{positionSalaryLowest}}-{{positionSalaryHighest}}</text>
+      <text class="tag" wx:else>{{positionSalaryLowest}}k-{{positionSalaryHighest}}k</text>
     </view>
     <view class="time-number">
       <view class="time font-gray-26">发布时间 : {{createTime}} </view>

@@ -213,13 +213,16 @@ Page({
   
   */
   openChange:function(res){
-    wx.hideTabBar();
-    this.setData({
-      showShare:true
-    })
+    var self=this;
+    wx.hideTabBar({
+      success:function(){
+        self.setData({
+          showShare:true
+        })
+      }
+    });
   },
   showShareFalse:function(res){
-    wx.showTabBar();
     this.setData({
       showShare:false
     })
@@ -276,6 +279,7 @@ Page({
     this.setData({
       showImg:false
     })
+    wx.showTabBar();
   },
   //获取小程序canvas并画图
   getCanvas:function(res){
