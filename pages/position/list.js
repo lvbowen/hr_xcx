@@ -52,7 +52,7 @@ Page({
         _this.getPosterInfo();
       })
     }
-    this.getPositionList();
+    // this.getPositionList();
     
   },
 
@@ -67,7 +67,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getPositionList();
   },
   /**
    * 获取职位列表

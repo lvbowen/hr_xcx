@@ -20,7 +20,7 @@
 .current-position .position-title .img{
    align-self:flex-start;
    position: relative;
-   top:11rpx;
+   top:9rpx;
 }
 .company-info{
   margin-bottom: 24rpx;
