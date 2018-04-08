@@ -1,2 +1,14 @@
 @import "/template/memorabilia/memorabilia.wxss";
 
+.weui-panel__bd{
+  padding-top:30rpx;
+}
+
+.weui-media-box{
+  background:#fff;
+}
+.empty-img-box{
+  margin-top:30rpx;
+  background: #fff;
+  padding:30rpx 30rpx 0 50rpx;
+}
