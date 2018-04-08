@@ -427,6 +427,7 @@ Page({
     return {
       title: _this.data.shareInfo.title,
       path: `/pages/home/home?shareFansId=${fansId}`,
+      imageUrl:'/images/share-home.jpg',
       success: function (res) {
         // 转发成功
         //  console.log(res)
