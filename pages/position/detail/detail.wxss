@@ -184,10 +184,12 @@
   justify-content: flex-start;
 }
 .visits_con image{
-  width: 10%;
-  height: 10%;
+   width: 10%;
+  height: 10%; 
   border-radius: 50%;
   margin-right: 2.5%;
+  border:1rpx solid #eee;
+  box-sizing: border-box;
 }
 .color_46BE8A{
   color: #46BE8A;

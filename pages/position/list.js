@@ -207,11 +207,19 @@ Page({
     wx.saveImageToPhotosAlbum({
       filePath: _this.data.showImgurl,
       success(res2) {
-        wx.showToast({
-          title: '保存成功!',
-          icon: 'success',
-          duration: 2000
+        wx.showModal({
+          content: '海报以保存到系统相册\n快去分享给朋友',
+          showCancel: false,
+          confirmText: '我知道了',
+          success: function (res2) {
+
+          }
         })
+        // wx.showToast({
+        //   title: '保存成功!',
+        //   icon: 'success',
+        //   duration: 2000
+        // })
       },
       fail(res2) {
         wx.showModal({
