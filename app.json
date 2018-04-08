@@ -10,7 +10,7 @@
     "pages/position/detail/detail",
     
     "pages/home/power/power",
-    
+      "pages/home/memorabiliaDetail/memorabiliaDetail",
     "pages/mine/jobRecord/jobRecord",
     "pages/mine/jobRecordDetail/jobRecordDetail",
     
