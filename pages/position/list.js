@@ -1,4 +1,5 @@
 const network = require("../../utils/network.js")
+const user = require("../../utils/user.js")
 const app = getApp()
 let companyId = ''
 let paramObj = null
@@ -18,7 +19,9 @@ Page({
         shqrcode: 'http://121.199.182.2/hrm/upload/spqrcode201803161521179349660.jpg',
         spName: '爱聚招聘',
         posiList:[],
-      }
+      },
+      showImg: false,
+      showImgurl: ''
   },
 
   /**
@@ -27,8 +30,30 @@ Page({
   onLoad: function (options) {
     companyId = getApp().globalData.companyId
     paramObj = { companyId: companyId, type: 2 }
-    this.getPositionList();
-    this.getPosterInfo();
+    if (options.scene) {
+      var scene = decodeURIComponent(options.scene)
+      var arr1 = scene.split("&");
+      var obj = {};
+      arr1.forEach(function (item) {
+        obj[item.split('=')[0]] = item.split('=')[1]
+      })
+      options.shareFansId = obj.sId
+    }
+    if (options.shareFansId) {
+      getApp().globalData.shareFansId = options.shareFansId
+    }
+    let _this = this
+    if (getApp().globalData.fansId){
+      //已登录
+      this.getPosterInfo();
+    }else{
+      //未登录
+      user.login(function () {
+        _this.getPosterInfo();
+      })
+    }
+    // this.getPositionList();
+    
   },
 
   /**
@@ -42,7 +67,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getPositionList();
   },
   /**
    * 获取职位列表
@@ -126,7 +151,7 @@ Page({
     let _this = this;
     network.post("/api.do", {
       method: "positionRecommend/getSpSharePoster",
-      param: JSON.stringify({ shareType: 2, companyId: companyId })
+      param: JSON.stringify({ shareType: 2, companyId: companyId, shareFansId: getApp().globalData.fansId})
     }, function (res) {
       if (res.code == "0" && res.data) {
         _this.setData({
@@ -142,51 +167,77 @@ Page({
     点击显示生成海报选择
   */
   openChange: function (res) {
-    this.setData({
-      showShare: true
-    })
+    var self=this;
+    wx.hideTabBar({
+      success:function(){
+        self.setData({
+          showShare: true
+        })
+      }
+    });
   },
   showShareFalse: function (res) {
     this.setData({
       showShare: false
     })
+    wx.showTabBar();
   },
   createPoster: function (res) {
+    var self=this;
     wx.canvasToTempFilePath({
       canvasId: 'secondCanvas',
       fileType: 'jpg',
       quality: '1',
       success: function (res) {
-        console.log(res.tempFilePath)
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-          success(res2) {
-            wx.showToast({
-              title: '保存成功!',
-              icon: 'success',
-              duration: 2000
+        console.log(res.tempFilePath);
+        wx.hideTabBar({
+          success: function () {
+            self.setData({
+              showImgurl: res.tempFilePath,
+              showImg: true
             })
-          },
-          fail(res2) {
-            wx.showModal({
-              title: '警告',
-              content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
-              success: function (res2) {
-                if (res2.confirm) {
-                  wx.openSetting({
-                    success: function (res3) {
-                      if (res3.authSetting['scope.writePhotosAlbum']) {
-                        _this.createPoster();
-                      }
-                    }
-                  })
+          }
+        });
+      }
+    })
+  },
+  // 保存图片到本地
+  saveImg(res) {
+    var _this = this;
+    wx.saveImageToPhotosAlbum({
+      filePath: _this.data.showImgurl,
+      success(res2) {
+        wx.showToast({
+          title: '保存成功!',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail(res2) {
+        wx.showModal({
+          title: '警告',
+          content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
+          success: function (res2) {
+            if (res2.confirm) {
+              wx.openSetting({
+                success: function (res3) {
+                  if (res3.authSetting['scope.writePhotosAlbum']) {
+                    _this.createPoster();
+                  }
                 }
-              }
-            })
+              })
+            }
           }
         })
       }
     })
+  },
+  //关闭图片预览
+  closeShowimg() {
+    this.setData({
+      showImg: false
+    })
+    wx.showTabBar();
   },
   /**
    * 画canvas
@@ -264,9 +315,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    let fansId = getApp().globalData.fansId
     return {
       title: '职位列表',
-      path: `/pages/position/list`,
+      path: `/pages/position/list?shareFansId=${fansId}`,
       success: function (res) {
         // 转发成功
       },

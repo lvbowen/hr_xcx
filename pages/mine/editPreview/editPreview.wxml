@@ -8,19 +8,24 @@
       <image class="avatar-img" wx:else src="../../../images/default_avatar2.png" ></image>
     </view>
     <view class="info-box">
-      <view class="name-sex">
-        <text class="name font-36">{{basic.name}}</text>
-        <image class="icon-sex" src="../../../images/sex_male.png" wx:if="{{basic.sex == 1}}"></image>
-        <image class="icon-sex" src="../../../images/sex_female.png" wx:elif="{{basic.sex == 2}}"></image>
+      <view class="" wx:if="{{basic.name}}">
+        <view class="name-sex">
+          <text class="name font-36">{{basic.name}}</text>
+          <image class="icon-sex" src="../../../images/sex_male.png" wx:if="{{basic.sex == 1}}"></image>
+          <image class="icon-sex" src="../../../images/sex_female.png" wx:elif="{{basic.sex == 2}}"></image>
+        </view>
+        <view class="motto ell font-gray-26">{{basic.motto ? basic.motto : ''}}</view>
+        <view class="phone">
+          <image class="icon-phone" src="../../../images/phone.png"></image>
+          <text class="font-gray-26">{{basic.phone}}</text>
+        </view>
+        <view class="email">
+          <image class="icon-email" src="../../../images/email.png"></image>
+          <text class="font-gray-26">{{basic.email}}</text>
+        </view>
       </view>
-      <view class="motto ell font-gray-26">{{basic.motto ? basic.motto : ''}}</view>
-      <view class="phone">
-        <image class="icon-phone" src="../../../images/phone.png"></image>
-        <text class="font-gray-26">{{basic.phone}}</text>
-      </view>
-      <view class="email">
-        <image class="icon-email" src="../../../images/email.png"></image>
-        <text class="font-gray-26">{{basic.email}}</text>
+      <view class="no-basic" wx:else>
+        <text>请完善基础信息</text>
       </view>
       <image class="icon-edit" src="../../../images/edit.png" data-page="editBaseInfo" catchtap="goEdit"></image>
     </view>

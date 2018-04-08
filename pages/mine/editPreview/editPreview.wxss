@@ -112,6 +112,13 @@
   height:22rpx;
   margin-right:8rpx;
 }
+.base-info .info-box .no-basic{
+  display: flex;
+  align-items: center;
+  height: 128rpx;
+  font-size:30rpx;
+  color: #999;
+}
 /* 自我介绍 */
 .introduce{
   padding-bottom: 20rpx;

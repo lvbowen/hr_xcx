@@ -17,6 +17,11 @@
   border-bottom:1rpx solid #e5e5e5; 
   background:#ffffff;
 }
+.current-position .position-title .img{
+   align-self:flex-start;
+   position: relative;
+   top:9rpx;
+}
 .company-info{
   margin-bottom: 24rpx;
   background: #ffffff;
@@ -179,10 +184,13 @@
   justify-content: flex-start;
 }
 .visits_con image{
-  width: 80rpx;
-  height: 80rpx;
+  width: 10%;
+  height: 10%;
   border-radius: 50%;
-  margin-right: 42rpx;
+  margin-right: 2.5%;
+}
+.color_46BE8A{
+  color: #46BE8A;
 }
 .color_46BE8A{
   color: #46BE8A;

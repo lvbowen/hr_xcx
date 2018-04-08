@@ -1,12 +1,20 @@
  <wxs module="filters" src="../../../wxs/filter.wxs" />  
-<import src="/template/jobRecord/jobRecord.wxml" />
 
 <view class="record-item">
-  <template is="jobRecord" data="{{...data}}" />
+   <view class="recom-item">
+      <view class="recom-item_hd">
+        <view class="hd-left font-34">推荐人才：{{data.interviewerName}}</view>
+        <view class="hd-right font-gray-26">状态变更：{{filters.formatDate(data.updateTime,'date')}}</view>
+      </view>
+      <view class="recom-item_bd">
+        <view class="bd-position">{{data.positionName}}</view>
+        <view class="bd-company">{{data.companyName}}</view>
+      </view>
+    </view>  
 </view>
 <view class="record-status-wrap"> 
   <view class="weui-panel weui-panel_access">
-          <view class="weui-panel__hd"><image class="img" src="../../../images/personal.png"></image>职位申请状态跟踪</view>
+          <view class="weui-panel__hd"><image class="img" src="../../../images/personal.png"></image>人才状态跟踪</view>
           <view class="weui-panel__bd">
               <view class="stepWrap">
                 <view  wx:for="{{stepName}}" wx:key="index" class="step-item {{data.resumeProgress > index?'active':''}}">

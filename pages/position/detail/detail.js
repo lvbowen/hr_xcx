@@ -2,6 +2,7 @@ const network = require("../../../utils/network.js")
 const WxParse = require('../../../wxParse/wxParse.js')
 let commonApi = require("../../../utils/commonApi.js")
 let utils = require("../../../utils/util.js")
+const user = require("../../../utils/user.js")
 const app = getApp()
 let companyId = ''
 let paramObj = null
@@ -66,6 +67,8 @@ Page({
       posiDetail: {},
     },
     checkPosition:false,
+    showImg:false,
+    showImgurl:''
   },
 
   /**
@@ -75,7 +78,6 @@ Page({
     let globalData = getApp().globalData
     companyId = globalData.companyId
     paramObj = { companyId: companyId, type: 2 }
-    // companyId = getApp().globalData.companyId
     if(options.scene){
       var scene = decodeURIComponent(options.scene)
       var arr1=scene.split("&");
@@ -84,19 +86,38 @@ Page({
         obj[item.split('=')[0]]=item.split('=')[1]
       })
       options.positionId=obj.pId;
+      options.shareFansId = obj.sId
     }
+    console.log('detail_options',options)
     this.setData({
       options: options,
       phoneNumber: globalData.phoneNumber
     })
+    if (options.shareFansId){
+      globalData.shareFansId = options.shareFansId
+    }
+    
     if (!this.data.phoneNumber) {
       utils.wxLogin()
     }
-    this.getPositionInfo();
+    let _this = this
+    if (getApp().globalData.fansId) {
+       //已登录
+      this.getPositionInfo();
+      this.checkCollection();
+    }else{
+      //未登录
+      user.login(function () {
+        console.log('detail_globalData', getApp().globalData)
+        _this.getPositionInfo();
+        _this.checkCollection();
+      })
+    }    
+    
     this.getWzpIndexInfo();
     this.getShareTitleInfo();
     this.getPosterInfo();
-    this.checkCollection();
+   
   },
 
   /**
@@ -120,7 +141,7 @@ Page({
     let _this = this;
     network.post("/api.do", {
       method: "promotionPage/positionInfo",
-      param: JSON.stringify({ id: _this.data.options.positionId, companyId: companyId, fansId: '', spFansId: getApp().globalData.fansId, isRoutine:'1'})
+      param: JSON.stringify({ id: _this.data.options.positionId, companyId: companyId, spFansId: getApp().globalData.fansId, isRoutine:'1'})
     }, function (res) {
       if (res.code == "0" && res.data) {
         _this.setData({
@@ -249,7 +270,7 @@ Page({
     let _this = this;
     network.post("/api.do", {
       method: "positionRecommend/getSpSharePoster",
-      param: JSON.stringify({ shareType: 3, companyId: companyId, positionId: _this.data.options.positionId })
+      param: JSON.stringify({ shareType: 3, companyId: companyId, positionId: _this.data.options.positionId, shareFansId: getApp().globalData.fansId })
     }, function (res) {
       
       if (res.code == "0" && res.data) {
@@ -283,34 +304,48 @@ Page({
       quality: '1',
       success: function (res) {
         console.log(res.tempFilePath)
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-          success(res2) {
-            wx.showToast({
-              title: '保存成功!',
-              icon: 'success',
-              duration: 2000
-            })
-          },
-          fail(res2) {
-            wx.showModal({
-              title: '警告',
-              content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
-              success:function(res2){
-                if(res2.confirm){
-                  wx.openSetting({
-                    success:function(res3){
-                      if (res3.authSetting['scope.writePhotosAlbum']){
-                        _this.createPoster();
-                      }
-                    }
-                  })
+        _this.setData({
+          showImg:true,
+          showImgurl: res.tempFilePath
+        })
+      }
+    })
+  },
+  // 保存图片到本地
+  saveImg(res) {
+    var _this = this;
+    wx.saveImageToPhotosAlbum({
+      filePath: _this.data.showImgurl,
+      success(res2) {
+        wx.showToast({
+          title: '保存成功!',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail(res2) {
+        wx.showModal({
+          title: '警告',
+          content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
+          success: function (res2) {
+            if (res2.confirm) {
+              wx.openSetting({
+                success: function (res3) {
+                  if (res3.authSetting['scope.writePhotosAlbum']) {
+                    _this.createPoster();
+                  }
                 }
-              }
-            })
+              })
+            }
           }
         })
       }
+    })
+  },
+  //关闭图片预览
+  closeShowimg() {
+    this.setData({
+      showImg: false
     })
   },
   /**
@@ -371,7 +406,7 @@ Page({
         _this.openChange()
       }else{
         wx.navigateTo({
-          url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${fansId}&shareFansId=${_data.shareFansId}&recomType=${_data.recomType}`,
+          url: `../resume/resume?companyId=${_data.options.companyId}&positionId=${_data.options.positionId}&fansId=${fansId}&recomType=${_data.recomType}`,
         })
       }
       
@@ -424,9 +459,10 @@ Page({
    */
   onShareAppMessage: function (result) {
     let _this = this;
+    let fansId = getApp().globalData.fansId
     return {
       title: _this.data.shareInfo.title,
-      path: `/pages/position/detail/detail?companyId=${companyId}&positionId=${_this.data.options.positionId}`,
+      path: `/pages/position/detail/detail?companyId=${companyId}&positionId=${_this.data.options.positionId}&shareFansId=${fansId}`,
       // imageUrl: _this.data.shareInfo.imgUrl,   //使用截图好看些
       success: function (res) {
         // 转发成功

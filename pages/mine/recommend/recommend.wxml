@@ -1,5 +1,24 @@
 <!--pages/mine/recommend/recommend.wxml-->
-<view class='recommend_none'>
+<wxs module="filters" src="../../../wxs/filter.wxs" />  
+
+<view class="recom-list" wx:if="{{recommendList && recommendList.length>0}}">
+    <view class="recom-item" wx:for="{{recommendList}}" wx:key="index" catchtap='linkTo' data-query="{{item}}">
+      <view class="recom-item_hd">
+        <view class="hd-left font-34">推荐人才：{{item.interviewerName}}</view>
+        <view class="hd-right font-gray-26">状态变更：{{filters.formatDate(item.updateTime,'date')}}</view>
+      </view>
+      <view class="recom-item_bd">
+        <view class="bd-info">
+          <view class="bd-position">{{item.positionName}}</view>
+          <view class="bd-company">{{item.companyName}}</view>
+          <view class="bd-state">当前状态：<text>{{item.currentStatus}}</text></view>
+        </view>
+        <view class="arrow-right"></view>
+      </view>
+    </view>  
+</view>
+
+<view class='recommend_none' wx:else>
   <image src='https://aijuhr.com/images/xcx/none.png'></image>
-  <view>我的推荐暂没有数据</view>
+  <view>您还没有推荐的人，赶快去推荐吧</view>
 </view>

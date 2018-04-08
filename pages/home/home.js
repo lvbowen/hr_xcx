@@ -1,6 +1,7 @@
 
 const network = require("../../utils/network.js")
 const utils = require("../../utils/util.js")
+const user = require("../../utils/user.js")
 const app = getApp() 
 let companyId = ''
 let paramObj = null
@@ -22,7 +23,7 @@ Page({
     autoplay: true,
     interval: 3000,
     duration: 1000,
-    height:125,
+    height:129,
     height2:0,
     showChevron: false,   //是否显示箭头
     showChevronDown:true,   //是否显示下箭头
@@ -31,10 +32,12 @@ Page({
     index:0,
     showShare:false,
     poster:{
-      shTitle:'gs/电子商务/天使轮/0-50人',
-      shqrcode:'https://aijuhr.com/upload/spqrcode201803161521179349660.jpg',
-      spName:'爱聚招聘'
-    }
+      shTitle:'',
+      shqrcode:'',
+      spName:''
+    },
+    showImg:false,
+    showImgurl:''
   },
 
   /**
@@ -43,10 +46,32 @@ Page({
   onLoad: function (options) {
     companyId = getApp().globalData.companyId
     paramObj = { companyId: companyId, type: 2,}
+    if (options.scene) {
+      var scene = decodeURIComponent(options.scene)
+      var arr1 = scene.split("&");
+      var obj = {};
+      arr1.forEach(function (item) {
+        obj[item.split('=')[0]] = item.split('=')[1]
+      })
+      options.shareFansId = obj.sId
+    }
+    if (options.shareFansId) {
+      getApp().globalData.shareFansId = options.shareFansId
+    }
+    let _this = this
+    if (getApp().globalData.fansId) {
+      //已登录
+       this.getPosterInfo();
+    }else{
+      //未登录
+      user.login(function () {
+        _this.getPosterInfo();
+      })
+    }
+    
     this.getCompanyDetail();
     this.getCompanyInfo();
     this.getShareInfo();
-    this.getPosterInfo()
   },
 
   /**
@@ -81,9 +106,9 @@ Page({
           })
           if (res.data.CompanyWebsite && res.data.CompanyWebsite.companyIntroduction) {
             utils.getWxmlInfo("#introContent", function (res) {
-              //公司介绍内容高度超过125px，才显示箭头
+              //公司介绍内容高度超过129px，才显示箭头
               let height = res[0].height
-              if (height >= 125) {
+              if (height >= 129) {
                 _this.setData({
                   showChevron: true,
                   height2: height
@@ -172,7 +197,7 @@ Page({
     let _this = this;
     network.post("/api.do", {
       method: "positionRecommend/getSpSharePoster",
-      param: JSON.stringify({ shareType: 1, companyId: companyId })
+      param: JSON.stringify({ shareType: 1, companyId: companyId, shareFansId: getApp().globalData.fansId })
     }, function (res) {
       if (res.code == "0" && res.data) {
         _this.setData({
@@ -188,52 +213,80 @@ Page({
   
   */
   openChange:function(res){
-    this.setData({
-      showShare:true
-    })
+    var self=this;
+    wx.hideTabBar({
+      success:function(){
+        self.setData({
+          showShare:true
+        })
+      }
+    });
   },
   showShareFalse:function(res){
     this.setData({
       showShare:false
     })
+    wx.showTabBar();
   },
   createPoster:function(res){
+    var self=this;
     wx.canvasToTempFilePath({
       canvasId: 'firstCanvas',
       fileType: 'jpg',
       quality: '1',
       success: function (res) {
-        console.log(res.tempFilePath)
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-          success(res2) {
-            wx.showToast({
-              title: '保存成功!',
-              icon: 'success',
-              duration: 2000
+        wx.hideTabBar({
+          success: function () {
+            self.setData({
+              showImgurl: res.tempFilePath,
+              showImg: true
             })
-          },
-          fail(res2) {
-            wx.showModal({
-              title: '警告',
-              content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
-              success: function (res2) {
-                if (res2.confirm) {
-                  wx.openSetting({
-                    success: function (res3) {
-                      if (res3.authSetting['scope.writePhotosAlbum']) {
-                        _this.createPoster();
-                      }
-                    }
-                  })
+          }
+        });
+      }
+    })
+  },
+  // 保存图片到本地
+  saveImg(res){
+    var _this =this;
+    console.log(_this.data.showImgurl)
+    wx.saveImageToPhotosAlbum({
+      filePath: _this.data.showImgurl,
+      success(res2) {
+        wx.showToast({
+          title: '保存成功!',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail(res2) {
+        console.log(res2);
+        wx.showModal({
+          title: '警告',
+          content: '您点击了拒绝授权,将无法正常保存图片到本地,点击确定重新获取授权。',
+          success: function (res2) {
+            if (res2.confirm) {
+              wx.openSetting({
+                success: function (res3) {
+                  if (res3.authSetting['scope.writePhotosAlbum']) {
+                    _this.createPoster();
+                  }
                 }
-              }
-            })
+              })
+            }
           }
         })
       }
     })
   },
+  //关闭图片预览
+  closeShowimg(){
+    this.setData({
+      showImg:false
+    })
+    wx.showTabBar();
+  },
+  //获取小程序canvas并画图
   getCanvas:function(res){
     var _this=this;
     var context = wx.createCanvasContext('firstCanvas');
@@ -246,6 +299,7 @@ Page({
         wx.downloadFile({
           url: 'https://aijuhr.com/images/xcx/company_share.png',
           success: function (res) {
+            console.log(res.tempFilePath);
             context.drawImage(res.tempFilePath, 0, 0, 750, 1334);
             context.setFontSize(48);
             context.setFillStyle("#ffffff");
@@ -306,14 +360,9 @@ Page({
       _this.setData({
           height: _this.data.height2
         })
-      // utils.getWxmlInfo("#introContent", function (res) {
-      //   _this.setData({
-      //     height: res[0].height
-      //   })
-      // })
     }else{
       _this.setData({
-        height: 125
+        height: 129
       })
     }
     _this.setData({
@@ -354,9 +403,10 @@ Page({
    */
   onShareAppMessage: function () {
     let _this = this;
+    let fansId = getApp().globalData.fansId
     return {
       title: _this.data.shareInfo.title,
-      path: `/pages/home/home`,
+      path: `/pages/home/home?shareFansId=${fansId}`,
       success: function (res) {
         // 转发成功
         //  console.log(res)
