@@ -45,8 +45,8 @@
   <template is="sharePoster" data="{{type:2}}"/>
   <view class='choose_con' wx:if="{{showShare}}" bindtap="showShareFalse">
     <view class='choose_con_btn'>
-      <button class='share_pople' open-type="share">发送给朋友</button>
-      <button class='share_poster' bindtap="createPoster">生成卡片保存分享</button>
+      <button class='share_poster' bindtap="createPoster">生成分享图到朋友圈</button>
+      <button class='share_pople' open-type="share">转发给好友或群友</button>
       <button class='share_cancel'>取消</button>
     </view>
   </view>
