@@ -59,7 +59,7 @@
    <!-- 发展进程  -->
   <view class="develop-wrap section" wx:if="{{memorabilia && memorabilia.length > 0}}">
        <view class="weui-panel weui-panel_access">
-        <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-develop.png" />发展进程</view>      
+        <view class="weui-panel__hd"><image class="img" src="../../images/icon-company-develop.png" />发展历程</view>      
         <view class="weui-panel__bd">
             <view class="weui-media-box weui-media-box_appmsg" wx:for="{{memorabilia}}" wx:key="id" data-id="{{item.id}}">
                 <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">

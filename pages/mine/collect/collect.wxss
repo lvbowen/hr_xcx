@@ -59,3 +59,7 @@
   height: 274rpx;
   margin-bottom: 40rpx;
 }
+.collect-wrap .position-title .title{
+  width:580rpx;
+
+}
