@@ -37,7 +37,8 @@ Page({
       spName:''
     },
     showImg:false,
-    showImgurl:''
+    showImgurl:'',
+    memorabiliaEmptyImg:false,     //false:发展历程项都有图片，true:有的没图片
   },
 
   /**
@@ -98,11 +99,20 @@ Page({
       
     },function(res){
       if (res.code == "0"){
+        let bol = false
+        if (res.data.CompanyMemorabilia && res.data.CompanyMemorabilia.length>0){
+           bol = res.data.CompanyMemorabilia.some(function (item) {
+            return item.imageUrl == "" || item.imageUrl == null;
+          });
+          console.log('memorabiliaEmptyImg',bol)
+        }
+        
           _this.setData({
             memorabilia: res.data.CompanyMemorabilia,
             website: res.data.CompanyWebsite,
             workEnvironment: res.data.WorkEnvironment,
-            workTeam: res.data.WorkTeam,         
+            workTeam: res.data.WorkTeam,    
+            memorabiliaEmptyImg:bol,     
           })
           if (res.data.CompanyWebsite && res.data.CompanyWebsite.companyIntroduction) {
             utils.getWxmlInfo("#introContent", function (res) {
@@ -253,10 +263,13 @@ Page({
     wx.saveImageToPhotosAlbum({
       filePath: _this.data.showImgurl,
       success(res2) {
-        wx.showToast({
-          title: '保存成功!',
-          icon: 'success',
-          duration: 2000
+        wx.showModal({
+          content: '海报已保存到系统相册\n快去分享给朋友',
+          showCancel: false,
+          confirmText: '我知道了',
+          success: function (res2) {
+
+          }
         })
       },
       fail(res2) {
@@ -346,6 +359,11 @@ Page({
           url: `./productDetail/productDetail?proIndex=${proIndex}`,
         })
         break;
+      case "4":
+        wx.navigateTo({
+          url: `./memorabiliaDetail/memorabiliaDetail`,
+        })
+        break;
       default:
         break;
     }
@@ -407,6 +425,7 @@ Page({
     return {
       title: _this.data.shareInfo.title,
       path: `/pages/home/home?shareFansId=${fansId}`,
+      imageUrl:'/images/share-home.jpg',
       success: function (res) {
         // 转发成功
         //  console.log(res)

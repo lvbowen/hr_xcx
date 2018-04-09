@@ -1,5 +1,6 @@
 @import "/template/footer/footer.wxss";
 @import "/template/share/share.wxss";
+@import "/template/memorabilia/memorabilia.wxss";
 
 .weui-panel::before{
   display: none;
@@ -178,6 +179,40 @@
 .develop-wrap .weui-media-box_appmsg{  
   align-items: flex-start; 
 }
+/* .develop-wrap .empty-img-box{
+  padding:30rpx 30rpx 30rpx 40rpx;
+}
+.develop-wrap .empty-img-box .weui-media-box{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom: 50rpx;
+  border-left:1rpx solid #e5e5e5;
+  position: relative;
+  overflow: visible;
+}
+.develop-wrap .empty-img-box .weui-media-box::before{
+  border:none;
+}
+.develop-wrap .empty-img-box .weui-media-box .circle{
+   position: absolute;
+   top:0;
+   left:-10rpx;
+   width:20rpx;
+   height:20rpx;
+   border-radius: 50%;
+   background:#D8D8D8;
+}
+.develop-wrap .empty-img-box .weui-media-box:last-child{
+  border-left:none;
+}
+.develop-wrap .empty-img-box .weui-media-box:first-child .circle{
+  background: #FF9E2F;
+}
+.develop-wrap .empty-img-box .weui-media-box__bd{
+  position: relative;
+  top:-16rpx;
+} */
+
 .develop-wrap .weui-media-box__hd{
   width:248rpx;
   height: 165rpx;
@@ -191,10 +226,10 @@
 .product-wrap .weui-media-box:before,.office-wrap .weui-media-box:before,.team-wrap .weui-media-box:before{
   border-top:none;
 }
-.team-wrap .weui-panel__hd{
+.team-wrap .weui-panel__hd,.develop-wrap .weui-panel__hd{
    justify-content: space-between;
 }
-.team-wrap .weui-panel__hd .left,.team-wrap .weui-panel__hd .right{
+.team-wrap .weui-panel__hd .left,.team-wrap .weui-panel__hd .right,.develop-wrap .weui-panel__hd .left,.develop-wrap .weui-panel__hd .right{
   display: flex;
   align-items: center;
   overflow: visible;

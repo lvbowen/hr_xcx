@@ -1,0 +1,17 @@
+
+<template name="memorabilia">
+    <view class="weui-panel__bd  {{memorabiliaEmptyImg?'empty-img-box':''}}">
+            <view class="weui-media-box weui-media-box_appmsg" wx:for="{{memorabilia}}" wx:key="id" data-id="{{item.id}}" wx:if="{{index < maxLength}}">
+                <view class="circle" wx:if="{{memorabiliaEmptyImg}}">
+                    
+                </view>
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" wx:else>
+                      <image class="weui-media-box__thumb" src="{{item.imageUrl}}" />  
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                    <view class="weui-media-box__title ell title">{{item.date}}</view>
+                    <view class="weui-media-box__desc font-gray-26">{{item.description}}</view>
+                </view>
+            </view>
+        </view>
+</template>
