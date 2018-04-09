@@ -61,25 +61,10 @@
   <view class="develop-wrap section" wx:if="{{memorabilia && memorabilia.length > 0}}">
        <view class="weui-panel weui-panel_access">
         <view class="weui-panel__hd">
-          <!-- <image class="img" src="../../images/icon-company-develop.png" />发展历程 -->
           <view class="left"><image class="img" src="../../images/icon-company-develop.png" />发展历程</view>
            <view class="right" catchtap='navigatorTo' data-type="4" style="color:#888888;font-size:28rpx;" wx:if="{{memorabilia.length>4}}">查看更多信息<icon class="arrow-right"></icon></view>
         </view> 
-        <template is="memorabilia"  data="{{memorabilia,memorabiliaEmptyImg}}" />     
-        <!-- <view class="weui-panel__bd  {{memorabiliaEmptyImg?'empty-img-box':''}}">
-            <view class="weui-media-box weui-media-box_appmsg" wx:for="{{memorabilia}}" wx:key="id" data-id="{{item.id}}" wx:if="{{index<4}}">
-                <view class="circle" wx:if="{{memorabiliaEmptyImg}}">
-                    
-                </view>
-                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" wx:else>
-                      <image class="weui-media-box__thumb" src="{{item.imageUrl}}" />  
-                </view>
-                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                    <view class="weui-media-box__title ell title">{{item.date}}</view>
-                    <view class="weui-media-box__desc font-gray-26">{{item.description}}</view>
-                </view>
-            </view>
-        </view> -->
+        <template is="memorabilia"  data="{{memorabilia,memorabiliaEmptyImg,maxLength:4}}" />     
       </view> 
   </view>
    <!-- 办公环境  -->

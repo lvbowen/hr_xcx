@@ -1,7 +1,7 @@
 
 <template name="memorabilia">
     <view class="weui-panel__bd  {{memorabiliaEmptyImg?'empty-img-box':''}}">
-            <view class="weui-media-box weui-media-box_appmsg" wx:for="{{memorabilia}}" wx:key="id" data-id="{{item.id}}" wx:if="{{index<4}}">
+            <view class="weui-media-box weui-media-box_appmsg" wx:for="{{memorabilia}}" wx:key="id" data-id="{{item.id}}" wx:if="{{index < maxLength}}">
                 <view class="circle" wx:if="{{memorabiliaEmptyImg}}">
                     
                 </view>
