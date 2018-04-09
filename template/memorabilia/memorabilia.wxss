@@ -31,3 +31,11 @@
   position: relative;
   top:-16rpx;
 }
+.weui-media-box__hd{
+  width:248rpx;
+  height:165rpx;
+  margin-right:20rpx;
+  border-radius:8rpx;
+  overflow:hidden;
+
+}

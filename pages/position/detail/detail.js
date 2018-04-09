@@ -105,19 +105,20 @@ Page({
        //已登录
       this.getPositionInfo();
       this.checkCollection();
+      this.getPosterInfo();
     }else{
       //未登录
       user.login(function () {
         console.log('detail_globalData', getApp().globalData)
         _this.getPositionInfo();
         _this.checkCollection();
+        _this.getPosterInfo();
       })
     }    
     
     this.getWzpIndexInfo();
     this.getShareTitleInfo();
-    this.getPosterInfo();
-   
+      
   },
 
   /**
