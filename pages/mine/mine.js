@@ -28,6 +28,7 @@ Page({
       phoneNumber: globalData.phoneNumber,
       userInfo:globalData.userInfo
     })
+    console.log(globalData)
   },
 
   /**

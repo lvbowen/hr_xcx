@@ -318,7 +318,7 @@ Page({
       filePath: _this.data.showImgurl,
       success(res2) {
         wx.showModal({
-          content: '海报以保存到系统相册\n快去分享给朋友',
+          content: '海报已保存到系统相册\n快去分享给朋友',
           showCancel:false,
           confirmText:'我知道了',
           success: function (res2) {
