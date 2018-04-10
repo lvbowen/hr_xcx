@@ -193,6 +193,8 @@
   height: 10%;
   border-radius: 50%;
   margin-right: 2.5%;
+  border:1rpx solid #e5e5e5;
+  box-sizing: border-box;
 }
 .color_46BE8A{
   color: #46BE8A;
