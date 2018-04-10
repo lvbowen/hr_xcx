@@ -92,7 +92,7 @@ Page({
           });
           break;
         case "phone":
-          let regt = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+          let regt = /^((0\d{2,3}-\d{7,8})|(1[35784]\d{9}))$/;
           this.setData({
             legalPhone: regt.test(val) || val.length == 0
           });
