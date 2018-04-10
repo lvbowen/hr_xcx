@@ -62,7 +62,8 @@
   <view class="fixed-btns">
      <view class="chat-btn btn-box">
        <button class="btn" open-type='contact' session-from="weapp">
-          <text class="fa fa-commenting-o"></text>
+          <!-- <text class="fa fa-commenting-o"></text> -->
+          <image class="img" src="../../../images/icon-chat.png"  />
           <text class="word">HR直聊</text>
        </button> 
     </view>    
