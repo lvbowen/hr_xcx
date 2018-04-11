@@ -23,8 +23,8 @@
                     </view>
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                         <view class="weui-media-box__title">
-                          <text class="name">{{subItem.name}}</text>
-                          <text class="position-name">{{subItem.positionName}}</text>
+                          <text class="name">{{subItem.positionName}}</text>
+                          <text class="position-name">{{subItem.name}}</text>
                         </view>
                         <view class="weui-media-box__desc">{{subItem.description}}</view>
                     </view>

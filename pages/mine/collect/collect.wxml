@@ -3,7 +3,7 @@
 
 <view class="collect-wrap" wx:for="{{collection}}">
   <view class='collect'>
-    <image src='/images/company03.png'></image>
+    <image src='/images/icon-company.png'></image>
     <text class=''>{{item.companyName}}</text>
   </view>
   <view class='position' wx:for="{{item.positionList}}" wx:for-index="index2" wx:for-item="item2" catchtap="goDetail" data-item='{{item2}}'>

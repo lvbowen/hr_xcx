@@ -20,7 +20,7 @@
 } 
 
 .placeholder{
-  color: #777;
+  color: #999;
 }
 .picker-inner{
   display: flex;
