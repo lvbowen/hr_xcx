@@ -189,12 +189,16 @@
   justify-content: flex-start;
 }
 .visits_con image{
-  width: 10%;
-  height: 10%;
+  display: block;
+  width: 70rpx;
+  height: 70rpx;
   border-radius: 50%;
-  margin-right: 2.5%;
+  margin-right: 18rpx;
   border:1rpx solid #e5e5e5;
   box-sizing: border-box;
+}
+.visits_con image:nth-last-child(1){
+  margin-right: 0;
 }
 .color_46BE8A{
   color: #46BE8A;
