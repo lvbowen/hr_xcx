@@ -16,14 +16,13 @@
 .weui-search-bar{
   border-top:none;
   border-bottom:none;
+  background:#f1f5f8;
 }
 .weui-search-bar__cancel-btn{
   font-size:28rpx;
 }
 .position{
   padding:30rpx;
-  /* border-top:1rpx solid #D7D6DC;
-  border-bottom:1rpx solid #D7D6DC; */
   background: #ffffff;
   margin-bottom:24rpx;
 }

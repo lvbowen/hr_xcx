@@ -1,6 +1,8 @@
 /* pages/mine/share/share.wxss */
 @import "/template/position/position.wxss";
 .collect{
+  display: flex;
+  align-items: center;
   color: #5aa2e7;
   height: 100rpx;
   border-bottom: 1px solid #e5e5e5;
@@ -21,7 +23,10 @@
 .position{
   padding: 30rpx;
   background-color: #ffffff;
-  margin-bottom: 24rpx;
+  border-bottom:1rpx solid #e5e5e5;
+}
+.collect-wrap .position:last-child{
+  border-bottom: none;
 }
 .personal_stars{
   width: 40rpx;

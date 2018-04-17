@@ -93,6 +93,11 @@
 .fixed-btns .chat-btn{
   border-right:1rpx solid #e5e5e5;
 }
+.fixed-btns .chat-btn .img{
+  width:32rpx;
+  height: 32rpx;
+  margin-bottom: 6rpx;
+}
 .fixed-btns .deliver-btn,.fixed-btns .share-btn{
   flex:2;
 }
@@ -188,7 +193,7 @@
   height: 10%; 
   border-radius: 50%;
   margin-right: 2.5%;
-  border:1rpx solid #eee;
+  border:1rpx solid #e5e5e5;
   box-sizing: border-box;
 }
 .color_46BE8A{

@@ -100,3 +100,6 @@ page{
   height: 100%;
   background-color: #5AA2E7;
 }
+.input-placeholder,.textarea-placeholder,.placeholder{
+   color: #999; 
+}
