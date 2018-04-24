@@ -1,6 +1,6 @@
 <import src="/template/footer/footer.wxml" />
 
-<view class="edit-preview">
+<view class="edit-preview {{options.pageType == 'mine' ? 'mine-edit-preview' : ''}}">
   <!-- 基本信息  -->
   <view class="base-info section">
     <view class="avatar-box">

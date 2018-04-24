@@ -6,6 +6,7 @@ App({
     console.log(wx.getExtConfigSync())
     _this.globalData.companyId = wx.getExtConfigSync().companyId
     _this.globalData.appId = wx.getExtConfigSync().appId
+    _this.globalData.weWebsiteId = wx.getExtConfigSync().weWebsiteId
     
   },
   globalData: {
@@ -14,6 +15,7 @@ App({
     fansId:'',
     shareFansId:'',
     companyId: "",   //正式：61(爱聚) 34530，测试：169359 
+    weWebsiteId:'',   //微官网id
     pageSize: "6"
   }
 })

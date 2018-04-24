@@ -81,3 +81,19 @@
   width:100%;
   height:100%;
 }
+.weui-contact .weui-cell__hd{
+  margin-right: 10rpx;
+}
+.btn-contact{
+  display: block;
+  background: transparent;
+  padding:0;
+  line-height: 1.5;
+  font-size:34rpx;
+  text-align: left;
+  width:100%;
+  color: #000;
+}
+.btn-contact::after{
+  border:0;
+}

@@ -63,6 +63,10 @@
   background-color:#5AA2E7;
   border-radius: 4rpx;
 }
+.mine-edit-preview .footer{
+  padding-bottom:30rpx;
+}
+
 /* 基本信息 */
 .base-info{
   display: flex;

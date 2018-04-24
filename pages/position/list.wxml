@@ -56,3 +56,7 @@
     </view>
     <view bindtap="saveImg" class='show_img_btn'><image src='https://aijuhr.com/images/xcx/dowload.png'></image>保存图片</view>
   </view>
+  <!-- 联系客服 -->
+    <button class="btn-contact" open-type='contact' session-from="weapp">
+       <image class="img" src="/images/icon-contact.png"></image>
+    </button>

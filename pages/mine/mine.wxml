@@ -56,6 +56,15 @@
                         </view>
                         <view class="arrow-right"></view>
                     </navigator>   
+                     <view class="weui-cell weui-cell_access weui-contact">
+                        <view class="weui-cell__hd"><image src="../../images/icon-contact2.png" /></view>
+                        <view class="weui-cell__bd weui-cell_primary">
+                            <button class="btn-contact" open-type='contact' session-from="weapp">
+                              客服中心
+                            </button>
+                        </view>
+                        <view class="arrow-right"></view>
+                    </view>  
                 </view>
             </view>
         </view>
