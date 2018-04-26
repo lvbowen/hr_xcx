@@ -62,17 +62,17 @@ Page({
     let _this = this
     if (getApp().globalData.fansId) {
       //已登录
-       this.getPosterInfo();
+      //  this.getPosterInfo();
     }else{
       //未登录
       user.login(function () {
-        _this.getPosterInfo();
+        // _this.getPosterInfo();
       })
     }
     
     this.getCompanyDetail();
-    this.getCompanyInfo();
-    this.getShareInfo();
+    // this.getCompanyInfo();
+    // this.getShareInfo();
   },
 
   /**
@@ -94,7 +94,7 @@ Page({
   getCompanyDetail:function(){
     let _this = this
     network.post("/api.do", {
-      method:"companyWeb/getCompanyDetail",
+      method:"companyWeb/getCompanyDetailForApp",
       param: JSON.stringify({
         id: getApp().globalData.weWebsiteId,
         type: 2
@@ -102,14 +102,12 @@ Page({
       
     },function(res){
       if (res.code == "0"){
-        let bol = false
-        if (res.data.CompanyMemorabilia && res.data.CompanyMemorabilia.length>0){
-           bol = res.data.CompanyMemorabilia.some(function (item) {
-            return item.imageUrl == "" || item.imageUrl == null;
-          });
-          console.log('memorabiliaEmptyImg',bol)
-        }
-        
+          let bol = false
+          if (res.data.CompanyMemorabilia && res.data.CompanyMemorabilia.length>0){
+            bol = res.data.CompanyMemorabilia.some(function (item) {
+              return item.imageUrl == "" || item.imageUrl == null;
+            });
+          }       
           _this.setData({
             memorabilia: res.data.CompanyMemorabilia,
             website: res.data.CompanyWebsite,
@@ -342,6 +340,7 @@ Page({
     let type = e.currentTarget.dataset.type;
     let proIndex = e.currentTarget.dataset.proindex;
     console.log(e.currentTarget.dataset)
+    console.log('formId',e.detail.formId)
     switch(type){
       case "1":
         let index = e.currentTarget.dataset.index;
@@ -352,9 +351,7 @@ Page({
         break;
       case "2":
         wx.navigateTo({
-          url: `./team/team?companyId=${companyId}`,
-
-          
+          url: `./team/team?companyId=${companyId}`,        
         })
         break;
       case "3":
@@ -388,8 +385,14 @@ Page({
     }
     _this.setData({
       showChevronDown: !_this.data.showChevronDown
-    })
-    
+    })    
+  },
+  /**
+   * 获取模板消息推送码formId
+   */
+  getFormId:function(e){
+    let formId = e.detail.formId
+    console.log('home_formId2',formId)
   },
   /**
    * 生命周期函数--监听页面隐藏

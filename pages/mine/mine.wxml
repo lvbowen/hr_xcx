@@ -1,11 +1,11 @@
 <view class="mine-wrap">
 <!-- 头部区域 -->
-  <view class="head-area" style="height:350rpx;">
+  <view class="head-area">
     <view class="avator-box">
       <image class="avator-img" src="{{userInfo.headImgUrl || 'https://aijuhr.com/images/yidong/head_wx.png'}}"></image>
        <text class="name">{{userInfo.nickName || '匿名'}}</text>
     </view>
-    <view class="authen-box" style="display:none;">     
+    <view class="authen-box">     
       <view class="authen-yg authen-btn" wx:if="{{isEmployeeCertification == 1}}" data-authentype="1" catchtap='goAuthentification'>
         <image class="img" src="../../images/DynamicRemember.png"></image>
       </view>
@@ -28,43 +28,61 @@
         <view class="weui-panel__bd">
             <view class="weui-media-box weui-media-box_small-appmsg">
                 <view class="weui-cells weui-cells_in-small-appmsg">
-                    <navigator url="./editPreview/editPreview?pageType=mine" class="weui-cell weui-cell_access">
-                        <view class="weui-cell__hd"><image src="../../images/Group1.png" /></view>
-                        <view class="weui-cell__bd weui-cell_primary">
-                            <view>个人档案</view>
-                        </view>
-                        <view class="arrow-right"></view>
-                    </navigator>
-                    <navigator url="./jobRecord/jobRecord" class="weui-cell weui-cell_access">
-                        <view class="weui-cell__hd"><image src="../../images/Group2.png"  /></view>
-                        <view class="weui-cell__bd weui-cell_primary">
-                            <view>求职记录</view>
-                        </view>
-                        <view class="arrow-right"></view>
-                    </navigator>
-                     <navigator url="./collect/collect" class="weui-cell weui-cell_access">
-                        <view class="weui-cell__hd"><image src="../../images/Group3.png" /></view>
-                        <view class="weui-cell__bd weui-cell_primary">
-                            <view>收藏职位</view>
-                        </view>
-                        <view class="arrow-right"></view>
-                    </navigator>
-                    <navigator url="./recommend/recommend" class="weui-cell weui-cell_access">
-                        <view class="weui-cell__hd"><image src="../../images/Group4.png" /></view>
-                        <view class="weui-cell__bd weui-cell_primary">
-                            <view>我的推荐</view>
-                        </view>
-                        <view class="arrow-right"></view>
-                    </navigator>   
-                     <view class="weui-cell weui-cell_access weui-contact">
-                        <view class="weui-cell__hd"><image src="../../images/icon-contact2.png" /></view>
-                        <view class="weui-cell__bd weui-cell_primary">
-                            <button class="btn-contact" open-type='contact' session-from="weapp">
-                              客服中心
-                            </button>
-                        </view>
-                        <view class="arrow-right"></view>
-                    </view>  
+                    <form class="form-id" bindsubmit='getFormId' report-submit="true" data-url="./editPreview/editPreview?pageType=mine">
+                      <button class="btn-formId" form-type='submit'>
+                        <navigator class="weui-cell weui-cell_access">
+                            <view class="weui-cell__hd"><image src="../../images/Group1.png" /></view>
+                            <view class="weui-cell__bd weui-cell_primary">
+                                <view>个人档案</view>
+                            </view>
+                            <view class="arrow-right"></view>
+                        </navigator>
+                      </button>
+                    </form>
+                    <form class="form-id" bindsubmit='getFormId' report-submit="true" data-url="./jobRecord/jobRecord">
+                      <button class="btn-formId" form-type='submit'>
+                        <navigator class="weui-cell weui-cell_access">
+                            <view class="weui-cell__hd"><image src="../../images/Group2.png"  /></view>
+                            <view class="weui-cell__bd weui-cell_primary">
+                                <view>求职记录</view>
+                            </view>
+                            <view class="arrow-right"></view>
+                        </navigator>
+                      </button>
+                    </form>
+                    <form class="form-id" bindsubmit='getFormId' report-submit="true" data-url="./collect/collect">
+                      <button class="btn-formId" form-type='submit'>
+                        <navigator class="weui-cell weui-cell_access">
+                            <view class="weui-cell__hd"><image src="../../images/Group3.png" /></view>
+                            <view class="weui-cell__bd weui-cell_primary">
+                                <view>收藏职位</view>
+                            </view>
+                            <view class="arrow-right"></view>
+                        </navigator>
+                      </button>
+                    </form>
+                     <form class="form-id" bindsubmit='getFormId' report-submit="true" data-url="./recommend/recommend">
+                      <button class="btn-formId" form-type='submit'> 
+                        <navigator class="weui-cell weui-cell_access">
+                            <view class="weui-cell__hd"><image src="../../images/Group4.png" /></view>
+                            <view class="weui-cell__bd weui-cell_primary">
+                                <view>我的推荐</view>
+                            </view>
+                            <view class="arrow-right"></view>
+                        </navigator>  
+                       </button>
+                    </form>  
+                     <form class="form-id" bindsubmit='getFormId' report-submit="true">
+                      <view class="weui-cell weui-cell_access weui-contact">
+                          <view class="weui-cell__hd"><image src="../../images/icon-contact2.png" /></view>
+                          <view class="weui-cell__bd weui-cell_primary">                             
+                              <button class="btn-contact" open-type='contact' session-from="weapp" form-type='submit'>
+                                客服中心
+                              </button>                          
+                          </view>
+                          <view class="arrow-right"></view>
+                      </view>  
+                    </form> 
                 </view>
             </view>
         </view>

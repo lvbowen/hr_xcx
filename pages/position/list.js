@@ -76,7 +76,10 @@ Page({
     let _this = this;
     network.post("/api.do", {
       method: "companyWeb/getWeWebsitePositionByCategoryId",
-      param: JSON.stringify(paramObj)
+      param: JSON.stringify({    
+        id: getApp().globalData.weWebsiteId,
+        type:2
+      })
     }, function (res) {
       if (res.code == "0" && res.data) {
         _this.setData({
@@ -98,6 +101,7 @@ Page({
    */
   navigatorTo: function (e) {
     let dataset = e.currentTarget.dataset;
+    console.log('formId',e.detail.formId)
     wx.navigateTo({
       url: `./detail/detail?companyId=${companyId}&positionId=${dataset.positionid}`,
     })
@@ -285,6 +289,13 @@ Page({
         })
       }
     })
+  },
+  /**
+   * 获取模板消息推送码formId
+   */
+  getFormId: function (e) {
+    let formId = e.detail.formId
+    console.log('list_formId2', formId)
   },
   /**
    * 生命周期函数--监听页面隐藏

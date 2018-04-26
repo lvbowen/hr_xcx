@@ -1,7 +1,7 @@
 <!--pages/mine/collect/collect.wxml-->
 <wxs module="filters" src="../../../wxs/filter.wxs" />
 
-<view class="collect-wrap" wx:for="{{collection}}">
+<view class="collect-wrap" wx:for="{{collection}}" wx:key="index">
   <view class='collect'>
     <image src='/images/icon-company.png'></image>
     <text class=''>{{item.companyName}}</text>

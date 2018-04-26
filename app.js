@@ -7,7 +7,6 @@ App({
     _this.globalData.companyId = wx.getExtConfigSync().companyId
     _this.globalData.appId = wx.getExtConfigSync().appId
     _this.globalData.weWebsiteId = wx.getExtConfigSync().weWebsiteId
-    
   },
   globalData: {
     appId:'',       //授权用户的小程序appid

@@ -22,6 +22,7 @@ Page({
    */
   onLoad: function (options) {
     let globalData = getApp().globalData
+    console.log(globalData)
     this.setData({
       fansId:globalData.fansId,
       companyId:globalData.companyId,
@@ -93,7 +94,20 @@ Page({
       })
     })
   },
-
+  /**
+   *  跳转页面的同时收集formId
+   */
+  getFormId:function(e){
+     let formId = e.detail.formId
+     let url = e.currentTarget.dataset.url
+     //todo 上报formId,再跳转 
+     
+     if(url){
+       wx.navigateTo({
+         url: url,
+       })
+     }    
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -88,7 +88,6 @@ Page({
       options.positionId=obj.pId;
       options.shareFansId = obj.sId
     }
-    console.log('detail_options',options)
     this.setData({
       options: options,
       phoneNumber: globalData.phoneNumber
@@ -109,7 +108,6 @@ Page({
     }else{
       //未登录
       user.login(function () {
-        console.log('detail_globalData', getApp().globalData)
         _this.getPositionInfo();
         _this.checkCollection();
         _this.getPosterInfo();
@@ -429,6 +427,13 @@ Page({
     this.setData({
       btnType: btnType
     })
+  },
+  /**
+   * 获取formId
+   */
+  getFormId:function(e){
+      let formId = e.detail.formId
+      console.log(formId)
   },
   /**
    * 生命周期函数--监听页面隐藏

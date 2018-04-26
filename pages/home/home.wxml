@@ -89,7 +89,10 @@
      <view class="weui-panel weui-panel_access">
          <view class="weui-panel__hd">
            <view class="left"><image class="img" src="../../images/icon-company-team2.png" />我们的团队</view>
-           <view class="right" catchtap='navigatorTo' data-type="2" style="color:#888888;font-size:28rpx;">查看更多信息<icon class="arrow-right"></icon></view>   
+           <!-- <view class="right" catchtap='navigatorTo' data-type="2" style="color:#888888;font-size:28rpx;">查看更多信息<icon class="arrow-right"></icon></view>    -->
+           <form class="right" bindsubmit='navigatorTo' report-submit="true"  data-type="2" >
+              <button class="btn-formId" form-type='submit' style="color:#888888;padding-right:4rpx;">查看更多信息<icon class="arrow-right"></icon></button>
+           </form>
           </view> 
           <view class="weui-panel__bd weui-media-box">
             <swiper class="swiper" indicator-dots="{{indicatorDots}}"
@@ -138,9 +141,11 @@
     <view bindtap="saveImg" class='show_img_btn'><image src='https://aijuhr.com/images/xcx/dowload.png'></image>保存图片</view>
   </view>
   <!-- 联系客服 -->
-    <button class="btn-contact" open-type='contact' session-from="weapp">
+  <form class="" bindsubmit='getFormId' report-submit="true">
+    <button class="btn-contact" open-type='contact' session-from="weapp" form-type='submit'>
        <image class="img" src="/images/icon-contact.png"></image>
     </button>
+  </form>
   <!-- 页脚 -->
   <template is="footer" />
   <template is="sharePoster" data="{{type:1}}" />

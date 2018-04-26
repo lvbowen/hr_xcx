@@ -28,7 +28,7 @@
         <text class='visits_head_right'>历史访问<text class='color_46BE8A'>{{positionInfo.historyVisit}}</text>人</text>
       </view>
       <view class='visits_con'>
-        <image src='{{item}}' wx:for="{{positionInfo.visitationHistoryHeadImgs}}"></image>
+        <image src='{{item}}' wx:for="{{positionInfo.visitationHistoryHeadImgs}}" wx:key="index"></image>
       </view>
     </view> 
   <!-- 职位描述  -->
@@ -61,11 +61,13 @@
   <!-- 固定按钮 -->
   <view class="fixed-btns">
      <view class="chat-btn btn-box">
-       <button class="btn" open-type='contact' session-from="weapp">
+      <form class="form-id" bindsubmit='getFormId' report-submit="true" style="height:100%;">
+        <button class="btn" open-type='contact' session-from="weapp" form-type='submit'>
           <!-- <text class="fa fa-commenting-o"></text> -->
           <image class="img" src="../../../images/icon-chat.png"  />
           <text class="word">HR直聊</text>
        </button> 
+      </form>
     </view>    
     <view class="collect-btn btn-box" catchtap='collectPosition'>
          <view class="btn">
