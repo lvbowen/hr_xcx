@@ -119,10 +119,10 @@
         <text class="lang font-34">{{item.languageSkill}}</text>
         <text class="font-gray-24">{{item.languageLevel}}</text>
       </view>
-      <view class="add-btn" wx:if="{{!languageList || languageList.length == 0}}">
+      <!-- <view class="add-btn" wx:if="{{!languageList || languageList.length == 0}}">
         <view class="icon-cross"></view>
         <text class="word" data-page="editLanguage" catchtap="goEdit">新增语言能力</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <!-- 技能 -->
@@ -135,10 +135,10 @@
       <view class="list" wx:if="{{skillList && skillList.length > 0}}">
         <text class="item" wx:for="{{skillList}}" wx:key="index">{{item.languageSkill}}</text>
       </view>
-      <view class="add-btn" wx:else>
+      <!-- <view class="add-btn" wx:else>
         <view class="icon-cross"></view>
         <text class="word" data-page="editSkill" catchtap="goEdit">新增技能</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <!-- 证书 -->
@@ -151,10 +151,10 @@
       <view class="list"  wx:if="{{certList && certList.length > 0}}">
         <text class="item" wx:for="{{certList}}" wx:key="index">{{item.qualificationName}}</text>
       </view>
-      <view class="add-btn" wx:else>
+      <!-- <view class="add-btn" wx:else>
         <view class="icon-cross"></view>
         <text class="word" data-page="editCertificate" catchtap="goEdit">新增证书</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <!-- 获得奖项 -->
@@ -168,10 +168,10 @@
         <text class="lang font-34">{{item.qualificationName}}</text>
         <text class="font-gray-24">{{item.qualificationDateStr}}</text>
       </view>
-      <view class="add-btn" wx:if="{{!prizeList || prizeList.length == 0}}">
+      <!-- <view class="add-btn" wx:if="{{!prizeList || prizeList.length == 0}}">
         <view class="icon-cross"></view>
         <text class="word" data-page="editAwards" catchtap="goEdit">新增奖项</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <!-- 个人链接 -->

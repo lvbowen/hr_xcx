@@ -227,7 +227,7 @@
   text-align: center;
   font-size:34rpx;
   color: #B2B2B2;
-  border:1rpx solid #CCCCCC;
+  /* border:1rpx solid #CCCCCC; */
 }
 /* 求职意愿  */
 .job-want .hd .cue{
