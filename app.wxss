@@ -39,6 +39,7 @@ page{
   background: transparent;
   font-size:28rpx; 
   text-align: left;
+  border-radius:0;
 }
 .btn-formId::after{
   border:0;

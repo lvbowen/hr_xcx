@@ -438,7 +438,8 @@ Page({
   /**
    * 保存基本信息
    */
-  saveBaseInfo:function(){
+  saveBaseInfo:function(e){
+    console.log(e.detail.formId)
     if (this.checkBaseForm()){
       this.updateSimpleResume("1")
     }
@@ -446,7 +447,8 @@ Page({
   /**
    * 新增教育经历
    */
-  addEducationSave:function(){
+  addEducationSave:function(e){
+    console.log(e.detail.formId)
     let _data = this.data;
     if (this.checkEducationForm()) {
       _data.interviewResumeInfo.educationHistoryList.push({
@@ -467,7 +469,8 @@ Page({
    /**
    * 新增工作经历
    */
-  addExperienceSave: function () {
+  addExperienceSave: function (e) {
+    console.log(e.detail.formId)
     let _data = this.data;
     if (this.checkExperienceForm()) {
       _data.interviewResumeInfo.workHistoryList.push({
@@ -565,6 +568,7 @@ Page({
    * 返回上一步
    */
   goLastStep: function (e) {
+    console.log(e.detail.formId)
     let dataset = e.currentTarget.dataset;
     switch (dataset.formtype) {
       case "edu":
@@ -585,6 +589,7 @@ Page({
   *  去下一步
   */
   goNextStep: function (e) {
+    console.log(e.detail.formId)
     let dataset = e.currentTarget.dataset;
     switch (dataset.formtype) {
       case "edu":
@@ -601,6 +606,7 @@ Page({
   * 立即投递
   */
   goDelivery: function (e) {
+    console.log(e.detail.formId)
     let _this = this;
     let param = {
       interviewResumeInfo: this.data.interviewResumeInfo,

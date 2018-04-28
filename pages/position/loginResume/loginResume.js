@@ -163,6 +163,7 @@ Page({
    */
   formSubmit: function (e) {
     let data = e.detail.value
+    console.log(e.detail.formId)
     if (this.checkForm(data)){
       this.climbeResume()
     }

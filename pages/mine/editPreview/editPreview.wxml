@@ -218,5 +218,7 @@
   <!-- 页脚 -->
    <template is="footer" /> 
    <!--  -->
-    <view class="delivery-btn" wx:if="{{options.pageType != 'mine'}}" catchtap="goDelivery" >立即投递</view> 
+   <form class="form-id" bindsubmit='goDelivery' report-submit="true"  wx:if="{{options.pageType != 'mine'}}">
+     <button class="btn-formId delivery-btn" form-type='submit' >立即投递</button> 
+  </form>
 </view>

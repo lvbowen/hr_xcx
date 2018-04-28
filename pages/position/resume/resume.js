@@ -12,8 +12,7 @@ Page({
    */
   data: {
     options:null,
-    // fansId:'',
-    step:"1",
+    step:"1",       //默认改成1
     platforms:[
       { "type": 1, "platformName": "前程无忧（51job）", "logoUrl":"../../../images/resum_1.png"},
       { "type": 2, "platformName": "智联招聘", "logoUrl": "../../../images/resum_2.png" },
@@ -26,7 +25,11 @@ Page({
    */
   onLoad: function (options) {
     console.log('resume', options)
-
+    // options = {       //测试数据
+    //    companyId:'169359',
+    //    positionId:'470',
+    //    fansId:'140'
+    // }
     this.setData({
       options:options
     })
@@ -72,6 +75,7 @@ Page({
    * 跳转
    */
   navigatorTo: function (e) {
+    console.log('formId',e.detail.formId)
     let dataset = e.currentTarget.dataset;
     let options = this.data.options;
     let queryStr = `companyId=${options.companyId}&positionId=${options.positionId}&fansId=${options.fansId}&shareFansId=${options.shareFansId}&recomType=${options.recomType}`

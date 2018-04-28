@@ -46,7 +46,8 @@ Page({
   /**
    * 返回首页
    */
-  reuturnResume:function(){
+  reuturnResume:function(e){
+    console.log(e.detail.formId)
     wx.reLaunch({
       url: '/pages/home/home',
     })

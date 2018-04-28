@@ -121,6 +121,7 @@ Page({
   * 立即投递
   */
   goDelivery: function (e) {
+    console.log(e.detail.formId)
     let _this = this, _data = this.data;
     let param = {
       interviewResumeInfo: {

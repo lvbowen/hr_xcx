@@ -1,12 +1,13 @@
 {
   "pages":[
+    "pages/position/list",
     "pages/home/home",
     "pages/mine/recommend/recommend",
     "pages/mine/mine",
     "pages/mine/recommendDetail/recommendDetail",
     
     
-    "pages/position/list",
+   
     "pages/position/detail/detail",
     
     "pages/home/power/power",
