@@ -9,10 +9,13 @@ Page({
    */
   data: {
     options:null,
+    verificationCode:'获取验证码',
     activeIndex:1,
     phoneNumber:'',
     email:'',
     name:'',
+    telphone:'',
+    vcode:'',
     isEmployeeCertification: 0,     //员工认证 （0：没有认证过，1:已经认证过）
     isNotEmployeeCertification: 0,  //求职者认证 （0：没有认证过，1:已经认证过）
     
@@ -143,7 +146,7 @@ Page({
     })
   },
   /**
-   * 身份验证
+   * 企业员工身份验证
    */
   verification:function(){
     let _this = this;
@@ -167,6 +170,60 @@ Page({
         utils.toggleToast(_this, res.message)
       }
     })
+  },
+  /**
+   * 发送验证码
+   */
+  sendCheckCode:function(){
+    let t = 10;
+    let _this = this
+    if (this.data.verificationCode.indexOf('重') > -1){
+       return;
+    }
+    let timer = setInterval(() => {
+      if (t <= 0) {
+        _this.setData({
+          verificationCode:'获取验证码'
+        })
+        clearInterval(timer);
+        return false;
+      }
+      _this.setData({
+        verificationCode: t+'s后重获取'
+      })
+      t--;
+    }, 1000);
+  },
+  /**
+   * 求职者认证
+   */
+  notEmployeeCertification:function(){
+   
+    let reg = /^((0\d{2,3}-\d{7,8})|(1[35784]\d{9}))$/;
+    if (!reg.test(this.data.telphone)){
+      utils.toggleToast(this, "请输入正确手机号")
+    }
+    console.log(this.data.telphone, this.data.vcode, '求职者认证')
+    let _this = this;
+    let param = {
+      fansId: getApp().globalData.fansId,
+      companyId: getApp().globalData.companyId,
+      phone: _this.data.telphone,
+      checkCode: _this.data.vcode
+    }
+    network.post("/api.do", {
+      method: "weixin/finishCheck",
+      param: JSON.stringify(param)
+    }, function (res) {
+      console.log(res)
+      if (res.code == "0") {
+        _this.data.isNotEmployeeCertification=1;
+
+      } else {
+        utils.toggleToast(_this, res.message)
+      }
+    })
+
   },
   /**
    * 生命周期函数--监听页面隐藏

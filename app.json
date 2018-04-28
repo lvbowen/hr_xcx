@@ -1,9 +1,13 @@
 {
   "pages":[
+    "pages/mine/authenResult/authenResult",
+    "pages/mine/mine",
+    "pages/mine/authentication/authentication",
+    
     "pages/position/list",
     "pages/home/home",
     "pages/mine/recommend/recommend",
-    "pages/mine/mine",
+   
     "pages/mine/recommendDetail/recommendDetail",
     
     
@@ -18,8 +22,8 @@
     "pages/home/productDetail/productDetail",
     
     
-    "pages/mine/authentication/authentication", 
-    "pages/mine/authenResult/authenResult",
+   
+   
     
     "pages/position/resume/resume",
     "pages/mine/editPreview/editPreview",

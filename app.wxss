@@ -44,6 +44,13 @@ page{
 .btn-formId::after{
   border:0;
 }
+.weui-vcode-btn{
+  color: #5AA2E7;
+  font-size:32rpx;
+}
+.weui-vcode-btn:active{
+  color: #5AA2E7;
+}
 /* 文字  */
 .font-gray-24{
   font-size: 24rpx;

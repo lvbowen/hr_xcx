@@ -4,8 +4,8 @@
       <text class="text">已给您的邮箱发送了一封邮件，请查看并完成认证</text>
     </view>
     <view class="btn-area">
-      <button class="btn-w690" type="primary"  bindtap="save">我已完成认证</button>
-       <button class="weui-btn" type="default" plain="true">重新发送邮件</button>
-       <button class="weui-btn" type="default" plain="true">重新填写认证信息</button>
+      <button class="btn-w690" type="primary" catchtap="verification">我已完成认证</button>
+       <button class="weui-btn" type="default" plain="true" catchtap='retransmission'>重新发送邮件</button>
+       <button class="weui-btn" type="default" plain="true" catchtap='goInterpolate'>重新填写认证信息</button>
     </view>
 </view>

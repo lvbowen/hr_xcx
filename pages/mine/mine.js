@@ -11,7 +11,7 @@ Page({
   data: {
     fansId:'',
     companyId:'',
-    isEmployeeCertification: 0,     //员工认证 （0：没有认证过，1:已经认证过）
+    isEmployeeCertification: 1,     //员工认证 （0：没有认证过，1:已经认证过）
     isNotEmployeeCertification: 0,  //求职者认证 （0：没有认证过，1:已经认证过）
     userInfo:null,
     phoneNumber:'',

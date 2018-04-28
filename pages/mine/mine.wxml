@@ -15,8 +15,9 @@
        <view class="authen-my authen-btn" wx:if="{{isEmployeeCertification == 0}}"  data-authentype="1" catchtap='goAuthentification'>
          <image class="img" src="../../images/authentication.png"></image>
        </view>
-       <view class="authen-my authen-btn" wx:if="{{isEmployeeCertification == 1 && isNotEmployeeCertification == 0}}">
-            <button class="btn-phone-number" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber"><image class="img" src="../../images/authentication.png"></image></button>   
+       <view class="authen-my authen-btn" wx:if="{{isEmployeeCertification == 1 && isNotEmployeeCertification == 0}}" data-authentype="2" catchtap='goAuthentification'>
+            <!-- <button class="btn-phone-number" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber"><image class="img" src="../../images/authentication.png"></image></button>    -->
+            <image class="img" src="../../images/authentication.png" />
        </view>
        
     </view>

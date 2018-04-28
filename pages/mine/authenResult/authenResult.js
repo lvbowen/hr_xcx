@@ -56,11 +56,22 @@ Page({
   onReachBottom: function () {
   
   },
-
   /**
-   * 用户点击右上角分享
+   * 已完成认证
    */
-  onShareAppMessage: function () {
-  
-  }
+  verification:function(){
+
+  },
+  /**
+   * 重新发送邮件
+   */
+  retransmission:function(){
+
+  },
+  /**
+   * 重新填写认证信息
+   */
+  goInterpolate:function(){
+
+  },
 })

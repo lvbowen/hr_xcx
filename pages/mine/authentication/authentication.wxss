@@ -41,11 +41,12 @@ button.btn-phone::after,button.btn-phone::before{
 .tips{
   display: flex;
   color:#fda94f ;
-  padding:20rpx 60rpx;
+  padding:20rpx 30rpx;
+  align-items: center;
 }
 .tips .img{
-  width:20px;
-  height: 15px;
+  width:34rpx;
+  height: 34rpx;
   margin-right:14rpx;
 }
 .tips .text{
