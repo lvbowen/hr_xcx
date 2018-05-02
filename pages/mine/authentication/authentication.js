@@ -10,6 +10,7 @@ Page({
   data: {
     options:null,
     verificationCode:'获取验证码',
+    isCountdown:false,
     activeIndex:1,
     phoneNumber:'',
     email:'',
@@ -29,11 +30,11 @@ Page({
       options: options,
       phoneNumber: getApp().globalData.phoneNumber
     })
-    if (!this.data.phoneNumber){
-      utils.wxLogin()
-    }
+    // if (!this.data.phoneNumber){
+    //   utils.wxLogin()
+    // }
 
-    this.getWeixinPersonalInfo()
+    // this.getPersonalInfoSp()
   },
 
   /**
@@ -47,31 +48,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      email:'',
+      name:''
+    })
+    this.getPersonalInfoSp()
   },
   /**
    * 获取认证信息
    */
-  getWeixinPersonalInfo: function () {
+  getPersonalInfoSp: function () {
     let _this = this;
     let param = {
-      fansId: getApp().globalData.fansId,
+      spFansId: getApp().globalData.fansId,
       companyId: getApp().globalData.companyId
     }
     network.post("/api.do", {
-      method: "wexinPersonalInfo/getWeixinPersonalInfo",
+      method: "smallProgram/getPersonalInfoSp",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
-        // _this.setData({
-        //   isEmployeeCertification: res.data.weixinPersonalInfo.isEmployeeCertification,
-        //   isNotEmployeeCertification: res.data.weixinPersonalInfo.isNotEmployeeCertification,
-        // })
-        if(_this.data.phoneNumber){    //测试用
-            _this.setData({
-              isNotEmployeeCertification:1
-            })
-        }
+        _this.setData({
+          isEmployeeCertification: res.data.empAuth,
+          isNotEmployeeCertification: res.data.applicantAuth,
+        })
+        // if(_this.data.phoneNumber){    //测试用
+        //     _this.setData({
+        //       isNotEmployeeCertification:1
+        //     })
+        // }
         _this.judgeCertification()
       } else {
         utils.toggleToast(_this, res.message)
@@ -136,36 +141,34 @@ Page({
   /**
    * 手机号授权
    */
-  getPhoneNumber:function(res){
-    let _this = this
-    commonApi.getSpFansPhone(res,function(){
-      _this.setData({
-        phoneNumber: getApp().globalData.phoneNumber,
-        isNotEmployeeCertification:1              //待定
-      })
-    })
-  },
+  // getPhoneNumber:function(res){
+  //   let _this = this
+  //   commonApi.getSpFansPhone(res,function(){
+  //     _this.setData({
+  //       phoneNumber: getApp().globalData.phoneNumber,
+  //       isNotEmployeeCertification:1              //待定
+  //     })
+  //   })
+  // },
   /**
    * 企业员工身份验证
    */
   verification:function(){
     let _this = this;
     let param = {
-      fansId: getApp().globalData.fansId,
+      spFansId: getApp().globalData.fansId,
       companyId: getApp().globalData.companyId,
       empName: _this.data.name,
       empEmail: _this.data.email
     }
     network.post("/api.do", {
-      method: "positionRecommend/innerEmpAuth",
+      method: "smallProgram/innerEmpAuthSp",
       param: JSON.stringify(param)
     }, function (res) {
-      console.log(res)
-      if (res.code == "1") {
-       wx.navigateTo({
-         url: '../authenResult/authenResult',
-       })
-        
+      if (res.code == "0" && res.data.resCode == 1) {
+        wx.navigateTo({
+          url: `../authenResult/authenResult?empId=${res.data.empId}`,
+        })        
       } else {
         utils.toggleToast(_this, res.message)
       }
@@ -175,55 +178,64 @@ Page({
    * 发送验证码
    */
   sendCheckCode:function(){
-    let t = 10;
     let _this = this
     if (this.data.verificationCode.indexOf('重') > -1){
        return;
+    } else if (!_this.data.telphone.trim()){
+      utils.toggleToast(_this, '手机号不能为空')
+      return false;
     }
-    let timer = setInterval(() => {
-      if (t <= 0) {
-        _this.setData({
-          verificationCode:'获取验证码'
-        })
-        clearInterval(timer);
-        return false;
+    network.post("/weixin/sendCheckCode.do", {
+        phone: _this.data.telphone
+    }, function (res) {
+      if (res.code == "0") {
+        let t = 60;
+        let timer = setInterval(() => {
+          if (t <= 0) {
+            _this.setData({
+              verificationCode: '获取验证码',
+              isCountdown:false
+            })
+            clearInterval(timer);
+            return false;
+          }
+          _this.setData({
+            verificationCode: t + 's后重获取',
+            isCountdown:true
+          })
+          t--;
+        }, 1000);
+      } else if (res.resMsg){
+        utils.toggleToast(_this, res.resMsg)
       }
-      _this.setData({
-        verificationCode: t+'s后重获取'
-      })
-      t--;
-    }, 1000);
+    })
+   
   },
   /**
    * 求职者认证
    */
   notEmployeeCertification:function(){
-   
     let reg = /^((0\d{2,3}-\d{7,8})|(1[35784]\d{9}))$/;
     if (!reg.test(this.data.telphone)){
       utils.toggleToast(this, "请输入正确手机号")
     }
-    console.log(this.data.telphone, this.data.vcode, '求职者认证')
     let _this = this;
     let param = {
-      fansId: getApp().globalData.fansId,
+      spFansId: getApp().globalData.fansId,
       companyId: getApp().globalData.companyId,
       phone: _this.data.telphone,
-      checkCode: _this.data.vcode
+      checkCode: _this.data.vcode,
+      fansType:'2'
     }
-    network.post("/api.do", {
-      method: "weixin/finishCheck",
-      param: JSON.stringify(param)
-    }, function (res) {
-      console.log(res)
+    network.post("/weixin/finishCheck.do", param , function (res) {
       if (res.code == "0") {
-        _this.data.isNotEmployeeCertification=1;
-
-      } else {
-        utils.toggleToast(_this, res.message)
+        _this.setData({
+          isNotEmployeeCertification:1
+        })
+      } else if (res.resMsg){
+        utils.toggleToast(_this, res.resMsg)
       }
     })
-
   },
   /**
    * 生命周期函数--监听页面隐藏

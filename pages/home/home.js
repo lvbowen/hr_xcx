@@ -62,17 +62,17 @@ Page({
     let _this = this
     if (getApp().globalData.fansId) {
       //已登录
-      //  this.getPosterInfo();
+       this.getPosterInfo();
     }else{
       //未登录
       user.login(function () {
-        // _this.getPosterInfo();
+        _this.getPosterInfo();
       })
     }
     
     this.getCompanyDetail();
-    // this.getCompanyInfo();
-    // this.getShareInfo();
+    this.getCompanyInfo();
+    this.getShareInfo();
   },
 
   /**

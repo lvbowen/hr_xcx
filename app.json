@@ -1,11 +1,11 @@
 {
   "pages":[
-    "pages/mine/authenResult/authenResult",
+   "pages/home/home",
     "pages/mine/mine",
     "pages/mine/authentication/authentication",
-    
+    "pages/mine/authenResult/authenResult", 
     "pages/position/list",
-    "pages/home/home",
+    
     "pages/mine/recommend/recommend",
    
     "pages/mine/recommendDetail/recommendDetail",

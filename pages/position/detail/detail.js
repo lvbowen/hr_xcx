@@ -14,7 +14,7 @@ Page({
    */
   data: {
     options:null,
-    phoneNumber:'18888888',
+    phoneNumber:'',
     positionInfo:null,
     positionDesc:'',
     companyInfo:null,

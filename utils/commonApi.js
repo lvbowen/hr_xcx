@@ -55,3 +55,17 @@ export function getSpFansPhone(e,success,cancel) {
     })
   }
 }
+
+/**
+ * 收集到的formId上报保存
+ */
+export function saveFormId(obj){
+  network.post('/spMsg/saveFormid.do', {
+      companyId:getApp().globalData.companyId,
+      formid:obj.formId
+  }, (res) => {
+    if(res.code == 0){
+      
+    }
+  })
+}

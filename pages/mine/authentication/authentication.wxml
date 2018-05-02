@@ -47,7 +47,7 @@
             </view>
           </view>
           <view class="authen-tab__panel" hidden='{{activeIndex != 2}}'>
-              <view class="panel-box" wx:if="{{isNotEmployeeCertification == 0 || !phoneNumber}}">
+              <view class="panel-box" wx:if="{{isNotEmployeeCertification == 0}}">
                   <view class="weui-cells weui-cells_after-title">
                       <view class="weui-cell weui-cell_input weui-cell_vcode">
                         <view class="weui-cell__hd">
@@ -57,7 +57,7 @@
                             <input class="weui-input" placeholder="填写手机号码" maxlength='11'   value="{{telphone}}" data-prop="telphone" bindinput="operateInput" />
                         </view>
                         <view class="weui-cell__ft">
-                            <view class="weui-vcode-btn" catchtap='sendCheckCode'>{{verificationCode}}</view>
+                            <view class="weui-vcode-btn" catchtap='sendCheckCode' style="color:{{isCountdown?'#999':'#5AA2E7'}};">{{verificationCode}}</view>
                         </view>
                     </view>
                     <view class="weui-cell weui-cell_input weui-cell_vcode">
