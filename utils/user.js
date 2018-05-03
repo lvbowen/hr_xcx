@@ -10,10 +10,11 @@ let user = {
       success: response => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (response.code) {
-          console.log(response.code)
+          console.log('wx.login',response.code)
           wx.getUserInfo({
             withCredentials: true,
             success: function (res) {
+              console.log('wx.getUserInfo',res)
               wx.request({
                 url: config.host + '/account/smallProgramLogin.do',
                 method: "POST",

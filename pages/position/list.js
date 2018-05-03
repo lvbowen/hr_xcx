@@ -52,7 +52,6 @@ Page({
         _this.getPosterInfo();
       })
     }
-    // this.getPositionList();
     
   },
 

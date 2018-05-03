@@ -20,7 +20,7 @@
                         <view class="weui-label">企业邮箱</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="输入企业邮箱(绑定后不可修改）" value="{{email}}" data-prop="email" bindinput="operateInput" />
+                        <input class="weui-input" placeholder="您在公司邮箱(绑定后不可修改）" value="{{email}}" data-prop="email" bindinput="operateInput" />
                     </view>
                      <view class="weui-icon-clear" wx:if="{{email.length > 0}}" data-prop="email" bindtap="clearInput">
                         <icon type="clear" size="14"></icon>
