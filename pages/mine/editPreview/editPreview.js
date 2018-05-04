@@ -150,11 +150,32 @@ Page({
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
+        //发送模板消息
+        _this.positionApplyMsg() 
         wx.navigateTo({
           url: `../../position/deliveryResult/deliveryResult?type=${res.data}`,
         })
       } else {
         utils.toggleToast(_this, res.message)
+      }
+    })
+  },
+  /**
+   * 发送模板消息
+   */
+  positionApplyMsg: function () {
+    network.post("/spMsg/positionApplyMsg.do", {
+      params: '',
+      companyId: getApp().globalData.companyId,
+      positionName: '',
+      applyerName: '',
+      fansId: getApp().globalData.fansId,
+      shareFansId: getApp().globalData.shareFansId,
+      phone: '',
+      email: ''
+    }, function (res) {
+      if (res.code == "0") {
+        console.log('模板消息', res.message)
       }
     })
   },

@@ -434,6 +434,9 @@ Page({
   getFormId:function(e){
       let formId = e.detail.formId
       console.log(formId)
+      commonApi.saveFormId({
+        formId: formId
+      })
   },
   /**
    * 生命周期函数--监听页面隐藏

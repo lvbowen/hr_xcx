@@ -13,7 +13,7 @@ Page({
     companyId:'',
     isEmployeeCertification: 0,     //员工认证 （0：没有认证过，1:已经认证过）
     isNotEmployeeCertification: 0,  //求职者认证 （0：没有认证过，1:已经认证过）
-    userInfo:null,
+    // userInfo:null,
     phoneNumber:'',
   },
 
@@ -24,10 +24,10 @@ Page({
     let globalData = getApp().globalData
     console.log(globalData)
     this.setData({
-      fansId: wx.getStorageSync('userInfo').id || globalData.fansId,
+      fansId: globalData.fansId,
       companyId:globalData.companyId,
       phoneNumber: globalData.phoneNumber,
-      userInfo: wx.getStorageSync('userInfo') || globalData.userInfo
+      // userInfo: wx.getStorageSync('userInfo') || globalData.userInfo
     })
   },
 
@@ -100,8 +100,9 @@ Page({
   getFormId:function(e){
      let formId = e.detail.formId
      let url = e.currentTarget.dataset.url
-     //todo 上报formId,再跳转 
-     
+     commonApi.saveFormId({
+       formId: formId
+     })
      if(url){
        wx.navigateTo({
          url: url,

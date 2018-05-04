@@ -29,8 +29,8 @@
         <!-- <view class="position" wx:for="{{positionList}}" wx:key="index" data-positionId="{{item.id}}" catchtap='navigatorTo'> 
           <template is="positionItem" data="{{...item}}" />
         </view>  -->
-         <form class="position" bindsubmit='navigatorTo' report-submit="true"  wx:for="{{positionList}}" wx:key="index" data-positionId="{{item.id}}">
-            <button class="btn-formId" form-type='submit' style="">
+         <form class="position" bindsubmit='saveFormId' report-submit="true"  wx:for="{{positionList}}" wx:key="index" >
+            <button class="btn-formId" form-type='submit' open-type='getUserInfo' bindgetuserinfo="getUserInfo" data-positionId="{{item.id}}">
                 <template is="positionItem" data="{{...item}}" />
             </button>
         </form> 

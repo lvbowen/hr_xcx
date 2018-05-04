@@ -1,5 +1,6 @@
 const network = require("../../../utils/network.js")
 const utils = require("../../../utils/util.js")
+const commonApi = require("../../../utils/commonApi.js")
 const app = getApp()
 const companyId = app.globalData.companyId
 const paramObj = { companyId: companyId, type: 2 }
@@ -440,6 +441,9 @@ Page({
    */
   saveBaseInfo:function(e){
     console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     if (this.checkBaseForm()){
       this.updateSimpleResume("1")
     }
@@ -449,6 +453,9 @@ Page({
    */
   addEducationSave:function(e){
     console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     let _data = this.data;
     if (this.checkEducationForm()) {
       _data.interviewResumeInfo.educationHistoryList.push({
@@ -471,6 +478,9 @@ Page({
    */
   addExperienceSave: function (e) {
     console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     let _data = this.data;
     if (this.checkExperienceForm()) {
       _data.interviewResumeInfo.workHistoryList.push({
@@ -569,6 +579,9 @@ Page({
    */
   goLastStep: function (e) {
     console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     let dataset = e.currentTarget.dataset;
     switch (dataset.formtype) {
       case "edu":
@@ -590,6 +603,9 @@ Page({
   */
   goNextStep: function (e) {
     console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     let dataset = e.currentTarget.dataset;
     switch (dataset.formtype) {
       case "edu":
@@ -607,6 +623,9 @@ Page({
   */
   goDelivery: function (e) {
     console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     let _this = this;
     let param = {
       interviewResumeInfo: this.data.interviewResumeInfo,
@@ -620,11 +639,32 @@ Page({
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
+        //发送模板消息
+        _this.positionApplyMsg()    
         wx.navigateTo({
           url: `../deliveryResult/deliveryResult?type=${res.data}`,
         })
       } else {
         utils.toggleToast(_this, res.message)
+      }
+    })
+  },
+  /**
+   * 发送模板消息
+   */
+  positionApplyMsg:function(){
+    network.post("/spMsg/positionApplyMsg.do", {
+      params:'',
+      companyId: getApp().globalData.companyId,
+      positionName:'',
+      applyerName:'',
+      fansId: getApp().globalData.fansId,
+      shareFansId: getApp().globalData.shareFansId,
+      phone:'',
+      email:''
+    }, function (res) {
+      if (res.code == "0") {
+          console.log('模板消息',res.message)
       }
     })
   },

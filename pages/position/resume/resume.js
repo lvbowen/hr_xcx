@@ -1,6 +1,7 @@
 
 const network = require("../../../utils/network.js")
 const utils = require("../../../utils/util.js")
+const commonApi = require("../../../utils/commonApi.js")
 const app = getApp()
 const companyId = app.globalData.companyId
 const paramObj = { companyId: companyId, type: 2 }
@@ -78,7 +79,10 @@ Page({
     console.log('formId',e.detail.formId)
     let dataset = e.currentTarget.dataset;
     let options = this.data.options;
-    let queryStr = `companyId=${options.companyId}&positionId=${options.positionId}&fansId=${options.fansId}&shareFansId=${options.shareFansId}&recomType=${options.recomType}`
+    let queryStr = `companyId=${options.companyId}&positionId=${options.positionId}&fansId=${options.fansId}&shareFansId=${options.shareFansId}&recomType=${options.recomType}`;
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     switch (dataset.pagetype) {
       //go 创建微简历
       case "1":

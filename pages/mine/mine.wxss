@@ -19,9 +19,12 @@
   height: 164rpx;
   border-radius: 50%;
   margin-bottom: 22rpx;
+  display: block;
+  overflow: hidden;
 }
 .head-area .avator-box .name{
   font-size:36rpx;
+  display: block;
    
 }
 /* .head-area .authen-box .authen-btn{

@@ -2,6 +2,7 @@
 const network = require("../../utils/network.js")
 const utils = require("../../utils/util.js")
 const user = require("../../utils/user.js")
+const commonApi = require("../../utils/commonApi.js")
 const app = getApp() 
 let companyId = ''
 let paramObj = null
@@ -350,6 +351,9 @@ Page({
         })
         break;
       case "2":
+        commonApi.saveFormId({
+          formId: e.detail.formId
+        })
         wx.navigateTo({
           url: `./team/team?companyId=${companyId}`,        
         })
@@ -392,7 +396,9 @@ Page({
    */
   getFormId:function(e){
     let formId = e.detail.formId
-    console.log('home_formId2',formId)
+    commonApi.saveFormId({
+      formId: formId
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏

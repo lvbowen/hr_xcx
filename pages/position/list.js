@@ -1,5 +1,6 @@
 const network = require("../../utils/network.js")
 const user = require("../../utils/user.js")
+const commonApi = require("../../utils/commonApi.js")
 const app = getApp()
 let companyId = ''
 let paramObj = null
@@ -98,13 +99,12 @@ Page({
   /**
    * 跳转
    */
-  navigatorTo: function (e) {
-    let dataset = e.currentTarget.dataset;
-    console.log('formId',e.detail.formId)
-    wx.navigateTo({
-      url: `./detail/detail?companyId=${companyId}&positionId=${dataset.positionid}`,
-    })
+  saveFormId: function (e) {
     
+    console.log('formId',e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })    
   },
   //显示输入框
   showInput: function () {
@@ -295,6 +295,38 @@ Page({
   getFormId: function (e) {
     let formId = e.detail.formId
     console.log('list_formId2', formId)
+    commonApi.saveFormId({
+      formId: formId
+    })
+  },
+  /**
+   * 保存用户信息
+   */
+  getUserInfo:function(e){
+    let dataset = e.currentTarget.dataset;
+    if(!getApp().globalData.userInfo){   
+      //还未获取过用户信息
+      network.post('/api.do', {
+        method: 'smallProgram/updateUserInfoSp',
+        param: JSON.stringify({
+          spFansId: getApp().globalData.fansId,
+          userInfo: e.detail.userInfo
+        })
+      }, (res) => {
+        if (e.detail.errMsg == "getUserInfo:ok"){
+          // 允许授权,若拒绝授权则 errMsg:"getUserInfo:fail auth deny"
+          getApp().globalData.userInfo = e.detail.userInfo
+          wx.setStorageSync('userInfo', e.detail.userInfo)
+        }
+        wx.navigateTo({
+          url: `./detail/detail?companyId=${companyId}&positionId=${dataset.positionid}`,
+        })
+      })
+    }else{
+      wx.navigateTo({
+        url: `./detail/detail?companyId=${companyId}&positionId=${dataset.positionid}`,
+      })
+    } 
   },
   /**
    * 生命周期函数--监听页面隐藏

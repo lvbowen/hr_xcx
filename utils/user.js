@@ -10,11 +10,10 @@ let user = {
       success: response => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (response.code) {
-          console.log('wx.login',response.code)
-          wx.getUserInfo({
-            withCredentials: true,
-            success: function (res) {
-              console.log('wx.getUserInfo',res)
+          // console.log('wx.login',response.code)
+          // wx.getUserInfo({
+          //   withCredentials: true,
+          //   success: function (res) {
               wx.request({
                 url: config.host + '/account/smallProgramLogin.do',
                 method: "POST",
@@ -25,30 +24,31 @@ let user = {
                 data: {
                   appid: globalData.appId,
                   code: response.code,
-                  userInfo: JSON.stringify(res.userInfo),
+                  // userInfo: JSON.stringify(res.userInfo),
+                  userInfo: JSON.stringify({}),
                 },
                 success: function (res) {
                   let _data = res.data
                   if (_data.code == "0") {
-                    globalData.userInfo = _data.data
+                    // globalData.userInfo = _data.data
                     globalData.fansId = _data.data.id
-                    wx.setStorageSync('userInfo', _data.data)
-                    console.log(globalData.fansId, globalData.userInfo)
+                    // wx.setStorageSync('userInfo', _data.data)
+                    // console.log(globalData.fansId, globalData.userInfo)
                     if(cb){
                       cb()
                     }
                   }
                 }
               })
-            },
-            fail: function () {
-              wx.showModal({
-                title: "温馨提示",
-                content: '您已经拒绝微信授权，请删除小程序重新进入授权。',
-                showCancel: false
-              })
-            }
-          })
+            // },
+            // fail: function () {
+            //   wx.showModal({
+            //     title: "温馨提示",
+            //     content: '您已经拒绝微信授权，请删除小程序重新进入授权。',
+            //     showCancel: false
+            //   })
+            // }
+          // })
         }
       }
     })
