@@ -29,7 +29,6 @@ Page({
     showChevron: false,   //是否显示箭头
     showChevronDown:true,   //是否显示下箭头
     productListWidth:0,
-    array: ['美国', '中国', '巴西', '日本'],
     index:0,
     showShare:false,
     poster:{
@@ -135,7 +134,7 @@ Page({
           }
            
       }else{
-        console.log(`companyWeb/getCompanyDetail:${res.message}`)
+        console.log(`companyWeb/getCompanyDetailForApp:${res.message}`)
       }
     })
   },

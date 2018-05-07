@@ -653,15 +653,17 @@ Page({
    * 发送模板消息
    */
   positionApplyMsg:function(){
+    let _data = this.data
     network.post("/spMsg/positionApplyMsg.do", {
-      params:'',
-      companyId: getApp().globalData.companyId,
-      positionName:'',
-      applyerName:'',
-      fansId: getApp().globalData.fansId,
-      shareFansId: getApp().globalData.shareFansId,
-      phone:'',
-      email:''
+      params:{
+        companyId: getApp().globalData.companyId,
+        positionId: _data.interviewResumeInfo.positionId,
+        applyerName: _data.interviewResumeInfo.name,
+        fansId: getApp().globalData.fansId,
+        shareFansId: getApp().globalData.shareFansId,
+        phone: _data.interviewResumeInfo.phone,
+        email: _data.interviewResumeInfo.email
+      }    
     }, function (res) {
       if (res.code == "0") {
           console.log('模板消息',res.message)

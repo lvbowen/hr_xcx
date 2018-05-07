@@ -164,15 +164,17 @@ Page({
    * 发送模板消息
    */
   positionApplyMsg: function () {
+    let _this = this
     network.post("/spMsg/positionApplyMsg.do", {
-      params: '',
-      companyId: getApp().globalData.companyId,
-      positionName: '',
-      applyerName: '',
-      fansId: getApp().globalData.fansId,
-      shareFansId: getApp().globalData.shareFansId,
-      phone: '',
-      email: ''
+      params: {
+        companyId: getApp().globalData.companyId,
+        positionId: _this.data.options.positionId,
+        applyerName: _this.data.basic.name,
+        fansId: getApp().globalData.fansId,
+        shareFansId: getApp().globalData.shareFansId,
+        phone: _this.data.basic.phone,
+        email: _this.data.basic.email
+      }   
     }, function (res) {
       if (res.code == "0") {
         console.log('模板消息', res.message)
