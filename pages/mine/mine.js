@@ -14,7 +14,7 @@ Page({
     isEmployeeCertification: 0,     //员工认证 （0：没有认证过，1:已经认证过）
     isNotEmployeeCertification: 0,  //求职者认证 （0：没有认证过，1:已经认证过）
     // userInfo:null,
-    phoneNumber:'',
+    // phoneNumber:'',
   },
 
   /**
@@ -26,7 +26,7 @@ Page({
     this.setData({
       fansId: globalData.fansId,
       companyId:globalData.companyId,
-      phoneNumber: globalData.phoneNumber,
+      // phoneNumber: globalData.phoneNumber,
       // userInfo: wx.getStorageSync('userInfo') || globalData.userInfo
     })
   },
@@ -42,11 +42,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (getApp().globalData.phoneNumber) {
-      this.setData({
-        isNotEmployeeCertification: 1
-      })
-    }
+    // if (getApp().globalData.phoneNumber) {
+    //   this.setData({
+    //     isNotEmployeeCertification: 1
+    //   })
+    // }
     this.getPersonalInfoSp()
   },
   /**

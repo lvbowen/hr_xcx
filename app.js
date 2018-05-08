@@ -13,6 +13,7 @@ App({
     userInfo: null,
     fansId:'',
     shareFansId:'',
+    phoneNumber:'',   //授权手机号
     companyId: "",   //正式：61(爱聚) 34530，测试：169359 
     weWebsiteId:'',   //微官网id
     pageSize: "6"

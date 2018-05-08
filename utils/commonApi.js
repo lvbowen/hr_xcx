@@ -60,31 +60,13 @@ export function getSpFansPhone(e,success,cancel) {
  * 收集到的formId上报保存
  */
 export function saveFormId(obj,success,fail){
-  // network.post('/api.do', {
-  //   method:'spMsg/saveFormid',
-  //   param:JSON.stringify({
-  //     companyId: getApp().globalData.companyId,
-  //     formid: obj.formId
-  //   })
-   
-  // }, (res) => {
-  //   if (res.code == 0) {
-  //     console.log('saveFormid', res.message)
-  //     if (success) {
-  //       success()
-  //     }
-  //   } else {
-  //     if (fail) {
-  //       fail()
-  //     }
-  //   }
-  // })
   network.post('/spMsg/saveFormid.do', {
       companyId:getApp().globalData.companyId,
       formid:obj.formId
   }, (res) => {
+    console.log('saveFormid', res)
     if(res.code == 0){
-      console.log('saveFormid',res.message)
+     
       if(success){
         success()
       }

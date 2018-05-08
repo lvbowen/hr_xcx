@@ -18,7 +18,17 @@
 .icon-edit{
   width:32rpx;
   height:32rpx;
+  position: relative;
 }
+/* .icon-edit::before{
+  content: '';
+  position: absolute;
+  top:-10rpx;
+  bottom:-10rpx;
+  right:-10rpx;
+  left:-10rpx;
+  
+} */
 .base-info .icon-edit{
   position: absolute;
   top:0;
