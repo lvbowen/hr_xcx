@@ -1,7 +1,7 @@
 <import src="/template/footer/footer.wxml" />
 
 <view class="teams-wrap">
-    <view class="team-list" wx:for="{{teams}}" wx:key="index">
+    <view class="team-list" wx:for="{{teams}}" wx:key="index" style="height:1000px;">
       <view class="team-box">
         <view class="weui-panel weui-panel_access team-intro">
             <view class="weui-panel__hd"><image class="img" style="width:38rpx;" src="../../../images/icon-company-team.png" />{{item.name}}</view>

@@ -64,3 +64,12 @@
   -webkit-line-clamp:99999;
   color: #353535;
 }
+.teams-wrap{
+  position: relative;
+  min-height: 100%;
+}
+.teams-wrap .footer{
+   position: absolute;
+   bottom:0;
+   left:283rpx;
+}

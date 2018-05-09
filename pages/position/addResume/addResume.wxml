@@ -73,10 +73,12 @@
           </view>
       </view>
     </view>
-    <button class="base-btn" type="primary" data-headtype="2" bindtap="saveBaseInfo">
-       <text class="top">下一步</text>
-       <text class="bottom">(填写教育经历）</text>
-    </button>
+    <form class="form-id" bindsubmit='saveBaseInfo' report-submit="true" data-headtype="2" >
+      <button class="base-btn" type="primary" form-type='submit'>
+        <text class="top">下一步</text>
+        <text class="bottom">(填写教育经历）</text>
+      </button>
+    </form>
   </view>
     <!-- 教育经历 -->
   <view class="education-history" wx:elif="{{headType == '2'}}">
@@ -166,9 +168,11 @@
             </view>
         </view>
       </view>
-      <button class="save-btn" type="primary"  bindtap="addEducationSave">
-        保存
-      </button>
+       <form class="form-id" bindsubmit='addEducationSave' report-submit="true" >
+        <button class="save-btn" type="primary" form-type='submit'>
+          保存
+        </button>
+      </form>
     </view>
     <view class="history-list-wrap" hidden='{{addEducation}}'>
        <view class="history-list">
@@ -184,11 +188,15 @@
          <text class="text">新增一条教育经历</text>
        </view>
        <view class="btn-area">
-          <button class="pre-btn" type="default" data-formtype="edu" catchtap='goLastStep'>上一步</button>
-          <button class="next-btn" type="default" data-formtype="edu" catchtap='goNextStep'>
-            <text class="top">下一步</text>
-            <text class="bottom">(填写工作经历）</text>
-          </button>
+        <form class="form-id" bindsubmit='goLastStep' report-submit="true" data-formtype="edu" >
+          <button class="pre-btn" type="default" form-type='submit' >上一步</button>
+        </form>
+          <form class="form-id" bindsubmit='goNextStep' report-submit="true" data-formtype="edu" >
+            <button class="next-btn" type="default" form-type='submit'>
+              <text class="top">下一步</text>
+              <text class="bottom">(填写工作经历）</text>
+            </button>
+          </form>
        </view>
     </view>
   </view> 
@@ -265,9 +273,11 @@
             </view>
         </view>
       </view>
-      <button class="save-btn" type="primary"  bindtap="addExperienceSave">
-        保存
-      </button>
+       <form class="form-id" bindsubmit='addExperienceSave' report-submit="true" >
+        <button class="save-btn" type="primary"  form-type='submit'>
+          保存
+        </button>
+      </form>
     </view>
      <view class="history-list-wrap" hidden='{{addExperience}}'>
        <view class="history-list">
@@ -283,8 +293,12 @@
          <text class="text">新增一条工作经历</text>
        </view>
        <view class="btn-area">
-          <button class="pre-btn" type="default" data-formtype="work" catchtap='goLastStep'>上一步</button>
-          <button class="next-btn" type="default" data-formtype="work" catchtap='goNextStep'>下一步</button>
+          <form class="form-id" bindsubmit='goLastStep' report-submit="true" data-formtype="work" >
+              <button class="pre-btn" type="default" form-type='submit'>上一步</button>
+          </form>
+          <form class="form-id" bindsubmit='goNextStep' report-submit="true" data-formtype="work" >
+            <button class="next-btn" type="default" form-type='submit'>下一步</button>
+          </form>
        </view>
     </view>
   </view>  
@@ -294,7 +308,9 @@
       <icon type="success" size="100" color='#5AA2E7' class="icon" />
       <view class="result-state">简历完成</view>
     </view>
-    <button class="blue-btn btn" type="primary"  bindtap="goDelivery">立即投递</button>
+    <form class="form-id" bindsubmit='goDelivery' report-submit="true" >
+      <button class="blue-btn btn" type="primary" form-type='submit'>立即投递</button>
+    </form>
      <button class="gray-btn btn" type="primary" bindtap="goPreview" >预览简历</button> 
     <button class="gray-btn btn" type="primary"  bindtap="goModify">返回修改</button>
    </view>  <!-- 简历完成 end -->

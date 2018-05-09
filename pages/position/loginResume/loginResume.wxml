@@ -7,7 +7,7 @@
     <image class="img" src="../../../images/lagou_icon.png" wx:elif="{{options.type == 6}}"></image>
   </view>
 </view>
-<form class="form" bindsubmit="formSubmit">
+<form class="form" bindsubmit="formSubmit" report-submit='true'>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
            <view class="weui-cell__hd">

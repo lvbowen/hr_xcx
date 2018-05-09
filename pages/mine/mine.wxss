@@ -19,9 +19,12 @@
   height: 164rpx;
   border-radius: 50%;
   margin-bottom: 22rpx;
+  display: block;
+  overflow: hidden;
 }
 .head-area .avator-box .name{
   font-size:36rpx;
+  display: block;
    
 }
 /* .head-area .authen-box .authen-btn{
@@ -95,5 +98,21 @@
   color: #000;
 }
 .btn-contact::after{
+  border:0;
+}
+.btn-formId{
+  font-size:34rpx;
+} 
+
+.weui-cells .form-id{
+  position: relative;
+}
+.weui-cells .form-id::before{
+  content:" ";position:absolute;left:30rpx;top:0;right:0;height:2rpx;border-top:1rpx solid #e5e5e5;color:#d9d9d9;
+}
+.weui-cells .form-id:first-child::before{
+  border-top:none;
+} 
+.weui-media-box::after,.weui-media-box::before{
   border:0;
 }

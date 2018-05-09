@@ -1,5 +1,6 @@
 const network = require("../../../utils/network.js")
 const utils = require("../../../utils/util.js")
+const commonApi = require("../../../utils/commonApi.js")
 const app = getApp()
 const companyId = app.globalData.companyId
 const paramObj = { companyId: companyId, type: 2 }
@@ -46,7 +47,11 @@ Page({
   /**
    * 返回首页
    */
-  reuturnResume:function(){
+  reuturnResume:function(e){
+    console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     wx.reLaunch({
       url: '/pages/home/home',
     })

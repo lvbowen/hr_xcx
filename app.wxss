@@ -28,6 +28,29 @@ page{
   color: #999;
   padding:36rpx 0 24rpx 30rpx;
 }
+.form-id{
+  display: block;
+}
+.btn-formId{
+  border:0;
+  padding:0;
+  margin:0;
+  line-height: 1.5;
+  background: transparent;
+  font-size:28rpx; 
+  text-align: left;
+  border-radius:0;
+}
+.btn-formId::after{
+  border:0;
+}
+.weui-vcode-btn{
+  color: #5AA2E7;
+  font-size:32rpx;
+}
+.weui-vcode-btn:active{
+  color: #5AA2E7;
+}
 /* 文字  */
 .font-gray-24{
   font-size: 24rpx;
@@ -102,4 +125,16 @@ page{
 }
 .input-placeholder,.textarea-placeholder,.placeholder{
    color: #999; 
+}
+/* 扩展可点击区域  */
+.extend-clickable-area{
+  position: relative;
+}
+.extend-clickable-area::before{
+  content:'';
+  position:absolute;
+  top:-10rpx;
+  bottom:-10rpx;
+  left:-10rpx;
+  right:-10rpx;
 }

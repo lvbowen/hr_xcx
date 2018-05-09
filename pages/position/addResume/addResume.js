@@ -1,5 +1,6 @@
 const network = require("../../../utils/network.js")
 const utils = require("../../../utils/util.js")
+const commonApi = require("../../../utils/commonApi.js")
 const app = getApp()
 const companyId = app.globalData.companyId
 const paramObj = { companyId: companyId, type: 2 }
@@ -438,7 +439,11 @@ Page({
   /**
    * 保存基本信息
    */
-  saveBaseInfo:function(){
+  saveBaseInfo:function(e){
+    console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     if (this.checkBaseForm()){
       this.updateSimpleResume("1")
     }
@@ -446,7 +451,11 @@ Page({
   /**
    * 新增教育经历
    */
-  addEducationSave:function(){
+  addEducationSave:function(e){
+    console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     let _data = this.data;
     if (this.checkEducationForm()) {
       _data.interviewResumeInfo.educationHistoryList.push({
@@ -467,7 +476,11 @@ Page({
    /**
    * 新增工作经历
    */
-  addExperienceSave: function () {
+  addExperienceSave: function (e) {
+    console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     let _data = this.data;
     if (this.checkExperienceForm()) {
       _data.interviewResumeInfo.workHistoryList.push({
@@ -565,6 +578,10 @@ Page({
    * 返回上一步
    */
   goLastStep: function (e) {
+    console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     let dataset = e.currentTarget.dataset;
     switch (dataset.formtype) {
       case "edu":
@@ -585,6 +602,10 @@ Page({
   *  去下一步
   */
   goNextStep: function (e) {
+    console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     let dataset = e.currentTarget.dataset;
     switch (dataset.formtype) {
       case "edu":
@@ -601,6 +622,10 @@ Page({
   * 立即投递
   */
   goDelivery: function (e) {
+    console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     let _this = this;
     let param = {
       interviewResumeInfo: this.data.interviewResumeInfo,
@@ -614,11 +639,34 @@ Page({
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
+        //发送模板消息
+        _this.positionApplyMsg()    
         wx.navigateTo({
           url: `../deliveryResult/deliveryResult?type=${res.data}`,
         })
       } else {
         utils.toggleToast(_this, res.message)
+      }
+    })
+  },
+  /**
+   * 发送模板消息
+   */
+  positionApplyMsg:function(){
+    let _data = this.data
+    network.post("/spMsg/positionApplyMsg.do", {
+      params:{
+        companyId: getApp().globalData.companyId,
+        positionId: _data.interviewResumeInfo.positionId,
+        applyerName: _data.interviewResumeInfo.name,
+        fansId: getApp().globalData.fansId,
+        shareFansId: getApp().globalData.shareFansId,
+        phone: _data.interviewResumeInfo.phone,
+        email: _data.interviewResumeInfo.email
+      }    
+    }, function (res) {
+      if (res.code == "0") {
+          console.log('模板消息',res.message)
       }
     })
   },

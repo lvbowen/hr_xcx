@@ -2,6 +2,7 @@
 const network = require("../../utils/network.js")
 const utils = require("../../utils/util.js")
 const user = require("../../utils/user.js")
+const commonApi = require("../../utils/commonApi.js")
 const app = getApp() 
 let companyId = ''
 let paramObj = null
@@ -28,7 +29,6 @@ Page({
     showChevron: false,   //是否显示箭头
     showChevronDown:true,   //是否显示下箭头
     productListWidth:0,
-    array: ['美国', '中国', '巴西', '日本'],
     index:0,
     showShare:false,
     poster:{
@@ -39,6 +39,10 @@ Page({
     showImg:false,
     showImgurl:'',
     memorabiliaEmptyImg:false,     //false:发展历程项都有图片，true:有的没图片
+    product_introduction_isshow: false,
+    development_history_isshow: false,
+    work_enivorment_isshow: false,
+    our_team_isshow: false
   },
 
   /**
@@ -102,14 +106,13 @@ Page({
       
     },function(res){
       if (res.code == "0"){
-        let bol = false
-        if (res.data.CompanyMemorabilia && res.data.CompanyMemorabilia.length>0){
-           bol = res.data.CompanyMemorabilia.some(function (item) {
-            return item.imageUrl == "" || item.imageUrl == null;
-          });
-          console.log('memorabiliaEmptyImg',bol)
-        }
-        
+          let bol = false
+          if (res.data.CompanyMemorabilia && res.data.CompanyMemorabilia.length>0){
+            bol = res.data.CompanyMemorabilia.some(function (item) {
+              return item.imageUrl == "" || item.imageUrl == null;
+            });
+          }       
+          _this.isShowModule(res.data);
           _this.setData({
             memorabilia: res.data.CompanyMemorabilia,
             website: res.data.CompanyWebsite,
@@ -134,11 +137,81 @@ Page({
                 productListWidth: 279 * res.data.CompanyWebsite.productIntroductionList.length - 35
               })
           }
+
            
       }else{
-        console.log(`companyWeb/getCompanyDetail:${res.message}`)
+        console.log(`companyWeb/getCompanyDetailForApp:${res.message}`)
       }
     })
+  },
+  /**
+   * 是否显示产品介绍、发展历程、办公环境、团队模块
+   */
+  isShowModule(data){
+    if (data.CompanyWebsite.productIntroductionList.length == 1) {   //产品介绍是否显示
+      if (data.CompanyWebsite.productIntroductionList[0].productDescription == "" && data.CompanyWebsite.productIntroductionList[0].productName == "" && data.CompanyWebsite.productIntroductionList[0].productImageUrl == null) {
+        this.setData({
+          product_introduction_isshow:false
+        })
+      } else {
+        this.setData({
+          product_introduction_isshow: true
+        })
+      }
+    } else if (data.CompanyWebsite.productIntroductionList.length > 1){
+      this.setData({
+        product_introduction_isshow: true
+      })
+    }
+
+    if (data.CompanyMemorabilia.length == 1) {   //发展历程是否显示
+      if (data.CompanyMemorabilia[0].date == "" && data.CompanyMemorabilia[0].description == "" && data.CompanyMemorabilia[0].imageUrl == null) {
+        this.setData({
+          development_history_isshow: false
+        })
+      } else {
+        this.setData({
+          development_history_isshow: true
+        })
+      }
+    } else if (data.CompanyMemorabilia.length > 1){
+       this.setData({
+         development_history_isshow: true
+       })
+    }
+
+    if (data.WorkEnvironment.length == 1) {   //办公环境是否显示
+      if (data.WorkEnvironment[0].description == "" && data.WorkEnvironment[0].imageUrl == null) {
+        this.setData({
+          work_enivorment_isshow: false
+        })
+      } else {
+        this.setData({
+          work_enivorment_isshow: true
+        })
+      }
+    } else if (data.WorkEnvironment.length > 1){
+       this.setData({
+         work_enivorment_isshow: true
+       })
+    }
+
+    if (data.WorkTeam.length == 1) {   //我们的团队是否显示
+      if (data.WorkTeam[0].description == "" && data.WorkTeam[0].imageUrl == null) {
+        this.data.our_team_isshow = false;
+        this.setData({
+          our_team_isshow: false
+        })
+      } else {
+        this.setData({
+          our_team_isshow: true
+        })
+      }
+    } else if (data.WorkTeam.length > 1){
+       this.setData({
+         our_team_isshow: true
+       })
+    }
   },
   /**
    * 获取总公司信息
@@ -342,6 +415,7 @@ Page({
     let type = e.currentTarget.dataset.type;
     let proIndex = e.currentTarget.dataset.proindex;
     console.log(e.currentTarget.dataset)
+    console.log('formId',e.detail.formId)
     switch(type){
       case "1":
         let index = e.currentTarget.dataset.index;
@@ -351,10 +425,11 @@ Page({
         })
         break;
       case "2":
+        commonApi.saveFormId({
+          formId: e.detail.formId
+        })
         wx.navigateTo({
-          url: `./team/team?companyId=${companyId}`,
-
-          
+          url: `./team/team?companyId=${companyId}`,        
         })
         break;
       case "3":
@@ -388,8 +463,18 @@ Page({
     }
     _this.setData({
       showChevronDown: !_this.data.showChevronDown
+    })    
+  },
+  /**
+   * 获取模板消息推送码formId
+   */
+  getFormId:function(e){
+    let formId = e.detail.formId
+    console.log('formId',formId)
+    commonApi.saveFormId({
+      formId: formId
     })
-    
+
   },
   /**
    * 生命周期函数--监听页面隐藏

@@ -185,8 +185,10 @@
   color: #999999;
 }
 .visits_con{
-  display: flex;
-  justify-content: flex-start;
+  /* display: flex;
+  justify-content: flex-start; */
+  overflow: hidden;
+  
 }
 .visits_con image{
   display: block;
@@ -196,6 +198,7 @@
   margin-right: 18rpx;
   border:1rpx solid #e5e5e5;
   box-sizing: border-box;
+  float: left;
 }
 .visits_con image:nth-last-child(1){
   margin-right: 0;

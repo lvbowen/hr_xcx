@@ -5,21 +5,22 @@
       <view class="weui-tab">
           <view class="authen-navbar">
               <view class="authen-navbar__item {{activeIndex == 1 ? 'authen-bar__item_on' : ''}}" data-tabindex="1" catchtap='switchTab'>我是员工</view>
-              <view  class="authen-navbar__item {{activeIndex == 2 ? 'authen-bar__item_on' : ''}}"><button class="btn-phone" open-type='{{phoneNumber?"":"getPhoneNumber"}}' bindgetphonenumber="getPhoneNumber" data-tabindex="2" catchtap='switchTab'>我不是员工（求职者）</button></view>
+              <!-- <view  class="authen-navbar__item {{activeIndex == 2 ? 'authen-bar__item_on' : ''}}"><button class="btn-phone" open-type='{{phoneNumber?"":"getPhoneNumber"}}' bindgetphonenumber="getPhoneNumber" data-tabindex="2" catchtap='switchTab'>我不是员工（求职者）</button></view> -->
+              <view class="authen-navbar__item {{activeIndex == 2 ? 'authen-bar__item_on' : ''}}" data-tabindex="2" catchtap='switchTab'>我不是员工（求职者）</view>
           </view>
           <view class="authen-tab__panel" hidden='{{activeIndex != 1}}'>
             <view class="panel-box" wx:if="{{isEmployeeCertification == 0}}">
               <view class="weui-cells weui-cells_after-title">
                 <view class='tips'>
                   <image class="img" src="../../../images/icon-tip.png"></image>
-                  <text class="text">员工认证后即可以以公司推荐人身份分享职位给好友， 获得相应奖励！</text>
+                  <text class="text">员工认证后，你能享受更多权益！</text>
                 </view>
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
                         <view class="weui-label">企业邮箱</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="输入企业邮箱(绑定后不可修改）" value="{{email}}" data-prop="email" bindinput="operateInput" />
+                        <input class="weui-input" placeholder="您在公司邮箱(绑定后不可修改）" value="{{email}}" data-prop="email" bindinput="operateInput" />
                     </view>
                      <view class="weui-icon-clear" wx:if="{{email.length > 0}}" data-prop="email" bindtap="clearInput">
                         <icon type="clear" size="14"></icon>
@@ -46,7 +47,30 @@
             </view>
           </view>
           <view class="authen-tab__panel" hidden='{{activeIndex != 2}}'>
-              <view class="panel-box" wx:if="{{isNotEmployeeCertification == 0 || !phoneNumber}}"></view>
+              <view class="panel-box" wx:if="{{isNotEmployeeCertification == 0}}">
+                  <view class="weui-cells weui-cells_after-title">
+                      <view class="weui-cell weui-cell_input weui-cell_vcode">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">手机号码</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                            <input class="weui-input" placeholder="填写手机号码" maxlength='11'   value="{{telphone}}" data-prop="telphone" bindinput="operateInput" />
+                        </view>
+                        <view class="weui-cell__ft">
+                            <view class="weui-vcode-btn" catchtap='sendCheckCode' style="color:{{isCountdown?'#999':'#5AA2E7'}};">{{verificationCode}}</view>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell_input weui-cell_vcode">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">验证码</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                            <input class="weui-input" placeholder="输入验证码"  value="{{vcode}}" data-prop="vcode" bindinput="operateInput" />
+                        </view>
+                    </view>
+                  </view>
+                   <button class="save-btn btn-w690" type="primary" disabled='{{!telphone || !vcode}}' bindtap="notEmployeeCertification">前往认证</button>
+              </view>
               <view class="authen-sucess" wx:else>
                 <image class="img" src="../../../images/noResutl_icon.png"></image>
                 <text class="text">您已验证成功</text>

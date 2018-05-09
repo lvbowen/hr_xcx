@@ -121,6 +121,7 @@ Page({
   * 立即投递
   */
   goDelivery: function (e) {
+    console.log(e.detail.formId)
     let _this = this, _data = this.data;
     let param = {
       interviewResumeInfo: {
@@ -149,11 +150,35 @@ Page({
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0") {
+        //发送模板消息
+        _this.positionApplyMsg() 
         wx.navigateTo({
           url: `../../position/deliveryResult/deliveryResult?type=${res.data}`,
         })
       } else {
         utils.toggleToast(_this, res.message)
+      }
+    })
+  },
+  /**
+   * 发送模板消息
+   */
+  positionApplyMsg: function () {
+    let _this = this
+    
+    network.post("/spMsg/positionApplyMsg.do", {
+      params: JSON.stringify({
+        companyId: getApp().globalData.companyId,
+        positionId: _this.data.options.positionId,
+        applyerName: _this.data.basic.name,
+        fansId: getApp().globalData.fansId,
+        shareFansId: getApp().globalData.shareFansId,
+        phone: _this.data.basic.phone,
+        email: _this.data.basic.email
+      })   
+    }, function (res) {
+      if (res.code == "0") {
+        console.log('模板消息', res.message)
       }
     })
   },

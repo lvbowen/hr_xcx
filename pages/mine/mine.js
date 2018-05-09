@@ -13,8 +13,6 @@ Page({
     companyId:'',
     isEmployeeCertification: 0,     //员工认证 （0：没有认证过，1:已经认证过）
     isNotEmployeeCertification: 0,  //求职者认证 （0：没有认证过，1:已经认证过）
-    userInfo:null,
-    phoneNumber:'',
   },
 
   /**
@@ -22,11 +20,10 @@ Page({
    */
   onLoad: function (options) {
     let globalData = getApp().globalData
+    console.log(globalData)
     this.setData({
-      fansId:globalData.fansId,
+      fansId: globalData.fansId,
       companyId:globalData.companyId,
-      phoneNumber: globalData.phoneNumber,
-      userInfo:globalData.userInfo
     })
   },
 
@@ -46,26 +43,26 @@ Page({
         isNotEmployeeCertification: 1
       })
     }
-    // this.getWeixinPersonalInfo()
+    this.getPersonalInfoSp()
   },
   /**
    * 获取认证信息
    */
-  getWeixinPersonalInfo:function(){
+  getPersonalInfoSp:function(){
     let _this = this;
     let param = {
-      fansId: _this.data.fansId,
+      spFansId: _this.data.fansId,
       companyId:_this.data.companyId
     }
     network.post("/api.do", {
-      method: "wexinPersonalInfo/getWeixinPersonalInfo",
+      method: "smallProgram/getPersonalInfoSp",
       param: JSON.stringify(param)
     }, function (res) {
       if (res.code == "0" && res.data) {
-          // _this.setData({
-          //   isEmployeeCertification: res.data.weixinPersonalInfo.isEmployeeCertification,
-          //   isNotEmployeeCertification: res.data.weixinPersonalInfo.isNotEmployeeCertification,
-          // })
+          _this.setData({
+            isEmployeeCertification: res.data.empAuth,
+            isNotEmployeeCertification: res.data.applicantAuth,
+          })
       } else {
         utils.toggleToast(_this, res.message)
       }
@@ -84,16 +81,30 @@ Page({
   /**
    * 手机号授权
    */
-  getPhoneNumber: function (res) {
-    let _this = this
-    commonApi.getSpFansPhone(res, function () {
-      _this.setData({
-        phoneNumber: getApp().globalData.phoneNumber,
-        isNotEmployeeCertification:1
-      })
-    })
+  // getPhoneNumber: function (res) {
+  //   let _this = this
+  //   commonApi.getSpFansPhone(res, function () {
+  //     _this.setData({
+  //       phoneNumber: getApp().globalData.phoneNumber,
+  //       isNotEmployeeCertification:1
+  //     })
+  //   })
+  // },
+  /**
+   *  跳转页面的同时收集formId
+   */
+  getFormId:function(e){
+     let formId = e.detail.formId
+     let url = e.currentTarget.dataset.url
+     commonApi.saveFormId({
+       formId: formId
+     })
+     if(url){
+       wx.navigateTo({
+         url: url,
+       })
+     }    
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -120,12 +131,5 @@ Page({
    */
   onReachBottom: function () {
   
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  // onShareAppMessage: function () {
-  
-  // }
+  }
 })

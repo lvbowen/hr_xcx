@@ -4,8 +4,9 @@
   <!-- 基本信息  -->
   <view class="base-info section">
     <view class="avatar-box">
-      <image class="avatar-img" wx:if="{{basic.headImg}}" src="{{basic.headImg}}" ></image>
-      <image class="avatar-img" wx:else src="../../../images/default_avatar2.png" ></image>
+      <open-data type="userAvatarUrl" class="avatar-img"></open-data> 
+      <!-- <image class="avatar-img" wx:if="{{basic.headImg}}" src="{{basic.headImg}}" ></image>
+      <image class="avatar-img" wx:else src="../../../images/default_avatar2.png" ></image> -->
     </view>
     <view class="info-box">
       <view class="" wx:if="{{basic.name}}">
@@ -218,5 +219,7 @@
   <!-- 页脚 -->
    <template is="footer" /> 
    <!--  -->
-    <view class="delivery-btn" wx:if="{{options.pageType != 'mine'}}" catchtap="goDelivery" >立即投递</view> 
+   <form class="form-id" bindsubmit='goDelivery' report-submit="true"  wx:if="{{options.pageType != 'mine'}}">
+     <button class="btn-formId delivery-btn" form-type='submit' >立即投递</button> 
+  </form>
 </view>

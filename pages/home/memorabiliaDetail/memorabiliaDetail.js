@@ -38,8 +38,8 @@ Page({
   getCompanyDetail: function () {
     let _this = this
     network.post("/api.do", {
-      method: "companyWeb/getCompanyDetail",
-      param: JSON.stringify({ companyId: getApp().globalData.companyId, type: 2}),
+      method: "companyWeb/getCompanyDetailForApp",
+      param: JSON.stringify({ id: getApp().globalData.weWebsiteId, type: 2}),
 
     }, function (res) {
       if (res.code == "0") {
