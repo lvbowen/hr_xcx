@@ -19,9 +19,7 @@ export function getSpFansPhone(e,success,cancel) {
       iv: e.detail.iv,
       encryptedData: e.detail.encryptedData
     }
-    // console.log('params',params)
     network.post('/smallProgramAudit/getSpFansPhone.do', params, (res) => {
-      // console.log('getSpFansPhone', res)
       if (res.code == 0 && res.data.phone) {
         globalData.phoneNumber = res.data.phone
         globalData.fansId = res.data.id
@@ -62,11 +60,10 @@ export function getSpFansPhone(e,success,cancel) {
 export function saveFormId(obj,success,fail){
   network.post('/spMsg/saveFormid.do', {
       companyId:getApp().globalData.companyId,
-      formid:obj.formId
+      formid:obj.formId,
+      spFansId: getApp().globalData.fansId
   }, (res) => {
-    console.log('saveFormid', res)
-    if(res.code == 0){
-     
+    if(res.code == 0){    
       if(success){
         success()
       }

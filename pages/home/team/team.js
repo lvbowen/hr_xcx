@@ -40,15 +40,18 @@ Page({
   getWorkTeamInfo: function () {
     let _this = this;
     network.post("/api.do", {
-      method: "companyWeb/getWorkTeamInfo",
-      param: JSON.stringify({ "companyId": _this.data.companyId})
+      method: "companyWeb/getCompanyDetailForApp",
+      param: JSON.stringify({
+        id: getApp().globalData.weWebsiteId,
+        type: 2
+      })
     }, function (res) {
       if (res.code == "0" && res.data) { 
         _this.setData({
-          teams:res.data
+          teams: res.data.WorkTeam
         })
       } else {
-        console.log(`companyWeb/getWorkTeamInfo:${res.message}`)
+        console.log(`companyWeb/getCompanyDetailForApp:${res.message}`)
       }
     })
   },  

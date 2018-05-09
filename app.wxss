@@ -126,3 +126,15 @@ page{
 .input-placeholder,.textarea-placeholder,.placeholder{
    color: #999; 
 }
+/* 扩展可点击区域  */
+.extend-clickable-area{
+  position: relative;
+}
+.extend-clickable-area::before{
+  content:'';
+  position:absolute;
+  top:-10rpx;
+  bottom:-10rpx;
+  left:-10rpx;
+  right:-10rpx;
+}

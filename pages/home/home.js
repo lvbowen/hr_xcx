@@ -39,6 +39,10 @@ Page({
     showImg:false,
     showImgurl:'',
     memorabiliaEmptyImg:false,     //false:发展历程项都有图片，true:有的没图片
+    product_introduction_isshow: false,
+    development_history_isshow: false,
+    work_enivorment_isshow: false,
+    our_team_isshow: false
   },
 
   /**
@@ -108,6 +112,7 @@ Page({
               return item.imageUrl == "" || item.imageUrl == null;
             });
           }       
+          _this.isShowModule(res.data);
           _this.setData({
             memorabilia: res.data.CompanyMemorabilia,
             website: res.data.CompanyWebsite,
@@ -132,11 +137,81 @@ Page({
                 productListWidth: 279 * res.data.CompanyWebsite.productIntroductionList.length - 35
               })
           }
+
            
       }else{
         console.log(`companyWeb/getCompanyDetailForApp:${res.message}`)
       }
     })
+  },
+  /**
+   * 是否显示产品介绍、发展历程、办公环境、团队模块
+   */
+  isShowModule(data){
+    if (data.CompanyWebsite.productIntroductionList.length == 1) {   //产品介绍是否显示
+      if (data.CompanyWebsite.productIntroductionList[0].productDescription == "" && data.CompanyWebsite.productIntroductionList[0].productName == "" && data.CompanyWebsite.productIntroductionList[0].productImageUrl == null) {
+        this.setData({
+          product_introduction_isshow:false
+        })
+      } else {
+        this.setData({
+          product_introduction_isshow: true
+        })
+      }
+    } else if (data.CompanyWebsite.productIntroductionList.length > 1){
+      this.setData({
+        product_introduction_isshow: true
+      })
+    }
+
+    if (data.CompanyMemorabilia.length == 1) {   //发展历程是否显示
+      if (data.CompanyMemorabilia[0].date == "" && data.CompanyMemorabilia[0].description == "" && data.CompanyMemorabilia[0].imageUrl == null) {
+        this.setData({
+          development_history_isshow: false
+        })
+      } else {
+        this.setData({
+          development_history_isshow: true
+        })
+      }
+    } else if (data.CompanyMemorabilia.length > 1){
+       this.setData({
+         development_history_isshow: true
+       })
+    }
+
+    if (data.WorkEnvironment.length == 1) {   //办公环境是否显示
+      if (data.WorkEnvironment[0].description == "" && data.WorkEnvironment[0].imageUrl == null) {
+        this.setData({
+          work_enivorment_isshow: false
+        })
+      } else {
+        this.setData({
+          work_enivorment_isshow: true
+        })
+      }
+    } else if (data.WorkEnvironment.length > 1){
+       this.setData({
+         work_enivorment_isshow: true
+       })
+    }
+
+    if (data.WorkTeam.length == 1) {   //我们的团队是否显示
+      if (data.WorkTeam[0].description == "" && data.WorkTeam[0].imageUrl == null) {
+        this.data.our_team_isshow = false;
+        this.setData({
+          our_team_isshow: false
+        })
+      } else {
+        this.setData({
+          our_team_isshow: true
+        })
+      }
+    } else if (data.WorkTeam.length > 1){
+       this.setData({
+         our_team_isshow: true
+       })
+    }
   },
   /**
    * 获取总公司信息
