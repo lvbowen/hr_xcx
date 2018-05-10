@@ -18,7 +18,17 @@
 .icon-edit{
   width:32rpx;
   height:32rpx;
+  position: relative;
 }
+/* .icon-edit::before{
+  content: '';
+  position: absolute;
+  top:-10rpx;
+  bottom:-10rpx;
+  right:-10rpx;
+  left:-10rpx;
+  
+} */
 .base-info .icon-edit{
   position: absolute;
   top:0;
@@ -63,6 +73,10 @@
   background-color:#5AA2E7;
   border-radius: 4rpx;
 }
+.mine-edit-preview .footer{
+  padding-bottom:30rpx;
+}
+
 /* 基本信息 */
 .base-info{
   display: flex;
@@ -79,6 +93,9 @@
 .base-info .avatar-box .avatar-img{
   width:100%;
   height:100%;
+  border-radius: 50%;
+  overflow: hidden;
+  
 }
 .base-info .info-box{
   flex:1;
@@ -223,7 +240,7 @@
   text-align: center;
   font-size:34rpx;
   color: #B2B2B2;
-  border:1rpx solid #CCCCCC;
+  /* border:1rpx solid #CCCCCC; */
 }
 /* 求职意愿  */
 .job-want .hd .cue{

@@ -26,9 +26,14 @@
      </view>
      <!-- 职位列表  -->
      <view class="position-list-wrap" wx:if="{{positionList && positionList.length > 0}}">
-        <view class="position" wx:for="{{positionList}}" wx:key="index" data-positionId="{{item.id}}" catchtap='navigatorTo'>
+        <!-- <view class="position" wx:for="{{positionList}}" wx:key="index" data-positionId="{{item.id}}" catchtap='navigatorTo'> 
           <template is="positionItem" data="{{...item}}" />
-        </view>
+        </view>  -->
+         <form class="position" bindsubmit='saveFormId' report-submit="true"  wx:for="{{positionList}}" wx:key="index" >
+            <button class="btn-formId" form-type='submit' open-type='getUserInfo' bindgetuserinfo="getUserInfo" data-positionId="{{item.id}}">
+                <template is="positionItem" data="{{...item}}" />
+            </button>
+        </form> 
      </view>
      <!-- 空职位占位图  -->
      <view class="no-position" wx:else>
@@ -56,3 +61,9 @@
     </view>
     <view bindtap="saveImg" class='show_img_btn'><image src='https://aijuhr.com/images/xcx/dowload.png'></image>保存图片</view>
   </view>
+  <!-- 联系客服 -->
+  <form class="" bindsubmit='getFormId' report-submit="true">
+    <button class="btn-contact" open-type='contact' session-from="weapp" form-type='submit'>
+       <image class="img" src="/images/icon-contact.png"></image>
+    </button>
+  </form>

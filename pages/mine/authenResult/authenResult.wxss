@@ -1,6 +1,8 @@
+
+@import '/template/toast/toast.wxss';
 .authen-result{
   height: 100%;
-
+  background: #fff;
 }
 .email-notice{
   display: flex;
@@ -8,8 +10,8 @@
   align-items: center;
 }
 .email-notice .img{
-  width:200rpx;
-  height: 200rpx;
+  width:190rpx;
+  height: 178rpx;
   margin-top:60rpx;
   margin-bottom: 60rpx;
 }

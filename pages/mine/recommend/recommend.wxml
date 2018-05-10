@@ -19,6 +19,6 @@
 </view>
 
 <view class='recommend_none' wx:else>
-  <image src='https://aijuhr.com/images/xcx/none.png'></image>
+  <image src='/images/no-result2.png'></image>
   <view>您还没有推荐的人，赶快去推荐吧</view>
 </view>

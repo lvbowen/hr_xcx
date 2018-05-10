@@ -1,40 +1,27 @@
 {
   "pages":[
     "pages/home/home",
-    "pages/mine/recommend/recommend",
     "pages/mine/mine",
-    "pages/mine/recommendDetail/recommendDetail",
-    
-    
+    "pages/mine/authentication/authentication",
+    "pages/mine/authenResult/authenResult", 
     "pages/position/list",
-    "pages/position/detail/detail",
-    
+    "pages/mine/recommend/recommend",
+    "pages/mine/recommendDetail/recommendDetail",
+    "pages/position/detail/detail", 
     "pages/home/power/power",
-      "pages/home/memorabiliaDetail/memorabiliaDetail",
+    "pages/home/memorabiliaDetail/memorabiliaDetail",
     "pages/mine/jobRecord/jobRecord",
-    "pages/mine/jobRecordDetail/jobRecordDetail",
-    
+    "pages/mine/jobRecordDetail/jobRecordDetail", 
     "pages/home/productDetail/productDetail",
-   
-    
-   
-    
-    "pages/mine/jobCollection/jobCollection",
-    
-    
-    "pages/mine/authentication/authentication", 
-    "pages/mine/authenResult/authenResult",
-    
     "pages/position/resume/resume",
     "pages/mine/editPreview/editPreview",
     "pages/position/loginResume/loginResume",
     "pages/position/addResume/addResume",
-    
     "pages/mine/editAspiration/editAspiration",
     "pages/mine/editLink/editLink",
     "pages/mine/editCertificate/editCertificate",
     "pages/mine/editSkill/editSkill",
-     "pages/mine/editAwards/editAwards",
+    "pages/mine/editAwards/editAwards",
     "pages/mine/editLanguage/editLanguage",
     "pages/mine/editProject/editProject",
     "pages/mine/editEducation/editEducation",

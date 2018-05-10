@@ -5,9 +5,11 @@ let md5 = require("../md5.min.js")
 let network = {
   //post请求
   post:(url,params,success,fail) => {
-    wx.showLoading({
-      title: '加载中',
-    })
+    if (url.indexOf('saveFormid.do') == -1){
+      wx.showLoading({
+        title: '加载中',
+      })
+    }
     if(url.indexOf('api.do') > -1){
       params.sign = md5('method' + params.method + "param" + params.param + "ecbao")
     }
@@ -37,9 +39,11 @@ let network = {
   },
   //get请求
   get: (url, params, success, fail) => {
-    wx.showLoading({
-      title: '加载中',
-    })
+    if (url.indexOf('saveFormid.do') == -1) {
+      wx.showLoading({
+        title: '加载中',
+      })
+    }
     if (url.indexOf('api.do') > -1) {
       params.sign = md5('method' + params.method + "param" + params.param + "ecbao")
     }

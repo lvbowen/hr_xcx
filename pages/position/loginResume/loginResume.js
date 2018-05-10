@@ -1,5 +1,6 @@
 const network = require("../../../utils/network.js")
 const utils = require("../../../utils/util.js")
+const commonApi = require("../../../utils/commonApi.js")
 const app = getApp()
 const companyId = app.globalData.companyId
 const paramObj = { companyId: companyId, type: 2 }
@@ -163,6 +164,10 @@ Page({
    */
   formSubmit: function (e) {
     let data = e.detail.value
+    console.log(e.detail.formId)
+    commonApi.saveFormId({
+      formId: e.detail.formId
+    })
     if (this.checkForm(data)){
       this.climbeResume()
     }
@@ -287,6 +292,8 @@ Page({
     }, function (res) {
       if (res.code == "0") {
        if(res.data == 1){
+         //投递成功
+        //  _this.positionApplyMsg()    //模板消息,但是这个来源是第三方平台的而不是小程序，暂时这种不发吧
          wx.navigateTo({
            url: `../deliveryResult/deliveryResult?type=1`,
          })
@@ -297,6 +304,27 @@ Page({
        }
       } else {
         utils.toggleToast(_this, res.message)
+      }
+    })
+  },
+  /**
+   * 发送模板消息
+   */
+  positionApplyMsg: function () {
+    let _data = this.data
+    network.post("/spMsg/positionApplyMsg.do", {
+      params: {
+        companyId: getApp().globalData.companyId,
+        positionId: _data.options.positionId,
+        applyerName: _data.platformResume.InterviewerInfo.name,
+        fansId: getApp().globalData.fansId,
+        shareFansId: getApp().globalData.shareFansId,
+        phone: _data.platformResume.InterviewerInfo.phone,
+        email: _data.platformResume.InterviewerInfo.email
+      }
+    }, function (res) {
+      if (res.code == "0") {
+        console.log('模板消息', res.message)
       }
     })
   },

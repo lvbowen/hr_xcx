@@ -22,6 +22,7 @@
   font-size:28rpx;
 }
 .position{
+  display: block;
   padding:30rpx;
   background: #ffffff;
   margin-bottom:24rpx;
@@ -45,4 +46,22 @@
 .no-position .placeholder image{
   width:128rpx;
   height:128rpx;
+}
+.btn-contact{
+  position: fixed;
+  bottom:460rpx;
+  right:0;
+  z-index: 999;
+  width:74rpx;
+  height: 90rpx;
+  border:none;
+  background: transparent;
+  padding:0;
+}
+.btn-contact::after{
+  border:0;
+}
+.btn-contact .img{
+  width:100%;
+  height:100%;
 }

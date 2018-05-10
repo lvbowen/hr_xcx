@@ -1,11 +1,12 @@
 <import src="/template/footer/footer.wxml" />
 
-<view class="edit-preview">
+<view class="edit-preview {{options.pageType == 'mine' ? 'mine-edit-preview' : ''}}">
   <!-- 基本信息  -->
   <view class="base-info section">
     <view class="avatar-box">
-      <image class="avatar-img" wx:if="{{basic.headImg}}" src="{{basic.headImg}}" ></image>
-      <image class="avatar-img" wx:else src="../../../images/default_avatar2.png" ></image>
+      <!-- <open-data type="userAvatarUrl" class="avatar-img"></open-data>  -->
+       <image class="avatar-img" wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" ></image> 
+       <image class="avatar-img" wx:else src="../../../images/default_avatar2.png" ></image> 
     </view>
     <view class="info-box">
       <view class="" wx:if="{{basic.name}}">
@@ -119,10 +120,10 @@
         <text class="lang font-34">{{item.languageSkill}}</text>
         <text class="font-gray-24">{{item.languageLevel}}</text>
       </view>
-      <view class="add-btn" wx:if="{{!languageList || languageList.length == 0}}">
+      <!-- <view class="add-btn" wx:if="{{!languageList || languageList.length == 0}}">
         <view class="icon-cross"></view>
         <text class="word" data-page="editLanguage" catchtap="goEdit">新增语言能力</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <!-- 技能 -->
@@ -135,10 +136,10 @@
       <view class="list" wx:if="{{skillList && skillList.length > 0}}">
         <text class="item" wx:for="{{skillList}}" wx:key="index">{{item.languageSkill}}</text>
       </view>
-      <view class="add-btn" wx:else>
+      <!-- <view class="add-btn" wx:else>
         <view class="icon-cross"></view>
         <text class="word" data-page="editSkill" catchtap="goEdit">新增技能</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <!-- 证书 -->
@@ -151,10 +152,10 @@
       <view class="list"  wx:if="{{certList && certList.length > 0}}">
         <text class="item" wx:for="{{certList}}" wx:key="index">{{item.qualificationName}}</text>
       </view>
-      <view class="add-btn" wx:else>
+      <!-- <view class="add-btn" wx:else>
         <view class="icon-cross"></view>
         <text class="word" data-page="editCertificate" catchtap="goEdit">新增证书</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <!-- 获得奖项 -->
@@ -168,10 +169,10 @@
         <text class="lang font-34">{{item.qualificationName}}</text>
         <text class="font-gray-24">{{item.qualificationDateStr}}</text>
       </view>
-      <view class="add-btn" wx:if="{{!prizeList || prizeList.length == 0}}">
+      <!-- <view class="add-btn" wx:if="{{!prizeList || prizeList.length == 0}}">
         <view class="icon-cross"></view>
         <text class="word" data-page="editAwards" catchtap="goEdit">新增奖项</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <!-- 个人链接 -->
@@ -218,5 +219,7 @@
   <!-- 页脚 -->
    <template is="footer" /> 
    <!--  -->
-    <view class="delivery-btn" wx:if="{{options.pageType != 'mine'}}" catchtap="goDelivery" >立即投递</view> 
+   <form class="form-id" bindsubmit='goDelivery' report-submit="true"  wx:if="{{options.pageType != 'mine'}}">
+     <button class="btn-formId delivery-btn" form-type='submit' >立即投递</button> 
+  </form>
 </view>

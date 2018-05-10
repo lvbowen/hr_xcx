@@ -80,6 +80,7 @@
   color: #ffffff;
   background-color: #5aa2e7;
   margin-top:30rpx;
+  border-radius: 10rpx;
 }
 .show_img_btn image{
   width: 32rpx;
