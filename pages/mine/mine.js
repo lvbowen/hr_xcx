@@ -13,18 +13,14 @@ Page({
     companyId:'',
     isEmployeeCertification: 0,     //员工认证 （0：没有认证过，1:已经认证过）
     isNotEmployeeCertification: 0,  //求职者认证 （0：没有认证过，1:已经认证过）
+    userInfo:{},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let globalData = getApp().globalData
-    console.log(globalData)
-    this.setData({
-      fansId: globalData.fansId,
-      companyId:globalData.companyId,
-    })
+    console.log(wx.getStorageSync('userInfo'))
   },
 
   /**
@@ -38,11 +34,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let globalData = getApp().globalData
+    this.setData({
+      fansId: globalData.fansId,
+      companyId: globalData.companyId,
+      userInfo: wx.getStorageSync('userInfo') ? wx.getStorageSync('userInfo') : {}
+    })
     if (getApp().globalData.phoneNumber) {
       this.setData({
         isNotEmployeeCertification: 1
       })
     }
+    
     this.getPersonalInfoSp()
   },
   /**

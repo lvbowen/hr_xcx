@@ -15,6 +15,7 @@ Page({
     jobpref: null,
     link: null,
     myEvaluation: null,
+    userInfo:{},
     certList: [],
     educationHistoryList:[],
     languageList: [],
@@ -47,6 +48,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      userInfo: wx.getStorageSync('userInfo') ? wx.getStorageSync('userInfo'):{}
+    })
     this.getAllResume()
     
   },

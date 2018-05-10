@@ -4,9 +4,9 @@
   <!-- 基本信息  -->
   <view class="base-info section">
     <view class="avatar-box">
-      <open-data type="userAvatarUrl" class="avatar-img"></open-data> 
-      <!-- <image class="avatar-img" wx:if="{{basic.headImg}}" src="{{basic.headImg}}" ></image>
-      <image class="avatar-img" wx:else src="../../../images/default_avatar2.png" ></image> -->
+      <!-- <open-data type="userAvatarUrl" class="avatar-img"></open-data>  -->
+       <image class="avatar-img" wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" ></image> 
+       <image class="avatar-img" wx:else src="../../../images/default_avatar2.png" ></image> 
     </view>
     <view class="info-box">
       <view class="" wx:if="{{basic.name}}">
