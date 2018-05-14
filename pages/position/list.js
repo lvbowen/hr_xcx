@@ -77,6 +77,7 @@ Page({
       method: "companyWeb/getWeWebsitePositionByCategoryId",
       param: JSON.stringify({    
         id: getApp().globalData.weWebsiteId,
+        companyId: getApp().globalData.companyId,
         type:2
       })
     }, function (res) {
